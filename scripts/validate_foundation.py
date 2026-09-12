@@ -134,6 +134,12 @@ def validate_manifests(errors: list[str]) -> None:
         expected = {"cad_handoff", "cnc_milling", "additive", "laser_cutting", "unknown"}
         if families != expected:
             fail(f"router routes must cover exactly {sorted(expected)}; found {sorted(families)}", errors)
+        for route in routes["routes"]:
+            skillset = route.get("skillset") if isinstance(route, dict) else None
+            if skillset and not (ROOT / "skillsets" / f"{skillset}.yaml").is_file():
+                fail(f"router route references missing skillset: {skillset}", errors)
+            if isinstance(route, dict) and route.get("id") == "unknown" and skillset is not None:
+                fail("unknown router route must not select a skillset", errors)
     fixtures = load_yaml(ROOT / "fixtures" / "manifest.yaml", errors)
     if not isinstance(fixtures, dict) or not isinstance(fixtures.get("fixtures"), list):
         fail("fixtures/manifest.yaml must contain a fixtures list", errors)
