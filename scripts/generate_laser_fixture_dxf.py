@@ -17,6 +17,8 @@ def main() -> int:
     model.add_circle((53, 25), 3)
     document.header["$INSUNITS"] = 4
     document.saveas(output)
+    text = output.read_text(encoding="utf-8")
+    output.write_text("\n".join(line.rstrip() for line in text.splitlines()) + "\n", encoding="utf-8", newline="\n")
     print(f"wrote {output}")
     return 0
 
