@@ -15,6 +15,7 @@ REQUIRED_DIRS = (
     "reviewer-findings",
     "required-edits",
     "safety-findings",
+    "final-verdict",
 )
 REQUIRED_FIELDS = (
     "workflow_family",
@@ -34,9 +35,9 @@ def validate(root: Path) -> list[str]:
     for directory in REQUIRED_DIRS:
         if not (root / directory).is_dir():
             errors.append(f"missing pilot packet directory: {directory}")
-    verdict_path = root / "final-verdict.yaml"
+    verdict_path = root / "final-verdict" / "final-verdict.yaml"
     if not verdict_path.is_file():
-        errors.append("missing final-verdict.yaml")
+        errors.append("missing final-verdict/final-verdict.yaml")
         return errors
     try:
         verdict = yaml.safe_load(verdict_path.read_text(encoding="utf-8"))
