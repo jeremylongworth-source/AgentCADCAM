@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80mm" height="55mm" viewBox="0 0 80 55">
+  <title>CADCAM fixture bracket revision A</title>
+  <desc>Reference drawing: 60 mm wide by 40 mm deep, 6 mm thick base plate.</desc>
+  <rect x="10" y="10" width="60" height="40" fill="none" stroke="black" />
+  <circle cx="22" cy="30" r="3" fill="none" stroke="black" />
+  <circle cx="58" cy="30" r="3" fill="none" stroke="black" />
+  <text x="10" y="7" font-size="3">REV A | UNITS: mm | BASE: 60 x 40 x 6</text>
+  <text x="10" y="54" font-size="3">REFERENCE ONLY - REVIEW_REQUIRED</text>
+</svg>

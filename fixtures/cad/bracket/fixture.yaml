@@ -1,0 +1,33 @@
+fixture_id: cad-bracket-basic
+version: 1
+status: draft
+description: Simple L-bracket bundle for provenance, interoperability, and handoff tests.
+license: CC0-1.0 synthetic fixture
+authoritative_artifact: source/bracket.scad
+artifacts:
+  - path: source/bracket.scad
+    kind: native_cad_source
+    authority: authoritative
+    revision: A
+    units: mm
+  - path: source/bracket.stl
+    kind: mesh_derivative
+    authority: derived
+    revision: A
+    units: mm
+  - path: source/bracket.svg
+    kind: drawing_reference
+    authority: derived
+    revision: A
+    units: mm
+  - path: metadata/revision.json
+    kind: revision_metadata
+    authority: authoritative
+    revision: A
+step_artifact:
+  status: planned
+  reason: A neutral solid exchange file will be added after a deterministic STEP-capable fixture generator is selected.
+expected:
+  source_authority: source/bracket.scad
+  default_outcomes: [REVIEW_REQUIRED]
+  required_findings: ["STL is derived", "drawing/source revision consistent", "neutral solid exchange pending"]

@@ -1,0 +1,19 @@
+fixture_id: cad-bracket-basic
+positive:
+  - input: source/bracket.scad + metadata/revision.json
+    expected: authoritative source identified; revision A; units mm
+  - input: source/bracket.stl
+    expected: derived mesh identified; not a complete design master
+negative:
+  - mutation: revision-mismatch
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: missing-units
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: stale-derived-file
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: stl-treated-as-design-master
+    expected_blockers: [SOURCE_VERIFICATION_REQUIRED]
+  - mutation: missing-pmi
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: conflicting-dimensions
+    expected_blockers: [MISSING_CONTEXT]

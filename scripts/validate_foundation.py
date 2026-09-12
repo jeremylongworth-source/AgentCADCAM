@@ -160,6 +160,9 @@ def validate_skill_metadata(errors: list[str]) -> None:
         for key in ("name", "description"):
             if not data.get(key):
                 fail(f"skill metadata missing {key}: {path}", errors)
+        folder_name = path.parent.name
+        if data.get("name") != folder_name:
+            fail(f"skill name does not match folder: {path}", errors)
 
 
 def load_yaml_text(content: str, path: Path, errors: list[str]):

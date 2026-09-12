@@ -1,3 +1,7 @@
 version: 1
-status: planned
-fixtures: []
+status: draft
+fixtures:
+  - id: cad-bracket-basic
+    family: cad_handoff
+    path: cad/bracket/fixture.yaml
+    status: draft

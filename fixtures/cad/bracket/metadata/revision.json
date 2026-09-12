@@ -1,0 +1,14 @@
+{
+  "job_id": "cad-bracket-basic",
+  "revision": "A",
+  "units": "mm",
+  "authoritative_artifact": "source/bracket.scad",
+  "ownership_status": "owned",
+  "licence_status": "permitted",
+  "confidentiality": "public",
+  "third_party_restrictions": [],
+  "redistribution_authorized": true,
+  "export_review_status": "not_required",
+  "pmi_status": "not_present",
+  "target_process": "cnc_milling_or_fdm_prototype"
+}
