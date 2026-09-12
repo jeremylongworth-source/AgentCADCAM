@@ -27,4 +27,4 @@ This evaluation covers intake, provenance, interoperability, basic manufacturabi
 
 ## Evidence status
 
-Fixture contracts, expected negative outcomes, a deterministic metadata behavior harness, and generated STEP/STL exchange fixtures are present. Lightweight envelope and extent checks pass; a geometry-kernel or independent CAD validation review is still required before `CADCAM_03_DESIGN_HANDOFF_READY` can be claimed.
+Fixture contracts, expected negative outcomes, a deterministic metadata behavior harness, and generated STEP/STL exchange fixtures are present. Lightweight source/drawing/revision and exchange-envelope checks pass. The phase result remains bounded to the synthetic fixture; real manufacturing use still requires qualified CAD/DFM review.

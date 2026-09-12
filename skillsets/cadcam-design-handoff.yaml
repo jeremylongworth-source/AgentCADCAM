@@ -1,6 +1,6 @@
 name: cadcam-design-handoff
 version: 0.1.0
-status: draft
+status: validated_synthetic
 skills:
   - cadcam-intake-and-scope
   - design-file-provenance-review

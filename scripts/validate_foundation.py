@@ -64,6 +64,7 @@ REQUIRED_FILES = {
     "scripts/cad_handoff_checks.py",
     "scripts/validate_cad_fixture_step.py",
     "scripts/validate_cad_fixture_mesh.py",
+    "scripts/validate_cad_fixture_design.py",
     "scripts/validate_foundation.py",
 }
 

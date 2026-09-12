@@ -1,6 +1,6 @@
 fixture_id: cad-bracket-basic
 version: 1
-status: draft
+status: validated_synthetic
 description: Simple L-bracket bundle for provenance, interoperability, and handoff tests.
 license: CC0-1.0 synthetic fixture
 authoritative_artifact: source/bracket.scad

@@ -2,7 +2,7 @@
 
 ## Status
 
-Phase 2 implementation in progress. Five atomic skill contracts, one skillset manifest, a synthetic fixture, and an evaluation plan are present.
+Phase 2 implementation complete for the synthetic, review-only fixture scope. Five atomic skill contracts, one skillset manifest, a generated CAD bundle, deterministic checks, and an evaluation plan are present.
 
 ## Current deliverables
 
@@ -14,13 +14,19 @@ Phase 2 implementation in progress. Five atomic skill contracts, one skillset ma
 - `skillsets/cadcam-design-handoff.yaml`
 - `fixtures/cad/bracket/` including generated STEP exchange artifact
 - `docs/evaluation/cad-handoff-evaluation.md`
+- `scripts/cad_handoff_checks.py`
+- `scripts/validate_cad_fixture_design.py`
+- `scripts/validate_cad_fixture_step.py`
+- `scripts/validate_cad_fixture_mesh.py`
 
-## Remaining gate work
+## Residual scope
 
-- Validate drawing/source geometry and revision consistency independently of prose-only expectations.
-- Decide whether a CAD-kernel or independent supplier review is required for the final phase gate.
+- Expand topology and semantic-PMI checks when an independent CAD-kernel or supplier validation workflow is selected.
+- Qualified CAD/DFM review remains required for any real manufacturing use.
 - Complete architecture and qualified manufacturing-review signoff for any real manufacturing use.
 
 ## Gate status
 
-`CADCAM_03_DESIGN_HANDOFF_READY` is not claimed. Current outputs are draft guidance and remain `REVIEW_REQUIRED`.
+`CADCAM_03_DESIGN_HANDOFF_READY`
+
+The phase gate is complete for the curated synthetic fixture and metadata/geometry-envelope scope. This does not approve a real part or manufacturing package; current outputs remain `REVIEW_REQUIRED`.
