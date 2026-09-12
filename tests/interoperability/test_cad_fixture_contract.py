@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml
 
 from scripts.validate_cad_fixture_step import validate
+from scripts.validate_cad_fixture_mesh import validate as validate_mesh
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -30,6 +31,7 @@ class CadFixtureContractTests(unittest.TestCase):
         self.assertTrue(step_text.startswith("ISO-10303-21;"))
         self.assertTrue(step_text.rstrip().endswith("END-ISO-10303-21;"))
         self.assertEqual(validate(step), [])
+        self.assertEqual(validate_mesh(ROOT / "fixtures/cad/bracket/source/bracket.stl"), [])
 
     def test_negative_mutations_have_blocking_outcomes(self):
         expected = yaml.safe_load((ROOT / "fixtures/cad/bracket/expected/outcomes.yaml").read_text(encoding="utf-8"))
