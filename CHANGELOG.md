@@ -10,3 +10,4 @@
 - Validated the synthetic FDM additive preflight workflow through `CADCAM_05_ADDITIVE_ALPHA_READY`.
 - Validated the synthetic laser-cutting preflight workflow through `CADCAM_06_LASER_ALPHA_READY`.
 - Added deterministic router/state integration through `CADCAM_07_INTEGRATION_READY`.
+- Hardened the portable workflow layer through `CADCAM_08_PUBLIC_ALPHA_READY`; real-input pilot validation remains outstanding.

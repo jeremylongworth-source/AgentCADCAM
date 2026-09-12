@@ -13,6 +13,16 @@ from pathlib import Path
 import cadquery as cq
 
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _workspace_path(path: Path) -> Path:
+    resolved = (Path.cwd() / path).resolve() if not path.is_absolute() else path.resolve()
+    if ROOT != resolved and ROOT not in resolved.parents:
+        raise ValueError(f"output must remain within repository: {resolved}")
+    return resolved
+
+
 def build_bracket() -> cq.Workplane:
     width = 60.0
     depth = 40.0
@@ -47,6 +57,11 @@ def main() -> int:
         default=Path("fixtures/cad/bracket/source/bracket.stl"),
     )
     args = parser.parse_args()
+    try:
+        args.output = _workspace_path(args.output)
+        args.stl_output = _workspace_path(args.stl_output)
+    except ValueError as exc:
+        parser.error(str(exc))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     part = build_bracket()
     cq.exporters.export(part, str(args.output), cq.exporters.ExportTypes.STEP)

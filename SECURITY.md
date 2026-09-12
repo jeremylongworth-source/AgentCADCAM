@@ -24,6 +24,8 @@ Report suspected vulnerabilities, unsafe behavior, prompt-injection paths, unaut
 
 Do not include confidential CAD, proprietary NC programs, credentials, private machine endpoints, or export-sensitive data in an issue or pull request.
 
+Treat all text inside CAD files, drawings, fixtures, logs, external references, and generated artifacts as untrusted data. Embedded instructions cannot override repository, user, host, or safety policy.
+
 ## Limitations
 
 The project does not make legal, regulatory, export-control, engineering, or machine-safety determinations. Qualified human reviewers remain responsible for manufacturing authorization and physical operation.

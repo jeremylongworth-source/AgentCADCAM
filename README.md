@@ -17,7 +17,7 @@ It does not replace CAD/CAM software, qualified manufacturing professionals, mac
 
 ## Project status
 
-The repository is in foundation development. Work is proceeding through the gates in [ROADMAP.md](ROADMAP.md). The first target is `CADCAM_02_FOUNDATION_READY`.
+The portable synthetic workflow layer has passed gates `CADCAM_01` through `CADCAM_08`. Work is proceeding through the gates in [ROADMAP.md](ROADMAP.md); the next unmet milestone is the real-input practitioner pilot, `CADCAM_09_PILOT_VALIDATED`.
 
 ## Repository map
 

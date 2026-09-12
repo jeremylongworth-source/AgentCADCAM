@@ -64,6 +64,8 @@ REQUIRED_FILES = {
     "docs/architecture/ip-and-provenance-model.md",
     "docs/standards/prohibited-capability-contract.md",
     "docs/standards/fixture-licensing-standard.md",
+    "docs/architecture/threat-model.md",
+    "docs/evaluation/adversarial-hardening.md",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/cad_handoff_checks.py",
