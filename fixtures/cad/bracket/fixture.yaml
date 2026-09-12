@@ -24,6 +24,7 @@ artifacts:
     kind: revision_metadata
     authority: authoritative
     revision: A
+    units: mm
 step_artifact:
   status: planned
   reason: A neutral solid exchange file will be added after a deterministic STEP-capable fixture generator is selected.

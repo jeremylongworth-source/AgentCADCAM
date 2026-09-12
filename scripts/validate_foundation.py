@@ -61,6 +61,7 @@ REQUIRED_FILES = {
     "docs/standards/fixture-licensing-standard.md",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
+    "scripts/cad_handoff_checks.py",
     "scripts/validate_foundation.py",
 }
 
