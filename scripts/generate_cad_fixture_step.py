@@ -48,6 +48,7 @@ def main() -> int:
     # fixture is byte-stable when regenerated with the same CadQuery version.
     text = args.output.read_text(encoding="utf-8")
     text = re.sub(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}", "1970-01-01T00:00:00", text)
+    text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
     args.output.write_text(text, encoding="utf-8", newline="\n")
     print(f"wrote {args.output}")
     return 0
