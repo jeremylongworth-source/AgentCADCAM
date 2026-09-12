@@ -27,4 +27,4 @@ This evaluation covers intake, provenance, interoperability, basic manufacturabi
 
 ## Evidence status
 
-Fixture contracts and expected negative outcomes are present. A deterministic behavior harness and neutral STEP fixture are still required before `CADCAM_03_DESIGN_HANDOFF_READY` can be claimed.
+Fixture contracts, expected negative outcomes, a deterministic metadata behavior harness, and a generated neutral STEP fixture are present. A geometry-kernel or independent CAD validation review is still required before `CADCAM_03_DESIGN_HANDOFF_READY` can be claimed.

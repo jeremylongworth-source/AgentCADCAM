@@ -62,6 +62,7 @@ REQUIRED_FILES = {
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/cad_handoff_checks.py",
+    "scripts/validate_cad_fixture_step.py",
     "scripts/validate_foundation.py",
 }
 
@@ -151,6 +152,16 @@ def validate_manifests(errors: list[str]) -> None:
                 continue
             if not (ROOT / "fixtures" / entry["path"]).is_file():
                 fail(f"fixture manifest path does not exist: {entry['path']}", errors)
+            else:
+                fixture = load_yaml(ROOT / "fixtures" / entry["path"], errors)
+                if isinstance(fixture, dict):
+                    if not fixture.get("license"):
+                        fail(f"fixture missing license declaration: {entry['path']}", errors)
+                    fixture_root = (ROOT / "fixtures" / entry["path"]).parent
+                    for artifact in fixture.get("artifacts", []) or []:
+                        artifact_path = artifact.get("path") if isinstance(artifact, dict) else None
+                        if artifact_path and not (fixture_root / artifact_path).is_file():
+                            fail(f"fixture artifact path does not exist: {entry['path']} -> {artifact_path}", errors)
     sources = load_yaml(ROOT / "docs" / "sources" / "source-registry.yaml", errors)
     if not isinstance(sources, dict) or not isinstance(sources.get("sources"), list):
         fail("source registry must contain a sources list", errors)

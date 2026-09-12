@@ -15,6 +15,11 @@ artifacts:
     authority: derived
     revision: A
     units: mm
+  - path: source/bracket.step
+    kind: neutral_solid_exchange
+    authority: derived
+    revision: A
+    units: mm
   - path: source/bracket.svg
     kind: drawing_reference
     authority: derived
@@ -26,9 +31,10 @@ artifacts:
     revision: A
     units: mm
 step_artifact:
-  status: planned
-  reason: A neutral solid exchange file will be added after a deterministic STEP-capable fixture generator is selected.
+  status: generated
+  generator: scripts/generate_cad_fixture_step.py
+  generator_dependency: cadquery>=2.8,<3
 expected:
   source_authority: source/bracket.scad
   default_outcomes: [REVIEW_REQUIRED]
-  required_findings: ["STL is derived", "drawing/source revision consistent", "neutral solid exchange pending"]
+  required_findings: ["STL is derived", "drawing/source revision consistent", "neutral solid exchange requires independent verification"]

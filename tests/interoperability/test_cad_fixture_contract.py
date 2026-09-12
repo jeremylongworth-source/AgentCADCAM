@@ -5,6 +5,8 @@ from pathlib import Path
 
 import yaml
 
+from scripts.validate_cad_fixture_step import validate
+
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -21,7 +23,13 @@ class CadFixtureContractTests(unittest.TestCase):
         roles = {item["path"]: item["authority"] for item in fixture["artifacts"]}
         self.assertEqual(roles["source/bracket.scad"], "authoritative")
         self.assertEqual(roles["source/bracket.stl"], "derived")
-        self.assertEqual(fixture["step_artifact"]["status"], "planned")
+        self.assertEqual(fixture["step_artifact"]["status"], "generated")
+        step = ROOT / "fixtures/cad/bracket/source/bracket.step"
+        self.assertTrue(step.is_file())
+        step_text = step.read_text(encoding="utf-8")
+        self.assertTrue(step_text.startswith("ISO-10303-21;"))
+        self.assertTrue(step_text.rstrip().endswith("END-ISO-10303-21;"))
+        self.assertEqual(validate(step), [])
 
     def test_negative_mutations_have_blocking_outcomes(self):
         expected = yaml.safe_load((ROOT / "fixtures/cad/bracket/expected/outcomes.yaml").read_text(encoding="utf-8"))

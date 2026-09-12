@@ -12,14 +12,13 @@ Phase 2 implementation in progress. Five atomic skill contracts, one skillset ma
 - `cad-manufacturability-review`
 - `drawing-pmi-handoff-review`
 - `skillsets/cadcam-design-handoff.yaml`
-- `fixtures/cad/bracket/`
+- `fixtures/cad/bracket/` including generated STEP exchange artifact
 - `docs/evaluation/cad-handoff-evaluation.md`
 
 ## Remaining gate work
 
-- Add a deterministic neutral solid exchange fixture or document an approved generator and its licensing.
-- Implement behavior-level tests that apply the listed negative mutations and assert blocking outcomes.
 - Validate drawing/source geometry and revision consistency independently of prose-only expectations.
+- Decide whether a CAD-kernel or independent supplier review is required for the final phase gate.
 - Complete architecture and qualified manufacturing-review signoff for any real manufacturing use.
 
 ## Gate status

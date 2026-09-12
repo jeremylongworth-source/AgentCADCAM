@@ -64,6 +64,14 @@ def review_bundle(bundle: dict[str, Any], root: Path | None = None) -> dict[str,
     elif any(item.get("kind") == "mesh_derivative" for item in artifacts):
         findings.append("mesh is identified as a derived artifact")
 
+    step_artifact = bundle.get("step_artifact") or {}
+    if step_artifact.get("status") == "generated":
+        if "source/bracket.step" in by_path:
+            findings.append("neutral solid exchange is present; independent geometry verification is still required")
+        else:
+            blockers.append("MISSING_CONTEXT")
+            findings.append("STEP status claims generated but the artifact is not declared")
+
     metadata = bundle.get("metadata") or {}
     if "pmi_status" not in metadata:
         blockers.append("MISSING_CONTEXT")
