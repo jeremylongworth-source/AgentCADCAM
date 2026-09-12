@@ -65,6 +65,7 @@ REQUIRED_FILES = {
     "scripts/validate_cad_fixture_step.py",
     "scripts/validate_cad_fixture_mesh.py",
     "scripts/validate_cad_fixture_design.py",
+    "scripts/nc_static_checks.py",
     "scripts/validate_foundation.py",
 }
 
@@ -164,6 +165,12 @@ def validate_manifests(errors: list[str]) -> None:
                         artifact_path = artifact.get("path") if isinstance(artifact, dict) else None
                         if artifact_path and not (fixture_root / artifact_path).is_file():
                             fail(f"fixture artifact path does not exist: {entry['path']} -> {artifact_path}", errors)
+                    program_path = fixture.get("program")
+                    if program_path and not (fixture_root / program_path).is_file():
+                        fail(f"fixture program path does not exist: {entry['path']} -> {program_path}", errors)
+                    for context_name, context_path in (fixture.get("contexts") or {}).items():
+                        if not (fixture_root / context_path).is_file():
+                            fail(f"fixture {context_name} context path does not exist: {entry['path']} -> {context_path}", errors)
     sources = load_yaml(ROOT / "docs" / "sources" / "source-registry.yaml", errors)
     if not isinstance(sources, dict) or not isinstance(sources.get("sources"), list):
         fail("source registry must contain a sources list", errors)

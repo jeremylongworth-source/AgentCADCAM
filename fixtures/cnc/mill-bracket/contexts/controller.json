@@ -1,0 +1,9 @@
+{
+  "controller_id": "fixture-controller",
+  "manufacturer": "Synthetic Fixture",
+  "model": "controller-v1",
+  "supported_units": ["mm"],
+  "supported_commands": ["G0", "G1", "G17", "G21", "G54", "G90", "M3", "M5", "M6", "M30"],
+  "modes_and_offsets": {"wcs": ["G54"], "absolute_mode": "G90"},
+  "source": {"title": "Synthetic fixture controller profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/controller.json", "accessed_at": "2026-09-12"}
+}

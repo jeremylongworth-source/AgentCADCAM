@@ -6,3 +6,4 @@
 - Added the Phase 0 domain contract and Phase 1 foundation standards.
 - Added initial context schemas, format registry, router contract, and validation script.
 - Validated the synthetic CAD design-handoff workflow through `CADCAM_03_DESIGN_HANDOFF_READY`.
+- Validated the synthetic three-axis CNC planning workflow through `CADCAM_04_CNC_ALPHA_READY`.

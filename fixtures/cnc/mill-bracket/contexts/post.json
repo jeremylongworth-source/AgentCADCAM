@@ -1,0 +1,9 @@
+{
+  "post_id": "fixture-post-v1",
+  "cam_system": "fixture-cam",
+  "controller_id": "fixture-controller",
+  "machine_id": "fixture-mill-3axis",
+  "post_version": "1.0",
+  "validation_state": "verified",
+  "source": {"title": "Synthetic fixture post profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/post.json", "accessed_at": "2026-09-12"}
+}

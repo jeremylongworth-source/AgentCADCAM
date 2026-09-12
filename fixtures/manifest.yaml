@@ -5,3 +5,7 @@ fixtures:
     family: cad_handoff
     path: cad/bracket/fixture.yaml
     status: draft
+  - id: cnc-mill-bracket
+    family: cnc_milling
+    path: cnc/mill-bracket/fixture.yaml
+    status: validated_synthetic

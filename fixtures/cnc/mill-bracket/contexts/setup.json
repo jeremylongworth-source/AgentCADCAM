@@ -1,0 +1,8 @@
+{
+  "setup_id": "setup-1",
+  "stock": {"units": "mm", "x": 60, "y": 40, "z": 6},
+  "orientation": {"x": "part-x", "y": "part-y", "z": "part-z"},
+  "workholding": {"type": "fixture-only", "clamps_clear": null},
+  "wcs_status": "defined",
+  "sequence": ["face/base setup", "review vertical features"]
+}

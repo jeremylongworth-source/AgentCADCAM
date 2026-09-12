@@ -1,0 +1,9 @@
+{
+  "machine_id": "fixture-mill-3axis",
+  "process_family": "cnc_milling",
+  "manufacturer": "Synthetic Fixture",
+  "model": "3-axis mill",
+  "capabilities": {"axes": 3, "spindle_rpm_min": 500, "spindle_rpm_max": 12000, "tool_interface": "fixture-holder"},
+  "limits": {"x": {"min": 0, "max": 60}, "y": {"min": 0, "max": 40}, "z": {"min": 0, "max": 30}},
+  "source": {"title": "Synthetic fixture machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/machine.json", "accessed_at": "2026-09-12"}
+}

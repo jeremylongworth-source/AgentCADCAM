@@ -1,0 +1,4 @@
+mutation: wrong-controller
+replacements:
+  - from: "( CONTROLLER: fixture-controller )"
+    to: "( CONTROLLER: wrong-controller )"

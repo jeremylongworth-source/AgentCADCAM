@@ -1,0 +1,4 @@
+mutation: wrong-post
+replacements:
+  - from: "( POST: fixture-post-v1 )"
+    to: "( POST: wrong-post-v9 )"

@@ -1,6 +1,6 @@
 name: cnc-milling-planning
 version: 0.1.0
-status: planned
+status: validated_synthetic
 skills:
   - machine-capability-match
   - cnc-setup-planner

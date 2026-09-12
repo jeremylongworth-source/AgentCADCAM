@@ -1,0 +1,4 @@
+mutation: incorrect-tool-number
+replacements:
+  - from: T1 M6
+    to: T2 M6

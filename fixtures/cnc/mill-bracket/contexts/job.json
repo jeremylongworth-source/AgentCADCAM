@@ -1,0 +1,20 @@
+{
+  "job_id": "cnc-mill-bracket",
+  "revision": "A",
+  "process_family": "cnc_milling",
+  "artifacts": [],
+  "units": "mm",
+  "material": {"material_id": "fixture-aluminum", "grade_or_profile": "synthetic"},
+  "machine_profile": {"machine_id": "fixture-mill-3axis"},
+  "controller_profile": {"controller_id": "fixture-controller"},
+  "setup": {"setup_id": "setup-1"},
+  "tool_library": {"tool_library_id": "tooling-a"},
+  "cam_system": "fixture-cam",
+  "postprocessor": {"post_id": "fixture-post-v1"},
+  "simulation_status": "not_run",
+  "verification_results": [],
+  "jurisdiction": null,
+  "ip_status": {"ownership_status": "owned", "licence_status": "permitted"},
+  "export_review_status": "not_required",
+  "approval_status": "not_requested"
+}

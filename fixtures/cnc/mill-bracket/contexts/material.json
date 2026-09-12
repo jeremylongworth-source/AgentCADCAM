@@ -1,0 +1,9 @@
+{
+  "material_id": "fixture-aluminum",
+  "process_family": "cnc_milling",
+  "grade_or_profile": "synthetic review material",
+  "properties": {},
+  "compatibility": {"process": "three-axis milling"},
+  "environmental_requirements": {},
+  "source": {"title": "Synthetic fixture material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/material.json", "accessed_at": "2026-09-12"}
+}

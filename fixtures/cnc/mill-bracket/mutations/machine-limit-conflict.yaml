@@ -1,0 +1,4 @@
+mutation: machine-limit-conflict
+replacements:
+  - from: X60 Y0
+    to: X100 Y0

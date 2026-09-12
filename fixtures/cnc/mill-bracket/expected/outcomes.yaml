@@ -1,0 +1,22 @@
+fixture_id: cnc-mill-bracket
+positive:
+  - input: programs/positive.nc
+    expected_blockers: [SIMULATION_REQUIRED, HUMAN_APPROVAL_REQUIRED]
+    expected_status: blocked
+negative:
+  - mutation: wrong-units
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: wrong-post
+    expected_blockers: [SOURCE_VERIFICATION_REQUIRED]
+  - mutation: wrong-controller
+    expected_blockers: [MACHINE_CONTEXT_REQUIRED]
+  - mutation: missing-wcs
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: unknown-tool
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: revision-mismatch
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: machine-limit-conflict
+    expected_blockers: [MACHINE_CONTEXT_REQUIRED]
+  - mutation: incorrect-tool-number
+    expected_blockers: [MISSING_CONTEXT]

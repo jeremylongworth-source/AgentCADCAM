@@ -1,0 +1,18 @@
+fixture_id: cnc-mill-bracket
+version: 1
+status: validated_synthetic
+description: Synthetic three-axis CNC planning and static NC review fixture.
+license: CC0-1.0 synthetic fixture
+source_job: ../../cad/bracket/fixture.yaml
+contexts:
+  job: contexts/job.json
+  machine: contexts/machine.json
+  controller: contexts/controller.json
+  material: contexts/material.json
+  tool: contexts/tool.json
+  post: contexts/post.json
+  setup: contexts/setup.json
+program: programs/positive.nc
+expected:
+  default_blockers: [SIMULATION_REQUIRED, HUMAN_APPROVAL_REQUIRED]
+  required_findings: ["machine/controller/post identity reconciled", "WCS G54 present", "spindle command requires human review"]
