@@ -18,7 +18,6 @@ BLOCKING = {
 
 def review_bundle(bundle: dict[str, Any], root: Path | None = None) -> dict[str, Any]:
     """Return findings and blockers for a metadata-level CAD bundle review."""
-    root = root or Path.cwd()
     findings: list[str] = []
     blockers: list[str] = []
 
@@ -32,6 +31,12 @@ def review_bundle(bundle: dict[str, Any], root: Path | None = None) -> dict[str,
             blockers.append("SOURCE_VERIFICATION_REQUIRED")
         if root and not (root / authoritative).is_file():
             findings.append("authoritative artifact path is not present in the checked bundle")
+
+    for item in artifacts:
+        path = item.get("path") if isinstance(item, dict) else None
+        if path and root and not (root / path).is_file():
+            blockers.append("MISSING_CONTEXT")
+            findings.append(f"declared artifact is missing: {path}")
 
     revisions = {item.get("revision") for item in artifacts if item.get("revision")}
     if len(revisions) > 1:
@@ -86,6 +91,27 @@ def load_fixture(path: Path) -> dict[str, Any]:
     import yaml  # type: ignore
 
     return yaml.safe_load(path.read_text(encoding="utf-8"))
+
+
+def apply_mutation(bundle: dict[str, Any], mutation: dict[str, Any]) -> dict[str, Any]:
+    """Apply a declarative fixture mutation without changing the source fixture."""
+    import copy
+
+    result = copy.deepcopy(bundle)
+    by_path = {item.get("path"): item for item in result.get("artifacts", []) if isinstance(item, dict)}
+    for path, revision in (mutation.get("artifact_revision_overrides") or {}).items():
+        if path in by_path:
+            by_path[path]["revision"] = revision
+    for path, units in (mutation.get("artifact_units_overrides") or {}).items():
+        if path in by_path:
+            by_path[path]["units"] = units
+    if "authoritative_artifact" in mutation:
+        result["authoritative_artifact"] = mutation["authoritative_artifact"]
+    if "dimension_checks" in mutation:
+        result["dimension_checks"] = mutation["dimension_checks"]
+    for key in mutation.get("metadata_remove", []) or []:
+        result.setdefault("metadata", {}).pop(key, None)
+    return result
 
 
 if __name__ == "__main__":

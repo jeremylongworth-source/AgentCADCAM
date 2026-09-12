@@ -1,0 +1,3 @@
+mutation: revision-mismatch
+artifact_revision_overrides:
+  source/bracket.svg: B

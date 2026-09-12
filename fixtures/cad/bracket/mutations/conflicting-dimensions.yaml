@@ -1,0 +1,4 @@
+mutation: conflicting-dimensions
+dimension_checks:
+  - name: plate_width
+    status: conflict

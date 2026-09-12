@@ -6,7 +6,7 @@ from pathlib import Path
 
 import yaml
 
-from scripts.cad_handoff_checks import review_bundle
+from scripts.cad_handoff_checks import apply_mutation, review_bundle
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -48,6 +48,15 @@ class CadHandoffChecksTests(unittest.TestCase):
         bundle = copy.deepcopy(self.fixture)
         bundle["dimension_checks"] = [{"name": "plate_width", "status": "conflict"}]
         self.assertIn("MISSING_CONTEXT", review_bundle(bundle)["blockers"])
+
+    def test_declared_mutation_fixtures_produce_expected_blocks(self):
+        expected = yaml.safe_load((ROOT / "fixtures/cad/bracket/expected/outcomes.yaml").read_text(encoding="utf-8"))
+        for case in expected["negative"]:
+            mutation_path = ROOT / "fixtures/cad/bracket/mutations" / f"{case['mutation']}.yaml"
+            mutation = yaml.safe_load(mutation_path.read_text(encoding="utf-8"))
+            result = review_bundle(apply_mutation(self.fixture, mutation))
+            with self.subTest(mutation=case["mutation"]):
+                self.assertTrue(set(case["expected_blockers"]).issubset(result["blockers"]))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3 @@
+mutation: stale-derived-file
+artifact_revision_overrides:
+  source/bracket.stl: B
