@@ -9,3 +9,4 @@
 - Validated the synthetic three-axis CNC planning workflow through `CADCAM_04_CNC_ALPHA_READY`.
 - Validated the synthetic FDM additive preflight workflow through `CADCAM_05_ADDITIVE_ALPHA_READY`.
 - Validated the synthetic laser-cutting preflight workflow through `CADCAM_06_LASER_ALPHA_READY`.
+- Added deterministic router/state integration through `CADCAM_07_INTEGRATION_READY`.

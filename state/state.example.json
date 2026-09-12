@@ -1,0 +1,22 @@
+{
+  "job_id": "example-job",
+  "revision": "A",
+  "source_artifact_hashes": ["0000000000000000000000000000000000000000000000000000000000000000"],
+  "units": "mm",
+  "process_family": "cad_handoff",
+  "material": null,
+  "machine_profile": null,
+  "controller_profile": null,
+  "setup": null,
+  "work_coordinate_system": null,
+  "tool_library": null,
+  "cam_system": null,
+  "postprocessor": null,
+  "post_version": null,
+  "simulation_status": null,
+  "verification_results": [],
+  "jurisdiction": null,
+  "ip_status": null,
+  "export_review_status": null,
+  "approval_status": "not_requested"
+}

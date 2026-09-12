@@ -49,7 +49,12 @@ REQUIRED_FILES = {
     "docs/standards/evaluation-standard.md",
     "docs/standards/context-profile-standard.md",
     "router/router-contract.md",
+    "router/router.py",
     "router/routes.yaml",
+    "state/state.schema.json",
+    "state/state.example.json",
+    "state/state.py",
+    "docs/architecture/router-state-integration.md",
     "state/invalidation-rules.yaml",
     "fixtures/manifest.yaml",
     "docs/sources/source-registry.yaml",
@@ -102,6 +107,14 @@ def validate_schemas(errors: list[str]) -> None:
             fail(f"schema must declare Draft 2020-12: {path}", errors)
         if data.get("type") != "object":
             fail(f"schema root must be an object: {path}", errors)
+    state_path = ROOT / "state" / "state.schema.json"
+    try:
+        state = json.loads(state_path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError) as exc:
+        fail(f"invalid state schema: {state_path}: {exc}", errors)
+    else:
+        if state.get("$schema") != "https://json-schema.org/draft/2020-12/schema" or state.get("type") != "object":
+            fail(f"state schema must declare Draft 2020-12 object: {state_path}", errors)
 
 
 def validate_manifests(errors: list[str]) -> None:

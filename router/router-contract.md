@@ -15,6 +15,8 @@ consequence_level: informational | design_advisory | manufacturing_planning | ex
 approval_state: not_requested | pending | approved | invalidated | rejected
 ```
 
+Missing or invalid `consequence_level` is not treated as informational. The router uses the route’s declared default consequence and returns `MISSING_CONTEXT` so the request cannot be silently down-classified.
+
 ## Contract rules
 
 - Live-control intent always returns `BLOCK_EXECUTION`.
