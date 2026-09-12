@@ -1,0 +1,17 @@
+{
+  "job_id": "laser-cut-bracket",
+  "revision": "A",
+  "format": "DXF",
+  "units": "mm",
+  "scale_status": "verified",
+  "geometry_status": "valid",
+  "duplicate_geometry": false,
+  "open_contours": false,
+  "unsupported_entities": [],
+  "material_id": "fixture-plywood",
+  "machine_id": "fixture-laser-40w",
+  "process_profile_status": "verified",
+  "ventilation_status": "known",
+  "unsafe_material_status": "not_indicated",
+  "approval_status": "not_requested"
+}

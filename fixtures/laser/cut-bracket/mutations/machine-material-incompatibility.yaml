@@ -1,0 +1,4 @@
+mutation: machine-material-incompatibility
+material_overrides:
+  compatibility:
+    machines: [other-laser]

@@ -1,0 +1,16 @@
+fixture_id: laser-cut-bracket
+version: 1
+status: validated_synthetic
+description: Synthetic laser-cutting preflight fixture with paired SVG and DXF geometry.
+license: CC0-1.0 synthetic fixture
+contexts:
+  job: contexts/job.json
+  machine: contexts/machine.json
+  material: contexts/material.json
+  process: contexts/process.json
+artifacts:
+  svg: source/bracket.svg
+  dxf: source/bracket.dxf
+expected:
+  default_blockers: [HUMAN_APPROVAL_REQUIRED]
+  required_findings: ["units mm", "contours closed", "material compatible", "ventilation context known"]

@@ -1,5 +1,5 @@
 name: laser-cut-preflight
 version: 0.1.0
-status: planned
+status: validated_synthetic
 skills:
   - laser-job-preflight

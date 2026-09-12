@@ -1,0 +1,3 @@
+mutation: open-contours
+job_overrides:
+  open_contours: true

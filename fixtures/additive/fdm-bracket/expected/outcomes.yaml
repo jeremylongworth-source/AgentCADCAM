@@ -1,0 +1,19 @@
+fixture_id: additive-fdm-bracket
+positive:
+  - input: contexts/job.json + contexts/printer.json + contexts/material.json
+    expected_blockers: [HUMAN_APPROVAL_REQUIRED]
+negative:
+  - mutation: non-manifold-geometry
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: unsupported-material
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: missing-material-profile
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: incompatible-printer-profile
+    expected_blockers: [MACHINE_CONTEXT_REQUIRED]
+  - mutation: revision-mismatch
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: unsupported-build-volume
+    expected_blockers: [MACHINE_CONTEXT_REQUIRED]
+  - mutation: missing-environment
+    expected_blockers: [MISSING_CONTEXT]

@@ -9,3 +9,11 @@ fixtures:
     family: cnc_milling
     path: cnc/mill-bracket/fixture.yaml
     status: validated_synthetic
+  - id: additive-fdm-bracket
+    family: additive
+    path: additive/fdm-bracket/fixture.yaml
+    status: validated_synthetic
+  - id: laser-cut-bracket
+    family: laser_cutting
+    path: laser/cut-bracket/fixture.yaml
+    status: validated_synthetic

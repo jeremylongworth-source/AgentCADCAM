@@ -66,6 +66,7 @@ REQUIRED_FILES = {
     "scripts/validate_cad_fixture_mesh.py",
     "scripts/validate_cad_fixture_design.py",
     "scripts/nc_static_checks.py",
+    "scripts/validate_laser_fixture_geometry.py",
     "scripts/validate_foundation.py",
 }
 
@@ -161,13 +162,18 @@ def validate_manifests(errors: list[str]) -> None:
                     if not fixture.get("license"):
                         fail(f"fixture missing license declaration: {entry['path']}", errors)
                     fixture_root = (ROOT / "fixtures" / entry["path"]).parent
-                    for artifact in fixture.get("artifacts", []) or []:
-                        artifact_path = artifact.get("path") if isinstance(artifact, dict) else None
+                    declared_artifacts = fixture.get("artifacts", []) or []
+                    artifact_values = list(declared_artifacts.values()) if isinstance(declared_artifacts, dict) else declared_artifacts
+                    for artifact in artifact_values:
+                        artifact_path = artifact if isinstance(declared_artifacts, dict) else artifact.get("path") if isinstance(artifact, dict) else None
                         if artifact_path and not (fixture_root / artifact_path).is_file():
                             fail(f"fixture artifact path does not exist: {entry['path']} -> {artifact_path}", errors)
                     program_path = fixture.get("program")
                     if program_path and not (fixture_root / program_path).is_file():
                         fail(f"fixture program path does not exist: {entry['path']} -> {program_path}", errors)
+                    mesh_path = fixture.get("mesh")
+                    if mesh_path and not (fixture_root / mesh_path).is_file():
+                        fail(f"fixture mesh path does not exist: {entry['path']} -> {mesh_path}", errors)
                     for context_name, context_path in (fixture.get("contexts") or {}).items():
                         if not (fixture_root / context_path).is_file():
                             fail(f"fixture {context_name} context path does not exist: {entry['path']} -> {context_path}", errors)

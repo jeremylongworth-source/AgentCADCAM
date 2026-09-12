@@ -1,0 +1,3 @@
+mutation: prohibited-unsafe-material
+job_overrides:
+  unsafe_material_status: unsafe

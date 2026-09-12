@@ -1,0 +1,3 @@
+mutation: duplicate-contours
+job_overrides:
+  duplicate_geometry: true

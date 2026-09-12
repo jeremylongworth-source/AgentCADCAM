@@ -1,0 +1,3 @@
+mutation: unsupported-entity
+job_overrides:
+  unsupported_entities: [ARC_UNSUPPORTED]

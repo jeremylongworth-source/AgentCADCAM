@@ -1,0 +1,8 @@
+{
+  "process_profile_id": "fixture-plywood-profile",
+  "machine_id": "fixture-laser-40w",
+  "material_id": "fixture-plywood",
+  "settings_status": "verified",
+  "settings": {},
+  "source": {"title": "Synthetic laser process profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/process.json", "accessed_at": "2026-09-12"}
+}

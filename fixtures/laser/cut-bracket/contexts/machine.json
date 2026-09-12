@@ -1,0 +1,9 @@
+{
+  "machine_id": "fixture-laser-40w",
+  "process_family": "laser_cutting",
+  "manufacturer": "Synthetic Fixture",
+  "model": "40W laser cutter",
+  "capabilities": {"working_area": {"x": 300, "y": 200}, "source_type": "fixture-laser"},
+  "limits": {},
+  "source": {"title": "Synthetic laser machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/machine.json", "accessed_at": "2026-09-12"}
+}

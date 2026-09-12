@@ -1,0 +1,23 @@
+fixture_id: laser-cut-bracket
+positive:
+  - input: contexts/job.json + contexts/machine.json + contexts/material.json + contexts/process.json
+    expected_blockers: [HUMAN_APPROVAL_REQUIRED]
+negative:
+  - mutation: duplicate-contours
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: open-contours
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: unsupported-entity
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: wrong-units
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: scale-mismatch
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: unknown-material
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: prohibited-unsafe-material
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: missing-ventilation
+    expected_blockers: [MISSING_CONTEXT]
+  - mutation: machine-material-incompatibility
+    expected_blockers: [MACHINE_CONTEXT_REQUIRED]

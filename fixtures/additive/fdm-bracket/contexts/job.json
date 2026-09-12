@@ -1,0 +1,15 @@
+{
+  "job_id": "additive-fdm-bracket",
+  "revision": "A",
+  "mesh_format": "STL",
+  "mesh_status": "valid",
+  "mesh_units": "mm",
+  "model_dimensions": {"x": 60, "y": 40, "z": 30},
+  "printer_id": "fixture-printer-fdm",
+  "material_id": "fixture-pla",
+  "slicer_profile_status": "verified",
+  "orientation_status": "reviewed",
+  "support_status": "reviewed",
+  "environment_status": "known",
+  "approval_status": "not_requested"
+}

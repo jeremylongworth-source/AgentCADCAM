@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="70mm" height="50mm" viewBox="0 0 70 50">
+  <title>CADCAM laser fixture bracket revision A</title>
+  <g id="cut" fill="none" stroke="black">
+    <rect x="5" y="5" width="60" height="40" />
+    <circle cx="17" cy="25" r="3" />
+    <circle cx="53" cy="25" r="3" />
+  </g>
+</svg>

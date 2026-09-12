@@ -1,0 +1,9 @@
+{
+  "machine_id": "fixture-printer-fdm",
+  "process_family": "additive",
+  "manufacturer": "Synthetic Fixture",
+  "model": "FDM printer",
+  "capabilities": {"build_volume": {"x": 200, "y": 200, "z": 200}, "materials": ["fixture-pla"]},
+  "limits": {},
+  "source": {"title": "Synthetic FDM printer profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/additive/fdm-bracket/contexts/printer.json", "accessed_at": "2026-09-12"}
+}

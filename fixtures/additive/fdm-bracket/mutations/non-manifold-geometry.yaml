@@ -1,0 +1,3 @@
+mutation: non-manifold-geometry
+job_overrides:
+  mesh_status: non_manifold
