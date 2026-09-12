@@ -1,0 +1,10 @@
+name: cadcam-verification
+version: 0.1.0
+status: planned
+skills:
+  - design-file-provenance-review
+  - file-format-interoperability-plan
+  - machine-capability-match
+  - postprocessor-readiness-review
+  - nc-static-safety-review
+  - simulation-readiness-review

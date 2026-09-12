@@ -1,0 +1,20 @@
+{
+  "job_id": "example-bracket-001",
+  "revision": "A",
+  "process_family": "cad_handoff",
+  "artifacts": [],
+  "units": "mm",
+  "material": null,
+  "machine_profile": null,
+  "controller_profile": null,
+  "setup": null,
+  "tool_library": null,
+  "cam_system": null,
+  "postprocessor": null,
+  "simulation_status": null,
+  "verification_results": [],
+  "jurisdiction": null,
+  "ip_status": null,
+  "export_review_status": null,
+  "approval_status": "not_requested"
+}

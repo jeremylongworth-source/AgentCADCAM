@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/approval.schema.json",
+  "title": "Human Approval Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["approval_id", "status", "scope", "context_fingerprint", "reviewer"],
+  "properties": {
+    "approval_id": {"type": "string", "minLength": 1},
+    "status": {"enum": ["pending", "approved", "invalidated", "rejected"]},
+    "scope": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "context_fingerprint": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+    "notes": {"type": ["string", "null"]}
+  }
+}

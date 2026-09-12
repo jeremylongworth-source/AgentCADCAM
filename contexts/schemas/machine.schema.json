@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/machine.schema.json",
+  "title": "Machine Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["machine_id", "process_family", "source"],
+  "properties": {
+    "machine_id": {"type": "string", "minLength": 1},
+    "process_family": {"enum": ["cnc_milling", "additive", "laser_cutting"]},
+    "manufacturer": {"type": ["string", "null"]},
+    "model": {"type": ["string", "null"]},
+    "capabilities": {"type": "object"},
+    "limits": {"type": "object"},
+    "source": {"$ref": "handoff.schema.json#/$defs/source"}
+  }
+}

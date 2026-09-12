@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/controller.schema.json",
+  "title": "Controller Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["controller_id", "source"],
+  "properties": {
+    "controller_id": {"type": "string", "minLength": 1},
+    "manufacturer": {"type": ["string", "null"]},
+    "model": {"type": ["string", "null"]},
+    "supported_units": {"type": "array", "items": {"type": "string"}},
+    "supported_commands": {"type": "array", "items": {"type": "string"}},
+    "modes_and_offsets": {"type": "object"},
+    "source": {"$ref": "handoff.schema.json#/$defs/source"}
+  }
+}

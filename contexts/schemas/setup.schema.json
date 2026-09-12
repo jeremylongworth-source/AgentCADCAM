@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/setup.schema.json",
+  "title": "Manufacturing Setup",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["setup_id", "orientation", "wcs_status"],
+  "properties": {
+    "setup_id": {"type": "string", "minLength": 1},
+    "stock": {"type": "object"},
+    "orientation": {"type": "object"},
+    "workholding": {"type": "object"},
+    "wcs_status": {"enum": ["missing", "defined", "verified", "conflicted"]},
+    "sequence": {"type": "array", "items": {"type": "string"}}
+  }
+}

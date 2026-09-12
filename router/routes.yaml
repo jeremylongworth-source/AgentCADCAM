@@ -1,0 +1,27 @@
+version: 1
+routes:
+  - id: cad-handoff
+    process_family: cad_handoff
+    artifact_classes: [design, drawing, handoff]
+    skillset: cadcam-design-handoff
+    default_consequence: design_advisory
+  - id: cnc-milling
+    process_family: cnc_milling
+    artifact_classes: [design, toolpath, nc_program, handoff]
+    skillset: cnc-milling-planning
+    default_consequence: execution_adjacent
+  - id: additive
+    process_family: additive
+    artifact_classes: [mesh, handoff]
+    skillset: additive-print-prep
+    default_consequence: execution_adjacent
+  - id: laser-cutting
+    process_family: laser_cutting
+    artifact_classes: [two_d_cutting, handoff]
+    skillset: laser-cut-preflight
+    default_consequence: execution_adjacent
+  - id: unknown
+    process_family: unknown
+    artifact_classes: [unknown]
+    skillset: null
+    default_consequence: informational

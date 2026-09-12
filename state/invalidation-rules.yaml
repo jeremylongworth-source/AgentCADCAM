@@ -1,0 +1,26 @@
+version: 1
+approval_invalidation:
+  - field: source_artifact_hashes
+    invalidates: [provenance, interoperability, design_review, manufacturing_handoff]
+  - field: revision
+    invalidates: [provenance, interoperability, design_review, manufacturing_handoff]
+  - field: units
+    invalidates: [interoperability, setup, toolpath, nc_review, manufacturing_handoff]
+  - field: process_family
+    invalidates: [process_plan, machine_match, material_match, manufacturing_handoff]
+  - field: machine_profile
+    invalidates: [machine_match, setup, tooling, postprocessor, simulation, manufacturing_handoff]
+  - field: controller_profile
+    invalidates: [postprocessor, nc_review, simulation, manufacturing_handoff]
+  - field: setup
+    invalidates: [setup, toolpath, nc_review, simulation, manufacturing_handoff]
+  - field: workholding
+    invalidates: [setup, toolpath, simulation, manufacturing_handoff]
+  - field: tool_library
+    invalidates: [tooling, toolpath, nc_review, simulation, manufacturing_handoff]
+  - field: postprocessor
+    invalidates: [postprocessor, nc_review, simulation, manufacturing_handoff]
+  - field: material
+    invalidates: [material_match, process_plan, simulation, manufacturing_handoff]
+  - field: generated_manufacturing_output
+    invalidates: [nc_review, simulation, verification, manufacturing_handoff]

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/tool.schema.json",
+  "title": "Tool Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["tool_id", "source"],
+  "properties": {
+    "tool_id": {"type": "string", "minLength": 1},
+    "tool_number": {"type": ["integer", "null"], "minimum": 0},
+    "holder": {"type": ["string", "null"]},
+    "geometry": {"type": "object"},
+    "reach": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "availability": {"type": ["string", "null"]},
+    "source": {"$ref": "handoff.schema.json#/$defs/source"}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "handoff_id": "handoff-example-001",
+  "job_id": "example-bracket-001",
+  "revision": "A",
+  "status": "review_required",
+  "artifacts": [],
+  "blockers": ["MISSING_CONTEXT"],
+  "review_required": true,
+  "approval_id": null
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/post.schema.json",
+  "title": "Postprocessor Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["post_id", "cam_system", "controller_id", "source"],
+  "properties": {
+    "post_id": {"type": "string", "minLength": 1},
+    "cam_system": {"type": "string", "minLength": 1},
+    "controller_id": {"type": "string", "minLength": 1},
+    "machine_id": {"type": ["string", "null"]},
+    "post_version": {"type": ["string", "null"]},
+    "validation_state": {"enum": ["unknown", "unverified", "verified", "rejected"]},
+    "source": {"$ref": "handoff.schema.json#/$defs/source"}
+  }
+}

@@ -1,0 +1,9 @@
+name: cadcam-design-handoff
+version: 0.1.0
+status: planned
+skills:
+  - cadcam-intake-and-scope
+  - design-file-provenance-review
+  - file-format-interoperability-plan
+  - cad-manufacturability-review
+  - drawing-pmi-handoff-review

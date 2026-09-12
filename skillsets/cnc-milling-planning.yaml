@@ -1,0 +1,11 @@
+name: cnc-milling-planning
+version: 0.1.0
+status: planned
+skills:
+  - machine-capability-match
+  - cnc-setup-planner
+  - tooling-plan-review
+  - toolpath-strategy-planner
+  - postprocessor-readiness-review
+  - nc-static-safety-review
+  - simulation-readiness-review

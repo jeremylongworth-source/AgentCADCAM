@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/material.schema.json",
+  "title": "Material Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["material_id", "process_family", "source"],
+  "properties": {
+    "material_id": {"type": "string", "minLength": 1},
+    "process_family": {"enum": ["cnc_milling", "additive", "laser_cutting"]},
+    "grade_or_profile": {"type": ["string", "null"]},
+    "properties": {"type": "object"},
+    "compatibility": {"type": "object"},
+    "environmental_requirements": {"type": "object"},
+    "source": {"$ref": "handoff.schema.json#/$defs/source"}
+  }
+}
