@@ -10,9 +10,6 @@ import argparse
 import re
 from pathlib import Path
 
-import cadquery as cq
-
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -23,7 +20,9 @@ def _workspace_path(path: Path) -> Path:
     return resolved
 
 
-def build_bracket() -> cq.Workplane:
+def build_bracket():
+    import cadquery as cq
+
     width = 60.0
     depth = 40.0
     thickness = 6.0

@@ -23,3 +23,5 @@ This gate applies to the portable review/planning layer and curated synthetic fi
 ## Required next phase
 
 Phase 8 must collect real-input evaluation packets from CAD, CAM, machining, additive, laser, DFM, and manufacturing practitioners. Scenario tests alone cannot satisfy `CADCAM_09_PILOT_VALIDATED`.
+
+The protocol and packet template are in `docs/evaluation/pilot-protocol.md` and `docs/evaluation/pilot-packet-template/`.

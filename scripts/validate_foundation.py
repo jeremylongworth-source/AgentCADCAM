@@ -66,6 +66,8 @@ REQUIRED_FILES = {
     "docs/standards/fixture-licensing-standard.md",
     "docs/architecture/threat-model.md",
     "docs/evaluation/adversarial-hardening.md",
+    "docs/evaluation/pilot-protocol.md",
+    "scripts/validate_pilot_packet.py",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/cad_handoff_checks.py",

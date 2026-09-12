@@ -1,0 +1,15 @@
+packet_status: template
+workflow_family: null
+participant_role: null
+qualified_reviewer: null
+consent_recorded: false
+sanitized: false
+schema_valid: null
+router_correct: null
+handoff_complete: null
+false_ready_decision: null
+reviewer_edit_burden: null
+safety_findings: []
+required_edits: []
+verdict: null
+notes: null
