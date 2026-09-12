@@ -58,6 +58,7 @@ REQUIRED_FILES = {
     "docs/architecture/regulatory-review-model.md",
     "docs/architecture/ip-and-provenance-model.md",
     "docs/standards/prohibited-capability-contract.md",
+    "docs/standards/fixture-licensing-standard.md",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/validate_foundation.py",
@@ -136,6 +137,13 @@ def validate_manifests(errors: list[str]) -> None:
     fixtures = load_yaml(ROOT / "fixtures" / "manifest.yaml", errors)
     if not isinstance(fixtures, dict) or not isinstance(fixtures.get("fixtures"), list):
         fail("fixtures/manifest.yaml must contain a fixtures list", errors)
+    else:
+        for entry in fixtures["fixtures"]:
+            if not isinstance(entry, dict) or not entry.get("id") or not entry.get("path"):
+                fail("fixture manifest entries require id and path", errors)
+                continue
+            if not (ROOT / "fixtures" / entry["path"]).is_file():
+                fail(f"fixture manifest path does not exist: {entry['path']}", errors)
     sources = load_yaml(ROOT / "docs" / "sources" / "source-registry.yaml", errors)
     if not isinstance(sources, dict) or not isinstance(sources.get("sources"), list):
         fail("source registry must contain a sources list", errors)

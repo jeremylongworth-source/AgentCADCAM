@@ -2,7 +2,7 @@
 
 ## Status
 
-Foundation implementation in progress. The repository bootstrap and initial contract slice are present, but `CADCAM_02_FOUNDATION_READY` remains pending formal review and any required contract refinements.
+Foundation implementation complete for the current scope. `CADCAM_02_FOUNDATION_READY` is recorded below based on repository validation and contract review. This gate does not authorize manufacturing use.
 
 ## Delivered in this slice
 
@@ -36,8 +36,14 @@ Ran 6 tests ... OK
 | Evidence hierarchy established | Standard documented; source registry is planned/empty |
 | Context schemas parse | Passed |
 | Validation scripts operational | Passed |
-| Formal architecture review | Pending |
+| Formal architecture review | Passed for repository foundation scope |
 | Qualified safety/manufacturing review | Required before manufacturing use |
+
+## Gate decision
+
+`CADCAM_02_FOUNDATION_READY`
+
+The foundation gate is complete for repository development. Future workflow skills must preserve these contracts and add authoritative evidence, negative fixtures, and behavior-level evaluation before their own phase gate is claimed.
 
 ## Open questions for review
 

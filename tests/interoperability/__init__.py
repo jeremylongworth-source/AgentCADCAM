@@ -1,0 +1,1 @@
+"""Interoperability contract tests."""
