@@ -16,10 +16,12 @@ Validation in a local virtual environment:
 
 See [schema coverage and exclusions](../../../tests/schema/README.md) and [test setup](../../../tests/README.md). Shape validation does not establish the accuracy of manufacturing data, reviewer decisions, or arbitrary nested capability objects.
 
-## Native runtime issue still open
+## Native runtime issue at this audit
 
 The installed system Python 3.14 / CadQuery 2.8.0 runtime generated temporary STEP/STL files after the import fix, but its process terminated unsuccessfully afterward. A standalone `python -c "import cadquery"` also exited with `-1073741819` (`0xC0000005`, Windows access violation). This reproduces independently of repository geometry/export code. The temporary smoke-test artifacts were removed by their temporary-directory context; tracked geometry was unchanged.
 
 The successful portable suite uses an export double for CLI orchestration. A clean native geometry-generation run remains unverified on this system. Do not treat printed export success as proof of a successful process exit.
+
+Follow-up: the [Windows native environment investigation](../cadquery-windows.md) establishes a clean isolated Python 3.12 generation path and documents an additional corrected hole-geometry defect. The original system environment still reproduces the crash; the isolated setup supersedes the validation limitation above for the tested fixture scope.
 
 This follow-up strengthens earlier gate evidence and awards no new gate. The real-input practitioner pilot remains outstanding.

@@ -28,3 +28,5 @@ This evaluation covers intake, provenance, interoperability, basic manufacturabi
 ## Evidence status
 
 Fixture contracts, expected negative outcomes, a deterministic metadata behavior harness, and generated STEP/STL exchange fixtures are present. Lightweight source/drawing/revision and exchange-envelope checks pass. The phase result remains bounded to the synthetic fixture; real manufacturing use still requires qualified CAD/DFM review.
+
+The [native fixture follow-up](../development/cadquery-windows.md) adds four-hole position, ideal-volume, solid-validity, and STEP round-trip checks. It exposed and corrected missing upright holes in the old derivatives. Run the opt-in native probe for this stronger geometry evidence; passing metadata or extent checks alone does not establish feature fidelity.

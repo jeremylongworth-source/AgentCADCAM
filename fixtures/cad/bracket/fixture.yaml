@@ -1,5 +1,5 @@
 fixture_id: cad-bracket-basic
-version: 1
+version: 2
 status: validated_synthetic
 description: Simple L-bracket bundle for provenance, interoperability, and handoff tests.
 license: CC0-1.0 synthetic fixture
@@ -34,6 +34,8 @@ step_artifact:
   status: generated
   generator: scripts/generate_cad_fixture_step.py
   generator_dependency: cadquery>=2.8,<3
+  tested_windows_constraints: constraints/cadquery-win312.txt
+  correction: Upright holes restored to match revision A source; STEP/STL derivative hashes changed.
 expected:
   source_authority: source/bracket.scad
   default_outcomes: [REVIEW_REQUIRED]

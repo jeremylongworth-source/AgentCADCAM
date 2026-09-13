@@ -1,0 +1,8 @@
+# Tested Windows / CPython 3.12 native fixture stack. Apply explicitly with -c.
+# CasADi 3.8.0 + NLopt 2.11.0 crashed at teardown; 3.6.7 exits cleanly here.
+cadquery==2.8.0
+cadquery-ocp==7.9.3.1.1
+cadquery-ocp-proxy==7.9.3.1.1
+vtk==9.6.2
+casadi==3.6.7
+nlopt==2.11.0

@@ -12,8 +12,9 @@ from pathlib import Path
 
 
 POINT_RE = re.compile(
-    r"CARTESIAN_POINT\('',\(([-+0-9.eE]+),([-+0-9.eE]+),([-+0-9.eE]+)\)\)"
+    r"#(\d+)\s*=\s*CARTESIAN_POINT\('',\(([-+0-9.eE]+),([-+0-9.eE]+),([-+0-9.eE]+)\)\)"
 )
+VERTEX_RE = re.compile(r"VERTEX_POINT\('',#(\d+)\)")
 
 
 def validate(path: Path) -> list[str]:
@@ -27,11 +28,18 @@ def validate(path: Path) -> list[str]:
         errors.append("missing END-ISO-10303-21 trailer")
     if "MANIFOLD_SOLID_BREP(" not in text:
         errors.append("STEP fixture does not declare a manifold solid BREP")
-    if text.count("CIRCLE(") < 4:
-        errors.append("STEP fixture does not contain the expected four hole circles")
-    points = [tuple(float(value) for value in match) for match in POINT_RE.findall(text)]
+    if text.count("CIRCLE(") < 8:
+        errors.append("STEP fixture does not contain both circular boundaries of all four holes")
+    coordinates = {identifier: tuple(float(value) for value in xyz) for identifier, *xyz in POINT_RE.findall(text)}
+    vertices = VERTEX_RE.findall(text)
+    missing = set(vertices) - coordinates.keys()
+    if missing:
+        errors.append("STEP fixture has unresolved vertex coordinates")
+    # Surface origins and construction points may lie outside trimmed material.
+    # Only topological vertex points contribute to this fixture-envelope check.
+    points = [coordinates[identifier] for identifier in vertices if identifier in coordinates]
     if not points:
-        errors.append("STEP fixture contains no Cartesian points")
+        errors.append("STEP fixture contains no resolved vertex points")
     else:
         extents = [(min(axis), max(axis)) for axis in zip(*points)]
         expected = [(0.0, 60.0), (0.0, 40.0), (0.0, 30.0)]

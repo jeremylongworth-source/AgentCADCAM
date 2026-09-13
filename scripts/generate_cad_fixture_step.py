@@ -33,12 +33,18 @@ def build_bracket():
     base = cq.Workplane("XY").box(width, depth, thickness, centered=(False, False, False))
     back = cq.Workplane("XY").box(width, thickness, height, centered=(False, False, False))
     part = base.union(back)
-    part = part.faces(">Z").workplane().pushPoints(
-        [(hole_offset, depth / 2), (width - hole_offset, depth / 2)]
-    ).hole(hole_diameter)
-    part = part.faces("<Y").workplane().pushPoints(
-        [(hole_offset, height - hole_offset), (width - hole_offset, height - hole_offset)]
-    ).hole(hole_diameter)
+    # Use source coordinates explicitly: face-local X directions can reverse,
+    # moving upright cutters outside the bracket while leaving its bounds valid.
+    for x in (hole_offset, width - hole_offset):
+        base_hole = cq.Solid.makeCylinder(
+            hole_diameter / 2, thickness + 2,
+            cq.Vector(x, depth / 2, -1), cq.Vector(0, 0, 1),
+        )
+        upright_hole = cq.Solid.makeCylinder(
+            hole_diameter / 2, thickness + 2,
+            cq.Vector(x, -1, height - hole_offset), cq.Vector(0, 1, 0),
+        )
+        part = part.cut(base_hole).cut(upright_hole)
     return part
 
 
