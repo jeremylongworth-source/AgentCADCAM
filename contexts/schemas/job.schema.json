@@ -15,6 +15,7 @@
     "machine_profile": {"type": ["object", "null"]},
     "controller_profile": {"type": ["object", "null"]},
     "setup": {"type": ["object", "null"]},
+    "workholding": {"type": ["object", "null"]},
     "tool_library": {"type": ["object", "null"]},
     "cam_system": {"type": ["string", "null"]},
     "postprocessor": {"type": ["object", "null"]},

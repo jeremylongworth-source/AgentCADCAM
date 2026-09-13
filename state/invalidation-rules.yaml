@@ -1,5 +1,7 @@
-version: 1
+version: 2
 approval_invalidation:
+  - field: job_id
+    invalidates: [provenance, verification, manufacturing_handoff]
   - field: source_artifact_hashes
     invalidates: [provenance, interoperability, design_review, manufacturing_handoff]
   - field: revision
@@ -16,11 +18,27 @@ approval_invalidation:
     invalidates: [setup, toolpath, nc_review, simulation, manufacturing_handoff]
   - field: workholding
     invalidates: [setup, toolpath, simulation, manufacturing_handoff]
+  - field: work_coordinate_system
+    invalidates: [setup, toolpath, nc_review, simulation, manufacturing_handoff]
   - field: tool_library
     invalidates: [tooling, toolpath, nc_review, simulation, manufacturing_handoff]
   - field: postprocessor
+    invalidates: [postprocessor, nc_review, simulation, manufacturing_handoff]
+  - field: post_version
     invalidates: [postprocessor, nc_review, simulation, manufacturing_handoff]
   - field: material
     invalidates: [material_match, process_plan, simulation, manufacturing_handoff]
   - field: generated_manufacturing_output
     invalidates: [nc_review, simulation, verification, manufacturing_handoff]
+  - field: cam_system
+    invalidates: [toolpath, postprocessor, simulation, manufacturing_handoff]
+  - field: simulation_status
+    invalidates: [simulation, verification, manufacturing_handoff]
+  - field: verification_results
+    invalidates: [verification, manufacturing_handoff]
+  - field: jurisdiction
+    invalidates: [regulatory_review, manufacturing_handoff]
+  - field: ip_status
+    invalidates: [authorization_review, manufacturing_handoff]
+  - field: export_review_status
+    invalidates: [authorization_review, manufacturing_handoff]

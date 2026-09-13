@@ -17,7 +17,13 @@ LIVE_ACTIONS = {
     "activate_laser",
     "start_cycle",
     "control_machine",
+    "bypass_guard",
+    "disable_interlock",
+    "disable_safety_system",
 }
+CONSEQUENCES = ("informational", "design_advisory", "manufacturing_planning", "execution_adjacent", "live_execution")
+APPROVAL_STATES = ("not_requested", "pending", "approved", "invalidated", "rejected")
+REVIEW_ACTIONS = {"explain", "review", "plan", "verify", "prepare_handoff"}
 PROCESS_REQUIRED_CONTEXT = {
     "cnc_milling": {"machine_known": "MACHINE_CONTEXT_REQUIRED", "controller_known": "MACHINE_CONTEXT_REQUIRED", "material_known": "MISSING_CONTEXT"},
     "additive": {"machine_known": "MACHINE_CONTEXT_REQUIRED", "material_known": "MISSING_CONTEXT"},
@@ -31,13 +37,38 @@ def load_routes(path: Path = ROUTE_FILE) -> list[dict[str, Any]]:
 
 
 def route(request: dict[str, Any], routes: list[dict[str, Any]] | None = None) -> dict[str, Any]:
-    routes = routes or load_routes()
-    family = request.get("process_family", "unknown")
-    consequence = request.get("consequence_level")
-    artifact_class = request.get("artifact_class", "unknown")
-    approval_state = request.get("approval_state", "not_requested")
+    routes = load_routes() if routes is None else routes
     blockers: list[str] = []
     findings: list[str] = []
+    if not isinstance(request, dict):
+        request = {}
+        blockers.append("MISSING_CONTEXT")
+        findings.append("request must be an object")
+    def text_field(name, default):
+        value = request.get(name, default)
+        if value is None and default is None:
+            return None
+        if not isinstance(value, str):
+            blockers.append("MISSING_CONTEXT")
+            findings.append(f"{name} must be a string")
+            return default
+        return value.strip().lower()
+    family = text_field("process_family", "unknown")
+    consequence = text_field("consequence_level", None)
+    artifact_class = text_field("artifact_class", "unknown")
+    approval_state = text_field("approval_state", "not_requested")
+    action = text_field("requested_action", None)
+    if approval_state not in APPROVAL_STATES:
+        approval_state = "not_requested"
+        blockers.append("MISSING_CONTEXT")
+        findings.append("approval state is invalid")
+    if action is not None and action not in LIVE_ACTIONS | REVIEW_ACTIONS:
+        blockers.append("MISSING_CONTEXT")
+        findings.append("requested action is unknown")
+    for field in ("machine_known", "controller_known", "material_known", "jurisdiction_known", "jurisdiction_required", "generated_manufacturing_artifact"):
+        if field in request and not isinstance(request[field], bool):
+            blockers.append("MISSING_CONTEXT")
+            findings.append(f"{field} must be boolean")
     selected = next((item for item in routes if item.get("process_family") == family), None)
     if selected is None:
         selected = next(item for item in routes if item.get("process_family") == "unknown")
@@ -49,10 +80,18 @@ def route(request: dict[str, Any], routes: list[dict[str, Any]] | None = None) -
     elif artifact_class not in selected.get("artifact_classes", []) and artifact_class != "unknown":
         blockers.append("MISSING_CONTEXT")
         findings.append("artifact class is not valid for the selected process family")
-    if consequence not in {"informational", "design_advisory", "manufacturing_planning", "execution_adjacent", "live_execution"}:
+    if consequence not in CONSEQUENCES:
         consequence = selected.get("default_consequence", "informational")
         blockers.append("MISSING_CONTEXT")
         findings.append("consequence level is missing or invalid")
+    minimum = "informational"
+    if artifact_class in ("nc_program", "toolpath") or request.get("generated_manufacturing_artifact") is True:
+        minimum = "execution_adjacent"
+    if action in LIVE_ACTIONS:
+        minimum = "live_execution"
+    if CONSEQUENCES.index(consequence) < CONSEQUENCES.index(minimum):
+        consequence = minimum
+        findings.append("consequence raised to match the artifact or requested action")
 
     for field, blocker in PROCESS_REQUIRED_CONTEXT.get(family, {}).items():
         if request.get(field) is not True:
@@ -64,7 +103,7 @@ def route(request: dict[str, Any], routes: list[dict[str, Any]] | None = None) -
     if consequence in {"execution_adjacent", "live_execution"} and approval_state != "approved":
         blockers.append("HUMAN_APPROVAL_REQUIRED")
         findings.append("human approval is not recorded")
-    if consequence == "live_execution" or request.get("requested_action") in LIVE_ACTIONS:
+    if consequence == "live_execution":
         blockers.append("BLOCK_EXECUTION")
         findings.append("live physical execution is outside the project boundary")
 

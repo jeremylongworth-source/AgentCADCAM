@@ -42,6 +42,23 @@ class RouterTests(unittest.TestCase):
         self.assertEqual(result["route_id"], "unknown")
         self.assertIn("MISSING_CONTEXT", result["blockers"])
 
+    def test_live_action_overrides_advisory_label(self):
+        result = route({"process_family": "cad_handoff", "consequence_level": "informational", "requested_action": "start_cycle"})
+        self.assertEqual(result["consequence_level"], "live_execution")
+        self.assertIn("BLOCK_EXECUTION", result["blockers"])
+
+    def test_generated_nc_cannot_be_down_classified(self):
+        result = route({"process_family": "cnc_milling", "artifact_class": "nc_program", "consequence_level": "informational"})
+        self.assertEqual(result["consequence_level"], "execution_adjacent")
+        self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+
+    def test_malformed_fields_block_without_crashing(self):
+        for field in ("process_family", "consequence_level", "requested_action", "approval_state", "artifact_class"):
+            with self.subTest(field=field):
+                result = route({"process_family": "cad_handoff", "consequence_level": "design_advisory", field: []})
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+                self.assertFalse(result["execution_allowed"])
+
 
 if __name__ == "__main__":
     unittest.main()

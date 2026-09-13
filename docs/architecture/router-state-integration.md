@@ -31,6 +31,8 @@ request + explicit context -> normalize -> route -> required checks/blockers
 
 `router/router.py` and `state/state.py` are dependency-light utilities using the repository YAML/JSON contracts. Tests cover deterministic routing, all initial families, live-execution blocking, fingerprint changes, and approval invalidation.
 
+`router/job_router.py` adds the bounded integration path using the local JSON Schema validator. It checks records before routing and returns effective approval, copied state, blockers, and audit diagnostics. See the [router contract](../../router/router-contract.md) for inputs and status semantics, and the [fingerprint migration](../development/fingerprint-v2-migration.md) for existing approvals.
+
 ## Risks and open questions
 
 - Route normalization and state persistence are currently local utilities, not a hosted service or API.

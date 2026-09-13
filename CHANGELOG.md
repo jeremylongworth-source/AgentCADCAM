@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added bounded job routing with schema, approval fingerprint/scope, and verification checks. Corrected consequence floors and malformed-input handling.
+- Breaking: version-2 fingerprints now include all declared review dependencies. Existing fingerprints require re-review; see `docs/development/fingerprint-v2-migration.md`.
 - Restored the bracket's two upright holes in STEP/STL derivatives and added opt-in native geometry/process-exit verification. Added tested Windows/Python 3.12 dependency constraints for the CasADi/NLopt shutdown failure.
 - Added offline Draft 2020-12 validation of context/state examples and fixture profiles, with a portable test dependency set.
 - Fixed approval invalidation schema compatibility and the optional STEP/STL generator's export import regression.

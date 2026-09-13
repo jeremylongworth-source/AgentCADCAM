@@ -13,9 +13,14 @@ material_known: true | false
 jurisdiction_known: true | false
 consequence_level: informational | design_advisory | manufacturing_planning | execution_adjacent | live_execution
 approval_state: not_requested | pending | approved | invalidated | rejected
+requested_action: explain | review | plan | verify | prepare_handoff | <prohibited live action>
+generated_manufacturing_artifact: true | false
+jurisdiction_required: true | false
 ```
 
 Missing or invalid `consequence_level` is not treated as informational. The router uses the route’s declared default consequence and returns `MISSING_CONTEXT` so the request cannot be silently down-classified.
+
+Recognized live actions, including machine starts and safety-system disabling, force `live_execution` regardless of the supplied label. NC programs, toolpaths, and explicitly generated manufacturing artifacts have an `execution_adjacent` floor. Informational explanations without such an artifact can remain informational. Scalar strings are trimmed and lowercased; malformed fields and unknown actions produce `MISSING_CONTEXT`. This is structured input classification, not a natural-language intent detector; the intake skill must supply the action and artifact context.
 
 ## Contract rules
 
@@ -25,3 +30,19 @@ Missing or invalid `consequence_level` is not treated as informational. The rout
 - Missing or conflicting context produces explicit blockers.
 - Approval is scoped to a revision and context fingerprint and is invalidated by consequential changes.
 - Routing is deterministic: identical normalized inputs produce identical results.
+
+## Bounded job integration
+
+`route(request)` is the triage utility. Its `approval_state` input is only a declaration; it does not establish a valid approval. Use `router.job_router.route_job(request, current_state, approval, previous_state=..., required_scope="manufacturing_handoff")` to evaluate a persisted job and approval together.
+
+The integrated function:
+
+- Validates current/previous state, approval records, and supplied machine/controller/material profiles using local schemas. A `*_known: true` flag cannot establish a missing or invalid profile.
+- Uses the state process family and blocks conflicts with the request or supplied profiles.
+- Ignores raw approval flags. It requires a record with a matching version-2 context fingerprint, review timestamp, and exact required scope token before recognizing `approved` for this request.
+- Marks stale approval copies `invalidated`, preserving the original reviewed fingerprint. A previous state is optional and supplies changed-field diagnostics. A new review of the current fingerprint remains valid even if the previous snapshot differs.
+- Preserves records that apply to another scope but does not count them as approval for this scope.
+- Keeps CNC simulation and verification blockers independent of approval: execution-adjacent CNC requires `simulation_status: verified`, and execution-adjacent jobs require nonempty verification results whose `status` values are all `passed`.
+- Returns `job_state`, `approval_record`, `context_fingerprint`, and `validation_errors` alongside the ordinary route result. It copies inputs, persists nothing, and always returns `execution_allowed: false` and `review_required: true`.
+
+This local function checks record consistency, not reviewer authentication or truth of evidence. Required downstream setup, tooling, provenance, postprocessor, and process-specific checks remain listed in the route; an empty blocker list is not manufacturing readiness or permission to execute.

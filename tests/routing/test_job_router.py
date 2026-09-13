@@ -1,0 +1,144 @@
+from __future__ import annotations
+
+import copy
+import json
+import unittest
+from pathlib import Path
+
+from router.job_router import route_job
+from scripts.validate_schema_instances import validator_for
+from state.state import context_fingerprint
+
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+class JobRouterTests(unittest.TestCase):
+    def setUp(self):
+        self.state = json.loads((ROOT / "state/state.example.json").read_text(encoding="utf-8"))
+        self.state.update({"process_family": "cnc_milling", "simulation_status": "verified", "verification_results": [{"status": "passed"}]})
+        for target, file in (("machine_profile", "machine"), ("controller_profile", "controller"), ("material", "material")):
+            self.state[target] = json.loads((ROOT / f"fixtures/cnc/mill-bracket/contexts/{file}.json").read_text(encoding="utf-8"))
+        self.request = {"process_family": "cnc_milling", "artifact_class": "nc_program", "consequence_level": "execution_adjacent", "machine_known": True, "controller_known": True, "material_known": True}
+        self.approval = {
+            "approval_id": "synthetic-approval", "status": "approved",
+            "scope": ["manufacturing_handoff"], "reviewer": "test-reviewer",
+            "reviewed_at": "2026-09-13T12:00:00Z", "context_fingerprint": context_fingerprint(self.state),
+        }
+
+    def test_current_scoped_approval_routes_without_mutating_inputs(self):
+        before = copy.deepcopy((self.request, self.state, self.approval))
+        result = route_job(self.request, self.state, self.approval)
+        self.assertEqual(result["blockers"], [])
+        self.assertEqual(result["approval_state"], "approved")
+        self.assertFalse(result["execution_allowed"])
+        self.assertTrue(result["review_required"])
+        self.assertEqual(before, (self.request, self.state, self.approval))
+        validator_for("state.schema.json").validate(result["job_state"])
+        validator_for("approval.schema.json").validate(result["approval_record"])
+
+    def test_changed_evidence_invalidates_before_routing(self):
+        for field, value in (
+            ("verification_results", [{"status": "failed"}]), ("simulation_status", "failed"),
+            ("workholding", {"fixture_id": "new"}), ("job_id", "other-job"),
+        ):
+            with self.subTest(field=field):
+                current = dict(self.state, **{field: value})
+                result = route_job(self.request, current, self.approval, previous_state=self.state)
+                self.assertEqual(result["approval_state"], "invalidated")
+                self.assertIn(field, result["approval_record"]["changed_fields"])
+                self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+                validator_for("approval.schema.json").validate(result["approval_record"])
+
+    def test_stale_approval_is_detected_without_a_previous_snapshot(self):
+        self.approval["context_fingerprint"] = "old-v1-fingerprint"
+        result = route_job(self.request, self.state, self.approval)
+        self.assertEqual(result["approval_record"]["status"], "invalidated")
+        self.assertEqual(result["approval_record"]["context_fingerprint"], "old-v1-fingerprint")
+
+    def test_new_review_of_changed_context_remains_valid(self):
+        previous = dict(self.state, revision="old")
+        result = route_job(self.request, self.state, self.approval, previous_state=previous)
+        self.assertEqual(result["approval_state"], "approved")
+
+    def test_request_cannot_fabricate_an_approval(self):
+        self.request["approval_state"] = "approved"
+        self.state["approval_status"] = "approved"
+        result = route_job(self.request, self.state)
+        self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+        self.assertEqual(result["approval_state"], "not_requested")
+
+    def test_wrong_scope_and_missing_timestamp_require_review(self):
+        for mutation in ({"scope": ["unrelated_scope"]}, {"reviewed_at": None}):
+            with self.subTest(mutation=mutation):
+                result = route_job(self.request, self.state, dict(self.approval, **mutation))
+                self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+                self.assertEqual(result["approval_record"]["status"], "approved")
+
+    def test_malformed_state_and_profiles_fail_closed(self):
+        for state in ([], dict(self.state, machine_profile={}), dict(self.state, material={"private": "value"}), dict(self.state, workholding={"x": float("nan")})):
+            with self.subTest(state_type=type(state)):
+                result = route_job(self.request, state, self.approval)
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+                self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+                self.assertFalse(result["execution_allowed"])
+                json.dumps(result, allow_nan=False)
+
+    def test_missing_profile_cannot_be_confirmed_by_request_flag(self):
+        self.state["machine_profile"] = None
+        result = route_job(self.request, self.state)
+        self.assertIn("MACHINE_CONTEXT_REQUIRED", result["blockers"])
+
+    def test_conflicting_family_is_explicitly_blocked(self):
+        self.request["process_family"] = "cad_handoff"
+        result = route_job(self.request, self.state, self.approval)
+        self.assertIn("MISSING_CONTEXT", result["blockers"])
+        self.assertEqual(result["process_family"], "cnc_milling")
+
+    def test_live_action_stays_blocked_with_matching_approval(self):
+        self.request.update(requested_action="start_cycle", consequence_level="informational")
+        result = route_job(self.request, self.state, self.approval)
+        self.assertEqual(result["consequence_level"], "live_execution")
+        self.assertIn("BLOCK_EXECUTION", result["blockers"])
+
+    def test_generated_output_sets_consequence_floor(self):
+        self.state["generated_manufacturing_output"] = {"sha256": "0" * 64}
+        self.request.update(artifact_class="handoff", consequence_level="informational")
+        result = route_job(self.request, self.state)
+        self.assertEqual(result["consequence_level"], "execution_adjacent")
+
+    def test_matching_approval_cannot_clear_failed_simulation_or_verification(self):
+        self.state.update(simulation_status="failed", verification_results=[{"status": "failed"}])
+        self.approval["context_fingerprint"] = context_fingerprint(self.state)
+        result = route_job(self.request, self.state, self.approval)
+        self.assertIn("SIMULATION_REQUIRED", result["blockers"])
+        self.assertIn("MISSING_CONTEXT", result["blockers"])
+        self.assertFalse(result["execution_allowed"])
+
+    def test_nonfinite_previous_snapshot_fails_closed(self):
+        previous = dict(self.state, workholding={"x": float("nan")})
+        self.approval["context_fingerprint"] = "old"
+        result = route_job(self.request, self.state, self.approval, previous_state=previous)
+        self.assertIn("MISSING_CONTEXT", result["blockers"])
+        self.assertEqual(result["approval_state"], "not_requested")
+
+    def test_all_workflow_families_accept_current_scoped_records(self):
+        for family, fixture, machine_file, artifact, skillset in (
+            ("cad_handoff", "cnc/mill-bracket", "machine", "drawing", "cadcam-design-handoff"),
+            ("cnc_milling", "cnc/mill-bracket", "machine", "nc_program", "cnc-milling-planning"),
+            ("additive", "additive/fdm-bracket", "printer", "mesh", "additive-print-prep"),
+            ("laser_cutting", "laser/cut-bracket", "machine", "two_d_cutting", "laser-cut-preflight"),
+        ):
+            with self.subTest(family=family):
+                state = copy.deepcopy(self.state)
+                state["process_family"] = family
+                for target, file in (("machine_profile", machine_file), ("material", "material")):
+                    state[target] = json.loads((ROOT / f"fixtures/{fixture}/contexts/{file}.json").read_text(encoding="utf-8"))
+                if family != "cnc_milling":
+                    state["controller_profile"] = None
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                request = dict(self.request, process_family=family, artifact_class=artifact)
+                result = route_job(request, state, approval)
+                self.assertEqual(result["blockers"], [])
+                self.assertEqual(result["skillset"], skillset)
+                self.assertFalse(result["execution_allowed"])

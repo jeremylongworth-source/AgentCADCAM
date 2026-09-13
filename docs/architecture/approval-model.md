@@ -30,3 +30,5 @@ The handoff must state what the reviewer inspected, what remains unresolved, and
 ## Validation notes
 
 The machine-readable approval record is `contexts/schemas/approval.schema.json`. The implementation in `state/state.py` returns `invalidation_reason` and `changed_fields` when an approved context changes. These audit fields are declared in the schema, while the original reviewer and reviewed context fingerprint remain preserved. Runtime-to-schema regression tests exercise this transition.
+
+For persisted job routing, `route_job` verifies the record against the current fingerprint, required scope, and review timestamp before counting it as approval. Simulation and verification failures remain blockers even when a record matches. Version-1 fingerprints require a new review under the [version-2 migration](../development/fingerprint-v2-migration.md).
