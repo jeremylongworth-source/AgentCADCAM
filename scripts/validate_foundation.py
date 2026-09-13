@@ -68,6 +68,7 @@ REQUIRED_FILES = {
     "docs/evaluation/adversarial-hardening.md",
     "docs/evaluation/pilot-protocol.md",
     "scripts/validate_pilot_packet.py",
+    "scripts/evaluate_pilot_gate.py",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/cad_handoff_checks.py",

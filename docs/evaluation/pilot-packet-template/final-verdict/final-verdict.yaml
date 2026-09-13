@@ -2,14 +2,35 @@ packet_status: template
 workflow_family: null
 participant_role: null
 qualified_reviewer: null
+reviewer_id: null
+reviewer_experience: null
+input_origin: null
 consent_recorded: false
 sanitized: false
 schema_valid: null
 router_correct: null
+revision_provenance_detected: null
+interoperability_recommendation_accurate: null
 handoff_complete: null
+critical_safety_cases: null
+critical_safety_cases_detected: null
+machine_post_mismatch_detected: null
+safety_regulatory_claims: null
+authoritatively_sourced_claims: null
 false_ready_decision: null
+usable_with_minor_or_no_edits: null
 reviewer_edit_burden: null
+unsupported_assumption_count: null
+unsupported_assumption_opportunities: null
+usefulness_rating: null
 safety_findings: []
 required_edits: []
 verdict: null
 notes: null
+evidence:
+  input: []
+  baseline-output: []
+  skill-output: []
+  reviewer-findings: []
+  required-edits: []
+  safety-findings: []

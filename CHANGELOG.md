@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added pilot packet validation and aggregate readiness reporting for roadmap thresholds, evidence references, sourcing, and reviewer measurements. Real practitioner validation remains outstanding.
 - Bootstrapped the standalone CAD/CAM Skills repository.
 - Added the Phase 0 domain contract and Phase 1 foundation standards.
 - Added initial context schemas, format registry, router contract, and validation script.

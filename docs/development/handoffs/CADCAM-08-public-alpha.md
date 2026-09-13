@@ -7,7 +7,7 @@ The portable, non-actuating skill layer and curated synthetic workflow corpus me
 ## Evidence
 
 - 14 atomic skill contracts pass the bundled skill validator.
-- Foundation, interoperability, safety, routing, state, and adversarial tests pass: 48 tests total.
+- Foundation, interoperability, safety, routing, state, and adversarial tests cover the synthetic scope. Pilot tooling checks extend this coverage; they do not prove real-input pilot completion.
 - Critical curated negative cases block for missing/conflicting context, unsafe material, machine/controller/post mismatch, live execution, and stale approval.
 - Every router and preflight result keeps `execution_allowed: false`.
 - Context profiles require source metadata.
