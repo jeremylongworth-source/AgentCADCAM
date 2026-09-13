@@ -2,6 +2,9 @@
 name: laser-job-preflight
 description: Preflight a laser-cutting job for DXF/SVG units, scaling, contour closure, duplicate or unsupported geometry, material and machine compatibility, process profile readiness, ventilation, and human approval.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Preflight a laser-cutting job
 ---
 

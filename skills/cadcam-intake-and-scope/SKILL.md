@@ -2,6 +2,9 @@
 name: cadcam-intake-and-scope
 description: Turn a CAD/CAM manufacturing request and supplied artifacts into a bounded job brief, workflow classification, artifact inventory, missing-context report, and consequence level.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "informational design_advisory manufacturing_planning execution_adjacent"
   short-description: Bound a CAD/CAM job before review
 ---
 

@@ -2,6 +2,9 @@
 name: file-format-interoperability-plan
 description: Choose and review CAD/CAM exchange formats by workflow, units, revision, and semantic fidelity, documenting transformations, likely information loss, and verification requirements.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "informational design_advisory manufacturing_planning execution_adjacent"
   short-description: Plan safe CAD/CAM file exchange
 ---
 

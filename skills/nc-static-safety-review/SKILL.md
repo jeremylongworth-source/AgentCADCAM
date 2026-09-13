@@ -2,6 +2,9 @@
 name: nc-static-safety-review
 description: Inspect CNC NC/G-code text for units, modal and coordinate assumptions, unsupported commands, tool references, offsets, spindle/coolant commands, suspicious motion, and machine/controller mismatches.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "execution_adjacent"
   short-description: Perform static CNC NC review
 ---
 

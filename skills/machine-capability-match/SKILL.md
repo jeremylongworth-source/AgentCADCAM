@@ -2,6 +2,9 @@
 name: machine-capability-match
 description: Compare CNC milling requirements against an explicit three-axis machine profile, including travel, envelope, spindle capability, axis configuration, and process suitability.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Match a job to a CNC machine
 ---
 

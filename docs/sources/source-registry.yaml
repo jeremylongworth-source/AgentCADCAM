@@ -1,6 +1,6 @@
 version: 2
 status: active
-# Scoped format references only; not a complete safety/regulatory source audit.
+# Scoped format and authoring references; not a complete safety/regulatory audit.
 # reviewed means the listed claims were checked, not that a job is approved.
 sources:
   - id: freecad-fcstd
@@ -147,3 +147,30 @@ sources:
     sections: AP238 AIM and ISO 14649 ARM relationship
     claims:
       - AP238 combines the ISO 14649 machining model with STEP geometry, GD&T, and product-data management information.
+  - id: agentskills-specification
+    title: Agent Skills Specification
+    publisher: Agent Skills project
+    locator: https://agentskills.io/specification
+    publication_or_revision: null
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [skill-authoring]
+    scope: Skill package/frontmatter shape; not manufacturing safety or agent behavior.
+    sections: Frontmatter; metadata field
+    claims:
+      - Skill metadata is a mapping from string keys to string values; name and description are required root fields.
+  - id: semantic-versioning
+    title: Semantic Versioning 2.0.0
+    publisher: Semantic Versioning project
+    locator: https://semver.org/spec/v2.0.0.html
+    publication_or_revision: Specification 2.0.0
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [skill-authoring]
+    scope: Version syntax and initial-development meaning; not release readiness.
+    sections: Specification items 2, 4, 9, and 10
+    claims:
+      - Versions have a numeric major.minor.patch core, with optional prerelease/build identifiers; numeric core/prerelease identifiers cannot have leading zeroes.
+      - Major version zero denotes initial development rather than a stable public contract.

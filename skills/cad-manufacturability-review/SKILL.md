@@ -2,6 +2,9 @@
 name: cad-manufacturability-review
 description: Review CAD and drawing handoff information for basic process feasibility, feature accessibility, geometry complexity, tolerance/process alignment, assembly interfaces, material assumptions, and missing manufacturing context.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "design_advisory manufacturing_planning execution_adjacent"
   short-description: Triage CAD manufacturability gaps
 ---
 

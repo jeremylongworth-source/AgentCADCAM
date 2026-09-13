@@ -2,6 +2,9 @@
 name: tooling-plan-review
 description: Review a CNC milling tooling plan for tool identity, holder, geometry, reach, availability, compatibility, numbering, and traceability to an explicit tool library.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Review CNC tooling context
 ---
 

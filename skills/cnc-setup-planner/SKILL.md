@@ -2,6 +2,9 @@
 name: cnc-setup-planner
 description: Prepare a reviewable three-axis CNC setup plan covering stock, orientation, workholding, work coordinate system, setup sequence, access, and verification requirements.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Plan a reviewable CNC setup
 ---
 

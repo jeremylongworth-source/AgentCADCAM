@@ -12,7 +12,7 @@
 | Fixture index | Empty/malformed entries, duplicate IDs or resolved descriptor paths, invalid family, missing status, and index/descriptor ID mismatch. |
 | Fixture descriptors | Non-mapping descriptors, missing version/license/status/description, absent artifacts, malformed artifact/context references, and missing referenced files. |
 | File references | Absolute, drive/UNC, backslash, and resolved out-of-bound paths are rejected. Fixture references may cross between fixture families but must remain under `fixtures/`; generator/constraint references are repository-relative. |
-| Skill frontmatter | Invalid/duplicate YAML keys, non-mapping metadata, non-text name/description, and name/folder mismatch. |
+| Skill frontmatter | Invalid/duplicate YAML keys, malformed name/description, name/folder mismatch, unsupported top-level fields, non-string metadata, missing version/owner/consequence fields, invalid versions, and duplicate/unknown/live-execution scope. |
 | Schema and safety documents | Non-mapping schema JSON and missing/unreadable required safety documents produce errors instead of unchecked exceptions. Full schema semantics are checked separately. |
 | Inline Markdown file links | Missing local targets and paths outside the repository. External web links are not fetched. |
 | Format/source policies | Nine-format completeness and scoped source-reference checks described in the [source process](../sources/source-freshness-process.md). |
@@ -32,7 +32,7 @@ python -m unittest discover -s tests -v
 
 ## Unfinished acceptance work
 
-- The skill-authoring standard requires version, owner, and supported-consequence metadata. Existing skills currently declare only name, description, and a short description; those additional metadata fields still need implementation and validation.
+- The 14 existing skills now declare version, maintenance owner, and supported review levels under string-valued AgentSkills metadata. Tests cover the schema-like contract and compatibility with routed default levels; this is not evidence of skill behavior in a practitioner job.
 - Markdown checks currently cover simple inline file links, not full CommonMark reference-link syntax or fragment-anchor existence. Code examples may require care to avoid being interpreted as links. This is not a complete broken-reference audit.
 - Syntax and path checks do not prove that a fixture mutation represents the claimed physical/geometric defect, that a source claim is true, or that a skill behaves correctly in an agent run.
 - Required document contents, schema semantics, source applicability, remaining safety cases, and real-input practitioner evidence remain subject to the [roadmap reconciliation](roadmap-reconciliation.md).

@@ -2,6 +2,9 @@
 name: drawing-pmi-handoff-review
 description: Review drawing and model consistency, PMI availability, datums, tolerances, GD&T intent, revision identity, and manufacturing interpretation risks before CAD/CAM handoff.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "design_advisory manufacturing_planning execution_adjacent"
   short-description: Check drawing and PMI handoff integrity
 ---
 

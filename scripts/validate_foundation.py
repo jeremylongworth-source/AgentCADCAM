@@ -375,7 +375,7 @@ def validate_manifests(errors: list[str]) -> None:
 
 
 def validate_skill_metadata(errors: list[str]) -> None:
-    """Validate future SKILL.md frontmatter without requiring skills yet."""
+    """Check AgentSkills frontmatter plus the repository's review metadata."""
     frontmatter = re.compile(r"\A---\s*\n(.*?)\n---\s*\n", re.DOTALL)
     for path in sorted((ROOT / "skills").glob("*/SKILL.md")):
         match = frontmatter.match(read_text(path, errors))
@@ -389,9 +389,40 @@ def validate_skill_metadata(errors: list[str]) -> None:
         for key in ("name", "description"):
             if not _text(data.get(key)):
                 fail(f"skill metadata missing {key}: {path}", errors)
+        allowed_fields = {"name", "description", "license", "compatibility", "metadata", "allowed-tools"}
+        if set(data) - allowed_fields:
+            fail(f"unsupported skill frontmatter fields: {path}", errors)
+        name = data.get("name")
+        if not _slug(name) or len(name) > 64:
+            fail(f"skill name must be lowercase hyphenated text, at most 64 characters: {path}", errors)
+        description = data.get("description")
+        if isinstance(description, str) and (len(description) > 1024 or "<" in description or ">" in description):
+            fail(f"skill description exceeds supported length or contains angle brackets: {path}", errors)
         folder_name = path.parent.name
         if data.get("name") != folder_name:
             fail(f"skill name does not match folder: {path}", errors)
+        metadata = data.get("metadata")
+        if not isinstance(metadata, dict) or not all(isinstance(key, str) and isinstance(value, str) for key, value in metadata.items()):
+            fail(f"skill metadata must map string keys to string values: {path}", errors)
+            continue
+        version = metadata.get("version", "")
+        match_version = re.fullmatch(
+            r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)"
+            r"(?:-(?P<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?"
+            r"(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?", version,
+        )
+        if not match_version or any(
+            part.isdigit() and len(part) > 1 and part.startswith("0")
+            for part in (match_version.group("prerelease") or "").split(".")
+        ):
+            fail(f"skill metadata.version must be a semantic version: {path}", errors)
+        owner = metadata.get("owner", "").strip()
+        if not owner or owner.casefold() in {"todo", "tbd", "unknown", "n/a", "pending"}:
+            fail(f"skill metadata.owner must identify a maintainer or maintenance role: {path}", errors)
+        levels = metadata.get("supported-consequence-levels", "").split()
+        review_levels = {"informational", "design_advisory", "manufacturing_planning", "execution_adjacent"}
+        if not levels or len(levels) != len(set(levels)) or not set(levels).issubset(review_levels):
+            fail(f"skill metadata.supported-consequence-levels must list unique review-only levels: {path}", errors)
 
 
 def load_yaml_text(content: str, path: Path, errors: list[str]):

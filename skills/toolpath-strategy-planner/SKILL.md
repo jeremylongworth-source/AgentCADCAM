@@ -2,6 +2,9 @@
 name: toolpath-strategy-planner
 description: Recommend reviewable three-axis CNC milling strategies for roughing, finishing, contouring, drilling, entry/exit, and sequencing without inventing unsupported machine parameters.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Plan CNC toolpath strategy
 ---
 

@@ -2,6 +2,9 @@
 name: additive-job-preflight
 description: Preflight an FDM additive job for STL/3MF provenance, mesh integrity, printer and material profile compatibility, build volume, orientation/support needs, slicer readiness, and environmental safety context.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Preflight an FDM print job
 ---
 

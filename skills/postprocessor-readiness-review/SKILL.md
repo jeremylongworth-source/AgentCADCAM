@@ -2,6 +2,9 @@
 name: postprocessor-readiness-review
 description: Verify the identity and validation state of the CAM system, machine, controller, postprocessor, and post version before treating CNC NC output as reviewable for a target machine.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Check CNC postprocessor readiness
 ---
 

@@ -2,6 +2,9 @@
 name: design-file-provenance-review
 description: Review CAD, drawing, mesh, and manufacturing artifacts for authoritative source identity, revision consistency, derivative traceability, ownership, licensing, confidentiality, and export-review gaps.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "design_advisory manufacturing_planning execution_adjacent"
   short-description: Verify design artifact provenance
 ---
 

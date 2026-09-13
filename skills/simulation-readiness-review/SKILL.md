@@ -2,6 +2,9 @@
 name: simulation-readiness-review
 description: Determine the required simulation and verification level for a three-axis CNC job, including machine model, fixture geometry, tooling, post validation, and unverified NC assumptions.
 metadata:
+  version: "0.1.0"
+  owner: "AgentCADCAM maintainers"
+  supported-consequence-levels: "manufacturing_planning execution_adjacent"
   short-description: Gate CNC simulation readiness
 ---
 
