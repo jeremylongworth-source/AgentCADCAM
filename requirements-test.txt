@@ -1,0 +1,5 @@
+PyYAML>=6.0,<7
+jsonschema>=4.22,<5
+referencing>=0.35,<1
+rfc3339-validator>=0.1.4,<0.2
+ezdxf>=1.4,<2

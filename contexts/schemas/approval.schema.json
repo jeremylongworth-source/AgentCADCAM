@@ -12,6 +12,8 @@
     "context_fingerprint": {"type": "string", "minLength": 1},
     "reviewer": {"type": "string", "minLength": 1},
     "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
-    "notes": {"type": ["string", "null"]}
+    "notes": {"type": ["string", "null"]},
+    "invalidation_reason": {"type": "string", "minLength": 1},
+    "changed_fields": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1, "uniqueItems": true}
   }
 }

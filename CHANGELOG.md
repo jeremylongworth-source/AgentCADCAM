@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added offline Draft 2020-12 validation of context/state examples and fixture profiles, with a portable test dependency set.
+- Fixed approval invalidation schema compatibility and the optional STEP/STL generator's export import regression.
 - Added pilot packet validation and aggregate readiness reporting for roadmap thresholds, evidence references, sourcing, and reviewer measurements. Real practitioner validation remains outstanding.
 - Bootstrapped the standalone CAD/CAM Skills repository.
 - Added the Phase 0 domain contract and Phase 1 foundation standards.

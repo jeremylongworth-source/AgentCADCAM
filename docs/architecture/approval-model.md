@@ -29,4 +29,4 @@ The handoff must state what the reviewer inspected, what remains unresolved, and
 
 ## Validation notes
 
-The machine-readable approval record is `contexts/schemas/approval.schema.json`. The integrated router/state implementation is planned for Phase 6.
+The machine-readable approval record is `contexts/schemas/approval.schema.json`. The implementation in `state/state.py` returns `invalidation_reason` and `changed_fields` when an approved context changes. These audit fields are declared in the schema, while the original reviewer and reviewed context fingerprint remain preserved. Runtime-to-schema regression tests exercise this transition.

@@ -61,9 +61,11 @@ def main() -> int:
         args.stl_output = _workspace_path(args.stl_output)
     except ValueError as exc:
         parser.error(str(exc))
+    from cadquery import exporters
+
     args.output.parent.mkdir(parents=True, exist_ok=True)
     part = build_bracket()
-    cq.exporters.export(part, str(args.output), cq.exporters.ExportTypes.STEP)
+    exporters.export(part, str(args.output), exporters.ExportTypes.STEP)
     # CadQuery writes the current time into FILE_NAME. Normalize it so the
     # fixture is byte-stable when regenerated with the same CadQuery version.
     text = args.output.read_text(encoding="utf-8")
@@ -71,10 +73,10 @@ def main() -> int:
     text = "\n".join(line.rstrip() for line in text.splitlines()) + "\n"
     args.output.write_text(text, encoding="utf-8", newline="\n")
     args.stl_output.parent.mkdir(parents=True, exist_ok=True)
-    cq.exporters.export(
+    exporters.export(
         part,
         str(args.stl_output),
-        cq.exporters.ExportTypes.STL,
+        exporters.ExportTypes.STL,
         tolerance=0.01,
         angularTolerance=0.1,
     )

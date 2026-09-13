@@ -69,6 +69,8 @@ REQUIRED_FILES = {
     "docs/evaluation/pilot-protocol.md",
     "scripts/validate_pilot_packet.py",
     "scripts/evaluate_pilot_gate.py",
+    "scripts/validate_schema_instances.py",
+    "requirements-test.txt",
     "tests/foundation/test_foundation.py",
     "tests/routing/test_router_contract.py",
     "scripts/cad_handoff_checks.py",

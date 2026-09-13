@@ -22,7 +22,7 @@ Each change should include:
 - evidence and source metadata for factual claims;
 - positive, negative, and regression fixtures where applicable;
 - explicit safety and human-review implications;
-- validation output from `python scripts/validate_foundation.py`.
+- validation output from `python scripts/validate_foundation.py` and `python scripts/validate_schema_instances.py`, plus the relevant tests. Install `requirements-test.txt` for the portable suite; see [test setup](tests/README.md).
 
 ## Skill contributions
 
