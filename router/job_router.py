@@ -6,6 +6,7 @@ import copy
 from typing import Any
 
 from router.router import route
+from router.cnc_context import check_cnc_context
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -101,6 +102,10 @@ def route_job(
     result = route(normalized)
     if state_ok and result["consequence_level"] in ("execution_adjacent", "live_execution"):
         additional = set()
+        if state["process_family"] == "cnc_milling":
+            cnc_blockers, cnc_findings = check_cnc_context(state, validate)
+            additional.update(cnc_blockers)
+            findings.extend(cnc_findings)
         if state["process_family"] == "cnc_milling" and state.get("simulation_status") != "verified":
             additional.add("SIMULATION_REQUIRED")
             findings.append("CNC simulation evidence is not verified")
@@ -111,6 +116,22 @@ def route_job(
         result["blockers"] = sorted(set(result["blockers"]) | additional)
     if errors:
         result["blockers"] = sorted(set(result["blockers"]) | {"MISSING_CONTEXT", "HUMAN_APPROVAL_REQUIRED"})
+    cnc_context_failures = {
+        "MISSING_CONTEXT", "MACHINE_CONTEXT_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED", "SIMULATION_REQUIRED",
+    }
+    if (
+        state_ok
+        and state["process_family"] == "cnc_milling"
+        and effective_status == "approved"
+        and set(result["blockers"]) & cnc_context_failures
+    ):
+        # A matching fingerprint is not evidence that all mandatory CNC context exists.
+        effective_status = "invalidated"
+        record["status"] = "invalidated"
+        record["invalidation_reason"] = "required CNC context is missing, conflicting, or unverified"
+        result["approval_state"] = effective_status
+        result["blockers"] = sorted(set(result["blockers"]) | {"HUMAN_APPROVAL_REQUIRED"})
     result["findings"].extend(findings)
     if state is not None:
         state["approval_status"] = effective_status

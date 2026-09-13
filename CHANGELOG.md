@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Enforced required CNC context before recognizing an approval, including setup, tooling, WCS, post identity, simulation, and verification. Incomplete matching approvals now require renewed review.
+- Corrected public-alpha readiness claims: historical synthetic gate records do not prove full roadmap completion. Added a requirement/evidence gap register in `docs/development/roadmap-reconciliation.md`.
 - Added bounded job routing with schema, approval fingerprint/scope, and verification checks. Corrected consequence floors and malformed-input handling.
 - Breaking: version-2 fingerprints now include all declared review dependencies. Existing fingerprints require re-review; see `docs/development/fingerprint-v2-migration.md`.
 - Restored the bracket's two upright holes in STEP/STL derivatives and added opt-in native geometry/process-exit verification. Added tested Windows/Python 3.12 dependency constraints for the CasADi/NLopt shutdown failure.

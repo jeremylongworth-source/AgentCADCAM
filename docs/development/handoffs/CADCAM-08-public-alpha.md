@@ -2,7 +2,7 @@
 
 ## Status
 
-The portable, non-actuating skill layer and curated synthetic workflow corpus meet the public-alpha gate for the four initial workflow families.
+Historical synthetic-corpus decision only. The [2026-09-13 roadmap reconciliation](../roadmap-reconciliation.md) supersedes the claim of full public-alpha readiness. Foundation evidence and process-specific validation gaps remain, in addition to the practitioner pilot.
 
 ## Evidence
 
@@ -16,7 +16,7 @@ The portable, non-actuating skill layer and curated synthetic workflow corpus me
 
 ## Gate decision
 
-`CADCAM_08_PUBLIC_ALPHA_READY`
+Previously recorded: `CADCAM_08_PUBLIC_ALPHA_READY`. Full roadmap-level acceptance is now unproven pending the reconciliation work.
 
 This gate applies to the portable review/planning layer and curated synthetic fixtures only. It is not engineering signoff, regulatory approval, machine authorization, or proof that any real job is safe to manufacture.
 

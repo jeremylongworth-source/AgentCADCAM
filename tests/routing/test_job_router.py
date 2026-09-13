@@ -19,6 +19,16 @@ class JobRouterTests(unittest.TestCase):
         self.state.update({"process_family": "cnc_milling", "simulation_status": "verified", "verification_results": [{"status": "passed"}]})
         for target, file in (("machine_profile", "machine"), ("controller_profile", "controller"), ("material", "material")):
             self.state[target] = json.loads((ROOT / f"fixtures/cnc/mill-bracket/contexts/{file}.json").read_text(encoding="utf-8"))
+        self.state["setup"] = json.loads((ROOT / "fixtures/cnc/mill-bracket/contexts/setup.json").read_text(encoding="utf-8"))
+        self.state["setup"]["wcs_status"] = "verified"
+        self.state["setup"]["workholding"]["clamps_clear"] = True
+        self.state["work_coordinate_system"] = {"code": "G54", "status": "verified"}
+        tool = json.loads((ROOT / "fixtures/cnc/mill-bracket/contexts/tool.json").read_text(encoding="utf-8"))
+        tool["availability"] = "available"
+        self.state["tool_library"] = {"tools": [tool]}
+        self.state["postprocessor"] = json.loads((ROOT / "fixtures/cnc/mill-bracket/contexts/post.json").read_text(encoding="utf-8"))
+        self.state["cam_system"] = self.state["postprocessor"]["cam_system"]
+        self.state["post_version"] = self.state["postprocessor"]["post_version"]
         self.request = {"process_family": "cnc_milling", "artifact_class": "nc_program", "consequence_level": "execution_adjacent", "machine_known": True, "controller_known": True, "material_known": True}
         self.approval = {
             "approval_id": "synthetic-approval", "status": "approved",
@@ -114,6 +124,8 @@ class JobRouterTests(unittest.TestCase):
         self.assertIn("SIMULATION_REQUIRED", result["blockers"])
         self.assertIn("MISSING_CONTEXT", result["blockers"])
         self.assertFalse(result["execution_allowed"])
+        self.assertEqual(result["approval_state"], "invalidated")
+        self.assertEqual(result["approval_record"]["status"], "invalidated")
 
     def test_nonfinite_previous_snapshot_fails_closed(self):
         previous = dict(self.state, workholding={"x": float("nan")})
@@ -142,3 +154,98 @@ class JobRouterTests(unittest.TestCase):
                 self.assertEqual(result["blockers"], [])
                 self.assertEqual(result["skillset"], skillset)
                 self.assertFalse(result["execution_allowed"])
+
+    def test_nc_cannot_be_approved_with_missing_required_context(self):
+        for field in ("setup", "tool_library", "postprocessor", "work_coordinate_system", "cam_system", "post_version", "units"):
+            with self.subTest(field=field):
+                state = dict(self.state, **{field: None})
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertNotEqual(result["approval_state"], "approved")
+                self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+
+    def test_nc_post_identity_mismatch_is_blocking_even_with_matching_fingerprint(self):
+        for field in ("machine_id", "controller_id", "cam_system", "post_version", "validation_state"):
+            with self.subTest(field=field):
+                state = copy.deepcopy(self.state)
+                state["postprocessor"][field] = "mismatched"
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
+                self.assertNotEqual(result["approval_state"], "approved")
+
+    def test_nc_missing_or_conflicted_tooling_is_blocking(self):
+        for mutation in ({"holder": None}, {"reach": None}, {"availability": "unavailable"}, {"tool_number": None}, {"geometry": {}}):
+            with self.subTest(mutation=mutation):
+                state = copy.deepcopy(self.state)
+                state["tool_library"]["tools"][0].update(mutation)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+                self.assertNotEqual(result["approval_state"], "approved")
+
+    def test_nc_wcs_and_workholding_uncertainty_are_blocking(self):
+        for field in ("wcs_status", "workholding"):
+            state = copy.deepcopy(self.state)
+            state["setup"][field] = "missing" if field == "wcs_status" else {"clamps_clear": None}
+            approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+            result = route_job(self.request, state, approval)
+            self.assertNotEqual(result["approval_state"], "approved")
+            self.assertIn("MISSING_CONTEXT", result["blockers"])
+
+    def test_nc_malformed_nested_controller_and_tooling_data_fail_closed(self):
+        for field, mutation in (
+            ("controller_profile", {"supported_units": 1}),
+            ("controller_profile", {"modes_and_offsets": []}),
+            ("controller_profile", {"modes_and_offsets": {"wcs": 1}}),
+            ("tool_library", {"tools": [None]}),
+        ):
+            with self.subTest(field=field, mutation=mutation):
+                state = copy.deepcopy(self.state)
+                state[field].update(mutation)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertNotEqual(result["approval_state"], "approved")
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+
+    def test_nc_duplicate_tool_identity_or_number_is_blocking(self):
+        for field in ("tool_id", "tool_number"):
+            with self.subTest(field=field):
+                state = copy.deepcopy(self.state)
+                second = dict(state["tool_library"]["tools"][0], tool_id="second", tool_number=2)
+                second[field] = state["tool_library"]["tools"][0][field]
+                state["tool_library"]["tools"].append(second)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertEqual(result["approval_state"], "invalidated")
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+
+    def test_nc_explicit_empty_or_conflicting_workholding_cannot_fall_back(self):
+        for workholding in ({}, {"type": "fixture-only", "clamps_clear": False}, {"type": "other-fixture", "clamps_clear": True}):
+            with self.subTest(workholding=workholding):
+                state = dict(self.state, workholding=workholding)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                before = copy.deepcopy((state, approval))
+                result = route_job(self.request, state, approval)
+                self.assertEqual(result["approval_state"], "invalidated")
+                self.assertEqual(result["job_state"]["approval_status"], "invalidated")
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+                self.assertEqual(before, (state, approval))
+                self.assertEqual(result["approval_record"]["context_fingerprint"], approval["context_fingerprint"])
+                validator_for("approval.schema.json").validate(result["approval_record"])
+
+    def test_nc_unresolved_stock_and_wcs_are_blocking(self):
+        for field, mutation in (
+            ("setup", {"stock": {"x": 60, "y": 40, "z": 6, "units": "inch"}}),
+            ("setup", {"stock": {"x": 60, "y": 40, "z": 0, "units": "mm"}}),
+            ("setup", {"orientation": {}}),
+            ("work_coordinate_system", {"code": "G55"}),
+            ("work_coordinate_system", {"status": "defined"}),
+        ):
+            with self.subTest(field=field, mutation=mutation):
+                state = copy.deepcopy(self.state)
+                state[field].update(mutation)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                result = route_job(self.request, state, approval)
+                self.assertEqual(result["approval_state"], "invalidated")
+                self.assertIn("MISSING_CONTEXT", result["blockers"])

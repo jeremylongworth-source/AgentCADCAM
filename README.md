@@ -17,7 +17,9 @@ It does not replace CAD/CAM software, qualified manufacturing professionals, mac
 
 ## Project status
 
-The portable synthetic workflow layer has passed gates `CADCAM_01` through `CADCAM_08`. Work is proceeding through the gates in [ROADMAP.md](ROADMAP.md); the next unmet milestone is the real-input practitioner pilot, `CADCAM_09_PILOT_VALIDATED`.
+The repository implements 14 skill contracts, five skillsets, and local review/routing utilities for the four initial workflow families. Automated tests cover a curated synthetic corpus; they do not establish full roadmap completion or manufacturing readiness.
+
+The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md) supersedes the earlier blanket claim that gates `CADCAM_01` through `CADCAM_08` were complete. Foundation evidence, process-specific file validation, and governance verification still need work before the real-input practitioner pilot can close `CADCAM_09_PILOT_VALIDATED`. [ROADMAP.md](ROADMAP.md) remains the governing requirements document.
 
 ## Repository map
 
