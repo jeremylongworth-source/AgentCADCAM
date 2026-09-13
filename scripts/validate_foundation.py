@@ -1,7 +1,7 @@
 """Validate the repository contracts required by the foundation gate.
 
-This script intentionally uses only Python's standard library plus PyYAML when
-available for YAML syntax. It validates structural contracts; full JSON Schema
+This script uses Python's standard library plus PyYAML. It validates structural
+contracts and format/source cross-references; full JSON Schema
 instance validation is a later test-layer responsibility.
 """
 
@@ -11,6 +11,11 @@ import json
 import re
 import sys
 from pathlib import Path
+
+if __package__:
+    from .validate_format_registry import validate_registry_files
+else:
+    from validate_format_registry import validate_registry_files
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -60,6 +65,8 @@ REQUIRED_FILES = {
     "docs/development/fingerprint-v2-migration.md",
     "fixtures/manifest.yaml",
     "docs/sources/source-registry.yaml",
+    "docs/formats/format-registry.md",
+    "scripts/validate_format_registry.py",
     "docs/sources/source-freshness-process.md",
     "docs/architecture/approval-model.md",
     "docs/architecture/regulatory-review-model.md",
@@ -290,6 +297,7 @@ def main() -> int:
             fail(f"missing required repository file: {relative}", errors)
     validate_schemas(errors)
     validate_manifests(errors)
+    errors.extend(validate_registry_files(ROOT))
     validate_skill_metadata(errors)
     validate_markdown_references(errors)
     validate_safety_invariants(errors)

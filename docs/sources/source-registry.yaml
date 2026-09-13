@@ -1,3 +1,149 @@
-version: 1
-status: planned
-sources: []
+version: 2
+status: active
+# Scoped format references only; not a complete safety/regulatory source audit.
+# reviewed means the listed claims were checked, not that a job is approved.
+sources:
+  - id: freecad-fcstd
+    title: File Format FCStd
+    publisher: FreeCAD project
+    locator: https://github.com/FreeCAD/FreeCAD-documentation/blob/main/wiki/File_Format_FCStd.md
+    publication_or_revision: Archived project documentation; repository archived 2026-04-01
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [Native CAD]
+    scope: FCStd example only; not a claim about every native CAD format.
+    sections: Overview; Internals of .FCStd files
+    claims:
+      - FCStd stores geometric/parametric document data, separate display data, and B-rep shapes.
+  - id: nist-step-analyzer
+    title: STEP File Analyzer and Viewer
+    publisher: National Institute of Standards and Technology
+    locator: https://www.nist.gov/services-resources/software/step-file-analyzer-and-viewer
+    publication_or_revision: Page updated 2025-12-31
+    accessed_at: "2026-09-13"
+    authority: government_research
+    review_status: reviewed
+    applies_to: [STEP AP242]
+    scope: STEP/PMI analysis concepts; not proof of a particular exporter or file.
+    sections: What is STEP; STEP File Analyzer Spreadsheets and Reports; Syntax Checker
+    claims:
+      - STEP supports parts, assemblies, and PMI; semantic PMI and graphic PMI serve different purposes and need separate checks.
+  - id: occt-iges
+    title: Open CASCADE Technology IGES Translator
+    publisher: Open Cascade
+    locator: https://occt3d.com/dev/doc/overview/html/occt_user_guides__iges.html
+    publication_or_revision: null
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [IGES]
+    scope: Documented OCCT translator behavior; verify the installed version separately.
+    sections: Reading IGES / Domain covered / Administrative data
+    claims:
+      - Supported IGES entities include curves, surfaces, and B-rep entities; OCCT does not transfer Global-section administrative data into the resulting shapes.
+  - id: occt-iges-units
+    title: IGESData_GlobalSection Class Reference
+    publisher: Open Cascade
+    locator: https://dev.opencascade.org/doc/occt-7.7.0/refman/html/class_i_g_e_s_data___global_section.html
+    publication_or_revision: OCCT 7.7.0 reference documentation
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [IGES]
+    scope: IGES Global-section unit and scale accessors, not runtime support certification.
+    sections: UnitFlag; UnitName; Scale
+    claims:
+      - IGES Global-section data exposes the file unit flag, unit name, and scale.
+  - id: autodesk-dxf-header
+    title: HEADER Section Group Codes (DXF)
+    publisher: Autodesk
+    locator: https://help.autodesk.com/cloudhelp/2021/ENU/AutoCAD-DXF/files/GUID-A85E8E67-27CD-4C59-BE61-4DC9FADBE74A.htm
+    publication_or_revision: AutoCAD 2021 DXF reference
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [DXF]
+    scope: Header meanings for this documented DXF reference, not general physical-scale proof.
+    sections: $INSUNITS
+    claims:
+      - $INSUNITS describes insertion units including unitless, inch, and millimetre values.
+  - id: w3c-svg-coordinates
+    title: SVG 2 Coordinate Systems, Transformations and Units
+    publisher: World Wide Web Consortium
+    locator: https://www.w3.org/TR/SVG2/coords.html
+    publication_or_revision: SVG 2 Chapter 8
+    accessed_at: "2026-09-13"
+    authority: standards_body
+    review_status: reviewed
+    applies_to: [SVG]
+    scope: SVG coordinate interpretation, not laser or CAD tool compatibility.
+    sections: 8.1; 8.6; 8.9
+    claims:
+      - Viewports, viewBox, transforms, and unit rules determine SVG coordinate interpretation; unitless values are not inherently millimetres.
+  - id: prusa-project-formats
+    title: 3MF file format and why it is great
+    publisher: Prusa Research
+    locator: https://blog.prusa3d.com/3mf-file-format-and-why-its-great_30986/
+    publication_or_revision: Published 2019-11-01
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [STL, 3MF]
+    scope: STL versus PrusaSlicer project semantics; no endorsement of supplied settings or every statement in this article.
+    sections: What can be stored in a .3mf file
+    claims:
+      - STL lacks scene units and project configuration; a PrusaSlicer 3MF project can retain scene units and slicer settings.
+  - id: 3mf-core
+    title: 3D Manufacturing Format Core Specification and Reference Guide
+    publisher: 3MF Consortium
+    locator: https://github.com/3MFConsortium/spec_core/blob/master/3MF%20Core%20Specification.md
+    publication_or_revision: Version 1.4.0, February 6 2025
+    accessed_at: "2026-09-13"
+    authority: standards_body
+    review_status: reviewed
+    applies_to: [3MF]
+    scope: Core model/package semantics; implementation and extension compatibility require separate evidence.
+    sections: Chapter 1; 2.3; 3.4; Chapters 4 and 5
+    claims:
+      - The model unit defaults to millimeter when omitted and applies to vertices, locations, and measurements.
+      - Resources and build items form the model; unsupported required extensions must not be ignored by consumers.
+  - id: linuxcnc-gcode-overview
+    title: G-code Overview
+    publisher: LinuxCNC project
+    locator: https://www.linuxcnc.org/docs/html/gcode/overview.html
+    publication_or_revision: null
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [NC/G-code]
+    scope: LinuxCNC dialect only; not a generic controller manual or authorization to execute.
+    sections: Overview; Format of a line; Modal Groups
+    claims:
+      - LinuxCNC programs contain words and modal groups; spaces outside comments do not change their meaning.
+  - id: linuxcnc-units
+    title: G-Codes
+    publisher: LinuxCNC project
+    locator: https://linuxcnc.org/docs/html/gcode/g-code.html
+    publication_or_revision: null
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [NC/G-code]
+    scope: LinuxCNC length-unit commands only; check the actual controller separately.
+    sections: G20, G21 Units
+    claims:
+      - G20 selects inches and G21 selects millimetres for length units in LinuxCNC.
+  - id: stepnc-ap238-model
+    title: How to Read These Documents
+    publisher: STEP Tools
+    locator: https://www.steptools.com/stds/stepnc/tech_resources/howtoread.html
+    publication_or_revision: null
+    accessed_at: "2026-09-13"
+    authority: primary_tool_documentation
+    review_status: reviewed
+    applies_to: [STEP-NC]
+    scope: AP238 model relationship; research reference, not machine/runtime support.
+    sections: AP238 AIM and ISO 14649 ARM relationship
+    claims:
+      - AP238 combines the ISO 14649 machining model with STEP geometry, GD&T, and product-data management information.
