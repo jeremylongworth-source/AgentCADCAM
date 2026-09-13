@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Hardened foundation validation against malformed/duplicate manifests, missing skill references, fixture path escapes, and invalid repository YAML/JSON. Added regression cases and documented the remaining metadata/reference coverage gaps.
 - Completed the nine-format review policies and added 11 scoped source records. Foundation validation now rejects missing format fields, ambiguous YAML, incomplete source metadata, and stale or mismatched format citations; broader safety/source review remains outstanding.
 - Enforced required CNC context before recognizing an approval, including setup, tooling, WCS, post identity, simulation, and verification. Incomplete matching approvals now require renewed review.
 - Corrected public-alpha readiness claims: historical synthetic gate records do not prove full roadmap completion. Added a requirement/evidence gap register in `docs/development/roadmap-reconciliation.md`.
