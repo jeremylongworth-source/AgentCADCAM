@@ -4,5 +4,5 @@
   "material_id": "fixture-plywood",
   "settings_status": "verified",
   "settings": {},
-  "source": {"title": "Synthetic laser process profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/process.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic laser process profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/process.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline laser fixture checks only; not validated laser process settings.", "claims": ["The fixture associates machine and material IDs with a synthetic verified status and an empty settings object."]}
 }

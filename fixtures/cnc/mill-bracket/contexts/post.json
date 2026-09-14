@@ -5,5 +5,5 @@
   "machine_id": "fixture-mill-3axis",
   "post_version": "1.0",
   "validation_state": "verified",
-  "source": {"title": "Synthetic fixture post profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/post.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic fixture post profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/post.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC identity-matching tests only; not a validated deployable postprocessor.", "claims": ["The fixture links fixture-cam, fixture-controller, and fixture-mill-3axis with a synthetic verified status."]}
 }

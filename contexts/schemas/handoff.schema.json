@@ -19,14 +19,15 @@
     "source": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["title", "publisher", "locator", "accessed_at"],
+      "required": ["title", "publisher", "locator", "published_at", "accessed_at", "scope", "claims"],
       "properties": {
-        "title": {"type": "string", "minLength": 1},
-        "publisher": {"type": "string", "minLength": 1},
-        "locator": {"type": "string", "minLength": 1},
-        "published_at": {"type": ["string", "null"]},
-        "accessed_at": {"type": "string", "minLength": 1},
-        "scope": {"type": ["string", "null"]}
+        "title": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "publisher": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "locator": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "published_at": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S", "description": "Publication date or source revision as supplied; null when unavailable, never inferred."},
+        "accessed_at": {"type": "string", "format": "date"},
+        "scope": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "\\S"}, "description": "Specific statements supported within this source's scope; metadata does not authenticate them."}
       }
     },
     "artifact": {

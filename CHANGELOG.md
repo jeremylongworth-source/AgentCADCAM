@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Tightened shared profile source metadata to require scope, supported claims, publication/revision availability, and calendar access dates. Migrated synthetic records with test-only claims and added schema/routing regressions. This breaks older minimal source records; see `docs/development/source-contract-migration.md`.
+- Reviewed the domain contract against Phase 0 requirements, added conditional capability boundaries and four workflow definitions, and recorded architecture acceptance. Phase 1 remains open for explicit handoff and profile lifecycle schema gaps.
 - Replaced regex-only Markdown link checks with offline parsed reference/image links, heading/custom anchors, and decoded-path confinement. Added 21 regression checks; external pages and non-Markdown fragments still require separate review.
 - Added AgentSkills-compatible version, maintenance owner, and supported review-level metadata to all 14 skills. Foundation checks reject missing/invalid declarations and live-execution scope; workflow instructions and permissions are unchanged.
 - Hardened foundation validation against malformed/duplicate manifests, missing skill references, fixture path escapes, and invalid repository YAML/JSON. Added regression cases and documented the remaining metadata/reference coverage gaps.

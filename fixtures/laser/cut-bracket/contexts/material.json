@@ -5,5 +5,5 @@
   "properties": {},
   "compatibility": {"machines": ["fixture-laser-40w"], "process_profiles": ["fixture-plywood-profile"]},
   "environmental_requirements": {"ventilation_status": "known", "unsafe_material_status": "not_indicated"},
-  "source": {"title": "Synthetic laser material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/material.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic laser material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/material.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline laser compatibility tests only; not evidence that plywood, emissions, or ventilation are safe.", "claims": ["The fixture links synthetic machine and process identities and supplies labeled environmental statuses for tests."]}
 }

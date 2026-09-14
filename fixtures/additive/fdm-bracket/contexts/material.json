@@ -5,5 +5,5 @@
   "properties": {},
   "compatibility": {"printers": ["fixture-printer-fdm"], "slicer_profiles": ["fixture-pla-profile"]},
   "environmental_requirements": {"environment_status": "known"},
-  "source": {"title": "Synthetic FDM material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/additive/fdm-bracket/contexts/material.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic FDM material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/additive/fdm-bracket/contexts/material.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline FDM compatibility tests only; not filament properties, slicer settings, or environmental safety evidence.", "claims": ["The material fixture links fixture-pla to a synthetic printer and slicer profile and declares a known environment status."]}
 }

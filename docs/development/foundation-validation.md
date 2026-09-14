@@ -17,6 +17,8 @@
 | Parsed Markdown references | Missing inline/reference-link/image targets, missing Markdown heading/custom anchors, unsafe schemes, and decoded or resolved path escapes. Code examples and comments are not treated as links. See scope below. |
 | Format/source policies | Nine-format completeness and scoped source-reference checks described in the [source process](../sources/source-freshness-process.md). |
 
+The separate schema-instance validator enforces profile source title, publisher, locator, publication availability, access-date format, scope, and supported claims. Source-field shape validation is not claim verification; see the [source migration](source-contract-migration.md). The [content review](foundation-content-review.md) identifies remaining handoff and profile lifecycle schema gaps that a passing current-schema run cannot detect.
+
 The content walker excludes `.git`, local dependency environments, caches, and build output. It does not traverse symbolic-link directories. This keeps developer-installed third-party files outside the repository-content checks. Fixture paths are resolved and checked before referenced descriptor contents are opened.
 
 ## Markdown reference scope

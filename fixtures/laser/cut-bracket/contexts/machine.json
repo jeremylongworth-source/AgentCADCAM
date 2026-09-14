@@ -5,5 +5,5 @@
   "model": "40W laser cutter",
   "capabilities": {"working_area": {"x": 300, "y": 200}, "source_type": "fixture-laser"},
   "limits": {},
-  "source": {"title": "Synthetic laser machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/machine.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic laser machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/laser/cut-bracket/contexts/machine.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline laser fixture checks only; not OEM power, envelope, or safety evidence.", "claims": ["The fixture declares a synthetic laser identity, working-area tuple, and fixture-laser source type."]}
 }

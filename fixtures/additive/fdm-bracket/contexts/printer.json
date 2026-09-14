@@ -5,5 +5,5 @@
   "model": "FDM printer",
   "capabilities": {"build_volume": {"x": 200, "y": 200, "z": 200}, "materials": ["fixture-pla"]},
   "limits": {},
-  "source": {"title": "Synthetic FDM printer profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/additive/fdm-bracket/contexts/printer.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic FDM printer profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/additive/fdm-bracket/contexts/printer.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline FDM fixture checks only; not an OEM build-volume or material specification.", "claims": ["The printer fixture declares a synthetic build-volume tuple and fixture-pla compatibility."]}
 }

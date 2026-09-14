@@ -5,5 +5,5 @@
   "properties": {},
   "compatibility": {"process": "three-axis milling"},
   "environmental_requirements": {},
-  "source": {"title": "Synthetic fixture material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/material.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic fixture material profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/material.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC fixture identity and compatibility tests only; not material properties or process parameters.", "claims": ["The fixture labels a synthetic review material for the three-axis milling test family."]}
 }

@@ -5,5 +5,5 @@
   "geometry": {"type": "endmill", "diameter": 6, "flutes": 2},
   "reach": 20,
   "availability": "fixture-only",
-  "source": {"title": "Synthetic fixture tool profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/tool.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic fixture tool profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/tool.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC tooling tests only; not a tooling manufacturer specification or availability confirmation.", "claims": ["The fixture declares tool number 1, synthetic endmill geometry, a fixture holder, and fixture-only availability."]}
 }

@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft foundation contract for `CADCAM_01_DOMAIN_CONTRACT_READY`. It becomes frozen when the Phase 0 exit criteria are met.
+The four-family domain contract is frozen for initial repository development under `CADCAM_01_DOMAIN_CONTRACT_READY`. The [2026-09-13 content review](../development/foundation-content-review.md) records the Phase 0 requirement checks and their evidence. This is a repository architecture decision, not practitioner validation, a foundation Phase 1 closeout, or manufacturing approval.
 
 ## Audience and scope
 
@@ -30,11 +30,26 @@ Provide reusable, vendor-neutral reasoning and verification capabilities connect
 
 ## Allowed capability classes
 
-The repository may provide intake, review, planning, static inspection, simulation-readiness analysis, source-backed recommendations, and human-review packages. Outputs remain draft or reviewable unless all applicable gates are satisfied and a human explicitly approves them.
+The repository may provide intake, review, planning, static inspection, simulation-readiness analysis, source-backed recommendations, and human-review packages. A scoped human review record may be recognized only when its applicable checks pass. Even then, outputs remain reviewable and physical execution remains outside this system.
+
+## Conditional capabilities
+
+| Capability | Required condition | Missing or conflicting condition |
+| --- | --- | --- |
+| Artifact inspection or offline conversion | User-authorized files, established source/revision/units, declared transformation, and preserved original | Request context or source verification; do not silently promote a derivative to design authority |
+| Machine, controller, material, or tooling recommendations | Applicable primary evidence, bounded process context, and explicit assumptions | Return source/machine/context blockers; do not invent consequential values |
+| Static NC, slicer, or laser review | Known artifact identity and declared dialect/profile limits | Return scoped findings and required verification; parsing is not readiness |
+| Independent offline simulation or geometry tooling | Explicit local scope, available tool, and traceable input/output identities; no live-machine connection | Report missing verification or simulation; do not fabricate a successful run |
+| Recognition of human approval | Matching current fingerprint, scope, reviewer record, required context, and verification | Require review and preserve invalidation evidence; approval cannot suppress other blockers |
+| Jurisdiction research routing | Explicitly selected jurisdiction and applicable authoritative sources | Request research or qualified review; make no final legal/export classification |
+
+These conditions describe the permitted boundary, not a claim that every tool adapter or check is implemented. Integration status is recorded separately in the roadmap reconciliation.
 
 ## Prohibited capabilities
 
 The repository must not control or start physical machines, activate spindles or beams, bypass guards or interlocks, configure safety PLCs, deploy posts autonomously, perform autonomous probing, or claim engineering, regulatory, export-control, or safety certification.
+
+The initial process boundary is three-axis milling, FDM, 2D laser cutting, and CAD handoff. Other manufacturing processes and advanced variants listed in [the roadmap's v0.x exclusions](../../ROADMAP.md#4-explicit-v0x-exclusions) remain deferred; naming a taxonomy concept does not enable that process. Future expansion requires the roadmap's post-pilot domain-risk review.
 
 ## Evidence and vendor neutrality
 
@@ -50,10 +65,12 @@ This repository is an independent sibling project with its own taxonomy, router,
 
 ## Validation notes
 
-The contract is implemented by the schemas in `contexts/schemas/`, the router contract in `router/`, and the standards in `docs/standards/`. Phase 0 remains open until personas, workflow definitions, and the taxonomy have been reviewed together.
+The taxonomy, personas, four workflow definitions, consequence model, specialization rules, and execution boundary were reviewed together in the linked content review. Context schemas and routing implement parts of this contract; schema coverage gaps remain explicitly open under Phase 1. A new process, weaker boundary, or required sibling/vendor runtime dependency must reopen the architecture decision rather than silently alter it.
 
-## Open questions
+## Resolved foundation decisions
 
-- Which AgentSkills metadata conventions should be adopted as a compatibility profile without coupling the core to one host implementation?
-- Which minimum evidence fields are required for each jurisdiction specialization?
-- Which machine-readable approval states should be shared across all four workflow families?
+- AgentSkills compatibility: standard root fields and string-valued repository metadata are defined in the [skill authoring standard](../standards/skill-authoring-standard.md); no host-specific execution permission is implied.
+- Jurisdiction evidence: the shared source contract requires title, publisher, locator, explicit publication/revision availability, access date, scope, and supported claims. Any future jurisdiction specialization must additionally identify its jurisdiction in scope and require explicit job selection. The Canada directory remains a reserved research location, not an active source-backed legal module.
+- Shared job approval states: `not_requested`, `pending`, `approved`, `invalidated`, and `rejected`. A record is absent at `not_requested`; record schemas use the other four states. The [approval model](approval-model.md) defines review scope and invalidation, not machine authorization.
+
+Unfinished foundation implementation and evidence questions are tracked in the content review rather than left as unresolved decisions already implemented elsewhere.

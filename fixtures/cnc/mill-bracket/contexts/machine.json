@@ -5,5 +5,5 @@
   "model": "3-axis mill",
   "capabilities": {"axes": 3, "spindle_rpm_min": 500, "spindle_rpm_max": 12000, "tool_interface": "fixture-holder"},
   "limits": {"x": {"min": 0, "max": 60}, "y": {"min": 0, "max": 40}, "z": {"min": 0, "max": 30}},
-  "source": {"title": "Synthetic fixture machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/machine.json", "accessed_at": "2026-09-12"}
+  "source": {"title": "Synthetic fixture machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/machine.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC fixture checks only; not OEM evidence or a physical machine specification.", "claims": ["This fixture declares three axes and synthetic spindle and travel limits for curated tests."]}
 }

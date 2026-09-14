@@ -6,4 +6,6 @@ The validator checks all ten context/state definitions against Draft 2020-12, va
 
 Regression tests additionally reject malformed hashes, missing source metadata, invalid state fields and timestamps, and verify that runtime invalidation outputs conform to the approval schema.
 
+Source records require publication/revision availability (explicit null is allowed), a valid calendar access date, scope, and nonempty supported claims in addition to title/publisher/locator. `test_source_contract.py` checks the common contract and its five profile consumers. Routing tests reject incomplete source metadata even with a matching approval fingerprint and invalidate changed claims. See the [breaking source-contract migration](../../docs/development/source-contract-migration.md).
+
 Scope limits: workflow-specific `job.json` and laser `process.json` files are harness inputs with separate shapes, not instances of the generic job schema. CAD revision metadata also has a separate shape. This validator does not check those against unrelated schemas or claim that arbitrary nested capability objects satisfy manufacturing requirements.

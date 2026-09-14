@@ -99,6 +99,26 @@ class JobRouterTests(unittest.TestCase):
         result = route_job(self.request, self.state)
         self.assertIn("MACHINE_CONTEXT_REQUIRED", result["blockers"])
 
+    def test_incomplete_source_blocks_even_a_matching_approval_record(self):
+        for field in ("scope", "claims"):
+            with self.subTest(field=field):
+                current = copy.deepcopy(self.state)
+                current["machine_profile"]["source"].pop(field, None)
+                approval = dict(self.approval, context_fingerprint=context_fingerprint(current))
+                result = route_job(self.request, current, approval)
+                self.assertNotEqual(result["approval_state"], "approved")
+                self.assertIn("MISSING_CONTEXT", result["blockers"])
+                self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+                self.assertFalse(result["execution_allowed"])
+
+    def test_source_claim_change_requires_renewed_review(self):
+        current = copy.deepcopy(self.state)
+        current["machine_profile"]["source"]["claims"] = ["Changed synthetic evidence scope"]
+        result = route_job(self.request, current, self.approval, previous_state=self.state)
+        self.assertEqual(result["approval_state"], "invalidated")
+        self.assertIn("machine_profile", result["approval_record"]["changed_fields"])
+        self.assertEqual(result["approval_record"]["context_fingerprint"], self.approval["context_fingerprint"])
+
     def test_conflicting_family_is_explicitly_blocked(self):
         self.request["process_family"] = "cad_handoff"
         result = route_job(self.request, self.state, self.approval)
