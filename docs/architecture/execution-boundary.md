@@ -16,6 +16,8 @@ NC, G-code, toolpaths, slicer settings, laser parameters, posts, and setup plans
 
 Every execution-adjacent output must identify source artifacts, context identity, assumptions, verification performed, unresolved blockers, required simulation, and the human approval action. Physical execution remains the responsibility of qualified personnel using the machine’s own safety and operating procedures.
 
+The [handoff schema contract](handoff-contract.md) represents these fields, including explicit unknowns and blocked/refusal packages. Its validation checks declarations, not authenticated evidence or machine readiness.
+
 ## Review status
 
 `REVIEW_REQUIRED` is mandatory before tooling, ordering, production, or regulated use. `BLOCK_EXECUTION` is mandatory for any live-control request.

@@ -4,18 +4,117 @@
   "title": "Manufacturing Handoff",
   "type": "object",
   "additionalProperties": false,
-  "required": ["handoff_id", "job_id", "revision", "status", "artifacts", "blockers", "review_required"],
+  "description": "A declared review package. Schema validity does not authenticate evidence, approval records, or physical suitability.",
+  "required": ["handoff_id", "job_id", "revision", "status", "process_family", "consequence_level", "units", "artifacts", "context_fingerprint", "context_fingerprint_version", "assumptions", "verification", "simulation", "human_review", "blockers", "review_required", "execution_allowed", "approval_id"],
   "properties": {
-    "handoff_id": {"type": "string", "minLength": 1},
-    "job_id": {"type": "string", "minLength": 1},
-    "revision": {"type": "string", "minLength": 1},
+    "handoff_id": {"$ref": "#/$defs/nonblank_text"},
+    "job_id": {"$ref": "#/$defs/nonblank_text"},
+    "revision": {"$ref": "#/$defs/nonblank_text"},
     "status": {"enum": ["draft", "review_required", "blocked", "approved", "invalidated"]},
+    "process_family": {"enum": ["cad_handoff", "cnc_milling", "additive", "laser_cutting", "unknown"]},
+    "consequence_level": {"enum": ["informational", "design_advisory", "manufacturing_planning", "execution_adjacent", "live_execution"]},
+    "units": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
     "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
-    "blockers": {"type": "array", "items": {"type": "string"}},
+    "context_fingerprint": {"type": ["string", "null"], "minLength": 64, "maxLength": 64, "pattern": "^[a-f0-9]{64}$", "description": "Fingerprint of the reviewed bounded job state, or null when unavailable. Must be compared with current state outside schema validation."},
+    "context_fingerprint_version": {"const": 2},
+    "assumptions": {"type": "array", "items": {"$ref": "#/$defs/assumption"}},
+    "verification": {"type": "array", "items": {"$ref": "#/$defs/verification_check"}},
+    "simulation": {"$ref": "#/$defs/simulation_review"},
+    "human_review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action", "scope", "reviewer_role"],
+      "properties": {
+        "action": {"$ref": "#/$defs/nonblank_text"},
+        "scope": {"$ref": "#/$defs/text_list", "minItems": 1},
+        "reviewer_role": {"$ref": "#/$defs/nonblank_text"}
+      }
+    },
+    "blockers": {"$ref": "#/$defs/text_list"},
     "review_required": {"const": true},
-    "approval_id": {"type": ["string", "null"]}
+    "execution_allowed": {"const": false},
+    "approval_id": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"}
   },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "approved"}}},
+      "then": {
+        "properties": {
+          "approval_id": {"type": "string"},
+          "context_fingerprint": {"type": "string"},
+          "units": {"type": "string"},
+          "process_family": {"not": {"const": "unknown"}},
+          "blockers": {"maxItems": 0},
+          "artifacts": {"minItems": 1, "contains": {"properties": {"authority": {"const": "authoritative"}}}, "items": {"properties": {"authority": {"not": {"const": "unknown"}}}}},
+          "assumptions": {"items": {"properties": {"status": {"const": "resolved"}}}},
+          "verification": {"minItems": 1, "items": {"properties": {"status": {"const": "passed"}}}},
+          "simulation": {"properties": {"status": {"enum": ["verified", "not_required"]}}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "approved"}, "process_family": {"const": "cnc_milling"}, "consequence_level": {"const": "execution_adjacent"}}},
+      "then": {"properties": {"simulation": {"properties": {"status": {"const": "verified"}}}}}
+    },
+    {
+      "if": {"properties": {"consequence_level": {"const": "live_execution"}}},
+      "then": {"properties": {"status": {"const": "blocked"}, "blockers": {"contains": {"const": "BLOCK_EXECUTION"}}}}
+    },
+    {
+      "if": {
+        "anyOf": [
+          {"properties": {"status": {"enum": ["blocked", "invalidated"]}}},
+          {"properties": {"context_fingerprint": {"type": "null"}}},
+          {"properties": {"units": {"type": "null"}}},
+          {"properties": {"process_family": {"const": "unknown"}}},
+          {"properties": {"artifacts": {"maxItems": 0}}},
+          {"properties": {"verification": {"maxItems": 0}}},
+          {"properties": {"verification": {"contains": {"properties": {"status": {"enum": ["not_run", "failed", "inconclusive"]}}}}}},
+          {"properties": {"assumptions": {"contains": {"properties": {"status": {"enum": ["unresolved", "rejected"]}}}}}},
+          {"properties": {"simulation": {"properties": {"status": {"enum": ["unknown", "required", "failed"]}}}}}
+        ]
+      },
+      "then": {"properties": {"blockers": {"minItems": 1}}}
+    }
+  ],
   "$defs": {
+    "nonblank_text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "text_list": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonblank_text"}},
+    "assumption": {
+      "type": "object", "additionalProperties": false,
+      "required": ["statement", "status", "evidence"],
+      "properties": {
+        "statement": {"$ref": "#/$defs/nonblank_text"},
+        "status": {"enum": ["unresolved", "resolved", "rejected"]},
+        "evidence": {"$ref": "#/$defs/text_list"}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "resolved"}}}, "then": {"properties": {"evidence": {"minItems": 1}}}}]
+    },
+    "verification_check": {
+      "type": "object", "additionalProperties": false,
+      "required": ["check_id", "status", "summary", "evidence"],
+      "properties": {
+        "check_id": {"$ref": "#/$defs/nonblank_text"},
+        "status": {"enum": ["not_run", "passed", "failed", "inconclusive"]},
+        "summary": {"$ref": "#/$defs/nonblank_text"},
+        "evidence": {"$ref": "#/$defs/text_list"}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "passed"}}}, "then": {"properties": {"evidence": {"minItems": 1}}}}]
+    },
+    "simulation_review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reason", "required_checks", "evidence"],
+      "properties": {
+        "status": {"enum": ["unknown", "not_required", "required", "verified", "failed"]},
+        "reason": {"$ref": "#/$defs/nonblank_text"},
+        "required_checks": {"$ref": "#/$defs/text_list"},
+        "evidence": {"$ref": "#/$defs/text_list"}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"enum": ["required", "verified", "failed"]}}}, "then": {"properties": {"required_checks": {"minItems": 1}}}},
+        {"if": {"properties": {"status": {"const": "verified"}}}, "then": {"properties": {"evidence": {"minItems": 1}}}},
+        {"if": {"properties": {"status": {"const": "not_required"}}}, "then": {"properties": {"required_checks": {"maxItems": 0}}}}
+      ]
+    },
     "source": {
       "type": "object",
       "additionalProperties": false,

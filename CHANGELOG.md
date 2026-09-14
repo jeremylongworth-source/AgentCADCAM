@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Extended the handoff schema with context identity, assumptions, verification, simulation requirements, and human review action. Explicit unknowns remain representable; contradictory approval declarations fail validation and all statuses remain non-executable. Added 20 schema tests and a breaking-change migration guide at `docs/development/handoff-contract-migration.md`.
 - Tightened shared profile source metadata to require scope, supported claims, publication/revision availability, and calendar access dates. Migrated synthetic records with test-only claims and added schema/routing regressions. This breaks older minimal source records; see `docs/development/source-contract-migration.md`.
 - Reviewed the domain contract against Phase 0 requirements, added conditional capability boundaries and four workflow definitions, and recorded architecture acceptance. Phase 1 remains open for explicit handoff and profile lifecycle schema gaps.
 - Replaced regex-only Markdown link checks with offline parsed reference/image links, heading/custom anchors, and decoded-path confinement. Added 21 regression checks; external pages and non-Markdown fragments still require separate review.

@@ -2,9 +2,21 @@
   "handoff_id": "handoff-example-001",
   "job_id": "example-bracket-001",
   "revision": "A",
+  "process_family": "cad_handoff",
+  "consequence_level": "design_advisory",
+  "units": null,
   "status": "review_required",
   "artifacts": [],
+  "context_fingerprint": null,
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {"statement": "Authoritative files, units, and revision applicability have not been established.", "status": "unresolved", "evidence": []}
+  ],
+  "verification": [],
+  "simulation": {"status": "unknown", "reason": "Determine simulation requirements after the intended process and job scope are established.", "required_checks": [], "evidence": []},
+  "human_review": {"action": "Establish source authority and units, resolve findings, and record the required review scope before accepting this handoff. No physical execution is authorized.", "scope": ["manufacturing_handoff"], "reviewer_role": "Design and manufacturing reviewer for the intended process"},
   "blockers": ["MISSING_CONTEXT"],
   "review_required": true,
+  "execution_allowed": false,
   "approval_id": null
 }
