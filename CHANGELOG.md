@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Replaced regex-only Markdown link checks with offline parsed reference/image links, heading/custom anchors, and decoded-path confinement. Added 21 regression checks; external pages and non-Markdown fragments still require separate review.
 - Added AgentSkills-compatible version, maintenance owner, and supported review-level metadata to all 14 skills. Foundation checks reject missing/invalid declarations and live-execution scope; workflow instructions and permissions are unchanged.
 - Hardened foundation validation against malformed/duplicate manifests, missing skill references, fixture path escapes, and invalid repository YAML/JSON. Added regression cases and documented the remaining metadata/reference coverage gaps.
 - Completed the nine-format review policies and added 11 scoped source records. Foundation validation now rejects missing format fields, ambiguous YAML, incomplete source metadata, and stale or mismatched format citations; broader safety/source review remains outstanding.

@@ -1,6 +1,6 @@
 """Validate the repository contracts required by the foundation gate.
 
-This script uses Python's standard library plus PyYAML. It validates structural
+This script uses the portable test dependencies. It validates structural
 contracts and format/source cross-references; full JSON Schema
 instance validation is a later test-layer responsibility.
 """
@@ -16,8 +16,10 @@ from pathlib import Path
 import yaml
 
 if __package__:
+    from .markdown_references import validate_documents
     from .validate_format_registry import UniqueKeyLoader, validate_registry_files
 else:
+    from markdown_references import validate_documents
     from validate_format_registry import UniqueKeyLoader, validate_registry_files
 
 
@@ -92,6 +94,7 @@ REQUIRED_FILES = {
     "scripts/nc_static_checks.py",
     "scripts/validate_laser_fixture_geometry.py",
     "scripts/validate_foundation.py",
+    "scripts/markdown_references.py",
 }
 
 
@@ -434,14 +437,9 @@ def load_yaml_text(content: str, path: Path, errors: list[str]):
 
 
 def validate_markdown_references(errors: list[str]) -> None:
-    """Check relative Markdown links so docs do not point at missing files."""
-    pattern = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
-    for path in repository_files({".md"}, errors):
-        text = read_text(path, errors)
-        for target in pattern.findall(text):
-            if target.startswith(("http://", "https://", "#", "mailto:")):
-                continue
-            _file_reference(path.parent, target.split("#", 1)[0], ROOT, errors, f"broken Markdown reference in {path}")
+    """Validate parsed local links and heading anchors without network access."""
+    documents = {path: read_text(path, errors) for path in repository_files({".md"}, errors)}
+    errors.extend(validate_documents(ROOT, documents))
 
 
 def validate_safety_invariants(errors: list[str]) -> None:
