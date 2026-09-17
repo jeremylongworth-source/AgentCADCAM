@@ -3,3 +3,5 @@ fixtures/cad/bracket/source/bracket.scad text eol=lf
 fixtures/cad/bracket/source/bracket.step text eol=lf
 fixtures/cad/bracket/source/bracket.svg text eol=lf
 fixtures/cad/bracket/source/bracket.stl -text
+# Retained CNC evaluations bind exact inert program bytes across checkouts.
+fixtures/cnc/mill-bracket/programs/*.nc text eol=lf

@@ -1,0 +1,854 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.stl",
+      "authority": "derived",
+      "kind": "mesh_derivative",
+      "path": "fixtures/cad/bracket/source/bracket.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.step",
+      "authority": "derived",
+      "kind": "neutral_solid_exchange",
+      "path": "fixtures/cad/bracket/source/bracket.step",
+      "revision": "A",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.svg",
+      "authority": "derived",
+      "kind": "drawing_reference",
+      "path": "fixtures/cad/bracket/source/bracket.svg",
+      "revision": "A",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "nc-revision-mismatch",
+      "authority": "derived",
+      "kind": "nc_program",
+      "path": "replay:cnc/revision-mismatch/program.nc",
+      "revision": "B",
+      "sha256": "6f61b27c336b23bfa2e5339e731f9b9612af94f1587da553a238e5cdc03f96ed",
+      "units": "mm"
+    }
+  ],
+  "cad_metadata": {
+    "authoritative_artifact": "source/bracket.scad",
+    "confidentiality": "public",
+    "export_review_status": "not_required",
+    "job_id": "cad-bracket-basic",
+    "licence_status": "permitted",
+    "ownership_status": "owned",
+    "pmi_status": "not_present",
+    "redistribution_authorized": true,
+    "revision": "A",
+    "target_process": "cnc_milling_or_fdm_prototype",
+    "third_party_restrictions": [],
+    "units": "mm"
+  },
+  "cad_source": "// Synthetic, dimensioned OpenSCAD source for CAD/CAM handoff fixtures.\n// Units: millimetres. Revision: A.\n\nplate_width = 60;\nplate_depth = 40;\nplate_thickness = 6;\nback_height = 30;\nhole_diameter = 6;\nhole_offset = 12;\n\ndifference() {\n    union() {\n        cube([plate_width, plate_depth, plate_thickness]);\n        cube([plate_width, plate_thickness, back_height]);\n    }\n\n    translate([hole_offset, plate_depth / 2, -1])\n        cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([plate_width - hole_offset, plate_depth / 2, -1])\n        cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([hole_offset, -1, back_height - hole_offset])\n        rotate([-90, 0, 0])\n            cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([plate_width - hole_offset, -1, back_height - hole_offset])\n        rotate([-90, 0, 0])\n            cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n}\n",
+  "case": "revision-mismatch",
+  "context_fingerprint": "6697be9d1b2c267ee02495a08094baac8b3efa5a944587e370fc0483a726d6de",
+  "contexts": {
+    "controller": {
+      "controller_id": "fixture-controller",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic controller fixture only; no physical manufacturing applicability established.",
+        "revision": "2",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "manufacturer": "Synthetic Fixture",
+      "model": "controller-v1",
+      "modes_and_offsets": {
+        "absolute_mode": "G90",
+        "wcs": [
+          "G54"
+        ]
+      },
+      "source": {
+        "accessed_at": "2026-09-17",
+        "claims": [
+          "The synthetic controller fixture declares millimetres, G54, G90, G94 feed-per-minute, G97 RPM, and a bounded command list."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/controller.json",
+        "published_at": "Fixture profile revision 2",
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture checks only; not documentation of a real controller dialect.",
+        "title": "Synthetic fixture controller profile"
+      },
+      "supported_commands": [
+        "G0",
+        "G1",
+        "G17",
+        "G21",
+        "G54",
+        "G90",
+        "G94",
+        "G97",
+        "M3",
+        "M5",
+        "M6",
+        "M30"
+      ],
+      "supported_units": [
+        "mm"
+      ]
+    },
+    "job": {
+      "approval_status": "not_requested",
+      "artifacts": [],
+      "cam_system": "fixture-cam",
+      "controller_profile": {
+        "controller_id": "fixture-controller"
+      },
+      "export_review_status": "not_required",
+      "ip_status": {
+        "licence_status": "permitted",
+        "ownership_status": "owned"
+      },
+      "job_id": "cnc-mill-bracket",
+      "jurisdiction": null,
+      "machine_profile": {
+        "machine_id": "fixture-mill-3axis"
+      },
+      "material": {
+        "grade_or_profile": "synthetic",
+        "material_id": "fixture-aluminum"
+      },
+      "postprocessor": {
+        "post_id": "fixture-post-v1"
+      },
+      "process_family": "cnc_milling",
+      "revision": "B",
+      "setup": {
+        "setup_id": "setup-1"
+      },
+      "simulation_status": "not_run",
+      "tool_library": {
+        "tool_library_id": "tooling-a"
+      },
+      "units": "mm",
+      "verification_results": []
+    },
+    "machine": {
+      "capabilities": {
+        "axes": 3,
+        "spindle_rpm_max": 12000,
+        "spindle_rpm_min": 500,
+        "tool_interface": "fixture-holder"
+      },
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+        "revision": "3",
+        "units": {
+          "length": "mm",
+          "spindle_speed": "rpm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {
+        "coordinate_frame": "machine_axes",
+        "feed_rate": {
+          "max": 1000,
+          "units": "mm/min"
+        },
+        "x": {
+          "max": 60,
+          "min": 0
+        },
+        "y": {
+          "max": 40,
+          "min": 0
+        },
+        "z": {
+          "max": 30,
+          "min": 0
+        }
+      },
+      "machine_id": "fixture-mill-3axis",
+      "manufacturer": "Synthetic Fixture",
+      "model": "3-axis mill",
+      "process_family": "cnc_milling",
+      "source": {
+        "accessed_at": "2026-09-17",
+        "claims": [
+          "This fixture declares three axes and synthetic spindle and machine-axis bounds for curated tests.",
+          "The 1000 mm/min feed ceiling is an arbitrary synthetic test bound, not a machining recommendation."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/machine.json",
+        "published_at": "Fixture profile revision 3",
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture checks only; not OEM evidence or a physical machine specification.",
+        "title": "Synthetic fixture machine profile"
+      }
+    },
+    "material": {
+      "compatibility": {
+        "process": "three-axis milling"
+      },
+      "environmental_requirements": {},
+      "grade_or_profile": "synthetic review material",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-aluminum",
+      "process_family": "cnc_milling",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture labels a synthetic review material for the three-axis milling test family."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture identity and compatibility tests only; not material properties or process parameters.",
+        "title": "Synthetic fixture material profile"
+      }
+    },
+    "post": {
+      "cam_system": "fixture-cam",
+      "controller_id": "fixture-controller",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic post fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "machine_id": "fixture-mill-3axis",
+      "post_id": "fixture-post-v1",
+      "post_version": "1.0",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture links fixture-cam, fixture-controller, and fixture-mill-3axis with a synthetic verified status."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/post.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC identity-matching tests only; not a validated deployable postprocessor.",
+        "title": "Synthetic fixture post profile"
+      },
+      "validation_state": "verified"
+    },
+    "setup": {
+      "coordinate_model": {
+        "controller_id": "fixture-controller",
+        "initial_machine_position": {
+          "x": 0,
+          "y": 0,
+          "z": 25
+        },
+        "initial_position_stage": "after_initial_tool_change_before_first_axis_move",
+        "kind": "cartesian_translation_v1",
+        "lifecycle": {
+          "applicability": "Synthetic fixed three-axis translation for offline endpoint-bound tests only.",
+          "revision": "1",
+          "units": {
+            "length": "mm"
+          },
+          "verification": {
+            "evidence": [],
+            "notes": "Synthetic declaration; no physical offset or initial position has been observed.",
+            "reviewed_at": null,
+            "reviewed_revision": null,
+            "reviewer": null,
+            "status": "unverified"
+          }
+        },
+        "machine_id": "fixture-mill-3axis",
+        "model_id": "fixture-translation-1",
+        "setup_id": "setup-1",
+        "source": {
+          "accessed_at": "2026-09-17",
+          "claims": [
+            "This test model declares machine target equal to programmed target plus zero translation for all axes.",
+            "Its synthetic initial machine position after the first tool change is X0 Y0 Z25; implicit tool-change motion is not modeled."
+          ],
+          "locator": "fixtures/cnc/mill-bracket/contexts/setup.json",
+          "published_at": "Coordinate model revision 1",
+          "publisher": "CAD/CAM Skills",
+          "scope": "Offline synthetic coordinate arithmetic only, not machine inspection or controller configuration.",
+          "title": "Synthetic coordinate model"
+        },
+        "tool_id": "fixture-tool-1",
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "units": "mm",
+        "wcs": "G54"
+      },
+      "orientation": {
+        "x": "part-x",
+        "y": "part-y",
+        "z": "part-z"
+      },
+      "sequence": [
+        "face/base setup",
+        "review vertical features"
+      ],
+      "setup_id": "setup-1",
+      "stock": {
+        "units": "mm",
+        "x": 60,
+        "y": 40,
+        "z": 6
+      },
+      "wcs_status": "defined",
+      "workholding": {
+        "clamps_clear": null,
+        "type": "fixture-only"
+      }
+    },
+    "tool": {
+      "availability": "fixture-only",
+      "geometry": {
+        "diameter": 6,
+        "flutes": 2,
+        "type": "endmill"
+      },
+      "holder": "fixture-holder",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic tool fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "reach": 20,
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture declares tool number 1, synthetic endmill geometry, a fixture holder, and fixture-only availability."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/tool.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC tooling tests only; not a tooling manufacturer specification or availability confirmation.",
+        "title": "Synthetic fixture tool profile"
+      },
+      "tool_id": "fixture-tool-1",
+      "tool_number": 1
+    }
+  },
+  "coordinate_report": {
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SIMULATION_REQUIRED",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "coordinate_review": {
+      "blockers": [
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "findings": [
+        "coordinate model lacks current revision-scoped review evidence"
+      ],
+      "scope": "declared machine-axis initial position and linear targets after the first tool change; no collision or physical-motion verification",
+      "status": "not_run",
+      "targets": []
+    },
+    "execution_allowed": false,
+    "findings": [
+      "program revision does not match job revision",
+      "program units are explicit: mm",
+      "WCS G54 is present",
+      "tool number T1 reconciled",
+      "M3 present; human review required for spindle state",
+      "M5 present; human review required for spindle state",
+      "simulation evidence is not verified",
+      "human approval is not recorded",
+      "coordinate model lacks current revision-scoped review evidence"
+    ],
+    "review_required": true,
+    "status": "blocked",
+    "validation_scope": "literal NC words, selected modal/feed/spindle prerequisites and declared numeric bounds; coordinate_review identifies mapped target checks when supplied, otherwise only raw fixture bounds; not physical travel, cutting feasibility, simulation or approval verification"
+  },
+  "mutation": {
+    "mutation": "revision-mismatch",
+    "replacements": [
+      {
+        "from": "( REVISION: B )",
+        "to": "( REVISION: C )"
+      }
+    ]
+  },
+  "program": "%\n( CADCAM synthetic CNC fixture )\n( JOB: cnc-mill-bracket )\n( REVISION: C )\n( UNITS: mm )\n( MACHINE: fixture-mill-3axis )\n( CONTROLLER: fixture-controller )\n( POST: fixture-post-v1 )\n( SETUP: setup-1 )\nG21\nG90 G17 G54\nG94 G97\nM5\nT1 M6\nS5000 M3\nG0 X0 Y0 Z25\nG1 Z0 F100\nG1 X60 Y0 F200\nG1 X60 Y40\nG1 X0 Y40\nG1 X0 Y0\nG0 Z25\nM5\nM30\n%\n",
+  "raw_fixture_report": {
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SIMULATION_REQUIRED"
+    ],
+    "coordinate_review": null,
+    "execution_allowed": false,
+    "findings": [
+      "program revision does not match job revision",
+      "program units are explicit: mm",
+      "WCS G54 is present",
+      "tool number T1 reconciled",
+      "M3 present; human review required for spindle state",
+      "M5 present; human review required for spindle state",
+      "simulation evidence is not verified",
+      "human approval is not recorded"
+    ],
+    "review_required": true,
+    "status": "blocked",
+    "validation_scope": "literal NC words, selected modal/feed/spindle prerequisites and declared numeric bounds; coordinate_review identifies mapped target checks when supplied, otherwise only raw fixture bounds; not physical travel, cutting feasibility, simulation or approval verification"
+  },
+  "request": {
+    "artifact_class": "nc_program",
+    "consequence_level": "execution_adjacent",
+    "controller_known": true,
+    "machine_known": true,
+    "material_known": true,
+    "process_family": "cnc_milling"
+  },
+  "route_result": {
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SIMULATION_REQUIRED",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "consequence_level": "execution_adjacent",
+    "context_fingerprint": "6697be9d1b2c267ee02495a08094baac8b3efa5a944587e370fc0483a726d6de",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "workholding identity or clamp-clearance review is unresolved",
+      "setup WCS has not been verified",
+      "explicit verified WCS is missing or unsupported by the controller",
+      "tool holder, reach, or availability is unresolved",
+      "NC static review was not run because required context is unresolved",
+      "CNC simulation evidence is not verified",
+      "verification evidence is missing, unresolved, or failed",
+      "controller_profile: profile review is missing, unverified, or does not cover the current revision",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision",
+      "postprocessor: profile review is missing, unverified, or does not cover the current revision",
+      "tool_library/tools/0: profile review is missing, unverified, or does not cover the current revision"
+    ],
+    "nc_review": {
+      "blockers": [
+        "MISSING_CONTEXT"
+      ],
+      "context_fingerprint": "6697be9d1b2c267ee02495a08094baac8b3efa5a944587e370fc0483a726d6de",
+      "findings": [
+        "NC static review was not run because required context is unresolved"
+      ],
+      "report": null,
+      "sha256": "6f61b27c336b23bfa2e5339e731f9b9612af94f1587da553a238e5cdc03f96ed",
+      "status": "not_run"
+    },
+    "process_family": "cnc_milling",
+    "required_checks": [
+      "machine_match",
+      "setup",
+      "tooling",
+      "postprocessor",
+      "nc_static",
+      "simulation",
+      "human_approval"
+    ],
+    "review_required": true,
+    "route_id": "cnc-milling",
+    "skillset": "cnc-milling-planning",
+    "validation_errors": []
+  },
+  "state": {
+    "approval_status": "not_requested",
+    "cam_system": "fixture-cam",
+    "controller_profile": {
+      "controller_id": "fixture-controller",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic controller fixture only; no physical manufacturing applicability established.",
+        "revision": "2",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "manufacturer": "Synthetic Fixture",
+      "model": "controller-v1",
+      "modes_and_offsets": {
+        "absolute_mode": "G90",
+        "wcs": [
+          "G54"
+        ]
+      },
+      "source": {
+        "accessed_at": "2026-09-17",
+        "claims": [
+          "The synthetic controller fixture declares millimetres, G54, G90, G94 feed-per-minute, G97 RPM, and a bounded command list."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/controller.json",
+        "published_at": "Fixture profile revision 2",
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture checks only; not documentation of a real controller dialect.",
+        "title": "Synthetic fixture controller profile"
+      },
+      "supported_commands": [
+        "G0",
+        "G1",
+        "G17",
+        "G21",
+        "G54",
+        "G90",
+        "G94",
+        "G97",
+        "M3",
+        "M5",
+        "M6",
+        "M30"
+      ],
+      "supported_units": [
+        "mm"
+      ]
+    },
+    "export_review_status": "not_required",
+    "generated_manufacturing_output": {
+      "artifact_id": "nc-revision-mismatch",
+      "authority": "derived",
+      "kind": "nc_program",
+      "path": "replay:cnc/revision-mismatch/program.nc",
+      "revision": "B",
+      "sha256": "6f61b27c336b23bfa2e5339e731f9b9612af94f1587da553a238e5cdc03f96ed",
+      "units": "mm"
+    },
+    "ip_status": {
+      "licence_status": "permitted",
+      "ownership_status": "owned"
+    },
+    "job_id": "cnc-mill-bracket",
+    "jurisdiction": null,
+    "machine_profile": {
+      "capabilities": {
+        "axes": 3,
+        "spindle_rpm_max": 12000,
+        "spindle_rpm_min": 500,
+        "tool_interface": "fixture-holder"
+      },
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+        "revision": "3",
+        "units": {
+          "length": "mm",
+          "spindle_speed": "rpm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {
+        "coordinate_frame": "machine_axes",
+        "feed_rate": {
+          "max": 1000,
+          "units": "mm/min"
+        },
+        "x": {
+          "max": 60,
+          "min": 0
+        },
+        "y": {
+          "max": 40,
+          "min": 0
+        },
+        "z": {
+          "max": 30,
+          "min": 0
+        }
+      },
+      "machine_id": "fixture-mill-3axis",
+      "manufacturer": "Synthetic Fixture",
+      "model": "3-axis mill",
+      "process_family": "cnc_milling",
+      "source": {
+        "accessed_at": "2026-09-17",
+        "claims": [
+          "This fixture declares three axes and synthetic spindle and machine-axis bounds for curated tests.",
+          "The 1000 mm/min feed ceiling is an arbitrary synthetic test bound, not a machining recommendation."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/machine.json",
+        "published_at": "Fixture profile revision 3",
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture checks only; not OEM evidence or a physical machine specification.",
+        "title": "Synthetic fixture machine profile"
+      }
+    },
+    "material": {
+      "compatibility": {
+        "process": "three-axis milling"
+      },
+      "environmental_requirements": {},
+      "grade_or_profile": "synthetic review material",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-aluminum",
+      "process_family": "cnc_milling",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture labels a synthetic review material for the three-axis milling test family."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC fixture identity and compatibility tests only; not material properties or process parameters.",
+        "title": "Synthetic fixture material profile"
+      }
+    },
+    "post_version": "1.0",
+    "postprocessor": {
+      "cam_system": "fixture-cam",
+      "controller_id": "fixture-controller",
+      "lifecycle": {
+        "applicability": "Offline cnc/mill-bracket synthetic post fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "machine_id": "fixture-mill-3axis",
+      "post_id": "fixture-post-v1",
+      "post_version": "1.0",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture links fixture-cam, fixture-controller, and fixture-mill-3axis with a synthetic verified status."
+        ],
+        "locator": "fixtures/cnc/mill-bracket/contexts/post.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline CNC identity-matching tests only; not a validated deployable postprocessor.",
+        "title": "Synthetic fixture post profile"
+      },
+      "validation_state": "verified"
+    },
+    "process_family": "cnc_milling",
+    "revision": "B",
+    "setup": {
+      "coordinate_model": {
+        "controller_id": "fixture-controller",
+        "initial_machine_position": {
+          "x": 0,
+          "y": 0,
+          "z": 25
+        },
+        "initial_position_stage": "after_initial_tool_change_before_first_axis_move",
+        "kind": "cartesian_translation_v1",
+        "lifecycle": {
+          "applicability": "Synthetic fixed three-axis translation for offline endpoint-bound tests only.",
+          "revision": "1",
+          "units": {
+            "length": "mm"
+          },
+          "verification": {
+            "evidence": [],
+            "notes": "Synthetic declaration; no physical offset or initial position has been observed.",
+            "reviewed_at": null,
+            "reviewed_revision": null,
+            "reviewer": null,
+            "status": "unverified"
+          }
+        },
+        "machine_id": "fixture-mill-3axis",
+        "model_id": "fixture-translation-1",
+        "setup_id": "setup-1",
+        "source": {
+          "accessed_at": "2026-09-17",
+          "claims": [
+            "This test model declares machine target equal to programmed target plus zero translation for all axes.",
+            "Its synthetic initial machine position after the first tool change is X0 Y0 Z25; implicit tool-change motion is not modeled."
+          ],
+          "locator": "fixtures/cnc/mill-bracket/contexts/setup.json",
+          "published_at": "Coordinate model revision 1",
+          "publisher": "CAD/CAM Skills",
+          "scope": "Offline synthetic coordinate arithmetic only, not machine inspection or controller configuration.",
+          "title": "Synthetic coordinate model"
+        },
+        "tool_id": "fixture-tool-1",
+        "translation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "units": "mm",
+        "wcs": "G54"
+      },
+      "orientation": {
+        "x": "part-x",
+        "y": "part-y",
+        "z": "part-z"
+      },
+      "sequence": [
+        "face/base setup",
+        "review vertical features"
+      ],
+      "setup_id": "setup-1",
+      "stock": {
+        "units": "mm",
+        "x": 60,
+        "y": 40,
+        "z": 6
+      },
+      "wcs_status": "defined",
+      "workholding": {
+        "clamps_clear": null,
+        "type": "fixture-only"
+      }
+    },
+    "simulation_status": "not_run",
+    "source_artifact_hashes": [
+      "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f"
+    ],
+    "tool_library": {
+      "tool_library_id": "tooling-a",
+      "tools": [
+        {
+          "availability": "fixture-only",
+          "geometry": {
+            "diameter": 6,
+            "flutes": 2,
+            "type": "endmill"
+          },
+          "holder": "fixture-holder",
+          "lifecycle": {
+            "applicability": "Offline cnc/mill-bracket synthetic tool fixture only; no physical manufacturing applicability established.",
+            "revision": "1",
+            "units": {
+              "length": "mm"
+            },
+            "verification": {
+              "evidence": [],
+              "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+              "reviewed_at": null,
+              "reviewed_revision": null,
+              "reviewer": null,
+              "status": "unverified"
+            }
+          },
+          "reach": 20,
+          "source": {
+            "accessed_at": "2026-09-13",
+            "claims": [
+              "The fixture declares tool number 1, synthetic endmill geometry, a fixture holder, and fixture-only availability."
+            ],
+            "locator": "fixtures/cnc/mill-bracket/contexts/tool.json",
+            "published_at": null,
+            "publisher": "CAD/CAM Skills",
+            "scope": "Offline CNC tooling tests only; not a tooling manufacturer specification or availability confirmation.",
+            "title": "Synthetic fixture tool profile"
+          },
+          "tool_id": "fixture-tool-1",
+          "tool_number": 1
+        }
+      ]
+    },
+    "units": "mm",
+    "verification_results": [
+      {
+        "check_id": "partial_static_review",
+        "evidence": [
+          "docs/evaluation/cnc-runs/2026-09-17-revision-mismatch/observed.json"
+        ],
+        "status": "inconclusive",
+        "summary": "Offline reports retained; required context/simulation/review is unresolved. No physical verification."
+      }
+    ],
+    "work_coordinate_system": {
+      "code": "G54",
+      "status": "defined"
+    }
+  }
+}

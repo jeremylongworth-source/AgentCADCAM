@@ -1,0 +1,130 @@
+{
+  "handoff_id": "cnc-bracket-unknown-tool-2026-09-17",
+  "job_id": "cnc-mill-bracket",
+  "revision": "B",
+  "status": "blocked",
+  "process_family": "cnc_milling",
+  "consequence_level": "execution_adjacent",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.stl",
+      "authority": "derived",
+      "kind": "mesh_derivative",
+      "path": "fixtures/cad/bracket/source/bracket.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.step",
+      "authority": "derived",
+      "kind": "neutral_solid_exchange",
+      "path": "fixtures/cad/bracket/source/bracket.step",
+      "revision": "A",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.svg",
+      "authority": "derived",
+      "kind": "drawing_reference",
+      "path": "fixtures/cad/bracket/source/bracket.svg",
+      "revision": "A",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "nc-unknown-tool",
+      "authority": "derived",
+      "kind": "nc_program",
+      "path": "replay:cnc/unknown-tool/program.nc",
+      "revision": "B",
+      "sha256": "83310512bb4a17c0929838679960634774953542f37c0e0d4d1ac1586f3557b7",
+      "units": "mm"
+    }
+  ],
+  "context_fingerprint": "d1b02eb78983a54cc1fdc7298a1143bea5a88cf4effbb5aafe5e09ca8c11509e",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "Synthetic profile labels and the post validation flag do not establish real machine/controller/material/tool/post applicability; lifecycle reviews and tool availability remain unresolved.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/observed.json",
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/review.md"
+      ]
+    },
+    {
+      "statement": "The linked CAD design intent and full stock/feature-to-operation plan are not established by the supplied rectangular NC; actual stock condition, tolerances, access and inspection acceptance need qualified review.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/observed.json",
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/review.md"
+      ]
+    },
+    {
+      "statement": "Datum/WCS verification, coordinate mapping and initial position, fixture/tool-holder geometry and clamp clearance are unverified; no physical motion or collision verification is supplied.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/observed.json",
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/review.md"
+      ]
+    },
+    {
+      "statement": "T9 M6 references a tool absent from the supplied one-tool library, which contains only T1 / fixture-tool-1.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/observed.json",
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "partial_static_review",
+      "evidence": [
+        "docs/evaluation/cnc-runs/2026-09-17-unknown-tool/observed.json"
+      ],
+      "status": "inconclusive",
+      "summary": "Offline reports retained; required context/simulation/review is unresolved. No physical verification."
+    }
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "Only offline static/routing evidence is available; no applicable simulation has been performed.",
+    "required_checks": [
+      "Target/controller/post compatibility for exact reviewed NC bytes and versions",
+      "Complete path and tool-change/approach/retract motion against reviewed machine, fixture and tool/holder geometry and coordinate context",
+      "Stock-removal and feature coverage against controlled design, material/stock condition and setup sequence"
+    ],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Obtain the intended controlled tool assembly/library and reconcile NC, CAM and setup-sheet numbering with the tooling reviewer; do not invent T9 geometry or automatically substitute T1.",
+    "scope": [
+      "manufacturing_handoff",
+      "context_review",
+      "simulation_verification"
+    ],
+    "reviewer_role": "Qualified design authority, CAM programmer, tooling/setup and manufacturing reviewers"
+  },
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SIMULATION_REQUIRED",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

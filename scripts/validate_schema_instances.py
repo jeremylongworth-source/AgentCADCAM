@@ -49,11 +49,12 @@ def instance_paths(root: Path = ROOT):
     yield root / "state/state.example.json", "state.schema.json"
     for path in sorted((root / "fixtures").glob("**/metadata/derivation.json")):
         yield path, "derivation.schema.json"
-    for folder in sorted((root / "docs/evaluation/cad-runs").glob("*")):
-        for name in ("state", "handoff"):
-            path = folder / f"{name}.json"
-            if path.is_file():
-                yield path, f"{name}.schema.json"
+    for family in ("cad-runs", "cnc-runs"):
+        for folder in sorted((root / f"docs/evaluation/{family}").glob("*")):
+            for name in ("state", "handoff"):
+                path = folder / f"{name}.json"
+                if path.is_file():
+                    yield path, f"{name}.schema.json"
     for path in sorted((root / "fixtures").glob("**/contexts/*.json")):
         if path.stem in PROFILE_SCHEMAS:
             yield path, PROFILE_SCHEMAS[path.stem] + ".schema.json"
