@@ -33,7 +33,7 @@ Recognized live actions, including machine starts and safety-system disabling, f
 
 ## Bounded job integration
 
-`route(request)` is the triage utility. Its `approval_state` input is only a declaration; it does not establish a valid approval. Use `router.job_router.route_job(request, current_state, approval, previous_state=..., required_scope="manufacturing_handoff")` to evaluate a persisted job and approval together.
+`route(request)` is the triage utility. Its `approval_state` input is only a declaration; it does not establish a valid approval. Use `router.job_router.route_job(request, current_state, approval, previous_state=..., required_scope="manufacturing_handoff", nc_program=...)` to evaluate a persisted job and approval together. Actual NC bytes are now required for execution-adjacent CNC; see the [binding and migration contract](../docs/architecture/nc-artifact-approval-binding.md).
 
 The integrated function:
 
@@ -45,6 +45,7 @@ The integrated function:
 - Preserves records that apply to another scope but does not count them as approval for this scope.
 - Keeps CNC simulation and verification blockers independent of approval: execution-adjacent CNC requires `simulation_status: verified`, and execution-adjacent jobs require nonempty verification results whose `status` values are all `passed`.
 - Checks declared CNC setup, stock units, workholding, WCS, tool identities/geometry/availability, and postprocessor identity/validation. Required CNC context failures invalidate a provisionally recognized approval copy and require human review. See the [CNC context contract](../docs/development/cnc-context-approval.md) for accepted shapes and migration behavior.
-- Returns `job_state`, `approval_record`, `context_fingerprint`, and `validation_errors` alongside the ordinary route result. It copies inputs, persists nothing, and always returns `execution_allowed: false` and `review_required: true`.
+- For execution-adjacent CNC, requires actual NC bytes matching a schema-valid state-bound artifact descriptor, reruns static checks against the same context and selected WCS, and invalidates matching approvals when fresh checks fail. Hashes and review fingerprints are not repaired automatically. Unsupported multi-tool inputs require further review support.
+- Returns `job_state`, `approval_record`, `context_fingerprint`, `validation_errors` and `nc_review` alongside the ordinary route result. It copies inputs, persists nothing, and always returns `execution_allowed: false` and `review_required: true`.
 
 This local function checks declared context and record consistency, not reviewer authentication or truth of evidence. Physical suitability, source authority, and process-specific evidence review remain downstream responsibilities; an empty blocker list is not manufacturing readiness or permission to execute.

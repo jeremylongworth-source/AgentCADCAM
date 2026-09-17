@@ -112,7 +112,7 @@ def _number(value: Any) -> Decimal | None:
     return number if number.is_finite() else None
 
 
-def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:
+def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selected_wcs: str | None = None) -> dict[str, Any]:
     findings: list[str] = []
     blockers: list[str] = []
     job = contexts.get("job", {})
@@ -156,7 +156,10 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
         findings.append(f"program units are explicit: {expected_units}")
 
     wcs_options = (controller.get("modes_and_offsets") or {}).get("wcs") or []
-    expected_wcs = wcs_options[0] if wcs_options else None
+    expected_wcs = selected_wcs if selected_wcs is not None else wcs_options[0] if wcs_options else None
+    if selected_wcs is not None and selected_wcs not in wcs_options:
+        blockers.append("MISSING_CONTEXT")
+        findings.append("selected WCS is not supported by the supplied controller")
     if not expected_wcs or expected_wcs not in commands:
         blockers.append("MISSING_CONTEXT")
         findings.append("required work coordinate system is missing")

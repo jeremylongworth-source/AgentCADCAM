@@ -7,6 +7,7 @@ from typing import Any
 
 from router.router import route
 from router.cnc_context import check_cnc_context
+from router.nc_evidence import check_nc_artifact
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -16,6 +17,7 @@ def route_job(
     approval: dict[str, Any] | None = None, *,
     previous_state: dict[str, Any] | None = None,
     required_scope: str = "manufacturing_handoff",
+    nc_program: bytes | None = None,
 ) -> dict[str, Any]:
     """Return routing plus copied state/approval; never persist or authenticate a reviewer."""
     catalog = load_catalog()
@@ -57,10 +59,16 @@ def route_job(
     normalized = dict(request) if isinstance(request, dict) else {}
     if not isinstance(request, dict):
         errors.append("request must be an object")
+    # Supplied bytes and declared output cannot be down-classified by a bad state.
+    if nc_program is not None or (isinstance(current_state, dict) and current_state.get("generated_manufacturing_output") is not None):
+        normalized["generated_manufacturing_artifact"] = True
     fingerprint = None
     if state_ok:
         state = copy.deepcopy(current_state)
         family = state["process_family"]
+        output = state.get("generated_manufacturing_output")
+        if family != "cnc_milling" and (nc_program is not None or isinstance(output, dict) and output.get("kind") == "nc_program"):
+            errors.append("NC input requires a cnc_milling bounded state; another family cannot bypass NC review")
         requested_family = normalized.get("process_family")
         if requested_family is not None and requested_family != family:
             errors.append("request process_family conflicts with bounded state")
@@ -121,12 +129,19 @@ def route_job(
                 findings.append("approval does not cover the requested review scope")
     normalized["approval_state"] = effective_status
     result = route(normalized)
+    nc_review = None
     if state_ok and result["consequence_level"] in ("execution_adjacent", "live_execution"):
         additional = set()
         if state["process_family"] == "cnc_milling":
             cnc_blockers, cnc_findings = check_cnc_context(state, validate)
             additional.update(cnc_blockers)
             findings.extend(cnc_findings)
+            nc_review = check_nc_artifact(
+                state, nc_program, catalog=catalog, fingerprint=fingerprint, approval_status=effective_status,
+                context_ready=not cnc_blockers and not errors and not profile_review_required,
+            )
+            additional.update(nc_review["blockers"])
+            findings.extend(nc_review["findings"])
         if state["process_family"] == "cnc_milling" and state.get("simulation_status") != "verified":
             additional.add("SIMULATION_REQUIRED")
             findings.append("CNC simulation evidence is not verified")
@@ -169,5 +184,6 @@ def route_job(
         "approval_record": record,
         "context_fingerprint": fingerprint,
         "validation_errors": errors,
+        "nc_review": nc_review,
     })
     return result

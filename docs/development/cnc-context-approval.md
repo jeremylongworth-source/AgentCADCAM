@@ -15,6 +15,7 @@
 | `postprocessor` | Schema-valid profile with `validation_state: verified`; machine, controller, CAM system, and post version must match selected state. |
 | `simulation_status` | `verified`. |
 | `verification_results` | Nonempty list with every result's status `passed`. |
+| `generated_manufacturing_output` and `nc_program` argument | Execution-adjacent CNC requires an artifact-schema descriptor, derived NC role, matching revision/units and exact SHA-256 of supplied bytes. Fresh static checks must not produce blockers. See the [binding contract](../architecture/nc-artifact-approval-binding.md). |
 
 The schema permits incomplete draft context. This stricter review gate does not prevent storing drafts; it prevents treating an incomplete CNC context as effectively approved. Stock units must match rather than being silently converted. Tool geometry checks are basic completeness checks for the initial milling scope; they do not prove cutting suitability or dimensional compatibility.
 
@@ -24,6 +25,6 @@ Missing or conflicting information adds explicit `MISSING_CONTEXT`, `MACHINE_CON
 
 The original inputs and reviewed fingerprint are retained unchanged. Callers must preserve the returned diagnostics in their own audit storage; the utility persists nothing. Existing records that previously passed on incomplete context now require complete evidence and renewed review. Do not simply replace a fingerprint or mark missing context verified to retain approval.
 
-The test fixture marks its declarations verified only to exercise this contract. The function does not authenticate a reviewer, inspect a machine, establish clamp clearance, prove tool reach, or validate a simulator's physical fidelity. Every result remains non-executing and review-required, including a result with no blockers. The static NC checker is a separate review tool and is not automatically invoked by this function.
+The test fixture marks its declarations verified only to exercise this contract. The function does not authenticate a reviewer, inspect a machine, establish clamp clearance, prove tool reach, or validate a simulator's physical fidelity. Every result remains non-executing and review-required, including a result with no blockers. The router now invokes static NC review when execution-adjacent CNC prerequisites allow it; callers can inspect `nc_review` to distinguish a performed check from blocked prerequisites. The current static reviewer supports one tool only, so otherwise-valid multi-tool context cannot retain effective approval through this path.
 
 Regression coverage is in `tests/routing/test_job_router.py`; broader unresolved requirements remain in the [roadmap reconciliation](roadmap-reconciliation.md).
