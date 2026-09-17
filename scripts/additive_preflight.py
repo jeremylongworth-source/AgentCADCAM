@@ -1,4 +1,4 @@
-"""File-derived STL and declared-context FDM preflight; never prints or repairs."""
+"""File-derived STL/3MF and declared-context FDM preflight; never prints or repairs."""
 
 from __future__ import annotations
 
@@ -11,8 +11,10 @@ from typing import Any
 
 if __package__:
     from .stl_mesh_review import inspect_stl, MAX_BYTES
+    from .three_mf_review import inspect_3mf, UNITS
 else:
     from stl_mesh_review import inspect_stl, MAX_BYTES
+    from three_mf_review import inspect_3mf, UNITS
 
 
 def _mapping(value):
@@ -27,7 +29,9 @@ def _positive(value):
 
 
 def _unit(value):
-    return Fraction(1) if value == "mm" else Fraction(127, 5) if value in ("in", "inch") else None
+    if not isinstance(value, str):
+        return None
+    return {"mm": Fraction(1), "in": Fraction(127, 5), **UNITS}.get(value)
 
 
 def preflight(job: dict[str, Any], printer: dict[str, Any], material: dict[str, Any], source_revision: str | None = None,
@@ -44,18 +48,15 @@ def preflight(job: dict[str, Any], printer: dict[str, Any], material: dict[str, 
         findings.append("source revision is missing or conflicts with job revision")
     mesh_format = job.get("mesh_format")
     file_review = None
-    if mesh_format == "STL":
-        file_review = inspect_stl(mesh_bytes)
+    if mesh_format in ("STL", "3MF"):
+        file_review = inspect_stl(mesh_bytes) if mesh_format == "STL" else inspect_3mf(mesh_bytes)
         blockers.extend(file_review["blockers"])
         findings.extend(file_review["findings"])
         declared_hash = job.get("mesh_sha256")
         if (not isinstance(declared_hash, str) or len(declared_hash) != 64
                 or declared_hash != file_review["sha256"]):
             blockers.append("SOURCE_VERIFICATION_REQUIRED")
-            findings.append("STL bytes do not match an explicit job mesh_sha256 identity")
-    elif mesh_format == "3MF":
-        blockers.append("SOURCE_VERIFICATION_REQUIRED")
-        findings.append("3MF requires package/resource/build/units inspection; STL checks cannot verify it")
+            findings.append(f"{mesh_format} bytes do not match an explicit job mesh_sha256 identity")
     else:
         blockers.append("MISSING_CONTEXT")
         findings.append("mesh/package format is unknown")
@@ -68,6 +69,13 @@ def preflight(job: dict[str, Any], printer: dict[str, Any], material: dict[str, 
         findings.append("mesh units are missing")
     else:
         findings.append("mesh/package remains a print derivative, not authoritative design intent")
+    if mesh_format == "3MF" and file_review["unit_scale_mm"] is not None:
+        embedded_unit = Fraction(file_review["unit_scale_mm"])
+        if mesh_unit != embedded_unit:
+            blockers.append("MISSING_CONTEXT")
+            findings.append("3MF embedded/default unit conflicts with declared job mesh units")
+        # Embedded Core semantics govern the geometry even when job metadata lies.
+        mesh_unit = embedded_unit
 
     if printer.get("machine_id") != job.get("printer_id"):
         blockers.append("MACHINE_CONTEXT_REQUIRED")
@@ -116,6 +124,14 @@ def preflight(job: dict[str, Any], printer: dict[str, Any], material: dict[str, 
             blockers.append("MACHINE_CONTEXT_REQUIRED")
             findings.append(f"model exceeds printer build volume on {axis} after explicit unit conversion")
             envelope_ok = False
+        if mesh_format == "3MF" and file_review["bounds_exact"] is not None:
+            axis_index = "xyz".index(axis)
+            low = Fraction(file_review["bounds_exact"]["min"][axis_index]) * mesh_unit
+            high = Fraction(file_review["bounds_exact"]["max"][axis_index]) * mesh_unit
+            if low < 0 or high > limit * printer_unit:
+                blockers.append("MACHINE_CONTEXT_REQUIRED")
+                findings.append(f"3MF transformed build placement exceeds the declared zero-origin envelope on {axis}")
+                envelope_ok = False
     if envelope_ok:
         findings.append("file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified")
 
@@ -138,7 +154,7 @@ def preflight(job: dict[str, Any], printer: dict[str, Any], material: dict[str, 
         "review_required": True,
         "execution_allowed": False,
         "file_review": file_review,
-        "validation_scope": "STL byte identity, partial topology, declared-unit extents and metadata compatibility; not slicing, placement, self-intersection, evidence authenticity or print approval",
+        "validation_scope": "STL/3MF byte identity, partial topology, unit-aware extents, supported Core build placement and metadata compatibility; not slicing, usable-bed clearance, self-intersection, evidence authenticity or print approval",
     }
 
 

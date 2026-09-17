@@ -1,0 +1,281 @@
+{
+  "baseline_code": "94498d0 plus the 3MF inspection change",
+  "scope": "Synthetic package-byte observations; not PrusaSlicer, conformance, manufacturing or practitioner evidence",
+  "source": "tests/safety/test_three_mf_review.py::retained_cases (repository-authored tetrahedron; fixed ZIP_STORED envelope)",
+  "context": "Existing synthetic FDM profiles; job format 3MF, dimensions 1/1/1, units mm, revision A; each test package hash explicitly bound",
+  "cases": {
+    "positive": {
+      "status": "blocked",
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED"
+      ],
+      "file_review": {
+        "status": "checked_partial_geometry",
+        "sha256": "5c5f9222f46e6c2a35b4555bb151c21501be5c5acd1e4321cc4c454b5fd56c92",
+        "encoding": "3mf_zip",
+        "model_part": "3D/model.model",
+        "unit": "millimeter",
+        "unit_origin": "core_default",
+        "unit_scale_mm": "1",
+        "triangles": 4,
+        "objects": [
+          {
+            "object_id": 1,
+            "triangles": 4,
+            "topology": {
+              "boundary_edges": 0,
+              "nonmanifold_edges": 0,
+              "winding_conflicts": 0,
+              "nonmanifold_vertices": 0,
+              "duplicate_faces": 0,
+              "degenerate_faces": 0,
+              "normal_conflicts": 0,
+              "shells": 1,
+              "signed_volume_positive": true
+            }
+          }
+        ],
+        "build_items": 1,
+        "instances": 1,
+        "bounds_exact": {
+          "min": [
+            "0",
+            "0",
+            "0"
+          ],
+          "max": [
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "dimensions_exact": {
+          "x": "1",
+          "y": "1",
+          "z": "1"
+        },
+        "unreviewed_parts": [],
+        "blockers": [],
+        "findings": [],
+        "review_required": true,
+        "execution_allowed": false,
+        "limitations": [
+          "self-intersections not checked",
+          "not full OPC/XSD conformance validation",
+          "no manufacturing or design-equivalence verification",
+          "no vendor settings, materials, signatures or extensions authenticated",
+          "no tolerance-based vertex welding or geometric union"
+        ]
+      },
+      "review_required": true,
+      "execution_allowed": false
+    },
+    "missing-face": {
+      "status": "blocked",
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT"
+      ],
+      "file_review": {
+        "status": "blocked",
+        "sha256": "6995b6b32be52f6a24613e85aeb4055055aecdaed166006368e522ed280fc6de",
+        "encoding": "3mf_zip",
+        "model_part": "3D/model.model",
+        "unit": "millimeter",
+        "unit_origin": "core_default",
+        "unit_scale_mm": "1",
+        "triangles": 3,
+        "objects": [
+          {
+            "object_id": 1,
+            "triangles": 3,
+            "topology": {
+              "boundary_edges": 3,
+              "nonmanifold_edges": 0,
+              "winding_conflicts": 0,
+              "nonmanifold_vertices": 3,
+              "duplicate_faces": 0,
+              "degenerate_faces": 0,
+              "normal_conflicts": 0,
+              "shells": 1,
+              "signed_volume_positive": false
+            }
+          }
+        ],
+        "build_items": 1,
+        "instances": 1,
+        "bounds_exact": {
+          "min": [
+            "0",
+            "0",
+            "0"
+          ],
+          "max": [
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "dimensions_exact": {
+          "x": "1",
+          "y": "1",
+          "z": "1"
+        },
+        "unreviewed_parts": [],
+        "blockers": [
+          "MISSING_CONTEXT"
+        ],
+        "findings": [
+          "3MF object 1 has partial-topology defects"
+        ],
+        "review_required": true,
+        "execution_allowed": false,
+        "limitations": [
+          "self-intersections not checked",
+          "not full OPC/XSD conformance validation",
+          "no manufacturing or design-equivalence verification",
+          "no vendor settings, materials, signatures or extensions authenticated",
+          "no tolerance-based vertex welding or geometric union"
+        ]
+      },
+      "review_required": true,
+      "execution_allowed": false
+    },
+    "translated-outside": {
+      "status": "blocked",
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MACHINE_CONTEXT_REQUIRED"
+      ],
+      "file_review": {
+        "status": "checked_partial_geometry",
+        "sha256": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85",
+        "encoding": "3mf_zip",
+        "model_part": "3D/model.model",
+        "unit": "millimeter",
+        "unit_origin": "core_default",
+        "unit_scale_mm": "1",
+        "triangles": 4,
+        "objects": [
+          {
+            "object_id": 1,
+            "triangles": 4,
+            "topology": {
+              "boundary_edges": 0,
+              "nonmanifold_edges": 0,
+              "winding_conflicts": 0,
+              "nonmanifold_vertices": 0,
+              "duplicate_faces": 0,
+              "degenerate_faces": 0,
+              "normal_conflicts": 0,
+              "shells": 1,
+              "signed_volume_positive": true
+            }
+          }
+        ],
+        "build_items": 1,
+        "instances": 1,
+        "bounds_exact": {
+          "min": [
+            "200",
+            "0",
+            "0"
+          ],
+          "max": [
+            "201",
+            "1",
+            "1"
+          ]
+        },
+        "dimensions_exact": {
+          "x": "1",
+          "y": "1",
+          "z": "1"
+        },
+        "unreviewed_parts": [],
+        "blockers": [],
+        "findings": [],
+        "review_required": true,
+        "execution_allowed": false,
+        "limitations": [
+          "self-intersections not checked",
+          "not full OPC/XSD conformance validation",
+          "no manufacturing or design-equivalence verification",
+          "no vendor settings, materials, signatures or extensions authenticated",
+          "no tolerance-based vertex welding or geometric union"
+        ]
+      },
+      "review_required": true,
+      "execution_allowed": false
+    },
+    "conflicting-inch-unit": {
+      "status": "blocked",
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT"
+      ],
+      "file_review": {
+        "status": "checked_partial_geometry",
+        "sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+        "encoding": "3mf_zip",
+        "model_part": "3D/model.model",
+        "unit": "inch",
+        "unit_origin": "explicit",
+        "unit_scale_mm": "127/5",
+        "triangles": 4,
+        "objects": [
+          {
+            "object_id": 1,
+            "triangles": 4,
+            "topology": {
+              "boundary_edges": 0,
+              "nonmanifold_edges": 0,
+              "winding_conflicts": 0,
+              "nonmanifold_vertices": 0,
+              "duplicate_faces": 0,
+              "degenerate_faces": 0,
+              "normal_conflicts": 0,
+              "shells": 1,
+              "signed_volume_positive": true
+            }
+          }
+        ],
+        "build_items": 1,
+        "instances": 1,
+        "bounds_exact": {
+          "min": [
+            "0",
+            "0",
+            "0"
+          ],
+          "max": [
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "dimensions_exact": {
+          "x": "1",
+          "y": "1",
+          "z": "1"
+        },
+        "unreviewed_parts": [],
+        "blockers": [],
+        "findings": [],
+        "review_required": true,
+        "execution_allowed": false,
+        "limitations": [
+          "self-intersections not checked",
+          "not full OPC/XSD conformance validation",
+          "no manufacturing or design-equivalence verification",
+          "no vendor settings, materials, signatures or extensions authenticated",
+          "no tolerance-based vertex welding or geometric union"
+        ]
+      },
+      "review_required": true,
+      "execution_allowed": false
+    }
+  },
+  "review_required": true,
+  "execution_allowed": false
+}

@@ -238,8 +238,9 @@ class AdditiveFilePreflightTests(unittest.TestCase):
     def test_3mf_is_not_accepted_as_an_stl_or_a_metadata_label(self):
         self.contexts["job"]["mesh_format"] = "3MF"
         result = self.review()
-        self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
-        self.assertIsNone(result["file_review"])
+        self.assertIn("MISSING_CONTEXT", result["blockers"])
+        self.assertEqual(result["file_review"]["status"], "blocked")
+        self.assertIsNone(result["file_review"]["dimensions_exact"])
 
     def test_malformed_top_level_and_nested_contexts_fail_closed(self):
         for field in ("job", "printer", "material"):

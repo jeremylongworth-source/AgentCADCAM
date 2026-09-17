@@ -97,10 +97,10 @@ untrusted metadata. It prints JSON and exits 1 for any blockers, including the
 fixture's missing human approval. A zero exit means only no detected blockers
 in this limited utility; output remains review-required and non-executable.
 
-3MF now returns an explicit unsupported-package-review blocker instead of being
-accepted from its name/status fields or treated as STL. Package relationships,
-resources, units, build transforms and required extensions are the next work,
-not waived requirements. Profile evidence truth, actual slicer configuration,
+The subsequent [3MF evidence contract](additive-3mf-evidence.md) adds a bounded
+Core package/resource/unit/build inspection path; unsupported constructs still
+require explicit further review rather than borrowing STL evidence.
+Profile evidence truth, actual slicer configuration,
 environment, placement and approval authentication remain qualified review and
 composed-workflow obligations; this helper still evaluates declarations for them.
 
@@ -123,6 +123,6 @@ Rejected alternatives were continuing to trust labels/dimensions or using the
 CAD fixture's envelope-only reader as proof of topology. A general mesh repair
 dependency is not needed for these bounded observations, and repair would alter
 the evidence under review. No supplied model is repaired. Phase 4 remains open
-for 3MF handling, further geometry limits, PrusaSlicer/open-model evidence,
+for further package/geometry limits, PrusaSlicer/open-model evidence,
 retained skill-assisted handoffs and its complete gate audit. Revisit this
 contract for new formats, geometry support, tolerance rules or false-ready cases.

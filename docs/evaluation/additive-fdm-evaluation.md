@@ -2,7 +2,7 @@
 
 ## Scope
 
-This evaluation covers actual STL byte identity/partial topology and declared-unit extents, alongside metadata-level printer/material, orientation/support, slicer, environmental and approval checks. 3MF package inspection remains incomplete and blocks explicitly. It does not slice, print, authenticate evidence or certify a material profile.
+This evaluation covers actual STL/3MF byte identity and partial topology, supported Core package/resources/build transforms, unit-aware extents and declared rectangular placement, alongside metadata-level printer/material, orientation/support, slicer, environmental and approval checks. Unsupported 3MF semantics block explicitly. It does not slice, print, authenticate evidence or certify a material profile.
 
 ## Acceptance matrix
 
@@ -69,3 +69,56 @@ Phase 4 remains open. Required next evidence includes 3MF package/resource/build
 semantics, the specified PrusaSlicer/open-model experiment, remaining geometry
 and placement boundaries, retained full skill-assisted handoffs and the complete
 gate audit. Green partial checks do not waive any of those requirements.
+
+## Actual 3MF package observations — 2026-09-17
+
+Baseline `94498d0` rejected every 3MF as unsupported. The subsequent
+[bounded Core inspection](../architecture/additive-3mf-evidence.md) now reads
+actual ZIP/XML, content types and relationships, object meshes, component/build
+references, units and transforms. It reuses the STL partial-topology kernel
+without float conversion. Embedded/default units govern physical comparisons;
+external job units must agree. Transformed build bounds, not only dimensions,
+are compared with the declared rectangular zero-origin envelope.
+
+The [retained package observations](../../fixtures/additive/fdm-bracket/expected/3mf-observations.json)
+are reproduced from repository-authored tetrahedron XML in a fixed stored ZIP.
+They are not PrusaSlicer exports or independently verified manufacturing inputs.
+Each case explicitly binds its fresh test hash so identity mismatch does not
+mask the intended geometry/context failure:
+
+| Actual package case | Preflight blockers |
+| --- | --- |
+| Positive default-millimeter package | `HUMAN_APPROVAL_REQUIRED` |
+| Removed tetrahedron face, metadata still valid | `MISSING_CONTEXT`, `HUMAN_APPROVAL_REQUIRED` |
+| Unit-size object translated to X=200 in the 200-unit envelope | `MACHINE_CONTEXT_REQUIRED`, `HUMAN_APPROVAL_REQUIRED` |
+| Embedded inch unit conflicts with the job's mm declaration | `MISSING_CONTEXT`, `HUMAN_APPROVAL_REQUIRED` |
+
+Additional tests cover all six Core units, non-default model paths, exact decimal
+precision, transform order, reflection, repeated/unreferenced resources,
+overlapping envelopes, stale settings hashes, invalid IDs/indices, geometry
+defects, unsupported extensions/materials, opaque auxiliary parts, unsafe paths,
+duplicate parts, external relationships, CRC failure, DTD/entity input, archive
+encryption/compression/link entries, resource limits and both CLI forms.
+The CLI positive package still exits 1 for required human approval. No settings
+were executed; no archive was extracted or input repaired.
+
+Executed validation: 58 focused additive tests passed in 5.081 seconds; all
+445 portable tests passed in 109.455 seconds. Foundation validation passed
+(58 required files, ten context schemas, five skillsets), schema-instance
+validation passed (eleven definitions, 44 instances), and whitespace checks
+passed. A separate deterministic 400-case corrupted-package probe returned
+non-executable reports without unhandled exceptions; this is a bounded probe,
+not exhaustive fuzzing or a security certification. The retained-package replay
+also passed after explicitly fixing ZIP platform fields for portable identities.
+
+Unknown semantics are not silently accepted: vendor settings, material/property
+assignments, non-model object types, extra model parts, required/recommended
+extensions and other unsupported constructs need separate review. The checker
+does not claim full OPC/XSD conformance, positive-fill Boolean evaluation,
+self-intersection detection or usable-bed/support clearance. Synthetic profile
+statuses and historical STL/CNC observations remain unchanged.
+
+Gate 05 remains open for the specified independent PrusaSlicer/open-model
+experiment, retained full skill-assisted handoffs, remaining geometry/package
+boundaries and the complete acceptance audit. Nothing in this evidence grants
+manufacturing approval or closes the real-input practitioner pilot.

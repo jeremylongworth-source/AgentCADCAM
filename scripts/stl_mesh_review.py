@@ -111,6 +111,30 @@ def inspect_stl(data):
     result.update(encoding=encoding, triangles=len(facets), bounds={"min": low, "max": high},
                   dimensions=dict(zip("xyz", dimensions)),
                   dimensions_exact={axis: str(Fraction(high[i]) - Fraction(low[i])) for i, axis in enumerate("xyz")})
+    topology = mesh_topology(facets)
+    result["topology"] = topology
+    for name, count in topology.items():
+        if name not in ("shells", "signed_volume_positive") and count:
+            result["findings"].append(f"{name}: {count}")
+            result["blockers"].append("MISSING_CONTEXT")
+    if not topology["signed_volume_positive"]:
+        result["findings"].append("nonpositive signed volume requires orientation/solid review")
+        result["blockers"].append("MISSING_CONTEXT")
+    if topology["shells"] != 1:
+        result["findings"].append("multiple shells require containment/intersection and assembly review")
+        result["blockers"].append("SOURCE_VERIFICATION_REQUIRED")
+    result["blockers"] = sorted(set(result["blockers"]))
+    result["status"] = "blocked" if result["blockers"] else "checked_partial_geometry"
+    return result
+
+
+def mesh_topology(facets):
+    """Shared exact-coordinate checks; callers enforce finite numeric/resource bounds.
+
+    This does not resolve self-intersections or positive-fill unions. No welding
+    tolerance or geometric repair is applied. 3MF callers supply exact rationals.
+    """
+    vertices = {point for _, triangle in facets for point in triangle}
     exact = {point: tuple(Fraction(value) for value in point) for point in vertices}
     edges, faces, links = defaultdict(list), Counter(), defaultdict(list)
     degenerate = normal_conflicts = 0
@@ -145,7 +169,7 @@ def inspect_stl(data):
         for index, _, _ in uses[1:]:
             face_graph[first].add(index)
             face_graph[index].add(first)
-    topology = {
+    return {
         "boundary_edges": sum(len(uses) == 1 for uses in edges.values()),
         "nonmanifold_edges": sum(len(uses) > 2 for uses in edges.values()),
         "winding_conflicts": sum(len(uses) == 2 and uses[0][1:] == uses[1][1:] for uses in edges.values()),
@@ -153,17 +177,3 @@ def inspect_stl(data):
         "degenerate_faces": degenerate, "normal_conflicts": normal_conflicts,
         "shells": _connected(face_graph), "signed_volume_positive": signed_six_volume > 0,
     }
-    result["topology"] = topology
-    for name, count in topology.items():
-        if name not in ("shells", "signed_volume_positive") and count:
-            result["findings"].append(f"{name}: {count}")
-            result["blockers"].append("MISSING_CONTEXT")
-    if not topology["signed_volume_positive"]:
-        result["findings"].append("nonpositive signed volume requires orientation/solid review")
-        result["blockers"].append("MISSING_CONTEXT")
-    if topology["shells"] != 1:
-        result["findings"].append("multiple shells require containment/intersection and assembly review")
-        result["blockers"].append("SOURCE_VERIFICATION_REQUIRED")
-    result["blockers"] = sorted(set(result["blockers"]))
-    result["status"] = "blocked" if result["blockers"] else "checked_partial_geometry"
-    return result
