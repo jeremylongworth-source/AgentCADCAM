@@ -1,0 +1,1157 @@
+{
+  "cases": [
+    {
+      "case": "bracket-stl",
+      "input_preserved": true,
+      "input_sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              60,
+              40,
+              30
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 60,
+            "y": 40,
+            "z": 30
+          },
+          "dimensions_exact": {
+            "x": "60",
+            "y": "40",
+            "z": "30"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 2052
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "package_export": {
+        "bytes": 20778,
+        "complete": true,
+        "package_xml": {
+          "[Content_Types].xml": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Types xmlns=\"http://schemas.openxmlformats.org/package/2006/content-types\">\n <Default Extension=\"rels\" ContentType=\"application/vnd.openxmlformats-package.relationships+xml\"/>\n <Default Extension=\"model\" ContentType=\"application/vnd.ms-package.3dmanufacturing-3dmodel+xml\"/>\n <Default Extension=\"png\" ContentType=\"image/png\"/>\n</Types>",
+          "_rels/.rels": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\">\n <Relationship Target=\"/3D/3dmodel.model\" Id=\"rel-1\" Type=\"http://schemas.microsoft.com/3dmanufacturing/2013/01/3dmodel\"/>\n <Relationship Target=\"/Metadata/thumbnail.png\" Id=\"rel-2\" Type=\"http://schemas.openxmlformats.org/package/2006/relationships/metadata/thumbnail\"/>\n</Relationships>"
+        },
+        "parts": [
+          {
+            "bytes": 375,
+            "name": "[Content_Types].xml"
+          },
+          {
+            "bytes": 411,
+            "name": "_rels/.rels"
+          },
+          {
+            "bytes": 141184,
+            "name": "3D/3dmodel.model"
+          },
+          {
+            "bytes": 127,
+            "name": "Metadata/Prusa_Slicer_wipe_tower_information.xml"
+          },
+          {
+            "bytes": 903,
+            "name": "Metadata/Slic3r_PE_model.config"
+          }
+        ],
+        "present": true,
+        "review": {
+          "blockers": [
+            "MISSING_CONTEXT"
+          ],
+          "bounds_exact": null,
+          "build_items": 0,
+          "dimensions_exact": null,
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [
+            "3MF package/model is malformed, incomplete or has invalid references/numbers"
+          ],
+          "instances": 0,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": null,
+          "objects": [],
+          "review_required": true,
+          "sha256": "ecfc2277118eb881740a8c6f10dc332e5394431d3d33e88ed326743170214902",
+          "status": "blocked",
+          "triangles": 0,
+          "unit": null,
+          "unit_origin": null,
+          "unit_scale_mm": null,
+          "unreviewed_parts": []
+        }
+      },
+      "package_process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-3mf",
+          "--output",
+          "roundtrip.3mf",
+          "input.stl"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.stl]\nsize_x = 60.000000\nsize_y = 40.000000\nsize_z = 30.000000\nmin_x = 0.000000\nmin_y = 0.000000\nmin_z = 0.000000\nmax_x = 60.000000\nmax_y = 40.000000\nmax_z = 30.000000\nnumber_of_facets = 2052\nmanifold = yes\nnumber_of_parts =  1\nvolume = 22361.707031\nFile exported to roundtrip.3mf\n"
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.stl"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.stl]\nsize_x = 60.000000\nsize_y = 40.000000\nsize_z = 30.000000\nmin_x = 0.000000\nmin_y = 0.000000\nmin_z = 0.000000\nmax_x = 60.000000\nmax_y = 40.000000\nmax_z = 30.000000\nnumber_of_facets = 2052\nmanifold = yes\nnumber_of_parts =  1\nvolume = 22361.707031\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 102684,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              60,
+              40,
+              30
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 60,
+            "y": 40,
+            "z": 30
+          },
+          "dimensions_exact": {
+            "x": "60",
+            "y": "40",
+            "z": "30"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "61667e9c0d83ed4b462b61200bf9d62d44e342fae8d8f1854c76e31c6301376d",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 2052
+        }
+      }
+    },
+    {
+      "case": "bracket-open-stl",
+      "input_preserved": true,
+      "input_sha256": "2fd7caa027e8e190efdc940a5993fdacf3c6d5ad2a78d327a4c82427c1cdf9cf",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [
+            "MISSING_CONTEXT"
+          ],
+          "bounds": {
+            "max": [
+              60,
+              40,
+              30
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 60,
+            "y": 40,
+            "z": 30
+          },
+          "dimensions_exact": {
+            "x": "60",
+            "y": "40",
+            "z": "30"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [
+            "boundary_edges: 3",
+            "nonmanifold_vertices: 3"
+          ],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "2fd7caa027e8e190efdc940a5993fdacf3c6d5ad2a78d327a4c82427c1cdf9cf",
+          "status": "blocked",
+          "topology": {
+            "boundary_edges": 3,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 3,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 2051
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.stl"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.stl]\nsize_x = 60.000000\nsize_y = 40.000000\nsize_z = 30.000000\nmin_x = 0.000000\nmin_y = 0.000000\nmin_z = 0.000000\nmax_x = 60.000000\nmax_y = 40.000000\nmax_z = 30.000000\nnumber_of_facets = 2051\nmanifold = no\nopen_edges = 3\nnumber_of_parts =  1\nvolume = 22369.281250\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 102634,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [
+            "MISSING_CONTEXT"
+          ],
+          "bounds": {
+            "max": [
+              60,
+              40,
+              30
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 60,
+            "y": 40,
+            "z": 30
+          },
+          "dimensions_exact": {
+            "x": "60",
+            "y": "40",
+            "z": "30"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [
+            "boundary_edges: 3",
+            "nonmanifold_vertices: 3"
+          ],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "9f8830c69be44e0839b13fc7a2a4ec3b2aa6bb3f33e173fda4b26a8c5090cf00",
+          "status": "blocked",
+          "topology": {
+            "boundary_edges": 3,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 3,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 2051
+        }
+      }
+    },
+    {
+      "case": "tetra-3mf",
+      "input_preserved": true,
+      "input_sha256": "5c5f9222f46e6c2a35b4555bb151c21501be5c5acd1e4321cc4c454b5fd56c92",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [],
+          "bounds_exact": {
+            "max": [
+              "1",
+              "1",
+              "1"
+            ],
+            "min": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "build_items": 1,
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [],
+          "instances": 1,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": "3D/model.model",
+          "objects": [
+            {
+              "object_id": 1,
+              "topology": {
+                "boundary_edges": 0,
+                "degenerate_faces": 0,
+                "duplicate_faces": 0,
+                "nonmanifold_edges": 0,
+                "nonmanifold_vertices": 0,
+                "normal_conflicts": 0,
+                "shells": 1,
+                "signed_volume_positive": true,
+                "winding_conflicts": 0
+              },
+              "triangles": 4
+            }
+          ],
+          "review_required": true,
+          "sha256": "5c5f9222f46e6c2a35b4555bb151c21501be5c5acd1e4321cc4c454b5fd56c92",
+          "status": "checked_partial_geometry",
+          "triangles": 4,
+          "unit": "millimeter",
+          "unit_origin": "core_default",
+          "unit_scale_mm": "1",
+          "unreviewed_parts": []
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.3mf"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.3mf]\nsize_x = 1.000000\nsize_y = 1.000000\nsize_z = 1.000000\nmin_x = -0.500000\nmin_y = -0.500000\nmin_z = -0.500000\nmax_x = 0.500000\nmax_y = 0.500000\nmax_z = 0.500000\nnumber_of_facets = 4\nmanifold = yes\nnumber_of_parts =  1\nvolume = 0.166667\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 284,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              1,
+              1,
+              1
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "2dec73a49ec1f117f946a8d645a5d631eafa789db90eba828f2a14aece965401",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 4
+        }
+      }
+    },
+    {
+      "case": "tetra-inch-3mf",
+      "input_preserved": true,
+      "input_sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [],
+          "bounds_exact": {
+            "max": [
+              "1",
+              "1",
+              "1"
+            ],
+            "min": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "build_items": 1,
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [],
+          "instances": 1,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": "3D/model.model",
+          "objects": [
+            {
+              "object_id": 1,
+              "topology": {
+                "boundary_edges": 0,
+                "degenerate_faces": 0,
+                "duplicate_faces": 0,
+                "nonmanifold_edges": 0,
+                "nonmanifold_vertices": 0,
+                "normal_conflicts": 0,
+                "shells": 1,
+                "signed_volume_positive": true,
+                "winding_conflicts": 0
+              },
+              "triangles": 4
+            }
+          ],
+          "review_required": true,
+          "sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+          "status": "checked_partial_geometry",
+          "triangles": 4,
+          "unit": "inch",
+          "unit_origin": "explicit",
+          "unit_scale_mm": "127/5",
+          "unreviewed_parts": []
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.3mf"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.3mf]\nsize_x = 25.400000\nsize_y = 25.400000\nsize_z = 25.400000\nmin_x = -12.700000\nmin_y = -12.700000\nmin_z = -12.700000\nmax_x = 12.700000\nmax_y = 12.700000\nmax_z = 12.700000\nnumber_of_facets = 4\nmanifold = yes\nnumber_of_parts =  1\nvolume = 2731.177002\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 284,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              25.399999618530273,
+              25.399999618530273,
+              25.399999618530273
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 25.399999618530273,
+            "y": 25.399999618530273,
+            "z": 25.399999618530273
+          },
+          "dimensions_exact": {
+            "x": "13316915/524288",
+            "y": "13316915/524288",
+            "z": "13316915/524288"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "59d580efb02d7fd745b55a6efb194068c00bdcf36990db6876f1094fc5e30975",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 4
+        }
+      }
+    },
+    {
+      "case": "tetra-translated-3mf",
+      "input_preserved": true,
+      "input_sha256": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MACHINE_CONTEXT_REQUIRED"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [],
+          "bounds_exact": {
+            "max": [
+              "201",
+              "1",
+              "1"
+            ],
+            "min": [
+              "200",
+              "0",
+              "0"
+            ]
+          },
+          "build_items": 1,
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [],
+          "instances": 1,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": "3D/model.model",
+          "objects": [
+            {
+              "object_id": 1,
+              "topology": {
+                "boundary_edges": 0,
+                "degenerate_faces": 0,
+                "duplicate_faces": 0,
+                "nonmanifold_edges": 0,
+                "nonmanifold_vertices": 0,
+                "normal_conflicts": 0,
+                "shells": 1,
+                "signed_volume_positive": true,
+                "winding_conflicts": 0
+              },
+              "triangles": 4
+            }
+          ],
+          "review_required": true,
+          "sha256": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85",
+          "status": "checked_partial_geometry",
+          "triangles": 4,
+          "unit": "millimeter",
+          "unit_origin": "core_default",
+          "unit_scale_mm": "1",
+          "unreviewed_parts": []
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.3mf"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.3mf]\nsize_x = 1.000000\nsize_y = 1.000000\nsize_z = 1.000000\nmin_x = -0.500000\nmin_y = -0.500000\nmin_z = -0.500000\nmax_x = 0.500000\nmax_y = 0.500000\nmax_z = 0.500000\nnumber_of_facets = 4\nmanifold = yes\nnumber_of_parts =  1\nvolume = 0.166667\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 284,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              201,
+              1,
+              1
+            ],
+            "min": [
+              200,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "421772f52599610a001c64fdd7ef533c15d692afd59df22111e023fd93183540",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 4
+        }
+      }
+    },
+    {
+      "case": "tetra-open-3mf",
+      "input_preserved": true,
+      "input_sha256": "6995b6b32be52f6a24613e85aeb4055055aecdaed166006368e522ed280fc6de",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [
+            "MISSING_CONTEXT"
+          ],
+          "bounds_exact": {
+            "max": [
+              "1",
+              "1",
+              "1"
+            ],
+            "min": [
+              "0",
+              "0",
+              "0"
+            ]
+          },
+          "build_items": 1,
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [
+            "3MF object 1 has partial-topology defects"
+          ],
+          "instances": 1,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": "3D/model.model",
+          "objects": [
+            {
+              "object_id": 1,
+              "topology": {
+                "boundary_edges": 3,
+                "degenerate_faces": 0,
+                "duplicate_faces": 0,
+                "nonmanifold_edges": 0,
+                "nonmanifold_vertices": 3,
+                "normal_conflicts": 0,
+                "shells": 1,
+                "signed_volume_positive": false,
+                "winding_conflicts": 0
+              },
+              "triangles": 3
+            }
+          ],
+          "review_required": true,
+          "sha256": "6995b6b32be52f6a24613e85aeb4055055aecdaed166006368e522ed280fc6de",
+          "status": "blocked",
+          "triangles": 3,
+          "unit": "millimeter",
+          "unit_origin": "core_default",
+          "unit_scale_mm": "1",
+          "unreviewed_parts": []
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.3mf"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.3mf]\nsize_x = 1.000000\nsize_y = 1.000000\nsize_z = 1.000000\nmin_x = -0.500000\nmin_y = -0.500000\nmin_z = -0.500000\nmax_x = 0.500000\nmax_y = 0.500000\nmax_z = 0.500000\nnumber_of_facets = 3\nmanifold = no\nopen_edges = 3\nnumber_of_parts =  1\nvolume = 0.000000\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 234,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [
+            "MISSING_CONTEXT"
+          ],
+          "bounds": {
+            "max": [
+              1,
+              1,
+              1
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [
+            "boundary_edges: 3",
+            "nonmanifold_vertices: 3",
+            "nonpositive signed volume requires orientation/solid review"
+          ],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "62a6d6defabc57a77ee2ce11f305e64abfa0bd51da798766fd4d7f845642d26f",
+          "status": "blocked",
+          "topology": {
+            "boundary_edges": 3,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 3,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": false,
+            "winding_conflicts": 0
+          },
+          "triangles": 3
+        }
+      }
+    },
+    {
+      "case": "tetra-required-extension-3mf",
+      "input_preserved": true,
+      "input_sha256": "7f4943a506ba6dd21a74b63ea3a1b2251dd033e65134490e1af064c57cceca83",
+      "original_review": {
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MACHINE_CONTEXT_REQUIRED",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "execution_allowed": false,
+        "file_review": {
+          "blockers": [
+            "SOURCE_VERIFICATION_REQUIRED"
+          ],
+          "bounds_exact": null,
+          "build_items": 0,
+          "dimensions_exact": null,
+          "encoding": "3mf_zip",
+          "execution_allowed": false,
+          "findings": [
+            "3MF required/recommended extensions need an explicit supported adapter"
+          ],
+          "instances": 0,
+          "limitations": [
+            "self-intersections not checked",
+            "not full OPC/XSD conformance validation",
+            "no manufacturing or design-equivalence verification",
+            "no vendor settings, materials, signatures or extensions authenticated",
+            "no tolerance-based vertex welding or geometric union"
+          ],
+          "model_part": "3D/model.model",
+          "objects": [],
+          "review_required": true,
+          "sha256": "7f4943a506ba6dd21a74b63ea3a1b2251dd033e65134490e1af064c57cceca83",
+          "status": "blocked",
+          "triangles": 0,
+          "unit": null,
+          "unit_origin": null,
+          "unit_scale_mm": null,
+          "unreviewed_parts": []
+        },
+        "job_approval_status": "not_requested",
+        "review_required": true
+      },
+      "process": {
+        "arguments": [
+          "--datadir",
+          "config",
+          "--threads",
+          "1",
+          "--config-compatibility",
+          "disable",
+          "--dont-arrange",
+          "--no-ensure-on-bed",
+          "--info",
+          "--export-stl",
+          "--output",
+          "roundtrip.stl",
+          "input.3mf"
+        ],
+        "diagnostics_truncated": false,
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "[input.3mf]\nsize_x = 1.000000\nsize_y = 1.000000\nsize_z = 1.000000\nmin_x = -0.500000\nmin_y = -0.500000\nmin_z = -0.500000\nmax_x = 0.500000\nmax_y = 0.500000\nmax_z = 0.500000\nnumber_of_facets = 4\nmanifold = yes\nnumber_of_parts =  1\nvolume = 0.166667\nFile exported to roundtrip.stl\n"
+      },
+      "stl_export": {
+        "bytes": 284,
+        "complete": true,
+        "present": true,
+        "review": {
+          "blockers": [],
+          "bounds": {
+            "max": [
+              1,
+              1,
+              1
+            ],
+            "min": [
+              0,
+              0,
+              0
+            ]
+          },
+          "dimensions": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "dimensions_exact": {
+            "x": "1",
+            "y": "1",
+            "z": "1"
+          },
+          "encoding": "binary",
+          "execution_allowed": false,
+          "findings": [],
+          "limitations": [
+            "self-intersections not checked",
+            "no manufacturing or design-equivalence verification",
+            "STL has no authoritative unit or revision",
+            "no tolerance-based vertex welding"
+          ],
+          "review_required": true,
+          "sha256": "2dec73a49ec1f117f946a8d645a5d631eafa789db90eba828f2a14aece965401",
+          "status": "checked_partial_geometry",
+          "topology": {
+            "boundary_edges": 0,
+            "degenerate_faces": 0,
+            "duplicate_faces": 0,
+            "nonmanifold_edges": 0,
+            "nonmanifold_vertices": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true,
+            "winding_conflicts": 0
+          },
+          "triangles": 4
+        }
+      }
+    }
+  ],
+  "execution_allowed": false,
+  "help": {
+    "arguments": [
+      "--datadir",
+      "config",
+      "--threads",
+      "1",
+      "--config-compatibility",
+      "disable",
+      "--help"
+    ],
+    "diagnostics_truncated": false,
+    "exit_code": 0,
+    "stderr": "",
+    "stdout": "PrusaSlicer-2.9.6 based on Slic3r (with GUI support)\nhttps://github.com/prusa3d/PrusaSlicer\n\nUsage: prusa-slicer [ INPUT ] [ OPTIONS ] [ ACTIONS ] [ TRANSFORM ] [ file.stl ... ]\n\nInput:\n --load ABCD         Load configuration from the specified file. It can be used more than once to\n                     load options from multiple files.\n --material-profile ABCD\n                     Name(s) of the material preset(s) used for slicing. Could be filaments or\n                     sla_material preset name(s) depending on printer tochnology\n --print-profile ABCD\n                     Name of the print preset used for slicing.\n --printer-profile ABCD\n                     Name of the printer preset used for slicing.\n\nNote: To load configuration from profiles, you need to set whole banch of presets\n\nActions:\n --export-3mf        Export the model(s) as 3MF.\n --export-gcode, --gcode, -g\n                     Slice the model and export toolpaths as G-code.\n --export-obj        Export the model(s) as OBJ.\n --export-sla, --sla Slice the model and export SLA printing layers as PNG.\n --export-stl        Export the model(s) as STL.\n --gcodeviewer       Visualize an already sliced and saved G-code\n --help, -h          Show this help.\n --help-fff          Show the full list of print/G-code configuration options.\n --help-sla          Show the full list of SLA print configuration options.\n --info              Write information about the model to the console.\n --query-print-filament-profiles\n                     Get list of print profiles and filament profiles for the selected\n                     'printer-profile' into JSON. Note: To print out JSON into file use 'output'\n                     option. To specify configuration folder use 'datadir' option.\n --query-printer-models\n                     Get list of installed printer models into JSON. Note: To print printer models\n                     for required technology use 'printer-technology' option with value FFF or SLA.\n                     By default printer_technology is FFF. To print out JSON into file use 'output'\n                     option. To specify configuration folder use 'datadir' option.\n --save ABCD         Save configuration to the specified file.\n --slice, -s         Slice the model as FFF or SLA based on the printer_technology configuration\n                     value and export the result.\n\nTransform options:\n --align-xy X,Y      Align the model to the given point.\n --center X,Y        Center the print around the given center.\n --cut N             Cut model at the given Z.\n --dont-arrange      Do not rearrange the given models before merging and keep their original XY\n                     coordinates.\n --duplicate N       Multiply copies by this factor.\n --duplicate-grid X,Y\n                     Multiply copies by creating a grid.\n --ensure-on-bed     Lift the object above the bed when it is partially below. Enabled by default,\n                     use --no-ensure-on-bed to disable.\n --merge, -m         Arrange the supplied models in a plate and merge them in a single model in order\n                     to perform actions once.\n --rotate N          Rotation angle around the Z axis in degrees.\n --rotate-x N        Rotation angle around the X axis in degrees.\n --rotate-y N        Rotation angle around the Y axis in degrees.\n --scale N           Scaling factor or percentage.\n --scale-to-fit X,Y,Z\n                     Scale to fit the given volume.\n --split             Detect unconnected parts in the given model(s) and split them into separate\n                     objects.\n\nOther options:\n --config-compatibility\n                     This version of PrusaSlicer may not understand configurations produced by the\n                     newest PrusaSlicer versions. For example, newer PrusaSlicer may extend the list\n                     of supported firmware flavors. One may decide to bail out or to substitute an\n                     unknown value with a default silently or verbosely. (disable, enable,\n                     enable_silent; default: enable)\n --datadir ABCD      Load and store settings at the given directory. This is useful for maintaining\n                     different profiles or including configurations from a network storage.\n --delete-after-load ABCD\n                     Delete files after loading.\n --ignore-nonexistent-config\n                     Do not fail if a file supplied to --load does not exist.\n --loglevel N        Sets logging sensitivity. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:trace\n                     For example. loglevel=2 logs fatal, error and warning level messages.\n --opengl-aa         Automatically select the highest number of samples for OpenGL antialiasing.\n --opengl-compatibility\n                     Enable OpenGL compatibility profile\n --opengl-debug      Activate OpenGL debug output on graphic cards which support it (OpenGL 4.3 or\n                     higher)\n --opengl-version ABCD\n                     Select a specific version of OpenGL\n --output ABCD, -o ABCD\n                     The file where the output will be written (if not specified, it will be based on\n                     the input file).\n --single-instance   If enabled, the command line arguments are sent to an existing instance of GUI\n                     PrusaSlicer, or an existing PrusaSlicer window is activated. Overrides the\n                     \"single_instance\" configuration value from application preferences.\n --sw-renderer       Render with a software renderer. The bundled MESA software renderer is loaded\n                     instead of the default OpenGL driver.\n --threads N         Sets the maximum number of threads the slicing process will use. If not defined,\n                     it will be decided automatically.\n\nPrint options are processed in the following order:\n\t1) Config keys from the command line, for example --fill-pattern=stars\n\t   (highest priority, overwrites everything below)\n\t2) Config files loaded with --load\n\t3) Config values loaded from 3mf files\n\nRun --help-fff / --help-sla to see the full listing of print options.\n"
+  },
+  "job_approval_promoted": false,
+  "review_required": true,
+  "runtime": {
+    "accessed_at": "2026-09-17",
+    "archive_sha256": "5aaf22e42f95accecfa122d23a835911f289ecc2ff606db3e83d637ddcc0a209",
+    "digest_source": "GitHub official release-asset SHA-256; matched downloaded archive",
+    "input_sha256": {
+      "bracket-open-stl": "2fd7caa027e8e190efdc940a5993fdacf3c6d5ad2a78d327a4c82427c1cdf9cf",
+      "bracket-stl": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "tetra-3mf": "5c5f9222f46e6c2a35b4555bb151c21501be5c5acd1e4321cc4c454b5fd56c92",
+      "tetra-inch-3mf": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+      "tetra-open-3mf": "6995b6b32be52f6a24613e85aeb4055055aecdaed166006368e522ed280fc6de",
+      "tetra-required-extension-3mf": "7f4943a506ba6dd21a74b63ea3a1b2251dd033e65134490e1af064c57cceca83",
+      "tetra-translated-3mf": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85"
+    },
+    "launcher_signature_observed": "Valid; CN=Prusa Research a.s.",
+    "license": "AGPL-3.0; optional runtime downloaded separately, not redistributed in this repository",
+    "published_at": "2026-06-25",
+    "publisher": "Prusa Research a.s.",
+    "release": "version_2.9.6",
+    "runtime_identity": {
+      "binaries": {
+        "OCCTWrapper.dll": "80a7eef50a3859f99ca5bab7f71b8f5913fae6bb7973d6e46a1b0522b8c27a7d",
+        "PrusaSlicer.dll": "e3d33be039bddcb62a59de3a31193f9dff93777106f62d4fe32dd67738e8a351",
+        "WebView2Loader.dll": "6db06648a749eba26d859fad4d4e2625c28b8c60e8770bc76c7ea445424543f5",
+        "api-ms-win-crt-runtime-l1-1-0.dll": "5d8e35ef54c87d44c9c741af07146e8146749a6f5b947fd3b71a392c80049f89",
+        "libgmp-10.dll": "be4ef2bb951d1d38265d51e80768754d553bb38df0dc9eac7dc9f3e48246851f",
+        "libmpfr-4.dll": "2ea2187b22043fb4ecc533637b1b1fc55f9683d2ef4c7e646e08500d19a5e5fd",
+        "mesa/opengl32.dll": "5d01e32d7e609efbe339629ef711927212b4719716749631636b0deb9b4cd621",
+        "msvcp140.dll": "a030dc2dfd2eca28a9375c92989adf4daf161f988db5e16b9e10678eb0dff4c7",
+        "msvcp140_codecvt_ids.dll": "945225e01a65e5199aa7372b893da3b42dbd99f315c345f0e7c136af88e897ef",
+        "prusa-gcodeviewer.exe": "31583ae0566026bb329e0998b0134af4b8b725a41a9e794a9210ba36d049118e",
+        "prusa-slicer-console.exe": "7fd50b52d1cc3da87dbcb71e45e764412dd45688bea028f351333e86d9769704",
+        "prusa-slicer.exe": "53e5af3c0774278db0b6736e3f458c9bb69b61591c71bee8dedad4bcf2fe7997",
+        "vcruntime140.dll": "f843cd00d9aff9a902dd7c98d6137639a10bd84904d81a085c28a3b29f8223c1",
+        "vcruntime140_1.dll": "e4e85eea1106d361923995e53a0b961a28d4fb58555f40945003f35e5bf2c273"
+      },
+      "file_count": 1119,
+      "tree_sha256": "59efa9aeccd1f5b8d32e69ac757d587f4ca4660dfdded28a80808f62b3a1eed2"
+    },
+    "scope": "Fixed offline geometry actions on repository-authored fixtures; no G-code, slicing, printer connection, settings approval or physical verification",
+    "source_commit": "b028299c770b8380ee81c921a2867d522f288123",
+    "url": "https://github.com/prusa3d/PrusaSlicer/releases/download/version_2.9.6/PrusaSlicer-2.9.6.zip"
+  },
+  "scope": "independent geometry import/export observations; no slicing or printer/material approval",
+  "observed_at": "2026-09-17",
+  "baseline_code": "dc1494b plus the pinned native PrusaSlicer probe",
+  "observation_notes": [
+    "Original inputs were preserved; temporary geometry exports were deleted with the private probe directory.",
+    "The generated 3MF package hash is run-specific; upstream export timestamps/metadata may change. Portable tests replay input evidence, not native output bytes.",
+    "No slicing, G-code generation, printer connection, profile approval or production simulation occurred."
+  ]
+}

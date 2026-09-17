@@ -122,3 +122,46 @@ Gate 05 remains open for the specified independent PrusaSlicer/open-model
 experiment, retained full skill-assisted handoffs, remaining geometry/package
 boundaries and the complete acceptance audit. Nothing in this evidence grants
 manufacturing approval or closes the real-input practitioner pilot.
+
+## Independent PrusaSlicer geometry evidence — 2026-09-17
+
+The [pinned Windows experiment](../development/prusaslicer-windows.md) ran actual
+PrusaSlicer 2.9.6 against the open CC0 bracket and repository-authored tetrahedron
+packages. The [retained report](additive-independent/prusaslicer-2.9.6-windows.json)
+contains seven geometry cases, a version/help result and a bracket 3MF export.
+All nine child invocations exited 0; all supplied input bytes remained unchanged.
+The native runtime is optional, ignored locally and not redistributed.
+
+Independent observations agree with the bracket's 2,052 facets, dimensions and
+the three open edges introduced by removing a face. PrusaSlicer exported both
+open meshes without closing them. Inch geometry was converted to the expected
+display scale, with measurable float32 precision loss in binary STL. The
+translated build retained X=200..201 in the exported STL even though CLI info
+reported centered local coordinates. The original package remains blocked by
+the declared build envelope.
+
+Two additional observations prevent overclaiming reference-tool acceptance:
+the synthetic required-extension package exported without a diagnostic, while
+our original-package review remained blocked; and the native bracket 3MF export
+contained a missing-thumbnail relationship and auxiliary XML/config parts without
+content-type declarations. Its actual package envelope is retained and our
+package checker rejects it. No vendor exception or automatic repair was added.
+
+The 15 portable evidence/probe tests passed in 0.570 seconds. They replay current
+input identities/reviews and inspect retained native observations without
+requiring the runtime. They also check dependency drift, environment isolation,
+fixed actions, timeout/error preservation and malformed/missing exports. These
+tests do not authenticate upstream binaries or rerun PrusaSlicer in portable CI.
+
+The full portable suite passed all 460 tests in 104.240 seconds. Foundation
+validation passed (58 required files, ten context schemas, five skillsets),
+schema-instance validation passed (eleven definitions, 44 instances), and
+whitespace checks passed. No production profile or historical approval record
+was changed by these checks.
+
+This supplies initial independent PrusaSlicer/open-model geometry reference
+evidence, not slicing or a manufacturing-ready build. No G-code, material process
+parameters, printer connection or production verification was generated. Phase 4
+still requires retained full skill-assisted handoffs, review of the remaining
+geometry/package limits and its full exit-gate audit. Real-input pilot evidence
+is unchanged and absent.

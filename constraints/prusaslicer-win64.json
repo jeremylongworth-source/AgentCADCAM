@@ -1,0 +1,42 @@
+{
+  "release": "version_2.9.6",
+  "source_commit": "b028299c770b8380ee81c921a2867d522f288123",
+  "published_at": "2026-06-25",
+  "accessed_at": "2026-09-17",
+  "publisher": "Prusa Research a.s.",
+  "url": "https://github.com/prusa3d/PrusaSlicer/releases/download/version_2.9.6/PrusaSlicer-2.9.6.zip",
+  "archive_sha256": "5aaf22e42f95accecfa122d23a835911f289ecc2ff606db3e83d637ddcc0a209",
+  "digest_source": "GitHub official release-asset SHA-256; matched downloaded archive",
+  "launcher_signature_observed": "Valid; CN=Prusa Research a.s.",
+  "license": "AGPL-3.0; optional runtime downloaded separately, not redistributed in this repository",
+  "scope": "Fixed offline geometry actions on repository-authored fixtures; no G-code, slicing, printer connection, settings approval or physical verification",
+  "runtime_identity": {
+    "tree_sha256": "59efa9aeccd1f5b8d32e69ac757d587f4ca4660dfdded28a80808f62b3a1eed2",
+    "file_count": 1119,
+    "binaries": {
+      "OCCTWrapper.dll": "80a7eef50a3859f99ca5bab7f71b8f5913fae6bb7973d6e46a1b0522b8c27a7d",
+      "PrusaSlicer.dll": "e3d33be039bddcb62a59de3a31193f9dff93777106f62d4fe32dd67738e8a351",
+      "WebView2Loader.dll": "6db06648a749eba26d859fad4d4e2625c28b8c60e8770bc76c7ea445424543f5",
+      "api-ms-win-crt-runtime-l1-1-0.dll": "5d8e35ef54c87d44c9c741af07146e8146749a6f5b947fd3b71a392c80049f89",
+      "libgmp-10.dll": "be4ef2bb951d1d38265d51e80768754d553bb38df0dc9eac7dc9f3e48246851f",
+      "libmpfr-4.dll": "2ea2187b22043fb4ecc533637b1b1fc55f9683d2ef4c7e646e08500d19a5e5fd",
+      "mesa/opengl32.dll": "5d01e32d7e609efbe339629ef711927212b4719716749631636b0deb9b4cd621",
+      "msvcp140.dll": "a030dc2dfd2eca28a9375c92989adf4daf161f988db5e16b9e10678eb0dff4c7",
+      "msvcp140_codecvt_ids.dll": "945225e01a65e5199aa7372b893da3b42dbd99f315c345f0e7c136af88e897ef",
+      "prusa-gcodeviewer.exe": "31583ae0566026bb329e0998b0134af4b8b725a41a9e794a9210ba36d049118e",
+      "prusa-slicer-console.exe": "7fd50b52d1cc3da87dbcb71e45e764412dd45688bea028f351333e86d9769704",
+      "prusa-slicer.exe": "53e5af3c0774278db0b6736e3f458c9bb69b61591c71bee8dedad4bcf2fe7997",
+      "vcruntime140.dll": "f843cd00d9aff9a902dd7c98d6137639a10bd84904d81a085c28a3b29f8223c1",
+      "vcruntime140_1.dll": "e4e85eea1106d361923995e53a0b961a28d4fb58555f40945003f35e5bf2c273"
+    }
+  },
+  "input_sha256": {
+    "bracket-stl": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+    "bracket-open-stl": "2fd7caa027e8e190efdc940a5993fdacf3c6d5ad2a78d327a4c82427c1cdf9cf",
+    "tetra-3mf": "5c5f9222f46e6c2a35b4555bb151c21501be5c5acd1e4321cc4c454b5fd56c92",
+    "tetra-inch-3mf": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+    "tetra-translated-3mf": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85",
+    "tetra-open-3mf": "6995b6b32be52f6a24613e85aeb4055055aecdaed166006368e522ed280fc6de",
+    "tetra-required-extension-3mf": "7f4943a506ba6dd21a74b63ea3a1b2251dd033e65134490e1af064c57cceca83"
+  }
+}

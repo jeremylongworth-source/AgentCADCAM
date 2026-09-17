@@ -114,9 +114,11 @@ is redistributed. CLI tests use temporary files and both script/module forms.
 ## Remaining work and review triggers
 
 The [evaluation record](../evaluation/additive-fdm-evaluation.md) tracks executed
-validation. This change does not close gate 05. The specified PrusaSlicer/open-model
-experiment, retained skill-assisted additive handoffs, unresolved geometry and
-usable-bed boundaries, and the complete gate audit remain required. General
+validation. This change does not close gate 05. The subsequent
+[PrusaSlicer/open-model experiment](../development/prusaslicer-windows.md) supplies
+initial independent geometry evidence and documents acceptance differences.
+Retained skill-assisted additive handoffs, unresolved geometry and usable-bed
+boundaries, and the complete gate audit remain required. General
 material/extension/vendor-project support is unproven. Revisit the supported
 subset using independent reference evidence, not by weakening blockers to accept
 a fixture. Any new extension, tolerance rule, approval integration or false-ready
