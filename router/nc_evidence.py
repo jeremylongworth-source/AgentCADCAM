@@ -45,6 +45,10 @@ def check_nc_artifact(state, program, *, catalog, fingerprint, approval_status, 
         block("the current static reviewer requires exactly one tool; multi-tool programs need additional review semantics",
               "SOURCE_VERIFICATION_REQUIRED")
         return result
+    coordinate_model = state["setup"].get("coordinate_model")
+    if coordinate_model is None:
+        block("a reviewed coordinate model is required; zero offsets are not inferred")
+        return result
     try:
         text = program.decode("utf-8", errors="strict")
     except UnicodeError:
@@ -57,6 +61,6 @@ def check_nc_artifact(state, program, *, catalog, fingerprint, approval_status, 
     }
     # Use the router's scoped record decision, never the state's raw approval flag.
     contexts["job"]["approval_status"] = approval_status
-    report = review_program(text, contexts, selected_wcs=state["work_coordinate_system"]["code"])
+    report = review_program(text, contexts, selected_wcs=state["work_coordinate_system"]["code"], coordinate_model=coordinate_model)
     result.update(status=report["status"], report=report, blockers=report["blockers"], findings=report["findings"])
     return result

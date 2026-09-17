@@ -112,7 +112,8 @@ def _number(value: Any) -> Decimal | None:
     return number if number.is_finite() else None
 
 
-def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selected_wcs: str | None = None) -> dict[str, Any]:
+def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selected_wcs: str | None = None,
+                   coordinate_model: dict | None = None) -> dict[str, Any]:
     findings: list[str] = []
     blockers: list[str] = []
     job = contexts.get("job", {})
@@ -313,7 +314,7 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selecte
                 if axis not in values:
                     continue
                 value = values[axis]
-                if units_match and axis in axis_bounds and not axis_bounds[axis][0] <= value <= axis_bounds[axis][1]:
+                if coordinate_model is None and units_match and axis in axis_bounds and not axis_bounds[axis][0] <= value <= axis_bounds[axis][1]:
                     blockers.append("MACHINE_CONTEXT_REQUIRED")
                     findings.append(f"line {number}: {axis}{value} exceeds declared fixture coordinate bound")
         if "M30" in block_commands:
@@ -339,6 +340,17 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selecte
         blockers.append("HUMAN_APPROVAL_REQUIRED")
         findings.append("human approval is not recorded")
 
+    coordinate_review = None
+    if coordinate_model is not None:
+        if __package__:
+            from .nc_coordinate_checks import review_coordinate_model
+        else:
+            from nc_coordinate_checks import review_coordinate_model
+        coordinate_review = review_coordinate_model(coordinate_model, blocks, contexts, expected_wcs, axis_bounds,
+                                                    not parse_errors and not outside_scope and units_match)
+        blockers.extend(coordinate_review["blockers"])
+        findings.extend(coordinate_review["findings"])
+
     blockers = sorted(set(blockers))
     return {
         "status": "blocked" if blockers else "review_required",
@@ -346,7 +358,8 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]], *, selecte
         "findings": findings,
         "review_required": True,
         "execution_allowed": False,
-        "validation_scope": "synthetic literal NC words, selected modal/feed/spindle prerequisites and declared numeric bounds; not physical travel, cutting feasibility, simulation or approval verification",
+        "coordinate_review": coordinate_review,
+        "validation_scope": "literal NC words, selected modal/feed/spindle prerequisites and declared numeric bounds; coordinate_review identifies mapped target checks when supplied, otherwise only raw fixture bounds; not physical travel, cutting feasibility, simulation or approval verification",
     }
 
 

@@ -26,6 +26,7 @@ def make_cnc_review():
     state["setup"] = read("setup")
     state["setup"]["wcs_status"] = "verified"
     state["setup"]["workholding"]["clamps_clear"] = True
+    synthetic_review(state["setup"]["coordinate_model"])
     state["work_coordinate_system"] = {"code": "G54", "status": "verified"}
     tool = synthetic_review(read("tool"))
     tool["availability"] = "available"

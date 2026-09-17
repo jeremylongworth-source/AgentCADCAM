@@ -2,7 +2,7 @@
 
 ## Scope
 
-This evaluation covers three-axis planning and static NC review against explicit synthetic machine, controller, setup, tooling, postprocessor, and job contexts. It does not execute NC, prove machine behavior, or replace CAMotics, LinuxCNC, machine simulation, or qualified operator review.
+This evaluation covers three-axis planning and static NC review against explicit synthetic machine, controller, setup, tooling, postprocessor, and job contexts. It does not execute NC, prove machine behavior, or replace CAMotics, LinuxCNC, machine simulation, or qualified operator review. The original matrix below describes standalone raw-fixture checks; subsequent sections record composed approval and coordinate checks with additional prerequisites.
 
 ## Acceptance matrix
 
@@ -59,3 +59,13 @@ The 17 new artifact-gate test methods cover valid/missing/changed bytes, altered
 The existing 28 context-routing tests now explicitly provide the synthetic NC bytes for CNC cases through a shared in-memory helper. Other families do not inherit a CNC artifact declaration. Physical coordinate transforms, authentic simulation evidence, independent tooling where practical, retained CNC skill outputs and the gate audit remain open. No external interpreter or machine was run. Gate 04 remains open.
 
 Executed validation: all 320 portable tests passed in 52.616 seconds; the 45 focused routing tests also passed. Foundation validation passed (58 required files, ten context schemas, five skillsets), schema-instance validation passed (eleven definitions, 26 instances), and the staged diff passed whitespace checks. These results establish the inspected software behavior, not the truth of synthetic approval or simulation declarations.
+
+## Declared coordinate-frame review — 2026-09-17
+
+The [coordinate contract](../architecture/nc-coordinate-model.md) closes the raw-coordinate assumption in composed routing: an explicit reviewed fixed translation, initial machine position and machine-axis bounds are required. The first 12 routing test methods reproduced 13 failing assertions/subtests and one missing-report error before implementation. They exposed both falsely retained approvals (missing/unreviewed models, hidden translated overflow, additional tool changes) and falsely blocked in-bounds translated targets. This is evidence about software behavior, not actual offset measurement.
+
+The completed coordinate suite has 16 routing methods and four direct utility methods. Added controls cover negative/fractional translation, exact decimal boundary exceedance, first-move omitted axes, missing review/source evidence, conflicting lifecycle units, nonfinite inputs, missing context, immutability and the standalone partial-evidence boundary. The direct missing-context test first reproduced five exceptions in the new helper; those are now blocking diagnostics. All 20 coordinate methods passed in 9.276 seconds. Matching synthetic approvals are deliberately regenerated in negative tests so findings cannot depend solely on stale fingerprints.
+
+Fixture version 3 retains NC/job B and CAD A, adds unverified coordinate model revision 1, and advances the machine profile to revision 3 for explicit frame identity. Controller revision 2 is unchanged. No real offsets or machine parameters were supplied or inferred. No simulator, independent interpreter or equipment was run. Declared endpoint arithmetic does not establish tool-change motion, collisions, physical state or simulation truth. Retained seven-skill workflow reviews and the gate audit remain open; gate 04 is not accepted by this change.
+
+Executed validation: all 340 portable tests passed in 72.763 seconds. Foundation validation passed (58 required files, ten context schemas, five skillsets), schema-instance validation passed (eleven definitions, 26 instances), and `git diff --check` passed. The standalone fixture CLI still returns simulation/human-approval blockers with `coordinate_review: null`, review required and execution prohibited. These results do not establish independent controller compatibility, authentic simulation or manufacturing approval.

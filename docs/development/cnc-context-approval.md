@@ -9,6 +9,7 @@
 | `machine_profile`, `controller_profile`, `material` | Present, schema-valid profiles with the corresponding request `*_known` flag true. Existing process-family checks still apply. |
 | `units` | Explicit `mm`, `in`, or `inch`; supported by the controller. |
 | `setup` | Schema-valid setup; positive stock dimensions `x/y/z` with matching units; nonempty orientation; `wcs_status: verified`. |
+| `setup.coordinate_model` | Execution-adjacent CNC requires a current reviewed fixed Cartesian translation and initial machine position, matching machine/controller/setup/tool/WCS identities and units. Explicit three-axis machine bounds are required. See the [coordinate contract](../architecture/nc-coordinate-model.md); no zero offsets or physical verification are inferred. |
 | Workholding | Nonempty `type` and `clamps_clear: true`. Root `workholding`, when non-null, is checked instead of silently falling back to setup workholding; shared declarations must not conflict. |
 | `work_coordinate_system` | Explicit `code` and `status: verified`; code must appear in controller `modes_and_offsets.wcs`. |
 | `tool_library.tools` | Nonempty list of schema-valid tools, unique IDs and nonnegative integer tool numbers, nonempty geometry type, positive diameter, holder and reach, and `availability: available`. |

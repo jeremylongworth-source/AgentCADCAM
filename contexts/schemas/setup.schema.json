@@ -11,6 +11,33 @@
     "orientation": {"type": "object"},
     "workholding": {"type": "object"},
     "wcs_status": {"enum": ["missing", "defined", "verified", "conflicted"]},
+    "coordinate_model": {"$ref": "#/$defs/coordinate_model"},
     "sequence": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "vector": {
+      "type": "object", "additionalProperties": false, "required": ["x", "y", "z"],
+      "properties": {"x": {"type": "number"}, "y": {"type": "number"}, "z": {"type": "number"}}
+    },
+    "coordinate_model": {
+      "type": "object", "additionalProperties": false,
+      "description": "Reviewed declaration of a fixed Cartesian mapping for one tool and setup; not physical verification. Unknown mapping must remain unresolved, never inferred zero.",
+      "required": ["model_id", "kind", "units", "machine_id", "controller_id", "setup_id", "tool_id", "wcs", "translation", "initial_machine_position", "initial_position_stage", "lifecycle", "source"],
+      "properties": {
+        "model_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "kind": {"const": "cartesian_translation_v1"},
+        "units": {"enum": ["mm", "in"]},
+        "machine_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "controller_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "setup_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "tool_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "wcs": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "translation": {"$ref": "#/$defs/vector", "description": "Aggregate machine-axis target minus programmed absolute target, accounting for all applicable constant offsets; excludes rotation, scaling and dynamic transforms."},
+        "initial_machine_position": {"$ref": "#/$defs/vector", "description": "Declared machine-axis position after the first tool change and before the first explicit axis move; implicit tool-change motion is not checked."},
+        "initial_position_stage": {"const": "after_initial_tool_change_before_first_axis_move"},
+        "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
+        "source": {"$ref": "handoff.schema.json#/$defs/source"}
+      }
+    }
   }
 }

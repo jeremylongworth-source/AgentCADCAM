@@ -1,5 +1,5 @@
 fixture_id: cnc-mill-bracket
-version: 2
+version: 3
 status: validated_synthetic
 description: Synthetic three-axis CNC planning and static NC review fixture.
 license: CC0-1.0 synthetic fixture
