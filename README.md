@@ -1,75 +1,124 @@
-# CAD/CAM Skills
+# AgentCADCAM
 
-CAD/CAM Skills is a standalone, vendor-neutral AgentSkills-style repository for reasoning about digital designs and manufacturing handoffs.
+**Evidence-driven CAD/CAM review for AI agents.**
 
-The project connects:
+AgentCADCAM helps agents review digital designs and prepare traceable manufacturing handoffs. It combines focused AgentSkills-style instructions, structured job context, deterministic routing, and local file checks across CAD handoff, three-axis CNC milling, FDM additive manufacturing, and laser cutting.
 
-`design intent -> representation -> process -> machine -> controller -> postprocessor -> verification -> human approval -> manufacturing handoff`
+**Review and planning only.** AgentCADCAM does not control equipment or authorize manufacturing. Missing consequential evidence remains a blocker, not a lower confidence score.
 
-It provides structured review and planning guidance for:
+[Getting started](docs/wiki/Getting-Started.md) · [Workflow guide](docs/wiki/Workflow-Guide.md) · [Documentation](docs/wiki/Home.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
-- CAD and manufacturing handoff
-- Three-axis CNC milling
-- FDM additive manufacturing
-- Laser cutting
+## Why AgentCADCAM?
 
-It does not replace CAD/CAM software, qualified manufacturing professionals, machine safety systems, or human approval. Physical machine execution is outside the initial project boundary.
+A readable file is not necessarily a complete product definition. A matching postprocessor name is not proof of compatible NC output. A successful check is not permission to run a machine.
+
+AgentCADCAM makes those distinctions explicit. It helps reviewers:
+
+- Preserve source identity, revisions, units, and design intent across a handoff.
+- Identify missing or conflicting machine, material, tooling, setup, and process evidence.
+- Keep findings tied to the artifact bytes and job context that were reviewed.
+- Invalidate dependent review records when consequential inputs change.
+- Produce clear blockers and reviewer actions instead of unsupported readiness claims.
+
+The project is standalone and vendor-neutral. It has no required dependency on AgentManufacturing, a particular CAD/CAM application, or a live machine connection.
+
+## Workflow coverage
+
+| Workflow | Review focus | Current implementation boundary |
+| --- | --- | --- |
+| CAD and design handoff | Provenance, exchange formats, manufacturability, drawings and PMI | Five skill contracts; file-aware checks target the initial bracket adapter, not arbitrary CAD models. |
+| Three-axis CNC milling | Machine match, setup, tooling, strategy, post identity, NC and simulation evidence | Seven skill contracts; static NC checks support a restricted literal dialect and explicit coordinate model. |
+| FDM additive | STL/3MF intake, mesh findings, printer/material context, slicer and environmental evidence | One skill contract; bounded mesh/package inspection, not a slicer or printability guarantee. |
+| Laser cutting | DXF/SVG geometry, units, path intent, material/process context, beam and emission review | One skill contract; bounded planar geometry checks, not a laser controller or safe-settings generator. |
+
+The [workflow guide](docs/wiki/Workflow-Guide.md) maps each family to its skillset, inputs, evidence, and limitations.
 
 ## Project status
 
-The repository implements 14 skill contracts, five skillsets, and local review/routing utilities for the four initial workflow families. Automated tests cover a curated synthetic corpus; they do not establish full roadmap completion or manufacturing readiness.
+**Pre-release — public-alpha acceptance is pending.**
 
-The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md) supersedes the earlier blanket claim that gates `CADCAM_01` through `CADCAM_08` were complete. Requirement-by-requirement reviews now support gates `CADCAM_01` through `CADCAM_07` for repository development against the initial corpus; see the latest [integration gate audit](docs/development/integration-gate-review.md). Phase 7 safety/governance hardening remains open before public-alpha acceptance. Phase 8 (`CADCAM_09_PILOT_VALIDATED`) requires qualified real-input practitioner review. These development gates do not approve manufacturing jobs. [ROADMAP.md](ROADMAP.md) remains the governing requirements document.
+The repository contains 14 atomic skill contracts and five skillset manifests. Four workflow manifests are marked `validated_synthetic`; the cross-workflow verification manifest remains `planned`. Local routing, state, file-review, and handoff utilities are implemented and tested against curated fixtures.
 
-Phase 7 progress: [source/export governance checks](docs/architecture/governance-readiness.md)
-now block missing, denied or conflicting declarations even with matching review
-records. [Source assessments](docs/architecture/source-review-readiness.md) also
-require primary authority, scoped evidence, matching metadata and current review
-dates. The [Phase 7 gate review](docs/development/public-alpha-gate-review.md)
-reconciles the bounded safety/source evidence. Public-alpha acceptance remains
-on hold pending operational private reporting and a maintainer release decision.
+Phases 0–6 are accepted for repository development within that bounded corpus. Phase 7 release requirements and Phase 8 qualified real-input pilot validation remain open. These are development milestones, not manufacturing approvals.
 
-## Repository map
+See the [current status and evidence](docs/development/roadmap-reconciliation.md) and [public-alpha gate review](docs/development/public-alpha-gate-review.md). Test counts and historical gate labels are not completion guarantees.
 
-| Directory | Purpose |
+## Quick start
+
+### Explore the skills
+
+Start with a [workflow skillset](docs/wiki/Workflow-Guide.md), then read its referenced `SKILL.md` files and the repository's [agent instructions](AGENTS.md). Skillsets are composition manifests, not a universal installer. Host-specific loading and permissions must be configured separately; copying a skill does not install the Python review utilities.
+
+### Run the local checks
+
+You need Git and Python with `venv` and `pip`. The portable checks have been exercised in the development environment with Python 3.14; optional native CAD tooling uses a separate [documented environment](docs/development/cadquery-windows.md).
+
+```sh
+git clone https://github.com/jeremylongworth-source/AgentCADCAM.git
+cd AgentCADCAM
+python -m venv .venv
+```
+
+Activate the environment with `.venv\Scripts\Activate.ps1` in PowerShell, or `source .venv/bin/activate` in a POSIX shell. If PowerShell activation is restricted, use `.venv\Scripts\python.exe` directly rather than changing system execution policy.
+
+```sh
+python -m pip install -r requirements-test.txt
+python scripts/validate_foundation.py
+python scripts/validate_schema_instances.py
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+These commands validate the repository and its fixtures. They do not approve a real job or require equipment access. While the repository is private, cloning requires access.
+
+### Try a bounded review
+
+From the repository root, inspect the supplied CAD fixture:
+
+```sh
+python scripts/cad_handoff_checks.py fixtures/cad/bracket/fixture.yaml
+```
+
+Read the JSON findings and blockers. A `blocked` result returns exit code 1 and is an expected review outcome, not an instruction to remove the gate. Even `review_required` is not manufacturing approval. For setup details and result interpretation, see [Getting started](docs/wiki/Getting-Started.md).
+
+## How it fits together
+
+1. **Skills** define the review duties, evidence requirements, and stop conditions.
+2. **Context and state** record the job, artifact identities, profiles, verification, and scoped review records.
+3. **Routing and file checks** select the workflow and examine the supported inputs for missing, stale, or conflicting evidence.
+4. **Handoff review** checks the package against current state and preserves unresolved blockers for qualified human review.
+
+The structured APIs keep `review_required: true` and `execution_allowed: false`. An empty blocker list or a recognized review record never grants physical execution authority.
+
+## Safety and limitations
+
+- No machine control, program upload, autonomous start, spindle/beam activation, or guard/interlock bypass.
+- No general CAD/PMI interpretation, full collision proof, engineering certification, or final legal/export classification.
+- Source metadata and hashes establish recorded consistency, not authenticated reviewer identity, source truth, ownership, or physical machine state.
+- Synthetic fixtures and retained development reviews do not establish practitioner usefulness or production suitability. Actual retained fixture handoffs remain blocked.
+- Portable code checks are not an OS sandbox. Optional native-tool experiments have separate dependencies and limited evidence scope.
+- Reserved specializations are not implemented process or jurisdiction modules.
+
+Read [Safety and approvals](docs/wiki/Safety-and-Approvals.md) before using a result in a manufacturing-facing workflow. Report vulnerabilities or unsafe-ready-state behavior according to [SECURITY.md](SECURITY.md); check its current private-channel availability before sending sensitive information.
+
+## Documentation
+
+| Resource | Start here for |
 | --- | --- |
-| `skills/` | Atomic AgentSkills contracts and implementations |
-| `skillsets/` | Composable workflow manifests |
-| `router/` | Deterministic workflow selection and consequence classification |
-| `state/` | Bounded job-state model and invalidation rules |
-| `contexts/` | Machine-readable job, machine, process, and approval context |
-| `specializations/` | Optional process and jurisdiction-specific knowledge |
-| `docs/` | Architecture, standards, formats, sources, evaluation, and handoffs |
-| `fixtures/` | Reproducible positive and negative test inputs |
-| `tests/` | Schema, routing, safety, interoperability, and evaluation tests |
-| `scripts/` | Repository validation and maintenance utilities |
+| [Documentation hub / wiki source](docs/wiki/Home.md) | Guided onboarding and topic navigation |
+| [Architecture and evidence](docs/wiki/Architecture-and-Evidence.md) | Router, state, source assessments, and handoff contracts |
+| [Development and validation](docs/wiki/Development-and-Validation.md) | Contributor setup, checks, and optional tooling |
+| [Pilot evaluation](docs/wiki/Pilot-Evaluation.md) | Real-input packets and qualified reviewer requirements |
+| [Roadmap](ROADMAP.md) | Governing scope, phase gates, and deferred capabilities |
+| [Changelog](CHANGELOG.md) | Development changes and compatibility notes |
 
-## Safety status
-
-All manufacturing outputs are reviewable artifacts, never self-authorizing instructions. Missing or unverified consequential context must produce an explicit blocking outcome such as `MISSING_CONTEXT`, `SIMULATION_REQUIRED`, `HUMAN_APPROVAL_REQUIRED`, or `BLOCK_EXECUTION`.
-
-See [SECURITY.md](SECURITY.md) and [docs/standards/safety-governance-standard.md](docs/standards/safety-governance-standard.md).
-
-## Public limitations
-
-- The skills describe review duties; local utilities implement only documented
-  subsets. CAD checks target the initial bracket adapter, NC review supports a
-  restricted dialect, and STL/3MF/DXF/SVG checks are partial. They are not general
-  CAD/PMI interpreters, collision proofs or manufacturing certification.
-- Source/reviewer declarations and hashes establish recorded consistency, not
-  authenticated identity, permission, evidence truth or physical machine state.
-- Tests and retained reviews use a curated synthetic corpus. All actual fixture
-  handoffs remain blocked; qualified real-input pilot validation is outstanding.
-- Portable import checks are not an OS sandbox. Optional native-tool experiments
-  have separate dependencies and scoped observations, not blanket safety approval.
-- Reserved specializations do not implement additional processes or legal
-  determinations. Physical execution and the roadmap's other v0.x exclusions
-  remain out of scope.
-
-See the [claim inventory](docs/sources/skill-claim-ledger.md) and
-[gate review](docs/development/public-alpha-gate-review.md) for evidence and exact
-limits. Passing tests never authorizes a manufacturing job.
+Wiki content is maintained in this repository and prepared for GitHub Wiki publication. The [publishing guide](docs/development/wiki-publishing.md) records the current availability and maintenance workflow.
 
 ## Contributing
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a change. New skills must follow the authoring, evidence, interoperability, safety, testing, and evaluation standards.
+Useful contributions include reproducible defect reports, supported format cases, source-backed review improvements, and consented, sanitized practitioner evaluations. Keep changes focused and include positive and negative evidence for consequential decisions.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md), and the [Code of Conduct](CODE_OF_CONDUCT.md). Do not include confidential CAD, proprietary NC, credentials, or export-sensitive information in public reports.
+
+## License
+
+AgentCADCAM is licensed under the [MIT License](LICENSE). Third-party sources and fixture inputs retain their own terms; see the [fixture licensing policy](docs/standards/fixture-licensing-standard.md). The repository license does not grant rights to manufacture or redistribute someone else's design.

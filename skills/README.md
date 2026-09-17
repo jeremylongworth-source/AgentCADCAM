@@ -1,5 +1,5 @@
 # Atomic Skills
 
-This directory will contain the 14 constrained initial skills listed in `ROADMAP.md`. Foundation work defines their shared contracts first; no production skill is considered implemented yet.
+This directory contains the fourteen initial skill contracts listed in [the roadmap](../ROADMAP.md). Each `SKILL.md` defines a focused review workflow, required evidence, stop conditions, and output expectations.
 
-Each skill directory will contain a `SKILL.md`, metadata, explicit inputs and outputs, evidence requirements, stop conditions, and fixtures.
+Choose a composition through the [workflow guide](../docs/wiki/Workflow-Guide.md). These contracts guide agent review; they do not install the local Python utilities or authorize manufacturing. Synthetic validation and qualified practitioner acceptance are separate milestones.
