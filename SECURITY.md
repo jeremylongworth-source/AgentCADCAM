@@ -20,7 +20,9 @@ Manufacturing readiness is gated by context and approval. Missing machine, contr
 
 ## Reporting
 
-Report suspected vulnerabilities, unsafe behavior, prompt-injection paths, unauthorized data exposure, or incorrect ready-state decisions privately to the repository maintainers before public disclosure. Include reproduction steps, affected files or fixtures, expected behavior, actual behavior, and potential consequence.
+The selected channel for suspected vulnerabilities, unsafe behavior, prompt-injection paths, unauthorized data exposure, or incorrect ready-state decisions is **GitHub private vulnerability reporting**. Once enabled, use **Report a vulnerability** on the repository's [Security advisories page](https://github.com/jeremylongworth-source/AgentCADCAM/security/advisories). Include sanitized reproduction steps, affected files or fixtures, expected behavior, actual behavior, and potential consequence.
+
+**Not yet available:** on 2026-09-17 the repository was private and the enable request returned HTTP 404. GitHub documents this feature for public repositories. Repository visibility has not been changed. Enabling and verifying the private reporting form is an outstanding public-release prerequisite; see the [reporting-channel decision](docs/architecture/security-reporting.md). Until a private channel is confirmed, do not post sensitive reports to issues, pull requests, or discussions.
 
 Do not include confidential CAD, proprietary NC programs, credentials, private machine endpoints, or export-sensitive data in an issue or pull request.
 

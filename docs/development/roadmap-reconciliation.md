@@ -33,6 +33,13 @@ The [Phase 6 audit](integration-gate-review.md) supports progression to Phase 7.
 Earlier family packets and all four integrated skill-assisted handoffs remain
 blocked and non-executable; no source, profile or approval was promoted.
 
+GitHub private vulnerability reporting is the maintainer-selected security
+channel, but activation remains outstanding: the repository is private and the
+enable request returned HTTP 404. The [reporting-channel decision](../architecture/security-reporting.md)
+records the verified configuration, publication boundary and release check.
+Do not count `SECURITY.md` as operationally complete until private intake is
+confirmed; repository visibility must not change without separate authorization.
+
 1. Reconcile every Phase 7 safety/adversarial case against the complete curated corpus before claiming critical recall or false-ready results. Include the [new source/export refusal evidence](../evaluation/governance-runs/README.md), preserving its declaration-only limitations and remaining evidence-authentication obligations.
 2. Verify remaining machine/material/tooling, safety and regulatory claims and source freshness; audit all public-alpha governance and documentation requirements. Include the [new runtime source-assessment evidence](../evaluation/source-evidence-runs/README.md) without treating declared authority as authenticated source truth. Preserve accepted development boundaries and retained review evidence.
 3. Run the practitioner pilot and evaluate every roadmap threshold using real/sanitized inputs and qualified reviewer findings. A reviewer must judge evidence quality, not merely supply a passing YAML verdict. Do not expand the skill inventory or process scope without the required evaluation and review.
