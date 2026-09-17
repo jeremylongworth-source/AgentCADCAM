@@ -141,13 +141,18 @@ def _drawing_checks(drawing: str, values: dict[str, float]) -> list[str]:
 
 
 def validate(root: Path) -> list[str]:
-    errors: list[str] = []
     try:
         source = (root / "source/bracket.scad").read_text(encoding="utf-8")
         drawing = (root / "source/bracket.svg").read_text(encoding="utf-8")
         metadata = json.loads((root / "metadata/revision.json").read_text(encoding="utf-8"))
     except (OSError, UnicodeError, ValueError):
         return ["source, drawing, or revision metadata could not be read or parsed"]
+    return validate_inputs(source, drawing, metadata)
+
+
+def validate_inputs(source: str, drawing: str, metadata: dict) -> list[str]:
+    """Check supplied text without reading paths or executing CAD source."""
+    errors: list[str] = []
     values = _source_parameters(source, errors)
     errors.extend(_drawing_checks(drawing, values))
     if not isinstance(metadata, dict) or metadata.get("revision") != "A" or metadata.get("units") != "mm":

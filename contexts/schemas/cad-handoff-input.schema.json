@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/cad-handoff-input.schema.json",
+  "title": "State-bound CAD handoff review inputs",
+  "description": "Draft declarations under setup.cad_handoff; not authenticated evidence or manufacturing approval.",
+  "type": "object", "additionalProperties": false,
+  "required": ["review_profile", "metadata", "derivation", "manufacturing_context"],
+  "properties": {
+    "review_profile": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+    "metadata": {
+      "type": "object",
+      "required": ["job_id", "revision", "units", "authoritative_artifact", "pmi_status"],
+      "properties": {
+        "job_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "revision": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "units": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "authoritative_artifact": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "pmi_status": {"enum": ["present", "not_present", "unknown"]}
+      }
+    },
+    "derivation": {"$ref": "derivation.schema.json"},
+    "manufacturing_context": {
+      "type": "object", "additionalProperties": false,
+      "required": ["process_family", "material_id", "requirements", "drawing_pmi_basis", "sources"],
+      "properties": {
+        "process_family": {"enum": ["cnc_milling", "additive", "laser_cutting"]},
+        "material_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "requirements": {"$ref": "handoff.schema.json#/$defs/text_list", "minItems": 1},
+        "drawing_pmi_basis": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+        "sources": {"type": "array", "minItems": 1, "items": {"$ref": "handoff.schema.json#/$defs/source"}}
+      }
+    }
+  }
+}

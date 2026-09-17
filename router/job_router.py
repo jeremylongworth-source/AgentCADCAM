@@ -11,6 +11,7 @@ from router.cnc_verification import check_cnc_verification
 from router.nc_evidence import check_nc_artifact
 from router.laser_evidence import check_laser_artifact
 from router.additive_evidence import check_additive_artifact
+from router.cad_evidence import check_cad_artifacts
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -23,6 +24,7 @@ def route_job(
     nc_program: bytes | None = None,
     laser_drawing: bytes | None = None,
     additive_mesh: bytes | None = None,
+    cad_artifacts: dict[str, bytes] | None = None,
 ) -> dict[str, Any]:
     """Return routing plus copied state/approval; never persist or authenticate a reviewer."""
     catalog = load_catalog()
@@ -65,18 +67,24 @@ def route_job(
     if not isinstance(request, dict):
         errors.append("request must be an object")
     # Supplied bytes and declared output cannot be down-classified by a bad state.
-    if nc_program is not None or laser_drawing is not None or additive_mesh is not None or (isinstance(current_state, dict) and current_state.get("generated_manufacturing_output") is not None):
+    if nc_program is not None or laser_drawing is not None or additive_mesh is not None or cad_artifacts is not None or (isinstance(current_state, dict) and current_state.get("generated_manufacturing_output") is not None):
         normalized["generated_manufacturing_artifact"] = True
     fingerprint = None
     if state_ok:
         state = copy.deepcopy(current_state)
         family = state["process_family"]
         output = state.get("generated_manufacturing_output")
+        action = normalized.get("requested_action")
+        if family == "cad_handoff" and isinstance(action, str) and action.strip().lower() == "prepare_handoff":
+            normalized["generated_manufacturing_artifact"] = True
+        if family != "cad_handoff" and cad_artifacts is not None:
+            errors.append("CAD inventory requires a cad_handoff bounded state; another family cannot bypass CAD review")
         if family != "cnc_milling" and (nc_program is not None or isinstance(output, dict) and output.get("kind") == "nc_program"):
             errors.append("NC input requires a cnc_milling bounded state; another family cannot bypass NC review")
         if family != "laser_cutting" and (laser_drawing is not None or isinstance(output, dict) and output.get("kind") == "two_d_cutting"):
             errors.append("laser input requires a laser_cutting bounded state; another family cannot bypass laser review")
-        if family != "additive" and (additive_mesh is not None or isinstance(output, dict) and output.get("kind") in ("mesh_derivative", "print_package")):
+        if family != "additive" and (additive_mesh is not None or isinstance(output, dict) and output.get("kind") in ("mesh_derivative", "print_package")
+                                     and not (family == "cad_handoff" and cad_artifacts is not None)):
             errors.append("additive input requires an additive bounded state; another family cannot bypass additive review")
         requested_family = normalized.get("process_family")
         if requested_family is not None and requested_family != family:
@@ -141,8 +149,13 @@ def route_job(
     nc_review = None
     laser_review = None
     additive_review = None
+    cad_review = None
     if state_ok and result["consequence_level"] in ("execution_adjacent", "live_execution"):
         additional = set()
+        if state["process_family"] == "cad_handoff":
+            cad_review = check_cad_artifacts(state, cad_artifacts, catalog=catalog, fingerprint=fingerprint)
+            additional.update(cad_review["blockers"])
+            findings.extend(cad_review["findings"])
         if state["process_family"] == "additive":
             additive_review = check_additive_artifact(state, additive_mesh, catalog=catalog,
                                                      fingerprint=fingerprint, approval_status=effective_status)
@@ -190,14 +203,14 @@ def route_job(
     }
     if (
         state_ok
-        and state["process_family"] in ("cnc_milling", "laser_cutting", "additive")
+        and state["process_family"] in ("cnc_milling", "laser_cutting", "additive", "cad_handoff")
         and effective_status == "approved"
         and set(result["blockers"]) & process_context_failures
     ):
         # A matching fingerprint cannot waive mandatory process/file evidence.
         effective_status = "invalidated"
         record["status"] = "invalidated"
-        process_label = {"cnc_milling": "CNC", "laser_cutting": "laser", "additive": "additive"}[state["process_family"]]
+        process_label = {"cnc_milling": "CNC", "laser_cutting": "laser", "additive": "additive", "cad_handoff": "CAD"}[state["process_family"]]
         record["invalidation_reason"] = f"required {process_label} context is missing, conflicting, or unverified"
         result["approval_state"] = effective_status
         result["blockers"] = sorted(set(result["blockers"]) | {"HUMAN_APPROVAL_REQUIRED"})
@@ -215,4 +228,6 @@ def route_job(
         result["laser_review"] = laser_review
     if additive_review is not None:
         result["additive_review"] = additive_review
+    if cad_review is not None:
+        result["cad_review"] = cad_review
     return result

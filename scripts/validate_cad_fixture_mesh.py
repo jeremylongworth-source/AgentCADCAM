@@ -7,13 +7,17 @@ surface orientation, tolerance fidelity, or manufacturing suitability.
 from __future__ import annotations
 
 import re
+import math
 import struct
 import sys
 from pathlib import Path
 
 
 def _vertices(path: Path) -> list[tuple[float, float, float]]:
-    data = path.read_bytes()
+    return _vertices_bytes(path.read_bytes())
+
+
+def _vertices_bytes(data: bytes) -> list[tuple[float, float, float]]:
     if len(data) >= 84:
         triangle_count = struct.unpack_from("<I", data, 80)[0]
         if 84 + triangle_count * 50 == len(data):
@@ -31,9 +35,16 @@ def _vertices(path: Path) -> list[tuple[float, float, float]]:
 def validate(path: Path) -> list[str]:
     if not path.is_file():
         return [f"missing STL fixture: {path}"]
-    vertices = _vertices(path)
+    return validate_bytes(path.read_bytes())
+
+
+def validate_bytes(data: bytes) -> list[str]:
+    """Check supplied fixture bytes without reading paths."""
+    vertices = _vertices_bytes(data)
     if not vertices:
         return ["STL fixture contains no vertices"]
+    if any(not math.isfinite(value) for point in vertices for value in point):
+        return ["STL fixture contains nonfinite vertex coordinates"]
     extents = [(min(axis), max(axis)) for axis in zip(*vertices)]
     expected = [(0.0, 60.0), (0.0, 40.0), (0.0, 30.0)]
     errors = []

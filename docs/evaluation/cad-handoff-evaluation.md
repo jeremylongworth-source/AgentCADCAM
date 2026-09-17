@@ -94,3 +94,40 @@ Executed validation: all 250 portable tests pass; the fifteen schema/packet test
 The [five additional reviews and replay protocol](cad-runs/negative-cases-protocol.md) complete the named negative-case set. This follow-up supersedes the remaining-output statements in the historical entries above. Each packet retains actual submitted declarations/file identities, checker observations, five skill outputs, state and blocked handoff. Replay locators identify reproducible temporary inputs, not permanent job files. The [gate audit](../development/cad-handoff-gate-review.md) maps every Phase 2 deliverable and exit criterion and supports development acceptance; it does not close later workflow, public-alpha or practitioner gates.
 
 Executed validation: all 257 portable tests passed in 47.744 seconds, including seven new replay/record tests. Schema-instance validation passed for eleven definitions and 26 instances. Foundation validation passed for 58 required files, ten context schemas and five skillsets. The focused seven-test suite also passed independently. No geometry was regenerated; no native probe was rerun on the mutations. The tests verify reproduction and record integrity, not independent agent reasoning quality or physical manufacturing safety.
+
+## Phase 6 bounded CAD routing — 2026-09-17
+
+The [CAD integration contract](../architecture/cad-router-integration.md) binds
+actual source/STEP/STL/drawing bytes, typed metadata/derivation/manufacturing
+context and five separate current review roles to routing. The explicit initial
+bracket profile reuses the existing validators through in-memory interfaces.
+Unsupported profiles block; general CAD support is not inferred. CAD handoff
+preparation cannot skip the gate by claiming informational consequence.
+
+Sixteen integration methods cover both positive consistency controls and all six
+roadmap failure categories, independent geometry findings after test-only hash
+renewal, each required evidence role, source/descriptor/context conflicts,
+unknown profiles, stale evidence/approvals, classification/family changes, all
+live actions and malformed/resource-limited inputs. STEP/STL nonfinite-coordinate
+cases are explicit refusals. Controls use non-operational requirements and
+synthetic review records, not applicable product intent or qualified approval.
+
+The initial focused run passed sixteen methods in 14.164 seconds; the expanded
+adjacent run passed 77 methods in 52.414 seconds, including the unchanged CAD CLI
+report and historical packet replays. A subsequent inspection reproduced a
+material/process mismatch accepted when no machine profile was supplied. The
+added material-process check blocks that case independently; its focused method
+passed in 2.529 seconds with fresh test-only evidence and approval.
+
+The final full portable suite passed all 591 tests in 161.977 seconds after the
+material-process fix. Foundation validation passed (58 required files, thirteen
+context schemas, five skillsets), schema-instance validation passed (fourteen
+definitions, 100 instances), and whitespace checks passed. These results prove
+the inspected assertions, not practitioner usefulness or physical safety.
+
+Historical packets, geometry, byte bindings and review conclusions remain
+unchanged. No native CAD probe was rerun, source program executed or geometry
+regenerated. Fingerprints check declared identity and current review coverage,
+not source authenticity, correct reconstruction or complete manufacturing intent.
+Four-family retained workflow/approval evaluation and the full integration gate
+audit remain open, as do public-alpha and qualified practitioner requirements.

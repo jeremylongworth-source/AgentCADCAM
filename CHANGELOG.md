@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bound CAD handoff routing to actual source/STEP/STL/drawing bytes, sourced manufacturing declarations and five independent current review roles. The explicit bracket adapter reuses existing checks through in-memory APIs; unsupported profiles block. CAD handoff preparation cannot be down-classified, and fresh failures invalidate matching approvals. Historical packets stay unchanged; general CAD validation, complete integration acceptance and practitioner review remain open.
+
 - Integrated actual STL/3MF bytes, versioned slicer inputs and seven independent context-bound review roles into additive routing. Fresh file/context/evidence failures invalidate matching approval copies; historical packets remain unchanged and blocked. Extreme 3MF exponents now return structured refusals instead of raising Decimal exceptions. No slicing, printer control or manufacturing approval is introduced; Phase 6 remains open.
 
 - Integrated laser drawing bytes and scoped design/path/process/beam/emissions/output evidence into job routing. Matching approval records can no longer bypass missing drawings, empty settings, fresh preflight failures or stale evidence. Added a state-bound input schema and 14 integration tests; 558 tests pass. Historical packets remain unchanged and blocked; Phase 6 cross-workflow acceptance remains open.

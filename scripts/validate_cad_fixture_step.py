@@ -7,6 +7,7 @@ does not prove topology, manifoldness, tolerances, or manufacturing readiness.
 from __future__ import annotations
 
 import re
+import math
 import sys
 from pathlib import Path
 
@@ -18,10 +19,14 @@ VERTEX_RE = re.compile(r"VERTEX_POINT\('',#(\d+)\)")
 
 
 def validate(path: Path) -> list[str]:
-    errors: list[str] = []
     if not path.is_file():
         return [f"missing STEP fixture: {path}"]
-    text = path.read_text(encoding="utf-8")
+    return validate_text(path.read_text(encoding="utf-8"))
+
+
+def validate_text(text: str) -> list[str]:
+    """Check supplied fixture text without reading paths."""
+    errors: list[str] = []
     if not text.startswith("ISO-10303-21;"):
         errors.append("missing ISO-10303-21 header")
     if not text.rstrip().endswith("END-ISO-10303-21;"):
@@ -31,6 +36,8 @@ def validate(path: Path) -> list[str]:
     if text.count("CIRCLE(") < 8:
         errors.append("STEP fixture does not contain both circular boundaries of all four holes")
     coordinates = {identifier: tuple(float(value) for value in xyz) for identifier, *xyz in POINT_RE.findall(text)}
+    if any(not math.isfinite(value) for point in coordinates.values() for value in point):
+        errors.append("STEP fixture contains nonfinite coordinates")
     vertices = VERTEX_RE.findall(text)
     missing = set(vertices) - coordinates.keys()
     if missing:

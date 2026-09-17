@@ -2,6 +2,11 @@
 
 These packets retain actual AI-assisted applications of the five-skill CAD bundle to controlled repository fixtures. They are development evidence, not independent reviewer verdicts or real-input pilot packets. Each run states its request, baseline, inspected input, skill outputs, executed checks, and remaining limitations.
 
+Phase 6 follow-up: [bounded CAD routing](../../architecture/cad-router-integration.md)
+now requires typed context, actual bytes and five scoped review roles. These
+historical packets remain unchanged and blocked; the new test-only integration
+controls neither supply their missing manufacturing intent nor renew approvals.
+
 | Run | Decision and evidence |
 | --- | --- |
 | [2026-09-17 manufacturing intent](2026-09-17-manufacturing-intent/request.md) | Five sequential skill outputs; missing manufacturing intent blocks a handoff despite passing file/native checks. Artifact hashes, bounded state, and serialized handoff are retained. |

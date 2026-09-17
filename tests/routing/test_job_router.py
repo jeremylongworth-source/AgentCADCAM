@@ -12,6 +12,7 @@ from tests.schema.test_profile_lifecycle import synthetic_review
 from tests.routing.cnc_fixture import make_cnc_review
 from tests.routing.laser_fixture import make_laser_review
 from tests.routing.additive_fixture import make_additive_review
+from tests.routing.cad_fixture import make_cad_review
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -167,6 +168,9 @@ class JobRouterTests(unittest.TestCase):
                 elif family == "additive":
                     state, request, approval, mesh = make_additive_review()
                     result = route_job(request, state, approval, additive_mesh=mesh)
+                elif family == "cad_handoff":
+                    state, request, approval, artifacts = make_cad_review()
+                    result = route_job(request, state, approval, cad_artifacts=artifacts)
                 else:
                     result = self.route(request, state, approval)
                 self.assertEqual(result["blockers"], [])
@@ -329,6 +333,9 @@ class JobRouterTests(unittest.TestCase):
                     elif family == "additive" and level == "execution_adjacent":
                         state, request, approval, mesh = make_additive_review()
                         kwargs["additive_mesh"] = mesh
+                    elif family == "cad_handoff" and level == "execution_adjacent":
+                        state, request, approval, artifacts = make_cad_review()
+                        kwargs["cad_artifacts"] = artifacts
                     self.assertEqual(self.route(request, state, approval, **kwargs)["approval_state"], "approved")
                     state["machine_profile"]["lifecycle"]["verification"]["status"] = "unverified"
                     approval["context_fingerprint"] = context_fingerprint(state)

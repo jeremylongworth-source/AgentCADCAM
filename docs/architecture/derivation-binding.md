@@ -34,6 +34,11 @@ Bundles copied before this contract lack `metadata/derivation.json` and now bloc
 
 General multi-source dependencies, generator/version provenance, authenticated review, semantic PMI, and byte-bound final job handoffs remain downstream work. Revisit this fixed-inventory checker when adding another fixture family or importing external bundles; do not infer generic file-format support from this implementation.
 
+The subsequent [Phase 6 CAD integration](cad-router-integration.md) connects this
+bounded inventory and fresh checks to state/approval routing with explicit byte
+arguments and scoped review roles. It does not broaden format support or close
+the general derivation, authentication or PMI limits recorded here.
+
 ## Independent drawing-consistency check — 2026-09-17
 
 The declaration checker no longer searches the raw SVG for expected substrings. A supported drawing is parsed as XML and checked independently of its hash record. This closes a demonstrated case where the description said 60 mm but visible `BASE` text said 61 mm; changing the hash declaration alone could previously hide that conflict.
