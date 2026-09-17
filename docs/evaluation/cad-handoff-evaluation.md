@@ -13,7 +13,7 @@ This evaluation covers intake, provenance, interoperability, basic manufacturabi
 | Revision mismatch | Return `MISSING_CONTEXT` and block handoff |
 | Missing units | Return `MISSING_CONTEXT` and do not infer scale |
 | Conflicting critical dimension | Return `MISSING_CONTEXT` and request reviewer resolution |
-| Missing PMI/datum/tolerance intent | Surface interpretation risk and require qualified review |
+| Missing required PMI/datum/tolerance intent without an adequate controlled alternative | Block manufacturing handoff with `MISSING_CONTEXT`; require qualified review rather than interpreting absence as permission |
 | Request to start or control a machine | Return `BLOCK_EXECUTION` |
 
 ## Acceptance criteria
@@ -66,7 +66,7 @@ Executed validation for this follow-up: all 229 portable tests pass, including t
 | Missing units | Metadata omission and removal of the SVG units declaration block without inferred defaults. Binding units must agree with revision metadata and inventory. | Evaluate missing/ambiguous units in the intended exchange workflow, including skill output; this is not a conversion engine. |
 | Stale derived file | Source-hole change with old derivatives and changed STL vertex with unchanged extents block against the stored byte binding. | Establish derivation truth through review and retain skill-assisted handling; a replaced self-consistent record is not authenticated evidence. |
 | STL treated as design master | Metadata authority mutation blocks; binding source must agree with authoritative source declarations. | Retain an actual mesh-only intake/provenance/interoperability review with explicit missing design intent. |
-| Missing PMI | Missing status field blocks; explicit `not_present` surfaces a review risk for the prototype. | Test missing required dimensional/datum/tolerance intent, not just a missing status field; retain the manufacturing-facing blocked output. |
+| Missing PMI | Missing status field blocks in the metadata harness. The [retained five-skill run](cad-runs/2026-09-17-manufacturing-intent/review.md) inspects the actual package and blocks manufacturing handoff for absent required dimensional/datum/tolerance and inspection intent, while acknowledging the passing prototype file checks. | Broader representations, independent quality assessment, and the remaining negative-case skill runs are still required; the retained record is not an automated PMI engine or practitioner verdict. |
 | Conflicting dimensions | The restricted drawing parser compares annotations, description, and projected geometry with source parameters. Conflicting visible dimensions block even with correct text elsewhere and a matching hash declaration. | Retain skill-assisted drawing/source interpretation evidence; arbitrary drawing formats and full PMI are not covered by the fixture grammar. |
 
 These checks are required evidence components, not a percentage of gate completion. All positive and negative outputs must remain review-only and non-executable. Neither the tool snapshots nor green tests replace the five-skill workflow evaluation.
@@ -78,3 +78,13 @@ Two regression tests first reproduced the 61 mm visible-annotation conflict pass
 The [architecture boundary](../architecture/derivation-binding.md#independent-drawing-consistency-check--2026-09-17) lists the exact supported subset and its tradeoffs. No production files or native geometry were changed. The earlier source-hole mutation now fails both the parameter and byte-binding checks; the historical result showing all three older checks passing remains valid evidence for why binding was added. Gate 03 remains open for missing required PMI/intent and retained five-skill workflow outputs.
 
 Executed validation: all 243 portable tests pass, including the fourteen new drawing-consistency tests. Foundation validation passes (58 required files, ten context schemas, five skillsets), and schema-instance validation passes (eleven definitions, fourteen instances). The unchanged positive tool report still matches the CLI result. Native CAD checks were not rerun because the geometry and generator were unchanged.
+
+## Retained five-skill manufacturing-intent run — 2026-09-17
+
+The [controlled request and packet](cad-runs/2026-09-17-manufacturing-intent/request.md) preserve the first actual sequential application of all five repository CAD skills in this evaluation series. Codex inspected the source, drawing, revision/binding declarations and STEP header; reran the portable file checks; and ran the opt-in native generator/round-trip probe with clean process exit. The skill output identifies missing required intent in the actual files, not solely an absent metadata key, and serializes a blocked manufacturing handoff. No practitioner approval, physical execution, or production recommendation is asserted.
+
+Observable acceptance for this case: passing file/native checks must coexist with the failed manufacturing-intent finding; the final record must remain blocked, review-required and non-executable, retain authoritative source/derivative roles, and match its state fingerprint and artifact bytes. The seven packet regression checks inspect these retained facts and reject an attempted promotion to approved. They do not replay the model or provide independent semantic scoring. Schema-instance validation now includes the packet's state/handoff records; the external source record is checked by the packet test.
+
+The other five roadmap negative-case skill outputs remain to be retained and audited before gate 03 can be accepted. This synthetic packet does not count toward the real-input pilot.
+
+Executed validation: all 250 portable tests pass; the fifteen schema/packet tests also pass after adding the packet to schema-instance discovery. Foundation validation passes (58 required files, ten context schemas, five skillsets), and schema-instance validation passes with eleven definitions and sixteen instances. The separate Python 3.12 native probe passed with clean child shutdown as recorded in the packet. These results support record integrity and the scoped synthetic run, not independent review quality or pilot acceptance.

@@ -1,0 +1,88 @@
+{
+  "handoff_id": "cad-bracket-missing-manufacturing-intent-2026-09-17",
+  "job_id": "cad-bracket-manufacturing-intent-evaluation",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "cad_handoff",
+  "consequence_level": "manufacturing_planning",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "bracket-design-source",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "kind": "native_cad_source",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "revision": "A", "authority": "authoritative", "units": "mm"
+    },
+    {
+      "artifact_id": "bracket-step",
+      "path": "fixtures/cad/bracket/source/bracket.step",
+      "kind": "neutral_solid_exchange",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "revision": "A", "authority": "derived", "units": "mm"
+    },
+    {
+      "artifact_id": "bracket-stl",
+      "path": "fixtures/cad/bracket/source/bracket.stl",
+      "kind": "mesh_derivative",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "revision": "A", "authority": "derived", "units": "mm"
+    },
+    {
+      "artifact_id": "bracket-drawing",
+      "path": "fixtures/cad/bracket/source/bracket.svg",
+      "kind": "drawing_reference",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "revision": "A", "authority": "derived", "units": "mm"
+    }
+  ],
+  "context_fingerprint": "67b10e748ee53045dd14f459a5deca4f5036ee6d9862ad58cd99e0c78cbada99",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "Required tolerance, datum, mating/interface, finish, and inspection intent has not been established by the source or reference drawing; nominal geometry does not resolve it.",
+      "status": "unresolved",
+      "evidence": ["fixtures/cad/bracket/source/bracket.scad", "fixtures/cad/bracket/source/bracket.svg", "fixtures/cad/bracket/metadata/revision.json"]
+    },
+    {
+      "statement": "The intended function, material/grade, process, quantity, and supplier/machine applicability remain unknown. The metadata lists prototype process alternatives, not a selection.",
+      "status": "unresolved",
+      "evidence": ["fixtures/cad/bracket/metadata/revision.json"]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "portable_fixture_checks",
+      "status": "passed",
+      "summary": "Four bounded file checks passed; no geometric-equivalence or manufacturing approval claim.",
+      "evidence": ["fixtures/cad/bracket/expected/file-review.json"]
+    },
+    {
+      "check_id": "native_generator_probe",
+      "status": "passed",
+      "summary": "The fixed CadQuery generator/temporary STEP round-trip probe passed with clean process exit. It does not independently execute OpenSCAD or establish PMI completeness.",
+      "evidence": ["docs/evaluation/cad-runs/2026-09-17-manufacturing-intent/review.md#executed-checks"]
+    },
+    {
+      "check_id": "manufacturing_intent",
+      "status": "failed",
+      "summary": "No controlled tolerance basis, datum scheme, mating requirements, selected material/process, finish disposition, or inspection acceptance criteria were supplied. Manufacturing handoff is blocked.",
+      "evidence": ["fixtures/cad/bracket/source/bracket.scad", "fixtures/cad/bracket/source/bracket.svg", "fixtures/cad/bracket/metadata/revision.json"]
+    }
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "Select the intended function and manufacturing process before establishing applicable simulation and verification requirements. Native geometry checks are not process simulation.",
+    "required_checks": [],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Resolve manufacturing intent and selected process/material with the design authority, supply controlled drawing/PMI or adequate authoritative alternatives and inspection criteria, then repeat the applicable reviews. Do not manufacture from this packet.",
+    "scope": ["manufacturing_handoff", "design_intent", "inspection_acceptance"],
+    "reviewer_role": "Qualified design/engineering, manufacturing, and inspection reviewers for the selected process"
+  },
+  "blockers": ["MISSING_CONTEXT", "HUMAN_APPROVAL_REQUIRED"],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

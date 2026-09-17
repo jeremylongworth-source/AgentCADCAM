@@ -1,0 +1,55 @@
+{
+  "job_id": "cad-bracket-manufacturing-intent-evaluation",
+  "revision": "A",
+  "source_artifact_hashes": [
+    "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+    "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+    "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+    "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f"
+  ],
+  "units": "mm",
+  "process_family": "cad_handoff",
+  "material": null,
+  "machine_profile": null,
+  "controller_profile": null,
+  "setup": null,
+  "workholding": null,
+  "work_coordinate_system": null,
+  "tool_library": null,
+  "cam_system": null,
+  "postprocessor": null,
+  "post_version": null,
+  "generated_manufacturing_output": null,
+  "simulation_status": "unknown",
+  "verification_results": [
+    {
+      "check_id": "portable_fixture_checks",
+      "status": "passed",
+      "summary": "Four bounded file checks passed; no geometric-equivalence or manufacturing approval claim.",
+      "evidence": ["fixtures/cad/bracket/expected/file-review.json"]
+    },
+    {
+      "check_id": "native_generator_probe",
+      "status": "passed",
+      "summary": "The fixed CadQuery generator/temporary STEP round-trip probe passed with clean process exit. It does not independently execute OpenSCAD or establish PMI completeness.",
+      "evidence": ["docs/evaluation/cad-runs/2026-09-17-manufacturing-intent/review.md#executed-checks"]
+    },
+    {
+      "check_id": "manufacturing_intent",
+      "status": "failed",
+      "summary": "No controlled tolerance basis, datum scheme, mating requirements, selected material/process, finish disposition, or inspection acceptance criteria were supplied. Manufacturing handoff is blocked.",
+      "evidence": ["fixtures/cad/bracket/source/bracket.scad", "fixtures/cad/bracket/source/bracket.svg", "fixtures/cad/bracket/metadata/revision.json"]
+    }
+  ],
+  "jurisdiction": null,
+  "ip_status": {
+    "ownership_status": "owned",
+    "licence_status": "permitted",
+    "confidentiality": "public",
+    "third_party_restrictions": [],
+    "redistribution_authorized": true,
+    "evidence_scope": "Repository synthetic CC0 fixture declarations only; no authorization for an external product or job is inferred."
+  },
+  "export_review_status": "not_required",
+  "approval_status": "not_requested"
+}

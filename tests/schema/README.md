@@ -2,7 +2,7 @@
 
 Run `python scripts/validate_schema_instances.py` after installing `requirements-test.txt`.
 
-The validator checks all eleven context/state definitions against Draft 2020-12, validates context examples and the state example, and validates machine/printer, controller, material, post, setup, and tool fixture profiles plus declared derivation records. References resolve through a local schema registry; unresolved references fail without remote retrieval. Timestamp format checks are enabled. See the [jsonschema validator API](https://python-jsonschema.readthedocs.io/en/latest/api/jsonschema/protocols/) for registry and format-checker behavior.
+The validator checks all eleven context/state definitions against Draft 2020-12, validates context examples and the state example, and validates machine/printer, controller, material, post, setup, and tool fixture profiles plus declared derivation records. It also checks state/handoff JSON files retained under `docs/evaluation/cad-runs/`. References resolve through a local schema registry; unresolved references fail without remote retrieval. Timestamp format checks are enabled. See the [jsonschema validator API](https://python-jsonschema.readthedocs.io/en/latest/api/jsonschema/protocols/) for registry and format-checker behavior.
 
 Regression tests additionally reject malformed hashes, missing source metadata, invalid state fields and timestamps, and verify that runtime invalidation outputs conform to the approval schema.
 
