@@ -1,4 +1,5 @@
 {
+  "lifecycle": {"revision":"1","applicability":"Offline cnc/mill-bracket synthetic controller fixture only; no physical manufacturing applicability established.","units":{},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "controller_id": "fixture-controller",
   "manufacturer": "Synthetic Fixture",
   "model": "controller-v1",

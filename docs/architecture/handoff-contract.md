@@ -40,7 +40,7 @@ Before recognizing a handoff's declared approval, a consumer must independently 
 
 The existing `route_job` evaluates bounded state and approval records; it does **not** consume this serialized handoff or authenticate its evidence. Full cross-package binding and retained skill-assisted handoffs remain integration/pilot work. Do not treat a schema-valid package as a validated composed workflow. Physical operating procedures and qualified human decisions remain outside this repository's authority.
 
-This contract leaves process-specific evidence details open rather than inventing universal simulation or inspection requirements. The profile lifecycle gap remains tracked in the [foundation review](../development/foundation-content-review.md).
+This contract leaves process-specific evidence details open rather than inventing universal simulation or inspection requirements. Reusable profile lifecycle records and their routing checks are now defined in the [profile standard](../standards/context-profile-standard.md); the [foundation review](../development/foundation-content-review.md) distinguishes those declared records from downstream evidence verification.
 
 ## Verification and compatibility
 

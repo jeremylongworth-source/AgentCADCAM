@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added required lifecycle records to reusable profiles and revision-scoped verification checks to job routing. Unverified or mismatched reviews cannot retain effective approval; fixture profiles remain explicitly unverified. Older profile records require the migration in `docs/development/profile-lifecycle-migration.md`.
+- Recorded Phase 1 foundation acceptance after the follow-up contract/evidence review and passing validators. Workflow, public-alpha, and practitioner-pilot gates remain open; the next work is CAD handoff validation against file-derived negative cases.
 - Extended the handoff schema with context identity, assumptions, verification, simulation requirements, and human review action. Explicit unknowns remain representable; contradictory approval declarations fail validation and all statuses remain non-executable. Added 20 schema tests and a breaking-change migration guide at `docs/development/handoff-contract-migration.md`.
 - Tightened shared profile source metadata to require scope, supported claims, publication/revision availability, and calendar access dates. Migrated synthetic records with test-only claims and added schema/routing regressions. This breaks older minimal source records; see `docs/development/source-contract-migration.md`.
 - Reviewed the domain contract against Phase 0 requirements, added conditional capability boundaries and four workflow definitions, and recorded architecture acceptance. Phase 1 remains open for explicit handoff and profile lifecycle schema gaps.

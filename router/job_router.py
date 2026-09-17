@@ -21,6 +21,8 @@ def route_job(
     catalog = load_catalog()
     errors: list[str] = []
     findings: list[str] = []
+    profile_review_required: set[str] = set()
+    profile_schemas = {"machine.schema.json", "controller.schema.json", "material.schema.json", "tool.schema.json", "post.schema.json"}
 
     def validate(value, schema_name, label):
         failures = list(validator_for(schema_name, catalog).iter_errors(value))
@@ -28,6 +30,14 @@ def route_job(
             path = "/".join(str(item) for item in failure.absolute_path) or "<root>"
             # Report the failing rule, not private values from a manufacturing packet.
             errors.append(f"{label}/{path}: {failure.validator} validation failed")
+        if schema_name in profile_schemas:
+            if failures:
+                profile_review_required.add(label)
+            else:
+                lifecycle = value["lifecycle"]
+                verification = lifecycle["verification"]
+                if verification["status"] != "verified" or verification["reviewed_revision"] != lifecycle["revision"]:
+                    profile_review_required.add(label)
         return not failures
 
     state_ok = validate(current_state, "state.schema.json", "state")
@@ -66,6 +76,17 @@ def route_job(
                 errors.append(f"{field} process_family conflicts with bounded state")
                 valid = False
             normalized[known] = valid and normalized.get(known) is True
+        # Validate supplied reusable profiles even below execution-adjacent CNC.
+        # Missing process-required context is still handled by the process gate.
+        if state.get("postprocessor") is not None:
+            validate(state["postprocessor"], "post.schema.json", "postprocessor")
+        library = state.get("tool_library")
+        if isinstance(library, dict) and "tools" in library:
+            if not isinstance(library["tools"], list):
+                errors.append("tool_library/tools: array validation failed")
+            else:
+                for index, tool in enumerate(library["tools"]):
+                    validate(tool, "tool.schema.json", f"tool_library/tools/{index}")
         normalized["jurisdiction_known"] = bool(state.get("jurisdiction")) and normalized.get("jurisdiction_known") is True
         if state.get("generated_manufacturing_output") is not None:
             normalized["generated_manufacturing_artifact"] = True
@@ -116,6 +137,14 @@ def route_job(
         result["blockers"] = sorted(set(result["blockers"]) | additional)
     if errors:
         result["blockers"] = sorted(set(result["blockers"]) | {"MISSING_CONTEXT", "HUMAN_APPROVAL_REQUIRED"})
+    if profile_review_required:
+        result["blockers"] = sorted(set(result["blockers"]) | {"SOURCE_VERIFICATION_REQUIRED", "HUMAN_APPROVAL_REQUIRED"})
+        findings.extend(f"{label}: profile review is missing, unverified, or does not cover the current revision" for label in sorted(profile_review_required))
+        if effective_status == "approved":
+            effective_status = "invalidated"
+            record["status"] = "invalidated"
+            record["invalidation_reason"] = "a supplied profile lacks current revision-scoped verification"
+            result["approval_state"] = effective_status
     cnc_context_failures = {
         "MISSING_CONTEXT", "MACHINE_CONTEXT_REQUIRED",
         "SOURCE_VERIFICATION_REQUIRED", "SIMULATION_REQUIRED",

@@ -77,6 +77,37 @@
     }
   ],
   "$defs": {
+    "profile_lifecycle": {
+      "type": "object", "additionalProperties": false,
+      "required": ["revision", "applicability", "units", "verification"],
+      "properties": {
+        "revision": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
+        "applicability": {"$ref": "#/$defs/nonblank_text"},
+        "units": {"type": "object", "propertyNames": {"$ref": "#/$defs/nonblank_text"}, "additionalProperties": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"}},
+        "verification": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "reviewed_revision", "reviewer", "reviewed_at", "evidence", "notes"],
+          "properties": {
+            "status": {"enum": ["unknown", "unverified", "verified", "conflicted", "rejected"]},
+            "reviewed_revision": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
+            "reviewer": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
+            "reviewed_at": {"type": ["string", "null"], "format": "date-time"},
+            "evidence": {"$ref": "#/$defs/text_list"},
+            "notes": {"$ref": "#/$defs/nonblank_text"}
+          }
+        }
+      },
+      "allOf": [{
+        "if": {"properties": {"verification": {"properties": {"status": {"const": "verified"}}}}},
+        "then": {"properties": {
+          "revision": {"type": "string"},
+          "verification": {"properties": {
+            "reviewed_revision": {"type": "string"}, "reviewer": {"type": "string"},
+            "reviewed_at": {"type": "string"}, "evidence": {"minItems": 1}
+          }}
+        }}
+      }]
+    },
     "nonblank_text": {"type": "string", "minLength": 1, "pattern": "\\S"},
     "text_list": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/nonblank_text"}},
     "assumption": {

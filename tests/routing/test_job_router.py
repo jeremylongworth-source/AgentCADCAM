@@ -8,6 +8,7 @@ from pathlib import Path
 from router.job_router import route_job
 from scripts.validate_schema_instances import validator_for
 from state.state import context_fingerprint
+from tests.schema.test_profile_lifecycle import synthetic_review
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -29,6 +30,9 @@ class JobRouterTests(unittest.TestCase):
         self.state["postprocessor"] = json.loads((ROOT / "fixtures/cnc/mill-bracket/contexts/post.json").read_text(encoding="utf-8"))
         self.state["cam_system"] = self.state["postprocessor"]["cam_system"]
         self.state["post_version"] = self.state["postprocessor"]["post_version"]
+        for profile in (self.state["machine_profile"], self.state["controller_profile"], self.state["material"],
+                        self.state["postprocessor"], tool):
+            synthetic_review(profile)
         self.request = {"process_family": "cnc_milling", "artifact_class": "nc_program", "consequence_level": "execution_adjacent", "machine_known": True, "controller_known": True, "material_known": True}
         self.approval = {
             "approval_id": "synthetic-approval", "status": "approved",
@@ -165,7 +169,7 @@ class JobRouterTests(unittest.TestCase):
                 state = copy.deepcopy(self.state)
                 state["process_family"] = family
                 for target, file in (("machine_profile", machine_file), ("material", "material")):
-                    state[target] = json.loads((ROOT / f"fixtures/{fixture}/contexts/{file}.json").read_text(encoding="utf-8"))
+                    state[target] = synthetic_review(json.loads((ROOT / f"fixtures/{fixture}/contexts/{file}.json").read_text(encoding="utf-8")))
                 if family != "cnc_milling":
                     state["controller_profile"] = None
                 approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
@@ -269,3 +273,62 @@ class JobRouterTests(unittest.TestCase):
                 result = route_job(self.request, state, approval)
                 self.assertEqual(result["approval_state"], "invalidated")
                 self.assertIn("MISSING_CONTEXT", result["blockers"])
+
+    def test_unverified_profiles_block_matching_approval_for_all_profile_types(self):
+        for field in ("machine_profile", "controller_profile", "material", "postprocessor", "tool_library"):
+            for status in ("unknown", "unverified", "conflicted", "rejected"):
+                with self.subTest(field=field, status=status):
+                    state = copy.deepcopy(self.state)
+                    profile = state[field]["tools"][0] if field == "tool_library" else state[field]
+                    profile["lifecycle"]["verification"]["status"] = status
+                    approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                    before = copy.deepcopy((state, approval))
+                    result = route_job(self.request, state, approval)
+                    self.assertEqual(result["approval_state"], "invalidated")
+                    self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
+                    self.assertIn("HUMAN_APPROVAL_REQUIRED", result["blockers"])
+                    self.assertEqual(result["approval_record"]["context_fingerprint"], approval["context_fingerprint"])
+                    self.assertEqual(before, (state, approval))
+
+    def test_profile_review_must_identify_the_current_profile_revision(self):
+        state = copy.deepcopy(self.state)
+        state["machine_profile"]["lifecycle"]["verification"]["reviewed_revision"] = "old-profile"
+        approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+        result = route_job(self.request, state, approval)
+        self.assertEqual(result["approval_state"], "invalidated")
+        self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
+
+    def test_profile_metadata_changes_invalidate_old_fingerprints(self):
+        for field in ("machine_profile", "controller_profile", "material", "postprocessor", "tool_library"):
+            for change in ("revision", "applicability", "units", "verification"):
+                with self.subTest(field=field, change=change):
+                    state = copy.deepcopy(self.state)
+                    profile = state[field]["tools"][0] if field == "tool_library" else state[field]
+                    lifecycle = profile["lifecycle"]
+                    if change == "units":
+                        lifecycle[change] = {"length": "inch"}
+                    elif change == "verification":
+                        lifecycle[change]["notes"] = "Changed synthetic findings"
+                    else:
+                        lifecycle[change] = "changed"
+                    result = route_job(self.request, state, self.approval, previous_state=self.state)
+                    self.assertEqual(result["approval_state"], "invalidated")
+                    self.assertIn(field, result["approval_record"]["changed_fields"])
+
+    def test_unverified_supplied_profiles_block_approval_in_every_family_and_level(self):
+        for family in ("cad_handoff", "cnc_milling", "additive", "laser_cutting"):
+            for level in ("informational", "design_advisory", "manufacturing_planning", "execution_adjacent"):
+                with self.subTest(family=family, level=level):
+                    state = copy.deepcopy(self.state)
+                    state["process_family"] = family
+                    if family != "cad_handoff":
+                        state["machine_profile"]["process_family"] = family
+                        state["material"]["process_family"] = family
+                    request = dict(self.request, process_family=family, consequence_level=level, artifact_class="handoff")
+                    approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
+                    self.assertEqual(route_job(request, state, approval)["approval_state"], "approved")
+                    state["machine_profile"]["lifecycle"]["verification"]["status"] = "unverified"
+                    approval["context_fingerprint"] = context_fingerprint(state)
+                    result = route_job(request, state, approval)
+                    self.assertEqual(result["approval_state"], "invalidated")
+                    self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])

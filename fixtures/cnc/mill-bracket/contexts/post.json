@@ -1,4 +1,5 @@
 {
+  "lifecycle": {"revision":"1","applicability":"Offline cnc/mill-bracket synthetic post fixture only; no physical manufacturing applicability established.","units":{},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "post_id": "fixture-post-v1",
   "cam_system": "fixture-cam",
   "controller_id": "fixture-controller",

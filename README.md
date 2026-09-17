@@ -19,7 +19,7 @@ It does not replace CAD/CAM software, qualified manufacturing professionals, mac
 
 The repository implements 14 skill contracts, five skillsets, and local review/routing utilities for the four initial workflow families. Automated tests cover a curated synthetic corpus; they do not establish full roadmap completion or manufacturing readiness.
 
-The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md) supersedes the earlier blanket claim that gates `CADCAM_01` through `CADCAM_08` were complete. Foundation evidence, process-specific file validation, and governance verification still need work before the real-input practitioner pilot can close `CADCAM_09_PILOT_VALIDATED`. [ROADMAP.md](ROADMAP.md) remains the governing requirements document.
+The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md) supersedes the earlier blanket claim that gates `CADCAM_01` through `CADCAM_08` were complete. The subsequent content review supports domain/foundation gates `CADCAM_01` and `CADCAM_02` for repository development. Process-specific file validation, retained workflow evidence, and governance verification still need work before the real-input practitioner pilot can close `CADCAM_09_PILOT_VALIDATED`. [ROADMAP.md](ROADMAP.md) remains the governing requirements document.
 
 ## Repository map
 

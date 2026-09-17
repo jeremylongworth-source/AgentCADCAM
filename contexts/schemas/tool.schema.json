@@ -4,8 +4,9 @@
   "title": "Tool Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["tool_id", "source"],
+  "required": ["tool_id", "source", "lifecycle"],
   "properties": {
+    "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
     "tool_id": {"type": "string", "minLength": 1},
     "tool_number": {"type": ["integer", "null"], "minimum": 0},
     "holder": {"type": ["string", "null"]},

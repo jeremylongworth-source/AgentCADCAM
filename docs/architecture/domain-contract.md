@@ -65,7 +65,7 @@ This repository is an independent sibling project with its own taxonomy, router,
 
 ## Validation notes
 
-The taxonomy, personas, four workflow definitions, consequence model, specialization rules, and execution boundary were reviewed together in the linked content review. Context schemas and routing implement parts of this contract; schema coverage gaps remain explicitly open under Phase 1. A new process, weaker boundary, or required sibling/vendor runtime dependency must reopen the architecture decision rather than silently alter it.
+The taxonomy, personas, four workflow definitions, consequence model, specialization rules, and execution boundary were reviewed together in the linked content review. The identified schema representation gaps are resolved and Phase 1 is accepted for repository development; workflow applicability and composed evidence validation remain downstream gate requirements. A new process, weaker boundary, or required sibling/vendor runtime dependency must reopen the architecture decision rather than silently alter it.
 
 ## Resolved foundation decisions
 

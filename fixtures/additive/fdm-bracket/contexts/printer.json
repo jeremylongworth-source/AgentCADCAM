@@ -1,4 +1,5 @@
 {
+  "lifecycle": {"revision":"1","applicability":"Offline additive/fdm-bracket synthetic printer fixture only; no physical manufacturing applicability established.","units":{"length":"mm"},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "machine_id": "fixture-printer-fdm",
   "process_family": "additive",
   "manufacturer": "Synthetic Fixture",

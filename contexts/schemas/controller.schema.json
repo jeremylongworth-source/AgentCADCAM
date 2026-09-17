@@ -4,8 +4,9 @@
   "title": "Controller Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["controller_id", "source"],
+  "required": ["controller_id", "source", "lifecycle"],
   "properties": {
+    "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
     "controller_id": {"type": "string", "minLength": 1},
     "manufacturer": {"type": ["string", "null"]},
     "model": {"type": ["string", "null"]},

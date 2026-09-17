@@ -38,6 +38,7 @@ Recognized live actions, including machine starts and safety-system disabling, f
 The integrated function:
 
 - Validates current/previous state, approval records, and supplied machine/controller/material profiles using local schemas. A `*_known: true` flag cannot establish a missing or invalid profile.
+- Validates supplied post and tool profiles even outside execution-adjacent CNC. All five reusable profile types require lifecycle metadata; unverified or revision-mismatched profile reviews block effective approval across families and consequence levels. See the [profile lifecycle contract](../docs/standards/context-profile-standard.md). This does not authenticate reviewers or infer unit conversions.
 - Uses the state process family and blocks conflicts with the request or supplied profiles.
 - Ignores raw approval flags. It requires a record with a matching version-2 context fingerprint, review timestamp, and exact required scope token before recognizing `approved` for this request.
 - Marks stale approval copies `invalidated`, preserving the original reviewed fingerprint. A previous state is optional and supplies changed-field diagnostics. A new review of the current fingerprint remains valid even if the previous snapshot differs.

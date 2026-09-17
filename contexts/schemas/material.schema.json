@@ -4,8 +4,9 @@
   "title": "Material Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["material_id", "process_family", "source"],
+  "required": ["material_id", "process_family", "source", "lifecycle"],
   "properties": {
+    "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
     "material_id": {"type": "string", "minLength": 1},
     "process_family": {"enum": ["cnc_milling", "additive", "laser_cutting"]},
     "grade_or_profile": {"type": ["string", "null"]},

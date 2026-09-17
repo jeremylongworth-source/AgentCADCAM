@@ -1,4 +1,5 @@
 {
+  "lifecycle": {"revision":"1","applicability":"Offline laser/cut-bracket synthetic material fixture only; no physical manufacturing applicability established.","units":{},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "material_id": "fixture-plywood",
   "process_family": "laser_cutting",
   "grade_or_profile": "synthetic plywood profile",

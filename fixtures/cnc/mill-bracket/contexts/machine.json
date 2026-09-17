@@ -1,4 +1,5 @@
 {
+  "lifecycle": {"revision":"1","applicability":"Offline cnc/mill-bracket synthetic machine fixture only; no physical manufacturing applicability established.","units":{"length":"mm","spindle_speed":"rpm"},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "machine_id": "fixture-mill-3axis",
   "process_family": "cnc_milling",
   "manufacturer": "Synthetic Fixture",

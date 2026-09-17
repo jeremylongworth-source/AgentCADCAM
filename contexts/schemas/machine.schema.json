@@ -4,8 +4,9 @@
   "title": "Machine Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["machine_id", "process_family", "source"],
+  "required": ["machine_id", "process_family", "source", "lifecycle"],
   "properties": {
+    "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
     "machine_id": {"type": "string", "minLength": 1},
     "process_family": {"enum": ["cnc_milling", "additive", "laser_cutting"]},
     "manufacturer": {"type": ["string", "null"]},

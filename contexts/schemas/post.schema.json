@@ -4,8 +4,9 @@
   "title": "Postprocessor Profile",
   "type": "object",
   "additionalProperties": false,
-  "required": ["post_id", "cam_system", "controller_id", "source"],
+  "required": ["post_id", "cam_system", "controller_id", "source", "lifecycle"],
   "properties": {
+    "lifecycle": {"$ref": "handoff.schema.json#/$defs/profile_lifecycle"},
     "post_id": {"type": "string", "minLength": 1},
     "cam_system": {"type": "string", "minLength": 1},
     "controller_id": {"type": "string", "minLength": 1},
