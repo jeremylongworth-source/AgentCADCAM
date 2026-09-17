@@ -1,6 +1,6 @@
 fixture_id: additive-fdm-bracket
 positive:
-  - input: contexts/job.json + contexts/printer.json + contexts/material.json
+  - input: contexts/job.json + contexts/printer.json + contexts/material.json + declared STL bytes and source revision A
     expected_blockers: [HUMAN_APPROVAL_REQUIRED]
 negative:
   - mutation: non-manifold-geometry

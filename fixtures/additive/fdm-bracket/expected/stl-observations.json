@@ -1,0 +1,43 @@
+{
+  "baseline_code": "81ae19d plus the STL inspection change",
+  "scope": "Observed byte-derived partial topology only; not a manufacturing approval",
+  "source": "fixtures/cad/bracket/source/bracket.stl",
+  "cases": {
+    "positive": {
+      "mutation": "none",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "encoding": "binary",
+      "triangles": 2052,
+      "dimensions_exact": {"x": "60", "y": "40", "z": "30"},
+      "bounds": {"min": [0.0, 0.0, 0.0], "max": [60.0, 40.0, 30.0]},
+      "dimensions": {"x": 60.0, "y": 40.0, "z": 30.0},
+      "topology": {
+        "boundary_edges": 0, "nonmanifold_edges": 0, "winding_conflicts": 0,
+        "nonmanifold_vertices": 0, "duplicate_faces": 0, "degenerate_faces": 0,
+        "normal_conflicts": 0, "shells": 1, "signed_volume_positive": true
+      },
+      "status": "checked_partial_geometry",
+      "blockers": [],
+      "findings": []
+    },
+    "missing-last-facet": {
+      "mutation": "Remove the last 50-byte facet and decrement the little-endian uint32 facet count; leave metadata mesh_status valid and reidentify only in test context",
+      "sha256": "2fd7caa027e8e190efdc940a5993fdacf3c6d5ad2a78d327a4c82427c1cdf9cf",
+      "encoding": "binary",
+      "triangles": 2051,
+      "dimensions_exact": {"x": "60", "y": "40", "z": "30"},
+      "bounds": {"min": [0.0, 0.0, 0.0], "max": [60.0, 40.0, 30.0]},
+      "dimensions": {"x": 60.0, "y": 40.0, "z": 30.0},
+      "topology": {
+        "boundary_edges": 3, "nonmanifold_edges": 0, "winding_conflicts": 0,
+        "nonmanifold_vertices": 3, "duplicate_faces": 0, "degenerate_faces": 0,
+        "normal_conflicts": 0, "shells": 1, "signed_volume_positive": true
+      },
+      "status": "blocked",
+      "blockers": ["MISSING_CONTEXT"],
+      "findings": ["boundary_edges: 3", "nonmanifold_vertices: 3"]
+    }
+  },
+  "review_required": true,
+  "execution_allowed": false
+}

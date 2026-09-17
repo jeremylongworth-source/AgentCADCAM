@@ -2,6 +2,7 @@
   "job_id": "additive-fdm-bracket",
   "revision": "A",
   "mesh_format": "STL",
+  "mesh_sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
   "mesh_status": "valid",
   "mesh_units": "mm",
   "model_dimensions": {"x": 60, "y": 40, "z": 30},

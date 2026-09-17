@@ -1,7 +1,7 @@
 fixture_id: additive-fdm-bracket
-version: 1
+version: 2
 status: validated_synthetic
-description: Synthetic FDM preflight fixture using the CAD bracket mesh derivative.
+description: Byte-bound synthetic FDM preflight with partial STL topology and declared-unit extent checks.
 license: CC0-1.0 synthetic fixture
 source_job: ../../cad/bracket/fixture.yaml
 mesh: ../../cad/bracket/source/bracket.stl
@@ -11,4 +11,4 @@ contexts:
   material: contexts/material.json
 expected:
   default_blockers: [HUMAN_APPROVAL_REQUIRED]
-  required_findings: ["STL is a print derivative", "printer build volume compatible", "material profile compatible"]
+  required_findings: ["mesh/package remains a print derivative", "file-derived axis-aligned extents fit declared build dimensions"]
