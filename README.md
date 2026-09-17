@@ -111,7 +111,7 @@ Read [Safety and approvals](docs/wiki/Safety-and-Approvals.md) before using a re
 | [Roadmap](ROADMAP.md) | Governing scope, phase gates, and deferred capabilities |
 | [Changelog](CHANGELOG.md) | Development changes and compatibility notes |
 
-Wiki content is maintained in this repository for publication to the [GitHub Wiki](https://github.com/jeremylongworth-source/AgentCADCAM/wiki). The [publishing guide](docs/development/wiki-publishing.md) records availability and the maintenance workflow.
+Wiki content is maintained in this repository and published on the [GitHub Wiki](https://github.com/jeremylongworth-source/AgentCADCAM/wiki). The [publishing guide](docs/development/wiki-publishing.md) records publication evidence and the maintenance workflow.
 
 ## Contributing
 

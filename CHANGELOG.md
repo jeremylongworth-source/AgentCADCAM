@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Published the seven-page GitHub Wiki with sidebar and safety footer from source `4cfb372` (wiki commit `2ad259e`). Verified the hosted Home and Getting Started pages and public README rendering. Public-alpha acceptance and qualified pilot validation remain separate, open gates.
+
 - Enabled GitHub private vulnerability reporting after the repository became public and verified its public reporting link. Updated security and wiki availability guidance; authenticated form/notification checks and public-alpha acceptance remain open. No repository visibility change was performed by the agent.
 
 - Rebuilt the README around project purpose, scoped workflows, a local quick start, and evidence limits. Added seven wiki guides, sidebar/footer, and a non-publishing export workflow. Corrected the stale skills index. Hosted wiki activation remains unavailable; repository visibility and manufacturing approval behavior are unchanged.

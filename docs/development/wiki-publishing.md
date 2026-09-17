@@ -18,6 +18,23 @@ containing only the default welcome message at `b68d2a3`. No visibility change
 was made by this agent. The prepared source can now use the publishing workflow
 below; confirm the hosted result before calling an export published.
 
+## Published wiki — 2026-09-17
+
+- Source commit: `4cfb372` in the main repository.
+- Wiki commit: `2ad259ef06f839dca99b1181834c6af20f5c4e61` on its existing `master` branch.
+- Published nine files: seven guide pages, `_Sidebar.md`, and `_Footer.md`.
+- Replaced only the initial default Home message; no other pre-existing pages
+  were present in the inspected wiki checkout.
+- Confirmed the hosted Home page, seven-page count, sidebar and safety footer;
+  inspected Home layout and Getting Started code blocks and content. The public
+  README also rendered with its wiki link. A separate narrow-viewport review was
+  not performed.
+- Foundation validation and six wiki-export tests passed before publication.
+  No runtime or manufacturing approval behavior changed.
+
+The [hosted wiki](https://github.com/jeremylongworth-source/AgentCADCAM/wiki) is now
+available. This publication record does not award a roadmap gate.
+
 [GitHub documents](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
 wiki availability for public repositories on Free plans and private repositories
 on eligible paid plans. Do not change billing or visibility to unlock the feature
