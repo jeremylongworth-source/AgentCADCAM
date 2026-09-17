@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Reconciled all nine public-alpha exit requirements and inventoried factual/policy boundaries across the fourteen skill contracts. Added consolidated public limitations and a maintainer release checklist. Phase 7 remains on hold for operational private reporting and the release decision; no runtime, skills, fixtures or approvals changed.
+
 - Reconciled all thirteen Phase 7 safety cases with an executable named-case matrix: 78 distinct adverse boundary checks, eight forged-packet refusals and eight positive controls. Required-blocker recall is 78/78 with zero critical false-ready outcomes in that declared corpus; all 651 tests pass. Runtime and retained approvals are unchanged. Broader adversarial/source review and private reporting remain open before public-alpha acceptance.
 
 - Added four scoped primary safety/context references and a claim-to-source audit. Fixed the adversarial HTTP import-root gap, expanded scanning to nested portable code, and documented dynamic-import/native-process limits. All 647 tests pass; Phase 7 remains open pending the full safety/source reconciliation and private reporting availability.

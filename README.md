@@ -25,7 +25,9 @@ Phase 7 progress: [source/export governance checks](docs/architecture/governance
 now block missing, denied or conflicting declarations even with matching review
 records. [Source assessments](docs/architecture/source-review-readiness.md) also
 require primary authority, scoped evidence, matching metadata and current review
-dates. The full safety/source audit and public-alpha gate remain open.
+dates. The [Phase 7 gate review](docs/development/public-alpha-gate-review.md)
+reconciles the bounded safety/source evidence. Public-alpha acceptance remains
+on hold pending operational private reporting and a maintainer release decision.
 
 ## Repository map
 
@@ -47,6 +49,26 @@ dates. The full safety/source audit and public-alpha gate remain open.
 All manufacturing outputs are reviewable artifacts, never self-authorizing instructions. Missing or unverified consequential context must produce an explicit blocking outcome such as `MISSING_CONTEXT`, `SIMULATION_REQUIRED`, `HUMAN_APPROVAL_REQUIRED`, or `BLOCK_EXECUTION`.
 
 See [SECURITY.md](SECURITY.md) and [docs/standards/safety-governance-standard.md](docs/standards/safety-governance-standard.md).
+
+## Public limitations
+
+- The skills describe review duties; local utilities implement only documented
+  subsets. CAD checks target the initial bracket adapter, NC review supports a
+  restricted dialect, and STL/3MF/DXF/SVG checks are partial. They are not general
+  CAD/PMI interpreters, collision proofs or manufacturing certification.
+- Source/reviewer declarations and hashes establish recorded consistency, not
+  authenticated identity, permission, evidence truth or physical machine state.
+- Tests and retained reviews use a curated synthetic corpus. All actual fixture
+  handoffs remain blocked; qualified real-input pilot validation is outstanding.
+- Portable import checks are not an OS sandbox. Optional native-tool experiments
+  have separate dependencies and scoped observations, not blanket safety approval.
+- Reserved specializations do not implement additional processes or legal
+  determinations. Physical execution and the roadmap's other v0.x exclusions
+  remain out of scope.
+
+See the [claim inventory](docs/sources/skill-claim-ledger.md) and
+[gate review](docs/development/public-alpha-gate-review.md) for evidence and exact
+limits. Passing tests never authorizes a manufacturing job.
 
 ## Contributing
 

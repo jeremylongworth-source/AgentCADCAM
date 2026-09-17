@@ -8,6 +8,11 @@ registry. It does not certify every repository statement, any job, or legal
 compliance. The linked source sections were read; access dates are not expiry
 guarantees. Metadata is retained in [the source registry](source-registry.yaml).
 
+Subsequent review: the [fourteen-skill claim inventory](skill-claim-ledger.md)
+and [public-alpha gate review](../development/public-alpha-gate-review.md)
+reconcile the bounded contract and broader documentation checks. The remaining
+release hold is recorded there; the original scoped findings below are preserved.
+
 ## Claim-to-source map
 
 | Repository location and rationale | Primary evidence inspected | Applicability boundary |

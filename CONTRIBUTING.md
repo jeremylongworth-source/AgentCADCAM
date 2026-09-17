@@ -4,6 +4,10 @@ Thank you for helping build a careful, vendor-neutral manufacturing reasoning la
 
 ## Before contributing
 
+For vulnerabilities or unsafe-ready-state reports, follow [SECURITY.md](SECURITY.md)
+and its current channel-availability warning. Do not attach sensitive artifacts
+to public issues or pull requests.
+
 Read:
 
 1. [ROADMAP.md](ROADMAP.md)
