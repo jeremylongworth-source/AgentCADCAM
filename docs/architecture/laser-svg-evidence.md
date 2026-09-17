@@ -16,14 +16,14 @@ chooses settings or activates equipment.
 half. It requires the measured contours to match the existing synthetic fixture's
 rectangle and two hole positions/radii. Changing a hole without changing outer
 bounds therefore fails. This fixture assertion is deliberately exact and ordered;
-it is not a general source-equivalence algorithm. The prior DXF count/closure
-checks remain limited and do not establish file-derived DXF acceptance.
+it is not a general source-equivalence algorithm. The subsequent
+[DXF/file-preflight implementation](laser-file-evidence.md) now also measures the
+DXF contours and applies the same fixed-fixture assertion.
 
-The standalone `scripts/laser_preflight.py` still evaluates metadata and does not
-yet consume these SVG observations. Do not present its output as this byte check
-or as full laser validation. A bounded DXF reader and composed identity, revision,
-units, scale, machine/material/process review are the next implementation steps.
-Existing historical evaluation records and fixture bytes have not been rewritten.
+The standalone `scripts/laser_preflight.py` now consumes actual SVG/DXF bytes and
+explicit identity/revision/dimension context as documented in that follow-up.
+It still does not authenticate profile/environment evidence or approvals.
+Historical evaluation records and fixture drawing bytes have not been rewritten.
 
 ## Supported interpretation and source basis
 
@@ -120,9 +120,9 @@ python scripts/validate_laser_fixture_geometry.py
 ```
 
 Executed results are retained in the [laser evaluation follow-up](../evaluation/laser-cut-evaluation.md).
-Next: actual DXF geometry/unit evidence, laser preflight byte/identity/context
-composition, all nine required negatives, retained complete skill reviews and
-the Phase 5 gate audit. Phase 6 integration and real-input practitioner acceptance
+The subsequent file-preflight implementation supplies DXF geometry/unit evidence
+and byte/context checks. Retained complete skill reviews and the Phase 5 gate
+audit remain. Phase 6 integration and real-input practitioner acceptance
 remain separate. No material-safety, machine-power or legal claim is introduced.
 
 Revisit for new supported elements, transforms, styles or units, source-

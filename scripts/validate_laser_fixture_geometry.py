@@ -6,28 +6,23 @@ import re
 import sys
 from pathlib import Path
 
-import ezdxf
-
 if __package__:
     from .laser_svg_review import inspect_svg
+    from .laser_dxf_review import inspect_dxf
 else:
     from laser_svg_review import inspect_svg
+    from laser_dxf_review import inspect_dxf
 
 
 def validate(root: Path) -> list[str]:
     errors: list[str] = []
     dxf_path = root / "source/bracket.dxf"
     svg_path = root / "source/bracket.svg"
-    document = ezdxf.readfile(dxf_path)
-    if document.header.get("$INSUNITS") != 4:
-        errors.append("DXF $INSUNITS is not millimetres")
-    model = document.modelspace()
-    polylines = list(model.query("LWPOLYLINE"))
-    circles = list(model.query("CIRCLE"))
-    if len(polylines) != 1 or not polylines[0].closed:
-        errors.append("DXF must contain one closed outer polyline")
-    if len(circles) != 2:
-        errors.append("DXF must contain two hole circles")
+    dxf_report = inspect_dxf(dxf_path.read_bytes())
+    if dxf_report["blockers"]:
+        errors.extend(f"DXF: {finding}" for finding in dxf_report["findings"])
+    if dxf_report["declared_unit"] != "mm":
+        errors.append("DXF declared units are not millimetres")
     svg_bytes = svg_path.read_bytes()
     report = inspect_svg(svg_bytes)
     if report["blockers"]:
@@ -40,6 +35,8 @@ def validate(root: Path) -> list[str]:
         ]
         if report["contours_mm"] != expected:
             errors.append("SVG measured contours differ from the declared synthetic fixture in mm")
+        if dxf_report["contours_mm"] != expected:
+            errors.append("DXF measured contours differ from the declared synthetic fixture in mm")
     try:
         svg = svg_bytes.decode("utf-8-sig")
     except UnicodeError:

@@ -1,6 +1,6 @@
 fixture_id: laser-cut-bracket
 positive:
-  - input: contexts/job.json + contexts/machine.json + contexts/material.json + contexts/process.json
+  - input: contexts/job.json + contexts/machine.json + contexts/material.json + contexts/process.json + source/bracket.dxf bytes + explicit source revision A
     expected_blockers: [HUMAN_APPROVAL_REQUIRED]
 negative:
   - mutation: duplicate-contours
