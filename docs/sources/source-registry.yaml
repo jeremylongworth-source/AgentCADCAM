@@ -1,8 +1,62 @@
 version: 2
 status: active
-# Scoped format and authoring references; not a complete safety/regulatory audit.
+# Scoped format, authoring and safety references; not job or regulatory approval.
 # reviewed means the listed claims were checked, not that a job is approved.
 sources:
+  - id: haas-mill-safety
+    title: 3 - Mill - Safety
+    publisher: Haas Automation
+    locator: https://www.haascnc.com/service/online-operator-s-manuals/mill-operator-s-manual/mill---safety.html
+    publication_or_revision: null
+    accessed_at: "2026-09-17"
+    authority: oem_documentation
+    review_status: reviewed
+    applies_to: [cnc-review-boundary]
+    scope: Haas mill manual context only; not generic machine compatibility, a legal rule or fixture approval.
+    sections: 3.1 General Safety Notes; 3.2 Read Before Operating
+    claims:
+      - The manual distinguishes illustrative programs from complete tool, offset, material and workholding context.
+      - The manual requires trained authorized operators and addresses guards and interlocks during operation.
+  - id: sandvik-milling-selection
+    title: Indexable milling tools catalogue 2025
+    publisher: Sandvik Coromant
+    locator: https://epublications.sandvik.coromant.com/frontend/getcatalog.do?catalogId=1157651&catalogVersion=2&startpage=9
+    publication_or_revision: 2025 catalogue; version 2 locator
+    accessed_at: "2026-09-17"
+    authority: oem_documentation
+    review_status: reviewed
+    applies_to: [tooling-review-context]
+    scope: Manufacturer selection considerations only; no cutting-data recommendation or tool/job approval.
+    sections: Printed page 5; Selection guide; Machine considerations
+    claims:
+      - Milling tool selection considers machine capability, stability, power, torque, clamping, coolant and tool overhang.
+  - id: niosh-polymer-printing-emissions
+    title: "Approaches to Safe 3D Printing: A Guide for Makerspace Users, Schools, Libraries, and Small Businesses"
+    publisher: CDC / National Institute for Occupational Safety and Health
+    locator: https://stacks.cdc.gov/view/cdc/135072/cdc_135072_DS1.pdf
+    publication_or_revision: DHHS (NIOSH) Publication No. 2024-103; November 2023
+    accessed_at: "2026-09-17"
+    authority: government_research
+    review_status: reviewed
+    applies_to: [additive-environment-review]
+    scope: Polymer-printing emissions and context dependence only; no exposure limit, ventilation design or material clearance.
+    sections: Section 3.5 Emissions; printed page 6 (PDF page 18)
+    claims:
+      - Heated polymer feedstock can emit ultrafine particles and volatile organic compounds; emissions depend on material and process conditions.
+      - Exposure estimates depend on workplace conditions and cannot be inferred solely from chamber measurements.
+  - id: ccohs-laser-hazard-categories
+    title: Lasers
+    publisher: Canadian Centre for Occupational Health and Safety
+    locator: https://www.ccohs.ca/topics/hazards/workplace/lasers
+    publication_or_revision: Page modified 2026-09-03
+    accessed_at: "2026-09-17"
+    authority: government_research
+    review_status: reviewed
+    applies_to: [laser-hazard-separation]
+    scope: General beam/non-beam distinction only; not a material approval, clinical protocol or jurisdiction-specific legal requirement.
+    sections: Lasers; introductory hazard categories
+    claims:
+      - Laser beam hazards and non-beam hazards are distinct; non-beam hazards include equipment and emissions from exposed materials.
   - id: freecad-fcstd
     title: File Format FCStd
     publisher: FreeCAD project

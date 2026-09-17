@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added four scoped primary safety/context references and a claim-to-source audit. Fixed the adversarial HTTP import-root gap, expanded scanning to nested portable code, and documented dynamic-import/native-process limits. All 647 tests pass; Phase 7 remains open pending the full safety/source reconciliation and private reporting availability.
+
 - Breaking: verified profiles and supported process-context sources now need a role-scoped source assessment with primary authority, exact metadata binding, evidence and a current UTC freshness window. Missing, stale, conflicted, future-dated, expired or community-only assessments block matching job approvals. Existing source records remain valid drafts and historical reviews are preserved; 644 tests pass. See `docs/architecture/source-review-readiness.md`; Phase 7 remains open.
 
 - Breaking: planning and handoff routing now require resolved source/export declarations. Missing, denied, disputed, expired or conflicting context invalidates matching approval copies without rewriting reviewed fingerprints; blank jurisdiction cannot satisfy requested review. Local confidential review remains distinct from redistribution. Added four-family refusal controls and explicit historical replay deltas; 634 tests pass. Phase 7 remains open. See `docs/architecture/governance-readiness.md`.

@@ -18,7 +18,7 @@ The version-2 registry uses unique stable `id` values, `title`, `publisher`, HTT
 
 The format registry uses one `## Format name` section per roadmap format, with single-line `- Field label: value` entries for its eight policy fields and `Sources`. Each source citation uses the source ID as its Markdown link label and the exact registry locator as its target. This convention makes missing fields and reference drift testable without duplicating the policies in another data file.
 
-These checks perform no network requests and do not read the linked source contents. Reviewers must still confirm claim support, version, conflicts, and applicability. The initial populated records cover format semantics only; machine/tool/material, safety, regulatory, and jurisdiction-specific claims still require their own evidence review.
+These checks perform no network requests and do not read the linked source contents. Reviewers must still confirm claim support, version, conflicts, and applicability. The registry now includes format/authoring references and four narrowly scoped safety/context sources mapped in the [non-format claim audit](nonformat-claim-audit.md). Metadata checks include all records, but automatic citation/applicability enforcement covers the format registry only. The non-format claim map is manually reviewed. Remaining machine/tool/material, safety, regulatory, and jurisdiction-specific claims still require their own evidence review.
 
 ## Review cadence
 

@@ -26,7 +26,7 @@ class FormatRegistryTests(unittest.TestCase):
         self.content = (ROOT / "docs/formats/format-registry.md").read_text(encoding="utf-8")
         self.sources = yaml.safe_load((ROOT / "docs/sources/source-registry.yaml").read_text(encoding="utf-8"))
         # Fixed review date keeps fixture mutations independent of the wall clock.
-        self.today = date(2026, 9, 13)
+        self.today = date(2026, 9, 17)
 
     def errors(self, content=None, sources=None):
         return validate_format_registry(
@@ -78,7 +78,9 @@ class FormatRegistryTests(unittest.TestCase):
         ):
             with self.subTest(field=field, value=value):
                 sources = copy.deepcopy(self.sources)
-                sources["sources"][0][field] = value
+                # Select a cited format source, not whichever record is first.
+                source = next(item for item in sources["sources"] if item["id"] == "freecad-fcstd")
+                source[field] = value
                 self.assertTrue(any(expected in error for error in self.errors(sources=sources)))
 
     def test_source_metadata_is_required_and_cannot_be_empty(self):

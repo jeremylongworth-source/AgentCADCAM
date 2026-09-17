@@ -40,6 +40,13 @@ records the verified configuration, publication boundary and release check.
 Do not count `SECURITY.md` as operationally complete until private intake is
 confirmed; repository visibility must not change without separate authorization.
 
+The [scoped non-format audit](../sources/nonformat-claim-audit.md) now supplies
+primary evidence for CNC review context, tooling considerations, additive
+emissions and independent laser hazard categories. The expanded
+[adversarial import check](../evaluation/adversarial-hardening.md) covers nested
+portable code and corrects the HTTP module-root gap. Neither increment closes
+the complete factual-claim audit or curated safety-corpus reconciliation below.
+
 1. Reconcile every Phase 7 safety/adversarial case against the complete curated corpus before claiming critical recall or false-ready results. Include the [new source/export refusal evidence](../evaluation/governance-runs/README.md), preserving its declaration-only limitations and remaining evidence-authentication obligations.
 2. Verify remaining machine/material/tooling, safety and regulatory claims and source freshness; audit all public-alpha governance and documentation requirements. Include the [new runtime source-assessment evidence](../evaluation/source-evidence-runs/README.md) without treating declared authority as authenticated source truth. Preserve accepted development boundaries and retained review evidence.
 3. Run the practitioner pilot and evaluate every roadmap threshold using real/sanitized inputs and qualified reviewer findings. A reviewer must judge evidence quality, not merely supply a passing YAML verdict. Do not expand the skill inventory or process scope without the required evaluation and review.
