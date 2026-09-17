@@ -42,6 +42,9 @@ class ReviewRequired(ValueError):
 def _number(value):
     if not isinstance(value, str) or len(value) > 64 or not NUMBER.fullmatch(value.strip()):
         raise ValueError("invalid or over-precision 3MF numeric value")
+    exponent = re.search(r"[eE]([+-]?[0-9]+)$", value.strip())
+    if exponent and abs(int(exponent[1])) > 100:
+        raise ReviewRequired("3MF number exceeds the exact arithmetic review range")
     decimal = Decimal(value.strip())
     if abs(decimal.as_tuple().exponent) > 100 or abs(decimal.adjusted()) > 100:
         raise ReviewRequired("3MF number exceeds the exact arithmetic review range")

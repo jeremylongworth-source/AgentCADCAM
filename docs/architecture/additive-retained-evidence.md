@@ -1,5 +1,11 @@
 # Additive retained-review evidence boundary
 
+Follow-up: the [Phase 6 additive integration](additive-router-integration.md)
+now requires explicit typed inputs, actual bytes and scoped evidence. This
+document records the historical evaluation convention, not that runtime API.
+Original packets remain unchanged; exact replay tests permit only the new gate's
+additional missing-input/evidence diagnostics.
+
 Status: implemented development-evaluation path; `REVIEW_REQUIRED`. No production
 approval or machine execution is introduced. Audience: maintainers auditing
 Phase 4 review evidence and later Phase 6 integration.

@@ -233,3 +233,43 @@ partial-geometry, usable-bed, package/vendor and declaration-versus-evidence
 limits explicitly. All twelve retained handoffs remain unchanged and blocked.
 No native slicer was rerun, no applicable sliced build was created, and Phase 6
 composed integration and Phase 8 qualified real-input review remain open.
+
+## Phase 6 additive routing increment — 2026-09-17
+
+The [integration contract](../architecture/additive-router-integration.md) now
+connects actual STL/3MF bytes, a bound source/output inventory, explicit versioned
+slicer context and seven separate current review roles to `route_job`. Fresh
+file/context/evidence failures invalidate a matching approval copy without
+changing its reviewed fingerprint. Raw approval flags cannot satisfy the gate;
+even a no-blocker control remains review-required and non-executable.
+
+Sixteen focused routing methods passed in 13.411 seconds. Both format controls
+use synthetic records and a non-operational settings marker, not applicable
+printing parameters or human approval. Every retained negative is rerun with
+fresh test-only evidence and approval so its specific failure cannot be hidden
+by missing-review fallback. Other checks cover source/descriptor conflicts,
+settings/version/selection, material/slicer compatibility, environment, each
+review role, stale/failed/duplicate records, old approvals, classification
+bypasses and every prohibited live action.
+
+Extreme numeric exponents in 3MF vertices and build transforms reproduced an
+uncaught Decimal conversion exception. The reader now rejects exponents outside
+its bounded range before conversion. Positive and negative extreme-exponent
+regressions require structured source-review blockers; the composed router also
+tests this refusal and input byte limits.
+
+Eighty adjacent routing, retained-packet, schema and 3MF-reader tests passed in
+28.858 seconds. Historical additive packets remain unchanged: exact replay
+permits only the new missing-contract/byte/evidence diagnostics, preserving
+original observations, state fingerprints, review conclusions and blockers.
+
+The full portable suite passed all 575 tests in 144.301 seconds. Foundation
+validation passed (58 required files, twelve context schemas, five skillsets),
+schema-instance validation passed (thirteen definitions, 100 instances), and
+whitespace checks passed. These results establish the inspected assertions,
+not independent practitioner validation or manufacturing approval.
+
+This increment does not authenticate evidence, verify vendor-specific settings,
+perform slicing or prove print readiness. No native slicer was rerun. CAD handoff
+composition, four-family retained workflow/approval evaluation and the complete
+Phase 6 audit remain outstanding; qualified pilot evidence is still required.

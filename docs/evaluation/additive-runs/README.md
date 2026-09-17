@@ -50,6 +50,13 @@ manufacturing acceptance criteria.
 
 ## Reproduction and packet identity
 
+Phase 6 follow-up: [additive routing](../../architecture/additive-router-integration.md)
+now requires typed preflight inputs, actual bytes and separate bound review roles.
+These historical wrappers intentionally do not satisfy that contract. Replaying
+them adds explicit missing-input/evidence findings; the regression allows only
+that exact delta. Original observations, identities and blocked verdicts remain
+unchanged. This is not a migration or renewed approval of any retained packet.
+
 ```text
 python -m tests.evaluation.replay_additive_reviews all
 python -m unittest tests.evaluation.test_additive_retained_reviews -v

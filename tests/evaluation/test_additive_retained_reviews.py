@@ -20,10 +20,29 @@ class AdditiveRetainedReviewTests(unittest.TestCase):
             cls.runs[case] = {name: json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
                               for name in ("observed", "state", "handoff")}
 
-    def test_all_observations_replay_exactly_without_rewriting_packets(self):
+    def test_replay_preserves_history_with_only_explicit_new_additive_gate_diagnostics(self):
         for case, run in self.runs.items():
             with self.subTest(case=case):
-                self.assertEqual(replay(case), run["observed"])
+                # Evaluation wrappers are not typed preflight contexts. Preserve
+                # historical packets; permit only the new gate's exact findings.
+                expected = copy.deepcopy(run["observed"])
+                route = expected["route_result"]
+                additions = ["additive setup.additive_preflight requires structured job, versioned slicer settings/source and source artifact"]
+                if case in ("revision-mismatch", "3mf-unit-conflict"):
+                    additions.append("additive artifact kind, authority, revision or units conflict with bounded state")
+                additions += [
+                    "actual nonempty additive mesh/package bytes are required; paths and passing labels are insufficient",
+                    "additive verification record 0: structured evidence and versioned context binding are required",
+                    *[f"{identity}: a current passed context-bound evidence record is required" for identity in
+                      ("additive_design", "additive_geometry", "additive_orientation", "additive_supports",
+                       "additive_slicer", "additive_environment", "additive_output")],
+                ]
+                route["additive_review"] = {"status": "blocked", "sha256": None,
+                                            "context_fingerprint": route["context_fingerprint"],
+                                            "blockers": ["MISSING_CONTEXT"], "findings": additions, "report": None}
+                position = route["findings"].index("verification evidence is missing, unresolved, or failed")
+                route["findings"][position:position] = additions
+                self.assertEqual(replay(case), expected)
 
     def test_state_handoff_schemas_and_all_input_bindings_agree(self):
         for case, run in self.runs.items():

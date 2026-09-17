@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/additive-preflight.schema.json",
+  "title": "State-bound additive preflight inputs",
+  "description": "Stored under setup.additive_preflight. Structured declarations do not authenticate profile applicability, reviewers or print readiness.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "slicer_profile", "source_artifact"],
+  "properties": {
+    "job": {"type": "object"},
+    "slicer_profile": {
+      "type": "object",
+      "required": ["profile_id", "revision", "slicer_id", "slicer_version", "printer_id", "material_id", "settings", "source"],
+      "properties": {
+        "profile_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "revision": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "slicer_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "slicer_version": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "printer_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "material_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "settings": {"type": "object", "minProperties": 1},
+        "source": {"$ref": "handoff.schema.json#/$defs/source"}
+      }
+    },
+    "source_artifact": {"$ref": "handoff.schema.json#/$defs/artifact"}
+  }
+}

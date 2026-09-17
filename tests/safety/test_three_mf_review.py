@@ -70,6 +70,13 @@ def retained_cases():
 
 
 class ThreeMfReviewTests(unittest.TestCase):
+    def test_exponents_beyond_decimal_implementation_range_are_structured_refusals(self):
+        for number in ("1e999999999999999999999999", "1e-999999999999999999999999"):
+            for xml in (model(mesh=MESH.replace('x="1"', f'x="{number}"', 1)),
+                        model(build=f'<item objectid="1" transform="1 0 0 0 1 0 0 0 1 {number} 0 0"/>')):
+                with self.subTest(number=number, transform="transform" in xml):
+                    self.assert_blocked(package(xml), "SOURCE_VERIFICATION_REQUIRED")
+
     def assert_blocked(self, data, blocker=None):
         result = inspect_3mf(data)
         self.assertEqual(result["status"], "blocked", result)
