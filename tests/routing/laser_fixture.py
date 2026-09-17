@@ -5,6 +5,7 @@ import copy
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.evaluation.replay_laser_reviews import inputs, ROOT
 from tests.schema.test_profile_lifecycle import synthetic_review
+from tests.routing.governance_fixture import declare_test_governance
 import json
 
 
@@ -32,6 +33,7 @@ def make_laser_review(case="positive"):
         {"check_id": key, "kind": "verification", "status": "passed", "context_binding": {},
          "summary": "Test-only evidence declaration, not qualified review", "evidence": [f"test-only:{key}"]}
         for key in CHECKS]
+    declare_test_governance(state)
     rebind(state)
     request = {"process_family": "laser_cutting", "artifact_class": "two_d_cutting",
                "consequence_level": "execution_adjacent", "machine_known": True, "material_known": True}

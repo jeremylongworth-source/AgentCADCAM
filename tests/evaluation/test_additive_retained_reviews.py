@@ -8,6 +8,7 @@ from scripts.validate_schema_instances import instance_paths, load_catalog, vali
 from state.state import context_fingerprint, invalidate_approval
 from tests.evaluation.replay_additive_reviews import CASES, FIXTURE, ROOT, TETRA, inputs, replay, sha256, tetrahedron_mesh
 from tests.safety.test_three_mf_review import MESH
+from tests.evaluation.governance_expectations import add_governance_diagnostics
 
 
 class AdditiveRetainedReviewTests(unittest.TestCase):
@@ -42,6 +43,7 @@ class AdditiveRetainedReviewTests(unittest.TestCase):
                                             "blockers": ["MISSING_CONTEXT"], "findings": additions, "report": None}
                 position = route["findings"].index("verification evidence is missing, unresolved, or failed")
                 route["findings"][position:position] = additions
+                add_governance_diagnostics(route, "additive")
                 self.assertEqual(replay(case), expected)
 
     def test_state_handoff_schemas_and_all_input_bindings_agree(self):

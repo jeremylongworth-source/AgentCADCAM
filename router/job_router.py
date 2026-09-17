@@ -12,6 +12,7 @@ from router.nc_evidence import check_nc_artifact
 from router.laser_evidence import check_laser_artifact
 from router.additive_evidence import check_additive_artifact
 from router.cad_evidence import check_cad_artifacts
+from router.governance import check_governance
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -112,7 +113,8 @@ def route_job(
             else:
                 for index, tool in enumerate(library["tools"]):
                     validate(tool, "tool.schema.json", f"tool_library/tools/{index}")
-        normalized["jurisdiction_known"] = bool(state.get("jurisdiction")) and normalized.get("jurisdiction_known") is True
+        jurisdiction = state.get("jurisdiction")
+        normalized["jurisdiction_known"] = isinstance(jurisdiction, str) and bool(jurisdiction.strip()) and normalized.get("jurisdiction_known") is True
         if state.get("generated_manufacturing_output") is not None:
             normalized["generated_manufacturing_artifact"] = True
         try:
@@ -146,6 +148,19 @@ def route_job(
                 findings.append("approval does not cover the requested review scope")
     normalized["approval_state"] = effective_status
     result = route(normalized)
+    governance_blockers = set()
+    if state_ok:
+        governance_blockers, governance_findings = check_governance(
+            state, result["consequence_level"], normalized.get("requested_action"),
+        )
+        result["blockers"] = sorted(set(result["blockers"]) | governance_blockers)
+        findings.extend(governance_findings)
+    if effective_status == "approved" and (governance_blockers or "REGULATORY_REVIEW_REQUIRED" in result["blockers"]):
+        effective_status = "invalidated"
+        record["status"] = "invalidated"
+        record["invalidation_reason"] = "required source authorization or regulatory review is unresolved"
+        result["approval_state"] = effective_status
+        result["blockers"] = sorted(set(result["blockers"]) | {"HUMAN_APPROVAL_REQUIRED"})
     nc_review = None
     laser_review = None
     additive_review = None

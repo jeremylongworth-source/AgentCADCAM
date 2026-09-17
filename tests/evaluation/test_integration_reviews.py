@@ -9,6 +9,7 @@ from scripts.validate_schema_instances import instance_paths, load_catalog, vali
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.evaluation.replay_integration_reviews import CASES, ROOT, PACKETS, folder_for, inputs, replay
 from tests.evaluation.replay_integration_controls import replay as replay_controls
+from tests.evaluation.governance_expectations import add_integrated_governance_diagnostics
 
 
 class IntegratedReviewPacketTests(unittest.TestCase):
@@ -17,12 +18,12 @@ class IntegratedReviewPacketTests(unittest.TestCase):
         cls.catalog = load_catalog()
         cls.packets = {case: replay(case) for case in CASES}
 
-    def test_all_retained_inputs_observations_and_packets_replay_exactly(self):
+    def test_retained_packets_replay_with_only_explicit_governance_diagnostics(self):
         for case, packet in self.packets.items():
             with self.subTest(case=case):
-                for name, actual in packet.items():
-                    stored = json.loads((folder_for(case) / f"{name}.json").read_text(encoding="utf-8"))
-                    self.assertEqual(stored, actual)
+                stored = {name: json.loads((folder_for(case) / f"{name}.json").read_text(encoding="utf-8")) for name in packet}
+                add_integrated_governance_diagnostics(stored, case)
+                self.assertEqual(stored, packet)
                 self.assertEqual(packet, replay(case))
 
     def test_schema_inventory_includes_all_eight_draft_state_and_handoff_files(self):
@@ -120,7 +121,9 @@ class IntegratedReviewPacketTests(unittest.TestCase):
 class IntegratedApprovalControlTests(unittest.TestCase):
     def test_retained_test_only_lifecycle_transitions_match_all_four_families(self):
         actual = replay_controls()
-        stored = json.loads((PACKETS / "approval-controls.json").read_text(encoding="utf-8"))
+        # Phase 7 controls explicitly add complete test-only governance before
+        # rebinding records. The Phase 6 historical snapshot is not rewritten.
+        stored = json.loads((ROOT / "docs/evaluation/governance-runs/approval-controls.json").read_text(encoding="utf-8"))
         self.assertEqual(actual, stored)
         self.assertEqual(len(actual["observations"]), 4)
         for family, cases in actual["observations"].items():

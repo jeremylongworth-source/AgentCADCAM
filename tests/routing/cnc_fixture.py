@@ -6,6 +6,7 @@ from pathlib import Path
 
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.schema.test_profile_lifecycle import synthetic_review
+from tests.routing.governance_fixture import declare_test_governance
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -56,6 +57,7 @@ def make_cnc_review():
          "evidence": [f"test-only:{kind}"], "context_binding": {}}
         for kind in ("simulation", "verification")
     ]
+    declare_test_governance(state)
     rebind_synthetic_verification(state)
     request = {"process_family": "cnc_milling", "artifact_class": "nc_program", "consequence_level": "execution_adjacent",
                "machine_known": True, "controller_known": True, "material_known": True}

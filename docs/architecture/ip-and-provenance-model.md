@@ -27,4 +27,4 @@ export_review_status: unknown | not_required | review_required | reviewed | bloc
 
 ## Validation notes
 
-The shared artifact and source structures are defined in `contexts/schemas/handoff.schema.json`. Detailed ownership and export policy remain explicit review fields until jurisdiction-specific governance is added.
+The shared artifact and source structures are defined in `contexts/schemas/handoff.schema.json`. The [governance readiness contract](governance-readiness.md) now blocks unresolved source/export declarations during planning and handoff review. Draft state remains permissive; declaration consistency is not authenticated permission or jurisdiction-specific legal clearance.

@@ -21,6 +21,10 @@ The repository implements 14 skill contracts, five skillsets, and local review/r
 
 The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md) supersedes the earlier blanket claim that gates `CADCAM_01` through `CADCAM_08` were complete. Requirement-by-requirement reviews now support gates `CADCAM_01` through `CADCAM_07` for repository development against the initial corpus; see the latest [integration gate audit](docs/development/integration-gate-review.md). Phase 7 safety/governance hardening remains open before public-alpha acceptance. Phase 8 (`CADCAM_09_PILOT_VALIDATED`) requires qualified real-input practitioner review. These development gates do not approve manufacturing jobs. [ROADMAP.md](ROADMAP.md) remains the governing requirements document.
 
+Phase 7 progress: [source/export governance checks](docs/architecture/governance-readiness.md)
+now block missing, denied or conflicting declarations even with matching review
+records. The full safety/source audit and public-alpha gate remain open.
+
 ## Repository map
 
 | Directory | Purpose |

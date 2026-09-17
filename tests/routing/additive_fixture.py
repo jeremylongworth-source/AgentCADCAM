@@ -6,6 +6,7 @@ import json
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.evaluation.replay_additive_reviews import inputs, ROOT
 from tests.schema.test_profile_lifecycle import synthetic_review
+from tests.routing.governance_fixture import declare_test_governance
 
 
 CHECKS = ("additive_design", "additive_geometry", "additive_orientation", "additive_supports",
@@ -41,6 +42,7 @@ def make_additive_review(case="3mf-positive"):
         {"check_id": key, "kind": "verification", "status": "passed", "context_binding": {},
          "summary": "Test-only evidence declaration, not qualified review", "evidence": [f"test-only:{key}"]}
         for key in CHECKS]
+    declare_test_governance(state)
     rebind(state)
     request = {"process_family": "additive", "artifact_class": "mesh", "consequence_level": "execution_adjacent",
                "machine_known": True, "material_known": True}

@@ -9,6 +9,7 @@ from router.job_router import route_job
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import context_fingerprint
 from tests.evaluation.replay_cnc_reviews import CASES, CNC, ROOT, replay
+from tests.evaluation.governance_expectations import add_governance_diagnostics
 
 
 class CncRetainedReviewTests(unittest.TestCase):
@@ -35,6 +36,7 @@ class CncRetainedReviewTests(unittest.TestCase):
                     "CNC simulation requires a current passed context-bound evidence record",
                     "CNC verification requires a current passed context-bound evidence record",
                 ]
+                add_governance_diagnostics(expected["route_result"], "cnc")
                 self.assertEqual(replay(case), expected)
 
     def test_packet_schemas_state_and_handoff_agree(self):

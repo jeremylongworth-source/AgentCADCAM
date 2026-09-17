@@ -5,6 +5,7 @@ from pathlib import Path
 
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.schema.test_profile_lifecycle import synthetic_review
+from tests.routing.governance_fixture import declare_test_governance
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -39,6 +40,7 @@ def make_cad_review():
     state["verification_results"] = [{"check_id": key, "kind": "verification", "status": "passed",
                                       "summary": "Test-only declaration, not a real review", "evidence": [f"test-only:{key}"],
                                       "context_binding": {}} for key in CHECKS]
+    declare_test_governance(state)
     rebind(state)
     request = {"process_family": "cad_handoff", "artifact_class": "handoff", "requested_action": "prepare_handoff",
                "consequence_level": "execution_adjacent"}

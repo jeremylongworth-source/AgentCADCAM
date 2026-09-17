@@ -10,6 +10,7 @@ from scripts.validate_schema_instances import instance_paths, load_catalog, vali
 from state.state import context_fingerprint, invalidate_approval
 from tests.evaluation import replay_laser_reviews as reviews
 from tests.evaluation.replay_laser_reviews import CASES, FILE_CASES, FIXTURE, ROOT, inputs, replay, sha256
+from tests.evaluation.governance_expectations import add_governance_diagnostics
 
 
 class LaserRetainedReviewTests(unittest.TestCase):
@@ -45,6 +46,7 @@ class LaserRetainedReviewTests(unittest.TestCase):
                                          "blockers": ["MISSING_CONTEXT"], "findings": additions, "report": None}
                 position = route["findings"].index("verification evidence is missing, unresolved, or failed")
                 route["findings"][position:position] = additions
+                add_governance_diagnostics(route, "laser")
                 self.assertEqual(replay(case), expected)
 
     def test_schemas_and_all_input_bindings_agree(self):

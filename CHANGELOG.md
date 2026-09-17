@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Breaking: planning and handoff routing now require resolved source/export declarations. Missing, denied, disputed, expired or conflicting context invalidates matching approval copies without rewriting reviewed fingerprints; blank jurisdiction cannot satisfy requested review. Local confidential review remains distinct from redistribution. Added four-family refusal controls and explicit historical replay deltas; 634 tests pass. Phase 7 remains open. See `docs/architecture/governance-readiness.md`.
+
 - Accepted Phase 6 for repository development after auditing every router/state deliverable and all six exit criteria. Added six gate-matrix methods, including 72 four-family approval-invalidation checks; 623 tests pass. Runtime and retained manufacturing verdicts are unchanged. Next is Phase 7 safety/governance hardening; public-alpha and practitioner gates remain open.
 
 - Retained four integrated skill-assisted reviews with unchanged fixture context, current-input-bound findings and state-bound blocked handoffs. Separate 24-case test-only controls cover approval recognition, changed review details, stale verification, changed artifact bytes and live-execution refusal. Added exact replay and schema/integrity regressions; no skills, process settings or actual approvals were changed. Phase 6 awaits its full gate audit.

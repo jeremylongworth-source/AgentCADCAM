@@ -23,4 +23,9 @@ The core remains jurisdiction-neutral. It can identify that a jurisdiction or re
 
 ## Initial specialization
 
+The [governance readiness contract](governance-readiness.md) interprets bounded
+export-review declarations and rejects blank jurisdiction for an explicitly
+required jurisdiction review. It does not infer applicability or issue legal
+clearance, and source/export blockers cannot be waived by matching approval.
+
 `specializations/jurisdictions/canada/` is an optional research-routing location. It is not a legal-advice module.
