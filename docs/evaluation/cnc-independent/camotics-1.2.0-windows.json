@@ -1,0 +1,588 @@
+{
+  "cases": [
+    {
+      "case": "positive",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "a67f91bdffd4cc994adc0dd22c77f36389ffa09cbc170da3f21caf5f4c816ee7",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.45 secs Triangles: 9432 Triangles/sec: 21179.13\nReducing mesh\nTime: 0.12 secs Triangles: 146 Reduction: 98.45%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11013.671714226404,
+        "bounds": {
+          "max": [
+            56.99609375,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 471684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "d5e9f92a34696a5cf8cf011e1ab023e9f7fda181feb9d5078bc070026813e714",
+        "triangle_data_sha256": "19b19fc94956c8d0ab60b43fbb420247e98e9f20ac6089022cc21be78aee52f8",
+        "triangles": 9432
+      },
+      "surface_error": null
+    },
+    {
+      "case": "wrong-units",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z635\nF2540\nN17 G1 Z0\nF5080\nN18 G1 X1524\nN19 G1 Y1016\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z635\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "270503b8e125c6326b1b996a38eee4ddf381b265de41653873a3bf22cb040db1",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 11132 Triangles/sec: 25199.04\nReducing mesh\nTime: 0.12 secs Triangles: 184 Reduction: 98.35%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 12667.251225312551,
+        "bounds": {
+          "max": [
+            60.00390625,
+            40.00390625,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 556684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "4526c6a5e16e0efde7c1816317d8a0b560ce663e0ba8692cff9b4c550d6db40c",
+        "triangle_data_sha256": "38ba7eeeb6952b58a06d6e3da96601088e6a5988e22e6c2f01dd56f7a25a2048",
+        "triangles": 11132
+      },
+      "surface_error": null
+    },
+    {
+      "case": "wrong-post",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "4e2b34f90956037d3d81f75714a48463f09c09c720eb30bb57157d4aeb6ead7d",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 9432 Triangles/sec: 21307.32\nReducing mesh\nTime: 0.11 secs Triangles: 146 Reduction: 98.45%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11013.671714226404,
+        "bounds": {
+          "max": [
+            56.99609375,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 471684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "c31ba8a347c8c15530a860941da2e9d765299470c3f8ef622d2d29d1566cd276",
+        "triangle_data_sha256": "19b19fc94956c8d0ab60b43fbb420247e98e9f20ac6089022cc21be78aee52f8",
+        "triangles": 9432
+      },
+      "surface_error": null
+    },
+    {
+      "case": "wrong-controller",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "dbb3fe5fce9cda8a18704e4ab2a4b76dec9060d70bf28bbd3010bf6ee0760de3",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 9432 Triangles/sec: 21469.40\nReducing mesh\nTime: 0.12 secs Triangles: 146 Reduction: 98.45%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11013.671714226404,
+        "bounds": {
+          "max": [
+            56.99609375,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 471684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "8b069d3a68c450ce1d507adddcbda0a1e8c63089118905d7a547379674390787",
+        "triangle_data_sha256": "19b19fc94956c8d0ab60b43fbb420247e98e9f20ac6089022cc21be78aee52f8",
+        "triangles": 9432
+      },
+      "surface_error": null
+    },
+    {
+      "case": "missing-wcs",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "075f8cc856a167b5a7248579952937fbd36c3cd4efe88ce218d1fdbe3207e251",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 9432 Triangles/sec: 21468.51\nReducing mesh\nTime: 0.11 secs Triangles: 146 Reduction: 98.45%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11013.671714226404,
+        "bounds": {
+          "max": [
+            56.99609375,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 471684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "e0d634858038a3c785409228453573932d7430266e406c5bac0e77b2f035f016",
+        "triangle_data_sha256": "19b19fc94956c8d0ab60b43fbb420247e98e9f20ac6089022cc21be78aee52f8",
+        "triangles": 9432
+      },
+      "surface_error": null
+    },
+    {
+      "case": "unknown-tool",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T9\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "83310512bb4a17c0929838679960634774953542f37c0e0d4d1ac1586f3557b7",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nWARNING:Auto-creating missing tool 9\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 11164 Triangles/sec: 25123.21\nReducing mesh\nTime: 0.13 secs Triangles: 200 Reduction: 98.21%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 13226.465868552525,
+        "bounds": {
+          "max": [
+            59.00390625,
+            38.99609375,
+            6.00390625
+          ],
+          "min": [
+            1.00390625,
+            0.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 558284,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "542e4d9700c85df2d03454dee3601cb99815f3cc3a609992c737260069c6f797",
+        "triangle_data_sha256": "b2fe18479b8576d1f39171895adfb0be6baa09b185e9f8531770f1c839714b76",
+        "triangles": 11164
+      },
+      "surface_error": null
+    },
+    {
+      "case": "revision-mismatch",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "6f61b27c336b23bfa2e5339e731f9b9612af94f1587da553a238e5cdc03f96ed",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 9432 Triangles/sec: 21429.25\nReducing mesh\nTime: 0.11 secs Triangles: 146 Reduction: 98.45%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11013.671714226404,
+        "bounds": {
+          "max": [
+            56.99609375,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 471684,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "d7da1e77510da8ae230c32a1da87c6306339f81a6f8d4926c1dee0bbe05235ca",
+        "triangle_data_sha256": "19b19fc94956c8d0ab60b43fbb420247e98e9f20ac6089022cc21be78aee52f8",
+        "triangles": 9432
+      },
+      "surface_error": null
+    },
+    {
+      "case": "machine-limit-conflict",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T1\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X100\nN19 G1 X60 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "34791ff12c263611a9e112bd2edecf1a55e59897241ea747fe3bb4b10fc80b0b",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.44 secs Triangles: 10148 Triangles/sec: 23043.22\nReducing mesh\nTime: 0.12 secs Triangles: 212 Reduction: 97.91%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 11629.046577652294,
+        "bounds": {
+          "max": [
+            60.00390625,
+            36.99609375,
+            6.00390625
+          ],
+          "min": [
+            3.00390625,
+            2.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 507484,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "3cad77d6ce56671529ea4d257b101b136c78f79826a08ffb992f5dfe500592bc",
+        "triangle_data_sha256": "d24ff082656593c37e273457225a529f0b603051768d190b5de1cff11272f15f",
+        "triangles": 10148
+      },
+      "surface_error": null
+    },
+    {
+      "case": "incorrect-tool-number",
+      "interpreter": {
+        "arguments": [
+          "--metric",
+          "--default-units",
+          "0"
+        ],
+        "exit_code": 0,
+        "stderr": "",
+        "stdout": "G21\n(File: <stdin>)\nN14 M6 T2\nN15 M3 S5000\nN16 G0 X0 Y0 Z25\nF100\nN17 G1 Z0\nF200\nN18 G1 X60\nN19 G1 Y40\nN20 G1 X0\nN21 G1 Y0\nN22 G0 Z25\nN23 M5\nM9\nM2\n"
+      },
+      "job_approval_status": "not_requested",
+      "job_simulation_status": "not_run",
+      "nc_sha256": "a4c524349a7910e360f46b729931a86c91c5d36c40838148103e5e28e37493fd",
+      "router_blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "simulator": {
+        "arguments": [
+          "--threads",
+          "1",
+          "--resolution",
+          "1",
+          "project.camotics",
+          "surface.stl"
+        ],
+        "exit_code": 0,
+        "stderr": "<config/>\nWARNING:Auto-creating missing tool 2\nComputing surface bounded by ((-1,-1,-1), (61,41,7)) at 1 grid resolution\nProgress: 0.00% Time: 0.00 secs ETA: 0.00 secs\nTime: 0.45 secs Triangles: 11164 Triangles/sec: 24788.07\nReducing mesh\nTime: 0.13 secs Triangles: 200 Reduction: 98.21%\n",
+        "stdout": ""
+      },
+      "surface": {
+        "absolute_signed_volume": 13226.465868552525,
+        "bounds": {
+          "max": [
+            59.00390625,
+            38.99609375,
+            6.00390625
+          ],
+          "min": [
+            1.00390625,
+            0.99609375,
+            -0.00390625
+          ]
+        },
+        "bytes": 558284,
+        "scope": "binary mesh measurements only; closedness, collision clearance and dimensional conformance not established",
+        "sha256": "7af8f4bae9d867b6854e72612dd2c1cfbe8e0d93245a853c95c5a2ae0579ab88",
+        "triangle_data_sha256": "b2fe18479b8576d1f39171895adfb0be6baa09b185e9f8531770f1c839714b76",
+        "triangles": 11164
+      },
+      "surface_error": null
+    }
+  ],
+  "execution_allowed": false,
+  "job_approval_promoted": false,
+  "project": {
+    "files": [
+      "program.nc"
+    ],
+    "resolution": 1,
+    "resolution-mode": "manual",
+    "tools": {
+      "1": {
+        "description": "Synthetic calibration cutter only; length 12 is not inferred from job reach or supplier evidence.",
+        "diameter": 6,
+        "length": 12,
+        "shape": "cylindrical",
+        "units": "metric"
+      }
+    },
+    "units": "metric",
+    "workpiece": {
+      "automatic": false,
+      "bounds": {
+        "max": [
+          60,
+          40,
+          6
+        ],
+        "min": [
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "project_sha256": "473b287b3e6cc5c590fba0c502af3664c226b11d4665cbe017fdcbd5923aac82",
+  "review_required": true,
+  "runtime": {
+    "accessed_at": "2026-09-17",
+    "archive_sha256": "1faebdbfa55a842949a103084294dfb11ea70610697e3846c9e058550d856652",
+    "archive_signature_observed": "Valid; CN=Cauldron Development LLC",
+    "files": {
+      "Qt5Core.dll": "a70197f1a1b201a71f85f4e771fec9700ff8329ecf2bb236f64040ddb363ae9b",
+      "Qt5Gui.dll": "34e9f8388039e2bd6b47a412a67543d6139237350423f3b33ba6cd473e2c1b6c",
+      "Qt5Network.dll": "9f5b0cbdde40fa45d0f506fd42d24ecd9076a3c21e4d5ce0a3642272907a8185",
+      "Qt5Svg.dll": "aa5bbd02c7ce8f71897de780f466427f1ebc43d715d9dbbb792f52da029aa3f6",
+      "Qt5WebSockets.dll": "cc40f9e0364d4e51da080bf141827ce359282300659daa5eba8ff1f9bdc75f4e",
+      "Qt5Widgets.dll": "c007a86cfa23ea43bab428198ca00fe868a5f006b063e18d12fb673adb716351",
+      "camsim.exe": "097dbae916e89909ef031886bbb8d7ec14d45fca82be65e4f311d4f5f66fba78",
+      "gcodetool.exe": "7454b3805ef3a5ba39e71e25d5aa0e51a2a3f342bf01605811aff6bdea4c8f4b",
+      "libEGL.dll": "b2d51b1d7ca3c10d63ea23a170595ea5c45dc7aa54cda646f3f2ad9c8fac4867",
+      "libGLESV2.dll": "7d5daf530d57dc634b7c0449f4916eb2cd37b1305de951e0147fb5d57a3ea9d5"
+    },
+    "license": "GPL-2.0-or-later; runtime is optional and not redistributed by this repository",
+    "published_at": "2019-02-09T09:58:06Z",
+    "publisher": "Cauldron Development LLC",
+    "release": "1.2.0-release",
+    "scope": "Measured hashes from the signed official Windows release, not an upstream published checksum or reproducible-build attestation. Re-review before changing any pinned binary.",
+    "url": "https://github.com/CauldronDevelopmentLLC/CAMotics/releases/download/1.2.0-release/camotics_1.2.0_AMD64.exe"
+  },
+  "scope": "independent interpreter and synthetic prism-removal experiment, not job simulation verification",
+  "versions": {
+    "camsim": {
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "stderr": "0.0\n",
+      "stdout": ""
+    },
+    "gcodetool": {
+      "arguments": [
+        "--version"
+      ],
+      "exit_code": 0,
+      "stderr": "1.2\n",
+      "stdout": ""
+    }
+  },
+  "recorded_on": "2026-09-17",
+  "evaluation_kind": "controlled synthetic independent-tool experiment; not practitioner or job simulation approval"
+}

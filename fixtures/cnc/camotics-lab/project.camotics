@@ -1,0 +1,19 @@
+{
+  "units": "metric",
+  "resolution-mode": "manual",
+  "resolution": 1,
+  "tools": {
+    "1": {
+      "units": "metric",
+      "shape": "cylindrical",
+      "length": 12,
+      "diameter": 6,
+      "description": "Synthetic calibration cutter only; length 12 is not inferred from job reach or supplier evidence."
+    }
+  },
+  "workpiece": {
+    "automatic": false,
+    "bounds": {"min": [0, 0, 0], "max": [60, 40, 6]}
+  },
+  "files": ["program.nc"]
+}
