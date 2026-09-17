@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+from datetime import datetime, timezone
 from typing import Any
 
 from router.router import route
@@ -13,6 +14,7 @@ from router.laser_evidence import check_laser_artifact
 from router.additive_evidence import check_additive_artifact
 from router.cad_evidence import check_cad_artifacts
 from router.governance import check_governance
+from router.source_evidence import check_source_review, check_setup_source_reviews
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -29,6 +31,7 @@ def route_job(
 ) -> dict[str, Any]:
     """Return routing plus copied state/approval; never persist or authenticate a reviewer."""
     catalog = load_catalog()
+    source_review_date = datetime.now(timezone.utc).date()
     errors: list[str] = []
     findings: list[str] = []
     profile_review_required: set[str] = set()
@@ -48,6 +51,14 @@ def route_job(
                 verification = lifecycle["verification"]
                 if verification["status"] != "verified" or verification["reviewed_revision"] != lifecycle["revision"]:
                     profile_review_required.add(label)
+                else:
+                    role = {"machine.schema.json": "machine", "controller.schema.json": "controller",
+                            "material.schema.json": "material", "tool.schema.json": "tool",
+                            "post.schema.json": "postprocessor"}[schema_name]
+                    source_findings = check_source_review(value["source"], role, catalog=catalog, today=source_review_date)
+                    if source_findings:
+                        profile_review_required.add(label)
+                        findings.extend(f"{label}/source: {finding}" for finding in source_findings)
         return not failures
 
     state_ok = validate(current_state, "state.schema.json", "state")
@@ -148,6 +159,11 @@ def route_job(
                 findings.append("approval does not cover the requested review scope")
     normalized["approval_state"] = effective_status
     result = route(normalized)
+    if state_ok:
+        source_findings = check_setup_source_reviews(state, catalog=catalog, today=source_review_date)
+        if source_findings:
+            result["blockers"] = sorted(set(result["blockers"]) | {"SOURCE_VERIFICATION_REQUIRED", "HUMAN_APPROVAL_REQUIRED"})
+            findings.extend(source_findings)
     governance_blockers = set()
     if state_ok:
         governance_blockers, governance_findings = check_governance(
@@ -210,7 +226,7 @@ def route_job(
         if effective_status == "approved":
             effective_status = "invalidated"
             record["status"] = "invalidated"
-            record["invalidation_reason"] = "a supplied profile lacks current revision-scoped verification"
+            record["invalidation_reason"] = "a supplied profile lacks current revision-scoped verification or source review"
             result["approval_state"] = effective_status
     process_context_failures = {
         "MISSING_CONTEXT", "MACHINE_CONTEXT_REQUIRED",

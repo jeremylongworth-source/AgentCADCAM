@@ -23,7 +23,9 @@ The [current roadmap reconciliation](docs/development/roadmap-reconciliation.md)
 
 Phase 7 progress: [source/export governance checks](docs/architecture/governance-readiness.md)
 now block missing, denied or conflicting declarations even with matching review
-records. The full safety/source audit and public-alpha gate remain open.
+records. [Source assessments](docs/architecture/source-review-readiness.md) also
+require primary authority, scoped evidence, matching metadata and current review
+dates. The full safety/source audit and public-alpha gate remain open.
 
 ## Repository map
 

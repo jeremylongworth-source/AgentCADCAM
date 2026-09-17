@@ -22,6 +22,14 @@ These checks perform no network requests and do not read the linked source conte
 
 ## Review cadence
 
+Runtime profile/process evidence uses the separate
+[source-review readiness contract](../architecture/source-review-readiness.md).
+A reviewer supplies a justified `valid_through` date, authority, supported role,
+evidence and fingerprint of the inspected source metadata. The integrated router
+checks one current UTC date per call and blocks missing, expired, future-dated,
+conflicted or stale assessments even with a matching job approval. These checks
+do not fetch or authenticate the source, and do not replace the cadence below.
+
 - Recheck safety and regulatory sources before each public release and whenever a jurisdiction specialization changes.
 - Recheck machine, controller, postprocessor, tooling, and material sources when a profile or adapter changes.
 - Mark a source `stale`, `conflicted`, or `verification_required` instead of silently substituting a generic assumption.

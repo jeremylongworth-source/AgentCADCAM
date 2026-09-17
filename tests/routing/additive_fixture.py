@@ -7,6 +7,7 @@ from state.state import context_fingerprint, verification_context_fingerprint
 from tests.evaluation.replay_additive_reviews import inputs, ROOT
 from tests.schema.test_profile_lifecycle import synthetic_review
 from tests.routing.governance_fixture import declare_test_governance
+from tests.routing.source_fixture import declare_test_source_review
 
 
 CHECKS = ("additive_design", "additive_geometry", "additive_orientation", "additive_supports",
@@ -35,6 +36,7 @@ def make_additive_review(case="3mf-positive"):
                           "locator": "test-only:slicer", "published_at": None, "accessed_at": "2026-09-17",
                           "scope": "Router tests only, not an applicable slicer configuration",
                           "claims": ["This is a non-operational test marker, not a print setting."]}}
+    declare_test_source_review(profile["source"], "slicer_profile")
     state["setup"] = {"additive_preflight": {"job": job, "slicer_profile": profile, "source_artifact": source}}
     state["generated_manufacturing_output"] = derivative
     state["source_artifact_hashes"] = [source["sha256"]]

@@ -6,6 +6,7 @@ from pathlib import Path
 from state.state import context_fingerprint, verification_context_fingerprint
 from tests.schema.test_profile_lifecycle import synthetic_review
 from tests.routing.governance_fixture import declare_test_governance
+from tests.routing.source_fixture import declare_test_source_review
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -35,6 +36,8 @@ def make_cad_review():
                             "locator": "test-only:cad-context", "published_at": None, "accessed_at": "2026-09-17",
                             "scope": "Router tests only, not manufacturing context",
                             "claims": ["Synthetic record consistency control, not a qualified review."]}]}
+    for source in context["sources"]:
+        declare_test_source_review(source, "cad_manufacturing_context")
     state["setup"] = {"cad_handoff": {"review_profile": "cad-bracket-basic-v2", "metadata": metadata,
                                        "derivation": binding, "manufacturing_context": context}}
     state["verification_results"] = [{"check_id": key, "kind": "verification", "status": "passed",

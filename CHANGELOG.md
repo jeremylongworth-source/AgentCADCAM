@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Breaking: verified profiles and supported process-context sources now need a role-scoped source assessment with primary authority, exact metadata binding, evidence and a current UTC freshness window. Missing, stale, conflicted, future-dated, expired or community-only assessments block matching job approvals. Existing source records remain valid drafts and historical reviews are preserved; 644 tests pass. See `docs/architecture/source-review-readiness.md`; Phase 7 remains open.
+
 - Breaking: planning and handoff routing now require resolved source/export declarations. Missing, denied, disputed, expired or conflicting context invalidates matching approval copies without rewriting reviewed fingerprints; blank jurisdiction cannot satisfy requested review. Local confidential review remains distinct from redistribution. Added four-family refusal controls and explicit historical replay deltas; 634 tests pass. Phase 7 remains open. See `docs/architecture/governance-readiness.md`.
 
 - Accepted Phase 6 for repository development after auditing every router/state deliverable and all six exit criteria. Added six gate-matrix methods, including 72 four-family approval-invalidation checks; 623 tests pass. Runtime and retained manufacturing verdicts are unchanged. Next is Phase 7 safety/governance hardening; public-alpha and practitioner gates remain open.

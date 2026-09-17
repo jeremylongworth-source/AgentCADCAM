@@ -6,6 +6,7 @@ from state.state import context_fingerprint, verification_context_fingerprint
 from tests.evaluation.replay_laser_reviews import inputs, ROOT
 from tests.schema.test_profile_lifecycle import synthetic_review
 from tests.routing.governance_fixture import declare_test_governance
+from tests.routing.source_fixture import declare_test_source_review
 import json
 
 
@@ -25,6 +26,7 @@ def make_laser_review(case="positive"):
     state["material"] = synthetic_review(copy.deepcopy(contexts["material"]))
     process = copy.deepcopy(contexts["process"])
     process["settings"] = {"test_only_non_operational_marker": "not a machine parameter"}
+    declare_test_source_review(process["source"], "laser_process")
     state["setup"] = {"laser_preflight": {"job": copy.deepcopy(contexts["job"]),
                                           "process": process, "source_artifact": artifacts[1]}}
     state["generated_manufacturing_output"] = artifacts[-1]

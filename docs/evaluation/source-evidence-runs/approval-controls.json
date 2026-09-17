@@ -1,0 +1,668 @@
+{
+  "factory": "tests/routing/handoff_fixture.py:make_handoff_review",
+  "observations": {
+    "additive": {
+      "changed_review_stale_packet_and_record": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "execution_allowed": false,
+        "findings": [
+          "human approval is not recorded",
+          "approval is stale for the current job context",
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified",
+          "human approval is not recorded",
+          "additive verification record 0: evidence binding does not match current verification inputs",
+          "additive verification record 1: evidence binding does not match current verification inputs",
+          "additive verification record 2: evidence binding does not match current verification inputs",
+          "additive verification record 3: evidence binding does not match current verification inputs",
+          "additive verification record 4: evidence binding does not match current verification inputs",
+          "additive verification record 5: evidence binding does not match current verification inputs",
+          "additive verification record 6: evidence binding does not match current verification inputs",
+          "additive_design: a current passed context-bound evidence record is required",
+          "additive_geometry: a current passed context-bound evidence record is required",
+          "additive_orientation: a current passed context-bound evidence record is required",
+          "additive_supports: a current passed context-bound evidence record is required",
+          "additive_slicer: a current passed context-bound evidence record is required",
+          "additive_environment: a current passed context-bound evidence record is required",
+          "additive_output: a current passed context-bound evidence record is required",
+          "handoff fingerprint does not match current state; preserve the reviewed identity",
+          "handoff omits current routing blockers",
+          "handoff human_review differs from the state-bound review details",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "returned_handoff_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "supplied_handoff_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "validation_errors": []
+      },
+      "different_actual_bytes": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "execution_allowed": false,
+        "findings": [
+          "actual additive bytes do not match the state-bound SHA-256 identity",
+          "3MF bytes do not match an explicit job mesh_sha256 identity",
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "returned_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "supplied_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "validation_errors": []
+      },
+      "live_execution": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "BLOCK_EXECUTION",
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "current_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "execution_allowed": false,
+        "findings": [
+          "live physical execution is outside the project boundary",
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified"
+        ],
+        "handoff_status": "blocked",
+        "returned_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "returned_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "supplied_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "validation_errors": []
+      },
+      "matching_test_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "execution_allowed": false,
+        "findings": [
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "returned_handoff_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "supplied_handoff_fingerprint": "dffbfdbe91b00da331634f06e37217cb238ac81b864a1a4e108b87690a9c9d13",
+        "validation_errors": []
+      },
+      "new_test_record_stale_verification": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "execution_allowed": false,
+        "findings": [
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified",
+          "additive verification record 0: evidence binding does not match current verification inputs",
+          "additive verification record 1: evidence binding does not match current verification inputs",
+          "additive verification record 2: evidence binding does not match current verification inputs",
+          "additive verification record 3: evidence binding does not match current verification inputs",
+          "additive verification record 4: evidence binding does not match current verification inputs",
+          "additive verification record 5: evidence binding does not match current verification inputs",
+          "additive verification record 6: evidence binding does not match current verification inputs",
+          "additive_design: a current passed context-bound evidence record is required",
+          "additive_geometry: a current passed context-bound evidence record is required",
+          "additive_orientation: a current passed context-bound evidence record is required",
+          "additive_supports: a current passed context-bound evidence record is required",
+          "additive_slicer: a current passed context-bound evidence record is required",
+          "additive_environment: a current passed context-bound evidence record is required",
+          "additive_output: a current passed context-bound evidence record is required",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "returned_handoff_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "supplied_handoff_fingerprint": "5fa9da7e4f5ae9a58eac77921d9147d49aa9a15cc1c44d08d174070ced47f446",
+        "validation_errors": []
+      },
+      "renewed_test_verification_and_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "execution_allowed": false,
+        "findings": [
+          "mesh/package remains a print derivative, not authoritative design intent",
+          "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "returned_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "supplied_handoff_fingerprint": "5e7ec4eeaf55f05e7e71720e2af3399159811b03e3ebd9aa1b8c6ef1f2b5c1eb",
+        "validation_errors": []
+      }
+    },
+    "cad_handoff": {
+      "changed_review_stale_packet_and_record": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "execution_allowed": false,
+        "findings": [
+          "human approval is not recorded",
+          "approval is stale for the current job context",
+          "CAD verification record 0: evidence binding does not match current verification inputs",
+          "CAD verification record 1: evidence binding does not match current verification inputs",
+          "CAD verification record 2: evidence binding does not match current verification inputs",
+          "CAD verification record 3: evidence binding does not match current verification inputs",
+          "CAD verification record 4: evidence binding does not match current verification inputs",
+          "cad_provenance: a current passed context-bound evidence record is required",
+          "cad_interoperability: a current passed context-bound evidence record is required",
+          "cad_manufacturability: a current passed context-bound evidence record is required",
+          "cad_drawing_pmi: a current passed context-bound evidence record is required",
+          "cad_handoff: a current passed context-bound evidence record is required",
+          "handoff fingerprint does not match current state; preserve the reviewed identity",
+          "handoff omits current routing blockers",
+          "handoff human_review differs from the state-bound review details",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "returned_handoff_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "supplied_handoff_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "validation_errors": []
+      },
+      "different_actual_bytes": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "execution_allowed": false,
+        "findings": [
+          "CAD bytes differ from the declared derivation identity; review before rebinding",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "returned_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "supplied_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "validation_errors": []
+      },
+      "live_execution": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "BLOCK_EXECUTION",
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "current_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "execution_allowed": false,
+        "findings": [
+          "live physical execution is outside the project boundary"
+        ],
+        "handoff_status": "blocked",
+        "returned_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "returned_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "supplied_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "validation_errors": []
+      },
+      "matching_test_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "execution_allowed": false,
+        "findings": [],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "returned_handoff_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "supplied_handoff_fingerprint": "ec71de5cbb47c8be9f07de9d34ef02a9bffe6112089bb2accfad7790c2b968b5",
+        "validation_errors": []
+      },
+      "new_test_record_stale_verification": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "execution_allowed": false,
+        "findings": [
+          "CAD verification record 0: evidence binding does not match current verification inputs",
+          "CAD verification record 1: evidence binding does not match current verification inputs",
+          "CAD verification record 2: evidence binding does not match current verification inputs",
+          "CAD verification record 3: evidence binding does not match current verification inputs",
+          "CAD verification record 4: evidence binding does not match current verification inputs",
+          "cad_provenance: a current passed context-bound evidence record is required",
+          "cad_interoperability: a current passed context-bound evidence record is required",
+          "cad_manufacturability: a current passed context-bound evidence record is required",
+          "cad_drawing_pmi: a current passed context-bound evidence record is required",
+          "cad_handoff: a current passed context-bound evidence record is required",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "returned_handoff_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "supplied_handoff_fingerprint": "6623c849b8260ce239b549cfdb4d91406c286a5155152f5ccc5cfd4b8ceda473",
+        "validation_errors": []
+      },
+      "renewed_test_verification_and_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "execution_allowed": false,
+        "findings": [],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "returned_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "supplied_handoff_fingerprint": "98f75f62378238adb440a37d4e501c19449a13fa56f111ca1abc10f7f99d07f0",
+        "validation_errors": []
+      }
+    },
+    "cnc_milling": {
+      "changed_review_stale_packet_and_record": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SIMULATION_REQUIRED",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "execution_allowed": false,
+        "findings": [
+          "human approval is not recorded",
+          "approval is stale for the current job context",
+          "program units are explicit: mm",
+          "WCS G54 is present",
+          "tool number T1 reconciled",
+          "M3 present; human review required for spindle state",
+          "M5 present; human review required for spindle state",
+          "human approval is not recorded",
+          "CNC verification record 0: evidence binding does not match current verification inputs",
+          "CNC verification record 1: evidence binding does not match current verification inputs",
+          "CNC simulation requires a current passed context-bound evidence record",
+          "CNC verification requires a current passed context-bound evidence record",
+          "handoff fingerprint does not match current state; preserve the reviewed identity",
+          "handoff omits current routing blockers",
+          "handoff human_review differs from the state-bound review details",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "returned_handoff_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "supplied_handoff_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "validation_errors": []
+      },
+      "different_actual_bytes": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "execution_allowed": false,
+        "findings": [
+          "actual NC bytes do not match the state-bound SHA-256 identity",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "returned_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "supplied_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "validation_errors": []
+      },
+      "live_execution": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "BLOCK_EXECUTION",
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "current_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "execution_allowed": false,
+        "findings": [
+          "live physical execution is outside the project boundary",
+          "program units are explicit: mm",
+          "WCS G54 is present",
+          "tool number T1 reconciled",
+          "M3 present; human review required for spindle state",
+          "M5 present; human review required for spindle state"
+        ],
+        "handoff_status": "blocked",
+        "returned_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "returned_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "supplied_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "validation_errors": []
+      },
+      "matching_test_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "execution_allowed": false,
+        "findings": [
+          "program units are explicit: mm",
+          "WCS G54 is present",
+          "tool number T1 reconciled",
+          "M3 present; human review required for spindle state",
+          "M5 present; human review required for spindle state"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "returned_handoff_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "supplied_handoff_fingerprint": "f5bb789825e7cc1b6827a6f68b2a16e1de55d569aa9108b4929072807ce79103",
+        "validation_errors": []
+      },
+      "new_test_record_stale_verification": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SIMULATION_REQUIRED",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "execution_allowed": false,
+        "findings": [
+          "program units are explicit: mm",
+          "WCS G54 is present",
+          "tool number T1 reconciled",
+          "M3 present; human review required for spindle state",
+          "M5 present; human review required for spindle state",
+          "CNC verification record 0: evidence binding does not match current verification inputs",
+          "CNC verification record 1: evidence binding does not match current verification inputs",
+          "CNC simulation requires a current passed context-bound evidence record",
+          "CNC verification requires a current passed context-bound evidence record",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "returned_handoff_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "supplied_handoff_fingerprint": "db7d6e45cb621f1ebb38fc6dadbfa45d76ad18dd760d3b494737edf9aef59d1e",
+        "validation_errors": []
+      },
+      "renewed_test_verification_and_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "execution_allowed": false,
+        "findings": [
+          "program units are explicit: mm",
+          "WCS G54 is present",
+          "tool number T1 reconciled",
+          "M3 present; human review required for spindle state",
+          "M5 present; human review required for spindle state"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "returned_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "supplied_handoff_fingerprint": "2f08bc050f10018281ccb4c672aa17afd6edf060660b542c87f812ea6f1b27a9",
+        "validation_errors": []
+      }
+    },
+    "laser_cutting": {
+      "changed_review_stale_packet_and_record": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "execution_allowed": false,
+        "findings": [
+          "human approval is not recorded",
+          "approval is stale for the current job context",
+          "job drawing units are explicit; physical design intent remains unverified",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review",
+          "human approval is not recorded",
+          "laser verification record 0: evidence binding does not match current verification inputs",
+          "laser verification record 1: evidence binding does not match current verification inputs",
+          "laser verification record 2: evidence binding does not match current verification inputs",
+          "laser verification record 3: evidence binding does not match current verification inputs",
+          "laser verification record 4: evidence binding does not match current verification inputs",
+          "laser verification record 5: evidence binding does not match current verification inputs",
+          "laser_design: a current passed context-bound evidence record is required",
+          "laser_paths: a current passed context-bound evidence record is required",
+          "laser_process: a current passed context-bound evidence record is required",
+          "laser_beam: a current passed context-bound evidence record is required",
+          "laser_emissions: a current passed context-bound evidence record is required",
+          "laser_output: a current passed context-bound evidence record is required",
+          "handoff fingerprint does not match current state; preserve the reviewed identity",
+          "handoff omits current routing blockers",
+          "handoff human_review differs from the state-bound review details",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "returned_handoff_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "supplied_handoff_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "validation_errors": []
+      },
+      "different_actual_bytes": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "execution_allowed": false,
+        "findings": [
+          "actual laser bytes do not match the state-bound SHA-256 identity",
+          "DXF is malformed, incomplete or has invalid planar geometry/numbers",
+          "drawing bytes do not match an explicit job drawing_sha256 identity",
+          "job drawing units are explicit; physical design intent remains unverified",
+          "file unit declaration conflicts with job drawing units",
+          "x: measured, expected or working-area dimension is missing or invalid",
+          "y: measured, expected or working-area dimension is missing or invalid",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "returned_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "supplied_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "validation_errors": []
+      },
+      "live_execution": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "BLOCK_EXECUTION",
+          "HUMAN_APPROVAL_REQUIRED"
+        ],
+        "current_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "execution_allowed": false,
+        "findings": [
+          "live physical execution is outside the project boundary",
+          "job drawing units are explicit; physical design intent remains unverified",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review"
+        ],
+        "handoff_status": "blocked",
+        "returned_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "returned_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "supplied_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "validation_errors": []
+      },
+      "matching_test_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "execution_allowed": false,
+        "findings": [
+          "job drawing units are explicit; physical design intent remains unverified",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "returned_handoff_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "supplied_handoff_fingerprint": "1eeb41978c8b0cd6aa1319d89a71042703536c0a94c66017cf0a60c68d5161a1",
+        "validation_errors": []
+      },
+      "new_test_record_stale_verification": {
+        "approval_state": "invalidated",
+        "blockers": [
+          "HUMAN_APPROVAL_REQUIRED",
+          "MISSING_CONTEXT",
+          "SOURCE_VERIFICATION_REQUIRED"
+        ],
+        "current_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "execution_allowed": false,
+        "findings": [
+          "job drawing units are explicit; physical design intent remains unverified",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review",
+          "laser verification record 0: evidence binding does not match current verification inputs",
+          "laser verification record 1: evidence binding does not match current verification inputs",
+          "laser verification record 2: evidence binding does not match current verification inputs",
+          "laser verification record 3: evidence binding does not match current verification inputs",
+          "laser verification record 4: evidence binding does not match current verification inputs",
+          "laser verification record 5: evidence binding does not match current verification inputs",
+          "laser_design: a current passed context-bound evidence record is required",
+          "laser_paths: a current passed context-bound evidence record is required",
+          "laser_process: a current passed context-bound evidence record is required",
+          "laser_beam: a current passed context-bound evidence record is required",
+          "laser_emissions: a current passed context-bound evidence record is required",
+          "laser_output: a current passed context-bound evidence record is required",
+          "handoff omits current routing blockers",
+          "handoff approval is not current and scoped"
+        ],
+        "handoff_status": "invalidated",
+        "returned_approval_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "returned_handoff_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "review_required": true,
+        "status": "blocked",
+        "supplied_approval_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "supplied_handoff_fingerprint": "58ca189a228deb404bd144658f1682b156758c57e124947fa0e1c1ee4a23fa48",
+        "validation_errors": []
+      },
+      "renewed_test_verification_and_record": {
+        "approval_state": "approved",
+        "blockers": [],
+        "current_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "execution_allowed": false,
+        "findings": [
+          "job drawing units are explicit; physical design intent remains unverified",
+          "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+          "process settings have a verified declaration; actual applicability remains unverified",
+          "ventilation has known-status declarations; applicable site evidence still requires review",
+          "beam activation is outside project boundary and requires human control",
+          "process-emission risk remains subject to operator review"
+        ],
+        "handoff_status": "approved",
+        "returned_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "returned_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "review_required": true,
+        "status": "review_required",
+        "supplied_approval_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "supplied_handoff_fingerprint": "1053c51b71ab5eb4a33d7523b5427ffc75a1e19c02ce2206a7232cc6724d4b72",
+        "validation_errors": []
+      }
+    }
+  },
+  "scope": "Isolated test-only lifecycle declarations; no actual approval, qualified review or manufacturing parameters"
+}

@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from scripts.validate_schema_instances import load_catalog, validator_for
+from tests.routing.source_fixture import declare_test_source_review
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -18,6 +19,12 @@ def synthetic_review(profile):
         "reviewer": "synthetic-test-reviewer", "reviewed_at": "2026-09-13T12:00:00Z",
         "evidence": ["fixture:synthetic-review"], "notes": "Test declaration only; no practitioner review.",
     }
+    for identity, role in (("model_id", "coordinate_model"), ("post_id", "postprocessor"),
+                           ("tool_id", "tool"), ("controller_id", "controller"),
+                           ("material_id", "material"), ("machine_id", "machine")):
+        if identity in profile:
+            declare_test_source_review(profile["source"], role)
+            break
     return profile
 
 

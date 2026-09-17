@@ -121,9 +121,9 @@ class IntegratedReviewPacketTests(unittest.TestCase):
 class IntegratedApprovalControlTests(unittest.TestCase):
     def test_retained_test_only_lifecycle_transitions_match_all_four_families(self):
         actual = replay_controls()
-        # Phase 7 controls explicitly add complete test-only governance before
-        # rebinding records. The Phase 6 historical snapshot is not rewritten.
-        stored = json.loads((ROOT / "docs/evaluation/governance-runs/approval-controls.json").read_text(encoding="utf-8"))
+        # Phase 7 controls add test-only governance and source assessments before
+        # rebinding records. Earlier historical snapshots are not rewritten.
+        stored = json.loads((ROOT / "docs/evaluation/source-evidence-runs/approval-controls.json").read_text(encoding="utf-8"))
         self.assertEqual(actual, stored)
         self.assertEqual(len(actual["observations"]), 4)
         for family, cases in actual["observations"].items():

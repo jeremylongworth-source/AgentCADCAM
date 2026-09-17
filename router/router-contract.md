@@ -29,7 +29,7 @@ Recognized live actions, including machine starts and safety-system disabling, f
 - Execution-adjacent CNC routes require machine, controller, setup, tooling, post, simulation, verification, and human approval checks as applicable.
 - Missing or conflicting context produces explicit blockers.
 - Approval is scoped to a revision and context fingerprint and is invalidated by consequential changes.
-- Routing is deterministic: identical normalized inputs produce identical results.
+- Triage routing is deterministic: identical normalized inputs produce identical results. Integrated source readiness also depends on the current UTC date; an expired source assessment can block an otherwise unchanged job.
 
 ## Bounded job integration
 
@@ -40,6 +40,7 @@ The integrated function:
 - Validates current/previous state, approval records, and supplied machine/controller/material profiles using local schemas. A `*_known: true` flag cannot establish a missing or invalid profile.
 - Validates supplied post and tool profiles even outside execution-adjacent CNC. All five reusable profile types require lifecycle metadata; unverified or revision-mismatched profile reviews block effective approval across families and consequence levels. See the [profile lifecycle contract](../docs/standards/context-profile-standard.md). This does not authenticate reviewers or infer unit conversions.
 - Uses the state process family and blocks conflicts with the request or supplied profiles.
+- Requires a bound, primary, role-scoped and date-current source assessment for otherwise verified profiles and supported process-context sources. Missing, stale, conflicted, expired or out-of-scope assessments cannot be waived by a matching job approval. See the [source-review contract](../docs/architecture/source-review-readiness.md).
 - Ignores raw approval flags. It requires a record with a matching version-2 context fingerprint, review timestamp, and exact required scope token before recognizing `approved` for this request.
 - Marks stale approval copies `invalidated`, preserving the original reviewed fingerprint. A previous state is optional and supplies changed-field diagnostics. A new review of the current fingerprint remains valid even if the previous snapshot differs.
 - Preserves records that apply to another scope but does not count them as approval for this scope.
@@ -54,7 +55,7 @@ The integrated function:
 - Adds `additive_review` when the additive gate runs. Supplied additive bytes enforce the same consequence floor; those bytes or a selected mesh/print-package manufacturing output cannot bypass review by changing families.
 - Adds `cad_review` when the CAD gate runs. A selected mesh derivative can remain in a CAD handoff only when the full CAD byte inventory and evidence gate apply; additive preparation still requires its own independent process review.
 
-This local function checks declared context and record consistency, not reviewer authentication or truth of evidence. Physical suitability, source authority, and process-specific evidence review remain downstream responsibilities; an empty blocker list is not manufacturing readiness or permission to execute.
+This local function checks declared context and record consistency, not reviewer authentication or truth of evidence. Physical suitability, actual source authority/applicability, and substantive process-specific evidence review remain human responsibilities; an empty blocker list is not manufacturing readiness or permission to execute.
 
 For a serialized manufacturing handoff, use the additional
 [`review_handoff` consumer](../docs/architecture/handoff-state-binding.md). It

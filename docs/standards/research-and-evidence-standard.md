@@ -11,3 +11,12 @@ Profile sources share `contexts/schemas/handoff.schema.json#/$defs/source`. Requ
 This profile contract is distinct from the richer repository source registry, which also tracks authority, review status, sections, and format applicability. A schema-valid profile is a documented declaration, not proof that its source is authoritative, current, or applicable. Synthetic fixture claims describe only the fixture's declared test behavior and cannot support real machine/material/safety decisions.
 
 Profile authors migrating the earlier minimal records must follow the [source-contract migration](../development/source-contract-migration.md). Changed embedded source evidence changes the containing job fingerprint and requires renewed review; existing approvals must not be silently re-signed.
+
+## Readiness assessment
+
+The optional persisted `source.review` record is now required for otherwise
+verified runtime profiles and supported process-context sources. The
+[source-review contract](../architecture/source-review-readiness.md) defines
+authority, role, metadata binding, review evidence and UTC freshness checks.
+Missing/stale/conflicted/non-primary assessments block matching job approvals.
+Schema validity alone still cannot prove a source's truth or actual applicability.

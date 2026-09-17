@@ -26,6 +26,12 @@ Setup is a job-specific context, controlled by the parent job revision/fingerpri
 
 ## Evidence and validation limits
 
+Otherwise current verified profiles also require a matching, scoped, primary and
+date-current [source assessment](../architecture/source-review-readiness.md).
+This is separate from profile lifecycle verification and cannot be renewed by
+changing only the job approval. Existing unverified fixture profiles remain
+unverified; the optional source assessment does not promote a draft.
+
 The profile's separate `source` identifies evidence publisher, locator, scope, and claims. A reviewer must assess authority, actual applicability, dimensional meaning, and conflicting facts before declaring verification. Shape checks cannot authenticate the reviewer, prove a source is true or fresh, or determine units for arbitrary nested capability/property objects. A declared verified record is not machine readiness. Process-specific geometry, package, parameter, and unit-conversion checks remain required downstream.
 
 Nine reusable synthetic fixture profiles are initialized at profile-record revision `1` and remain `unverified`. Positive routing tests construct synthetic review declarations in memory; no practitioner review is implied. See the [migration guide](../development/profile-lifecycle-migration.md).

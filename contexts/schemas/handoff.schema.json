@@ -170,6 +170,29 @@
         {"if": {"properties": {"status": {"const": "not_required"}}}, "then": {"properties": {"required_checks": {"maxItems": 0}}}}
       ]
     },
+    "source_review": {
+      "type": "object", "additionalProperties": false,
+      "description": "A reviewer's bounded source assessment, not source authentication or legal/engineering approval.",
+      "required": ["status", "authority", "reviewer", "reviewed_at", "valid_through", "applies_to", "evidence", "source_sha256"],
+      "properties": {
+        "status": {"enum": ["verification_required", "reviewed", "stale", "conflicted"]},
+        "authority": {"enum": ["unknown", "standards_body", "government_research", "oem_documentation", "primary_tool_documentation", "primary_research", "community"]},
+        "reviewer": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S"},
+        "reviewed_at": {"type": ["string", "null"], "format": "date"},
+        "valid_through": {"type": ["string", "null"], "format": "date"},
+        "applies_to": {"type": "array", "uniqueItems": true, "items": {"enum": ["machine", "controller", "material", "tool", "postprocessor", "coordinate_model", "cad_manufacturing_context", "slicer_profile", "laser_process"]}},
+        "evidence": {"$ref": "#/$defs/text_list"},
+        "source_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      },
+      "allOf": [{
+        "if": {"properties": {"status": {"const": "reviewed"}}},
+        "then": {"properties": {
+          "reviewer": {"type": "string"}, "reviewed_at": {"type": "string"},
+          "valid_through": {"type": "string"}, "source_sha256": {"type": "string"},
+          "applies_to": {"minItems": 1}, "evidence": {"minItems": 1}
+        }}
+      }]
+    },
     "source": {
       "type": "object",
       "additionalProperties": false,
@@ -180,6 +203,7 @@
         "locator": {"type": "string", "minLength": 1, "pattern": "\\S"},
         "published_at": {"type": ["string", "null"], "minLength": 1, "pattern": "\\S", "description": "Publication date or source revision as supplied; null when unavailable, never inferred."},
         "accessed_at": {"type": "string", "format": "date"},
+        "review": {"$ref": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/handoff.schema.json#/$defs/source_review"},
         "scope": {"type": "string", "minLength": 1, "pattern": "\\S"},
         "claims": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "\\S"}, "description": "Specific statements supported within this source's scope; metadata does not authenticate them."}
       }

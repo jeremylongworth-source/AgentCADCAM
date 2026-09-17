@@ -41,6 +41,10 @@ hashes, verification records and fingerprints are not refreshed or promoted.
 The stored handoffs remain blocked. Reading an older packet does not exempt it
 from today's consumer checks.
 
+The subsequent [source-assessment increment](../source-evidence-runs/README.md)
+adds assessments to synthetic control factories and retains a separate current
+lifecycle snapshot. The snapshot below remains the historical governance-only run.
+
 `approval-controls.json` is a **new** 24-case synthetic lifecycle snapshot,
 produced by `python -m tests.evaluation.replay_integration_controls`. The four
 test factories now explicitly supply complete test-only governance before
