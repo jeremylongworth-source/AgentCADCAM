@@ -6,7 +6,7 @@ AgentCADCAM helps agents review digital designs and prepare traceable manufactur
 
 **Review and planning only.** AgentCADCAM does not control equipment or authorize manufacturing. Missing consequential evidence remains a blocker, not a lower confidence score.
 
-[Getting started](docs/wiki/Getting-Started.md) · [Workflow guide](docs/wiki/Workflow-Guide.md) · [Documentation](docs/wiki/Home.md) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
+[Getting started](docs/wiki/Getting-Started.md) · [Workflow guide](docs/wiki/Workflow-Guide.md) · [GitHub Wiki](https://github.com/jeremylongworth-source/AgentCADCAM/wiki) · [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md)
 
 ## Why AgentCADCAM?
 
@@ -68,7 +68,7 @@ python scripts/validate_schema_instances.py
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-These commands validate the repository and its fixtures. They do not approve a real job or require equipment access. While the repository is private, cloning requires access.
+These commands validate the repository and its fixtures. They do not approve a real job or require equipment access.
 
 ### Try a bounded review
 
@@ -111,7 +111,7 @@ Read [Safety and approvals](docs/wiki/Safety-and-Approvals.md) before using a re
 | [Roadmap](ROADMAP.md) | Governing scope, phase gates, and deferred capabilities |
 | [Changelog](CHANGELOG.md) | Development changes and compatibility notes |
 
-Wiki content is maintained in this repository and prepared for GitHub Wiki publication. The [publishing guide](docs/development/wiki-publishing.md) records the current availability and maintenance workflow.
+Wiki content is maintained in this repository for publication to the [GitHub Wiki](https://github.com/jeremylongworth-source/AgentCADCAM/wiki). The [publishing guide](docs/development/wiki-publishing.md) records availability and the maintenance workflow.
 
 ## Contributing
 

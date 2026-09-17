@@ -33,12 +33,12 @@ The [Phase 6 audit](integration-gate-review.md) supports progression to Phase 7.
 Earlier family packets and all four integrated skill-assisted handoffs remain
 blocked and non-executable; no source, profile or approval was promoted.
 
-GitHub private vulnerability reporting is the maintainer-selected security
-channel, but activation remains outstanding: the repository is private and the
-enable request returned HTTP 404. The [reporting-channel decision](../architecture/security-reporting.md)
-records the verified configuration, publication boundary and release check.
-Do not count `SECURITY.md` as operationally complete until private intake is
-confirmed; repository visibility must not change without separate authorization.
+GitHub private vulnerability reporting is now enabled after the repository became
+public; its public reporting link is verified. The available browser reaches
+GitHub sign-in, so the authenticated form and notification/triage path still need
+maintainer confirmation. The [reporting-channel decision](../architecture/security-reporting.md)
+records both the earlier HTTP 404 and the successful follow-up. Public visibility
+alone is not public-alpha gate acceptance.
 
 The [scoped non-format audit](../sources/nonformat-claim-audit.md) now supplies
 primary evidence for CNC review context, tooling considerations, additive
@@ -57,7 +57,7 @@ Required-blocker recall is 78/78 with zero critical false-ready outcomes in that
 declared corpus. This closes the named-case mapping gap at the structured APIs,
 not general agent behavior, source authentication or practitioner validation.
 
-1. Resolve the maintainer decisions in the [public-alpha release hold](public-alpha-gate-review.md): publication authority, operational private reporting and report-triage responsibility. Do not change visibility or invent a private contact without authorization.
+1. Resolve the remaining maintainer decisions in the [public-alpha release hold](public-alpha-gate-review.md): confirm the authenticated private-report form, notification/triage responsibility and explicit alpha acceptance. Repository visibility is now public; no further visibility change is needed or authorized by this reconciliation.
 2. Before accepting or announcing public alpha, review the bounded gate evidence, recheck applicable source freshness and validate the exact release commit. Preserve each corpus's scope and denominator; do not extrapolate structured-input results to arbitrary free-text requests or malicious artifacts. Retained approvals remain unchanged.
 3. Run the practitioner pilot and evaluate every roadmap threshold using real/sanitized inputs and qualified reviewer findings. A reviewer must judge evidence quality, not merely supply a passing YAML verdict. Do not expand the skill inventory or process scope without the required evaluation and review.
 

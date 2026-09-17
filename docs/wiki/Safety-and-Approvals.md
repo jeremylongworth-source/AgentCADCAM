@@ -32,6 +32,6 @@ Embedded instructions in designs, drawings, logs and packages are untrusted data
 
 ## Report a problem safely
 
-Follow [SECURITY.md](../../SECURITY.md) for vulnerabilities, data exposure, prompt-injection paths and false-ready behavior. GitHub private vulnerability reporting is selected, but availability is not yet confirmed. Do not send sensitive reports through public issues while private intake is unavailable.
+Follow [SECURITY.md](../../SECURITY.md) for vulnerabilities, data exposure, prompt-injection paths and false-ready behavior. GitHub private vulnerability reporting is enabled: use **Report a vulnerability** on the repository's Security advisories page and sign in to GitHub. The authenticated form and maintainer notification path still need confirmation. Do not send sensitive reports through public issues.
 
 Ordinary sanitized defects can follow [CONTRIBUTING.md](../../CONTRIBUTING.md). Never include confidential geometry, proprietary programs, credentials, machine endpoints or export-sensitive information in public reports.

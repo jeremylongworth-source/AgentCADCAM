@@ -4,6 +4,13 @@ Reviewed: 2026-09-17. Baseline: `4591509`; this increment changes documentation 
 Decision: **HOLD — `REVIEW_REQUIRED`**. Do not award
 `CADCAM_08_PUBLIC_ALPHA_READY` or announce a release from this review.
 
+Subsequent configuration update (2026-09-17): the repository is now public,
+the wiki is enabled, and private vulnerability reporting is enabled with a
+visible public reporting link. The authenticated form and notification/triage
+path remain unverified. The historical observations below describe the original
+review; the [reporting decision](../architecture/security-reporting.md) records
+the updated evidence. Public visibility does not award this gate.
+
 ## Scope and evidence
 
 This review reconciles the nine Phase 7 exit requirements against the initial

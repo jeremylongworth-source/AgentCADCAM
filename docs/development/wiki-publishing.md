@@ -1,6 +1,6 @@
 # Wiki publication and maintenance
 
-## Current state
+## Source and initial availability
 
 Wiki content is maintained in `docs/wiki/`: seven guides plus `_Sidebar.md` and
 `_Footer.md`. It is readable in the repository before the hosted wiki exists.
@@ -11,6 +11,12 @@ On 2026-09-17, both the CLI enable request and a direct repository update left
 “Repository not found.” No hosted pages were published, no account plan was
 changed, and no repository visibility change was made. The response alone does
 not establish the exact eligibility or configuration cause.
+
+Later on 2026-09-17, the API reported public visibility and `has_wiki: true`.
+The wiki Git remote became available on `master`, with an initial Home page
+containing only the default welcome message at `b68d2a3`. No visibility change
+was made by this agent. The prepared source can now use the publishing workflow
+below; confirm the hosted result before calling an export published.
 
 [GitHub documents](https://docs.github.com/en/communities/documenting-your-project-with-wikis/about-wikis)
 wiki availability for public repositories on Free plans and private repositories
