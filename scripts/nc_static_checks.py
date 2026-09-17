@@ -4,18 +4,100 @@ from __future__ import annotations
 
 import json
 import re
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
 
-HEADER_RE = re.compile(r"\(\s*([A-Z_]+):\s*([^)]*?)\s*\)")
-COMMAND_RE = re.compile(r"\b([GM]\d+)\b")
-TOOL_RE = re.compile(r"\bT(\d+)\s+M6\b")
-COORD_RE = re.compile(r"\b([XYZ])\s*(-?(?:\d+(?:\.\d*)?|\.\d+))\b")
+HEADER_RE = re.compile(r"\s*([A-Z_]+):\s*(.*?)\s*")
+WORD_RE = re.compile(r"([A-Z])([+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+))")
+ACTIVE_COMMENT_RE = re.compile(r"\s*(?:MSG|DEBUG|PRINT|LOGOPEN|LOGAPPEND|LOGCLOSE|LOG|PROBEOPEN|PROBECLOSE)(?:\s|,|$)", re.I)
+REVIEWED_COMMANDS = {"G0", "G1", "G17", "G20", "G21", "G54", "G90", "M3", "M5", "M6", "M30"}
+MODAL_GROUPS = ({"G0", "G1", "G2", "G3"}, {"G17", "G18", "G19"},
+                {"G20", "G21"}, {"G90", "G91"}, {"G54", "G55", "G56", "G57", "G58", "G59"},
+                {"M3", "M4", "M5"})
 
 
-def _headers(program: str) -> dict[str, str]:
-    return {key: value.strip() for key, value in HEADER_RE.findall(program)}
+def _literal_blocks(program: str):
+    """Read inert words and prologue declarations, rejecting unevaluated syntax.
+
+    This intentionally does not evaluate parameters, expressions or subprograms.
+    See docs/architecture/nc-static-review-scope.md for the supported subset.
+    """
+    headers, blocks, errors = {}, [], []
+    code_seen = False
+    delimiters = 0
+    for number, line in enumerate(program.splitlines(), 1):
+        code, comments, position = [], [], 0
+        while position < len(line):
+            char = line[position]
+            if char == ";":
+                if ACTIVE_COMMENT_RE.match(line[position + 1:]):
+                    errors.append(f"line {number}: active comment extension requires review")
+                break
+            if char == "(":
+                end = line.find(")", position + 1)
+                if end == -1 or "(" in line[position + 1:end]:
+                    errors.append(f"line {number}: malformed or nested comment")
+                    break
+                comments.append(line[position + 1:end])
+                prefix = "".join(code).rstrip()
+                suffix = line[end + 1:].lstrip()
+                if (prefix and prefix[-1].isalpha()) or (prefix and suffix
+                        and prefix[-1] in "0123456789.+-" and suffix[0] in "0123456789.+-"):
+                    errors.append(f"line {number}: comment splits an NC word")
+                position = end + 1
+                continue
+            code.append(char)
+            position += 1
+        compact = "".join(code).replace(" ", "").replace("\t", "").upper()
+        for comment in comments:
+            if ACTIVE_COMMENT_RE.match(comment):
+                errors.append(f"line {number}: active comment extension requires review")
+            match = HEADER_RE.fullmatch(comment)
+            if match:
+                key, value = match.groups()
+                if code_seen or compact or key in headers:
+                    errors.append(f"line {number}: duplicate or non-prologue header {key}")
+                else:
+                    headers[key] = value.strip()
+        if not compact:
+            continue
+        if compact == "%":
+            delimiters += 1
+            if delimiters > 2 or (delimiters == 1 and code_seen):
+                errors.append(f"line {number}: misplaced program delimiter")
+            continue
+        if delimiters >= 2:
+            errors.append(f"line {number}: code after closing delimiter")
+        code_seen = True
+        words, position = [], 0
+        while position < len(compact):
+            match = WORD_RE.match(compact, position)
+            if not match:
+                errors.append(f"line {number}: unsupported or malformed NC syntax at column {position + 1}")
+                break
+            letter, literal = match.groups()
+            value = Decimal(literal)
+            if letter not in "GMNXYZTFS":
+                errors.append(f"line {number}: unsupported word {letter}")
+            if letter in "GMNT" and (value < 0 or value != value.to_integral_value()):
+                # Decimal G codes are retained below, never truncated to another command.
+                if letter != "G" or value < 0:
+                    errors.append(f"line {number}: invalid {letter} number")
+            words.append((letter, value))
+            position = match.end()
+        blocks.append((number, words))
+    if delimiters == 1:
+        errors.append("missing closing program delimiter")
+    return headers, blocks, errors
+
+
+def _command(letter: str, value: Decimal) -> str:
+    spelling = format(value, "f")
+    if "." in spelling:
+        spelling = spelling.rstrip("0").rstrip(".")
+    return letter + spelling
 
 
 def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -27,7 +109,11 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
     post = contexts.get("post", {})
     setup = contexts.get("setup", {})
     tool = contexts.get("tool", {})
-    headers = _headers(program)
+    headers, blocks, parse_errors = _literal_blocks(program)
+    if parse_errors:
+        blockers.append("SOURCE_VERIFICATION_REQUIRED")
+        findings.extend(parse_errors)
+    commands = {_command(letter, value) for _, words in blocks for letter, value in words if letter in "GM"}
 
     if headers.get("JOB") != job.get("job_id"):
         blockers.append("MISSING_CONTEXT")
@@ -48,7 +134,7 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
         blockers.append("MISSING_CONTEXT")
         findings.append("program setup identity does not match setup context")
 
-    unit_commands = set(re.findall(r"\bG(?:20|21)\b", program))
+    unit_commands = commands & {"G20", "G21"}
     expected_units = job.get("units")
     expected_command = "G21" if expected_units == "mm" else "G20" if expected_units in ("in", "inch") else None
     if expected_command is None or unit_commands != {expected_command}:
@@ -57,14 +143,15 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
     else:
         findings.append(f"program units are explicit: {expected_units}")
 
-    expected_wcs = (controller.get("modes_and_offsets") or {}).get("wcs", [None])[0]
-    if not expected_wcs or expected_wcs not in program:
+    wcs_options = (controller.get("modes_and_offsets") or {}).get("wcs") or []
+    expected_wcs = wcs_options[0] if wcs_options else None
+    if not expected_wcs or expected_wcs not in commands:
         blockers.append("MISSING_CONTEXT")
         findings.append("required work coordinate system is missing")
     else:
         findings.append(f"WCS {expected_wcs} is present")
 
-    tool_numbers = {int(value) for value in TOOL_RE.findall(program)}
+    tool_numbers = {value for _, words in blocks for letter, value in words if letter == "T"}
     known_tool = tool.get("tool_number")
     if not tool_numbers or known_tool not in tool_numbers or len(tool_numbers) != 1:
         blockers.append("MISSING_CONTEXT")
@@ -73,19 +160,64 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
         findings.append(f"tool number T{known_tool} reconciled")
 
     supported = set(controller.get("supported_commands", []))
-    commands = set(COMMAND_RE.findall(program))
     unsupported = sorted(commands - supported)
     if unsupported:
         blockers.append("MACHINE_CONTEXT_REQUIRED")
         findings.append(f"unsupported controller commands: {', '.join(unsupported)}")
 
+    outside_scope = sorted(commands - REVIEWED_COMMANDS)
+    if outside_scope:
+        blockers.append("SOURCE_VERIFICATION_REQUIRED")
+        findings.append(f"commands outside static reviewer semantics: {', '.join(outside_scope)}")
+
     limits = machine.get("limits") or {}
-    for axis, value_text in COORD_RE.findall(program):
-        value = float(value_text)
-        limit = limits.get(axis.lower()) or {}
-        if limit and not (float(limit.get("min", float("-inf"))) <= value <= float(limit.get("max", float("inf")))):
-            blockers.append("MACHINE_CONTEXT_REQUIRED")
-            findings.append(f"{axis}{value_text} exceeds machine limit")
+    units_mode = absolute_mode = wcs_mode = motion_mode = selected_tool = loaded_tool = None
+    ended = False
+    for number, words in blocks:
+        block_commands = [_command(letter, value) for letter, value in words if letter in "GM"]
+        values = {letter: value for letter, value in words}
+        letters = [letter for letter, _ in words if letter not in "GM"]
+        if len(letters) != len(set(letters)) or len(block_commands) != len(set(block_commands)):
+            blockers.append("SOURCE_VERIFICATION_REQUIRED")
+            findings.append(f"line {number}: repeated NC word")
+        if any(len(set(block_commands) & group) > 1 for group in MODAL_GROUPS):
+            blockers.append("SOURCE_VERIFICATION_REQUIRED")
+            findings.append(f"line {number}: conflicting modal commands")
+        if ended and words:
+            blockers.append("SOURCE_VERIFICATION_REQUIRED")
+            findings.append(f"line {number}: executable words after program end")
+        for command in block_commands:
+            if command in {"G20", "G21"}:
+                units_mode = command
+            elif command in {"G90", "G91"}:
+                absolute_mode = command
+            elif command in {"G54", "G55", "G56", "G57", "G58", "G59"}:
+                wcs_mode = command
+            elif command in {"G0", "G1"}:
+                motion_mode = command
+        if "T" in values:
+            selected_tool = values["T"]
+        if "M6" in block_commands:
+            loaded_tool = selected_tool
+            if loaded_tool is None or loaded_tool != known_tool:
+                blockers.append("MISSING_CONTEXT")
+                findings.append(f"line {number}: tool change lacks a known selected tool")
+        if any(axis in values for axis in "XYZ"):
+            if (units_mode != expected_command or absolute_mode != "G90" or not expected_wcs
+                    or wcs_mode != expected_wcs or motion_mode is None
+                    or loaded_tool is None or loaded_tool != known_tool):
+                blockers.append("MISSING_CONTEXT")
+                findings.append(f"line {number}: motion precedes required units, G90, WCS, motion mode or tool change")
+            for axis in "XYZ":
+                if axis not in values:
+                    continue
+                value = values[axis]
+                limit = limits.get(axis.lower()) or {}
+                if limit and not (Decimal(str(limit.get("min", "-Infinity"))) <= value <= Decimal(str(limit.get("max", "Infinity")))):
+                    blockers.append("MACHINE_CONTEXT_REQUIRED")
+                    findings.append(f"line {number}: {axis}{value} exceeds declared fixture coordinate bound")
+        if "M30" in block_commands:
+            ended = True
 
     for command in ("M3", "M5"):
         if command in commands:
@@ -107,6 +239,7 @@ def review_program(program: str, contexts: dict[str, dict[str, Any]]) -> dict[st
         "findings": findings,
         "review_required": True,
         "execution_allowed": False,
+        "validation_scope": "synthetic literal NC words, selected modal prerequisites and declared coordinate bounds; not physical travel, simulation or approval verification",
     }
 
 
