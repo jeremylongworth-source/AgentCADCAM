@@ -8,6 +8,11 @@ from pathlib import Path
 
 import ezdxf
 
+if __package__:
+    from .laser_svg_review import inspect_svg
+else:
+    from laser_svg_review import inspect_svg
+
 
 def validate(root: Path) -> list[str]:
     errors: list[str] = []
@@ -23,9 +28,22 @@ def validate(root: Path) -> list[str]:
         errors.append("DXF must contain one closed outer polyline")
     if len(circles) != 2:
         errors.append("DXF must contain two hole circles")
-    svg = svg_path.read_text(encoding="utf-8")
-    if "viewBox=\"0 0 70 50\"" not in svg or 'width="70mm"' not in svg:
-        errors.append("SVG dimensions or viewBox are not explicit")
+    svg_bytes = svg_path.read_bytes()
+    report = inspect_svg(svg_bytes)
+    if report["blockers"]:
+        errors.extend(f"SVG: {finding}" for finding in report["findings"])
+    else:
+        expected = [
+            {"kind": "polyline", "closed": True, "points": [["5", "5"], ["65", "5"], ["65", "45"], ["5", "45"]]},
+            {"kind": "circle", "center": ["17", "25"], "radius": "3"},
+            {"kind": "circle", "center": ["53", "25"], "radius": "3"},
+        ]
+        if report["contours_mm"] != expected:
+            errors.append("SVG measured contours differ from the declared synthetic fixture in mm")
+    try:
+        svg = svg_bytes.decode("utf-8-sig")
+    except UnicodeError:
+        svg = ""  # The byte inspector already reports the malformed input.
     if not re.search(r"REVISION A|revision A", svg, re.IGNORECASE):
         errors.append("SVG revision is missing")
     return errors
