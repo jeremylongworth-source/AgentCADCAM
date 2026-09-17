@@ -53,7 +53,16 @@
     },
     {
       "if": {"properties": {"status": {"const": "approved"}, "process_family": {"const": "cnc_milling"}, "consequence_level": {"const": "execution_adjacent"}}},
-      "then": {"properties": {"simulation": {"properties": {"status": {"const": "verified"}}}}}
+      "then": {"properties": {
+        "simulation": {"properties": {"status": {"const": "verified"}}},
+        "verification": {
+          "minItems": 2, "items": {"$ref": "#/$defs/cnc_verification_check"},
+          "allOf": [
+            {"contains": {"required": ["kind"], "properties": {"kind": {"const": "simulation"}}}},
+            {"contains": {"required": ["kind"], "properties": {"kind": {"const": "verification"}}}}
+          ]
+        }
+      }}
     },
     {
       "if": {"properties": {"consequence_level": {"const": "live_execution"}}},
@@ -125,11 +134,26 @@
       "required": ["check_id", "status", "summary", "evidence"],
       "properties": {
         "check_id": {"$ref": "#/$defs/nonblank_text"},
+        "kind": {"enum": ["simulation", "verification"]},
+        "context_binding": {
+          "type": "object", "additionalProperties": false,
+          "required": ["version", "fingerprint"],
+          "properties": {
+            "version": {"type": "integer", "const": 1},
+            "fingerprint": {"type": "string", "minLength": 64, "maxLength": 64, "pattern": "^[a-f0-9]{64}$"}
+          }
+        },
         "status": {"enum": ["not_run", "passed", "failed", "inconclusive"]},
         "summary": {"$ref": "#/$defs/nonblank_text"},
         "evidence": {"$ref": "#/$defs/text_list"}
       },
       "allOf": [{"if": {"properties": {"status": {"const": "passed"}}}, "then": {"properties": {"evidence": {"minItems": 1}}}}]
+    },
+    "cnc_verification_check": {
+      "allOf": [
+        {"$ref": "#/$defs/verification_check"},
+        {"required": ["kind", "context_binding"], "properties": {"evidence": {"minItems": 1}}}
+      ]
     },
     "simulation_review": {
       "type": "object", "additionalProperties": false,

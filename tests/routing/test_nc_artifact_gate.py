@@ -7,7 +7,7 @@ import unittest
 from router.job_router import route_job
 from state.state import context_fingerprint
 from scripts.validate_schema_instances import validator_for
-from tests.routing.cnc_fixture import make_cnc_review
+from tests.routing.cnc_fixture import make_cnc_review, rebind_synthetic_verification
 
 
 class NcArtifactGateTests(unittest.TestCase):
@@ -18,6 +18,7 @@ class NcArtifactGateTests(unittest.TestCase):
         # Simulate a matching record even for faulty content; never a real review.
         if program is not None:
             self.state["generated_manufacturing_output"]["sha256"] = hashlib.sha256(program).hexdigest()
+        rebind_synthetic_verification(self.state)
         self.approval["context_fingerprint"] = context_fingerprint(self.state)
 
     def assert_invalidated(self, result, blocker):

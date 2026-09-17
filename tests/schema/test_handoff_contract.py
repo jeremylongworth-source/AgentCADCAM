@@ -25,8 +25,10 @@ class HandoffContractTests(unittest.TestCase):
             "artifacts": [{"artifact_id": "source", "path": "synthetic.step", "kind": "STEP",
                            "sha256": "b" * 64, "revision": "A", "authority": "authoritative"}],
             "assumptions": [],
-            "verification": [{"check_id": "fixture-check", "status": "passed",
-                              "summary": "Synthetic check declaration only", "evidence": ["fixture:test-report"]}],
+            "verification": [{"check_id": f"fixture-{kind}", "kind": kind, "status": "passed",
+                              "context_binding": {"version": 1, "fingerprint": "c" * 64},
+                              "summary": "Synthetic check declaration only", "evidence": ["fixture:test-report"]}
+                             for kind in ("simulation", "verification")],
             "simulation": {"status": "verified", "reason": "Synthetic simulation declaration only",
                            "required_checks": ["Synthetic machine/fixture simulation"],
                            "evidence": ["fixture:simulation-report"]},
@@ -40,6 +42,19 @@ class HandoffContractTests(unittest.TestCase):
         self.validator.validate(self.complete)
         # Dummy hashes and references demonstrate this is not an authenticity check.
         self.assertFalse(self.complete["execution_allowed"])
+
+    def test_approved_cnc_requires_both_bound_record_kinds(self):
+        for index in (0, 1):
+            value = copy.deepcopy(self.complete)
+            value["verification"].pop(index)
+            self.assertFalse(self.validator.is_valid(value))
+        value = copy.deepcopy(self.complete)
+        for record in value["verification"]:
+            record.pop("context_binding")
+        self.assertFalse(self.validator.is_valid(value))
+        # Historical blocked drafts remain valid without a scope-binding claim.
+        value.update(status="blocked", blockers=["MISSING_CONTEXT"], approval_id=None)
+        self.validator.validate(value)
 
     def test_repository_example_is_an_explicit_incomplete_review_package(self):
         value = json.loads((ROOT / "contexts/examples/handoff.example.json").read_text(encoding="utf-8"))

@@ -16,6 +16,10 @@ Keeping artifact review as an optional wrapper would leave the original context-
 
 The static reviewer receives the router's effective scoped approval status, not the raw `state.approval_status`. This does not create an approval. It avoids allowing a stored flag to substitute for the actual record, timestamp, scope and context checks.
 
+The subsequent [CNC verification-binding gate](cnc-verification-binding.md)
+also requires current context-bound simulation and verification records. A
+matching approval and passed status labels alone cannot satisfy that gate.
+
 ## Returned evidence
 
 `nc_review` is null where the NC stage does not apply or state validation prevents it. Otherwise it includes `status`, computed `sha256` when bytes were supplied, the examined `context_fingerprint`, blockers/findings and `report` from the fresh static run. `report` is null if a prerequisite prevents the run. A `not_run` result with blockers must never be counted as a successful check.

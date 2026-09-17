@@ -32,6 +32,7 @@ INVALIDATING_FIELDS = (
     "export_review_status",
 )
 FINGERPRINT_VERSION = 2
+VERIFICATION_CONTEXT_VERSION = 1
 
 
 def _canonical_json(value: Any) -> str:
@@ -53,6 +54,19 @@ def _canonical_json(value: Any) -> str:
 def context_fingerprint(state: dict[str, Any]) -> str:
     payload = {field: state.get(field) for field in INVALIDATING_FIELDS}
     encoded = _canonical_json({"version": FINGERPRINT_VERSION, "context": payload}).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def verification_context_fingerprint(state: dict[str, Any]) -> str:
+    """Bind verification to inputs, excluding outcomes to avoid self-reference.
+
+    This is a consistency checksum, not evidence authentication. Approval still
+    binds the complete context, including all verification records and statuses.
+    """
+    payload = {field: state.get(field) for field in INVALIDATING_FIELDS
+               if field not in ("simulation_status", "verification_results")}
+    encoded = _canonical_json({"verification_context_version": VERIFICATION_CONTEXT_VERSION,
+                               "context": payload}).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 
 

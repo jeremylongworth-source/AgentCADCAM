@@ -21,10 +21,21 @@ class CncRetainedReviewTests(unittest.TestCase):
             cls.runs[case] = {name: json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
                               for name in ("observed", "state", "handoff")}
 
-    def test_all_replayed_inputs_and_diagnostics_match_retained_evidence(self):
+    def test_replay_preserves_history_with_only_explicit_new_binding_findings(self):
         for case, run in self.runs.items():
             with self.subTest(case=case):
-                self.assertEqual(replay(case), run["observed"])
+                # Original packets predate the binding gate and remain immutable.
+                # Permit exactly these added diagnostics, not arbitrary drift in
+                # identities, static results, route blockers, or prior findings.
+                expected = copy.deepcopy(run["observed"])
+                findings = expected["route_result"]["findings"]
+                position = findings.index("CNC simulation evidence is not verified")
+                findings[position:position] = [
+                    "CNC verification record 0: structured evidence and versioned context binding are required",
+                    "CNC simulation requires a current passed context-bound evidence record",
+                    "CNC verification requires a current passed context-bound evidence record",
+                ]
+                self.assertEqual(replay(case), expected)
 
     def test_packet_schemas_state_and_handoff_agree(self):
         for case, run in self.runs.items():

@@ -25,6 +25,12 @@ The helper assembles a bounded state with original unverified profiles and tool 
 
 ## Cases and review boundary
 
+The later [verification-binding gate](../../architecture/cnc-verification-binding.md)
+adds exactly three missing-binding routing findings during current replay. The
+original packets are not rewritten. The regression requires all other content,
+prior findings and blocker decisions to match exactly; this is an explicit
+historical-to-current comparison, not a claim of byte-identical current output.
+
 The [positive review](2026-09-17-positive/review.md) provides the full seven-skill assessment of shared context. Each negative review applies those same seven contracts to its altered program and explicitly records unchanged gaps as well as changed findings. The shared context is not silently repaired for negative cases. All nine handoffs are blocked, review-required, non-executable and have no approval ID.
 
 | Case | Controlled change |

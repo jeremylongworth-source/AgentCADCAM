@@ -7,7 +7,7 @@ import unittest
 from router.job_router import route_job
 from scripts.validate_schema_instances import validator_for
 from state.state import context_fingerprint
-from tests.routing.cnc_fixture import make_cnc_review
+from tests.routing.cnc_fixture import make_cnc_review, rebind_synthetic_verification
 
 
 class NcCoordinateGateTests(unittest.TestCase):
@@ -17,6 +17,7 @@ class NcCoordinateGateTests(unittest.TestCase):
     def route(self, resign=True):
         if resign:
             self.state["generated_manufacturing_output"]["sha256"] = hashlib.sha256(self.program).hexdigest()
+            rebind_synthetic_verification(self.state)
             self.approval["context_fingerprint"] = context_fingerprint(self.state)
         return route_job(self.request, self.state, self.approval, nc_program=self.program)
 

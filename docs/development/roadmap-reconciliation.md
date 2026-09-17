@@ -29,6 +29,12 @@ This is a gap register for maintainers, not an exhaustive completion certificate
 
 ## Required next work, in order
 
+The Phase 3 audit exposed a concrete stale/unscoped verification acceptance gap.
+The [binding fix](../architecture/cnc-verification-binding.md) now requires passed
+simulation and verification records tied to current inputs independently of the
+approval fingerprint. This closes that counterexample, not the complete gate;
+the deliverable-by-deliverable audit below remains required.
+
 1. Audit every Phase 3 deliverable and gate requirement against retained reviews, composed regressions and the actual independent CAMotics experiment, preserving its explicit simulation/physical-context limits. Resolve any demonstrated gaps rather than treating parser/native completion as a gate certificate. Preserve the accepted [foundation boundaries](foundation-validation.md) and [CAD gate limits](cad-handoff-gate-review.md); do not expand the skill inventory without evaluation evidence.
 2. Add real geometry/package mutation checks for FDM and laser, including 3MF distinctions and the specified additive reference ecosystem.
 3. Preserve skill-assisted outputs and review evidence; reconcile every required safety case, source claim, handoff field, and gate criterion.

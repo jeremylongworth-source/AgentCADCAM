@@ -7,6 +7,7 @@ from typing import Any
 
 from router.router import route
 from router.cnc_context import check_cnc_context
+from router.cnc_verification import check_cnc_verification
 from router.nc_evidence import check_nc_artifact
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
@@ -142,6 +143,9 @@ def route_job(
             )
             additional.update(nc_review["blockers"])
             findings.extend(nc_review["findings"])
+            verification_blockers, verification_findings = check_cnc_verification(state, catalog)
+            additional.update(verification_blockers)
+            findings.extend(verification_findings)
         if state["process_family"] == "cnc_milling" and state.get("simulation_status") != "verified":
             additional.add("SIMULATION_REQUIRED")
             findings.append("CNC simulation evidence is not verified")

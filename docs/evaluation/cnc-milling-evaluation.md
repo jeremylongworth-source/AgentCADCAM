@@ -93,3 +93,35 @@ The prism/cutter/resolution are newly declared software-test settings, not infer
 Eleven portable evidence/utility tests passed in 0.033 seconds: native record-to-input binding, runtime/project identity, preserved actual version strings, specific default/negative-case observations, non-promotion of jobs, binary mesh measurements, rejected malformed/nonfinite meshes, runtime hash refusal, and propagated process failures/timeouts. These tests inspect retained evidence and utility behavior; they do not rerun CAMotics or independently attest native binary semantics. The native probe itself ran twice with clean exits, the second retaining triangle-payload hashes in addition to whole-STL hashes. Independent evidence is now available, but the complete gate-04 audit remains open.
 
 Executed repository validation: all 363 portable tests passed in 73.305 seconds. Foundation validation passed (58 required files, ten context schemas, five skillsets), schema-instance validation passed (eleven definitions, 44 instances), and the staged whitespace check passed. Runtime binaries and temporary simulated meshes were not staged; the optional extracted runtime remains under ignored `venv/camotics120/`. These checks do not award a manufacturing, public-alpha or practitioner gate.
+
+## Verification-binding counterexample and fix — 2026-09-17
+
+The gate audit at `730a40f` found that a matching approval could remain effective
+with a passed simulation record naming another job/machine, a bare passed label,
+or stale verification after changed NC/machine inputs. The initial focused run
+reproduced four failures out of five tests. No execution was enabled, but the
+effective approval contradicted the required verification-context gate.
+
+The [implemented contract](../architecture/cnc-verification-binding.md) requires
+separate passed simulation and verification records, nonempty evidence locators,
+unique check identities and versioned input-context bindings. It checks every
+record, keeps fresh NC checks independent, and invalidates matching approvals
+when verification is stale or incomplete. The existing approval fingerprint
+still covers evidence and outcomes. Approved CNC handoff schemas require both
+bound kinds; blocked legacy drafts remain representable.
+
+The regression expansion tests the original counterexamples, every consequential
+fingerprint input, canonical/nonfinite inputs, malformed and failed records,
+extra/duplicate records, separate renewal of verification and approval, changed
+evidence, planning scope, private-value diagnostics and caller immutability.
+Historical packets were not rewritten. Current replay must match every original
+field except exactly three added missing-binding findings. The original native
+CAMotics observations remain unchanged; no native runtime was rerun here.
+
+Executed validation: all 381 portable tests passed in 82.841 seconds. Foundation
+validation passed (58 required files, ten context schemas, five skillsets),
+schema-instance validation passed (eleven definitions, 44 instances), and
+`git diff --check` passed. These are software consistency/regression results,
+not authentication of evidence contents or physical verification. The complete
+Phase 3 gate audit remains open; public-alpha and practitioner acceptance are
+not inferred from this fix or the passing test count.
