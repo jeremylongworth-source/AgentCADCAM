@@ -50,10 +50,12 @@ guarantees. Metadata is retained in [the source registry](source-registry.yaml).
    must remain blocked. Evidence is separate in
    [source-assessment evaluations](../evaluation/source-evidence-runs/README.md);
    this document does not re-approve those test-only declarations.
-3. Before public-alpha acceptance, reconcile the complete thirteen-case roadmap
-   safety corpus, inspect remaining factual claims in public documentation and
-   retained outputs, and verify private reporting availability. Those checks
-   remain open in the [roadmap reconciliation](../development/roadmap-reconciliation.md).
+3. The subsequent [named safety-case matrix](../evaluation/public-alpha-safety-corpus.md)
+   reconciles all thirteen roadmap cases at the structured APIs. Before
+   public-alpha acceptance, inspect remaining factual claims in public
+   documentation and retained outputs, complete the broader adversarial review,
+   and verify private reporting availability. These checks remain open in the
+   [roadmap reconciliation](../development/roadmap-reconciliation.md).
 4. Before a real job is accepted for review, qualified reviewers still need
    actual machine/controller/tool/material/process evidence. These general
    references cannot fill missing job-specific inputs or close the real-input

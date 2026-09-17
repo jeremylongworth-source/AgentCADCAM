@@ -33,6 +33,8 @@ machine-control permission, and no OS-level network sandbox is claimed.
 
 Public-alpha acceptance remains open under the [roadmap reconciliation](../development/roadmap-reconciliation.md).
 Passing lexical scans does not prove prompt-injection resistance or zero
-false-ready decisions. Complete the scoped source audit, curated safety-case
-reconciliation and operational private-reporting prerequisite before closing
-Phase 7. Physical manufacturing and live integrations remain out of scope.
+false-ready decisions. The [named safety-case matrix](../evaluation/public-alpha-safety-corpus.md)
+now covers the thirteen roadmap cases at the structured APIs. Complete the
+remaining factual-source and broader adversarial review and operational
+private-reporting prerequisite before closing Phase 7. Physical manufacturing
+and live integrations remain out of scope.

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Reconciled all thirteen Phase 7 safety cases with an executable named-case matrix: 78 distinct adverse boundary checks, eight forged-packet refusals and eight positive controls. Required-blocker recall is 78/78 with zero critical false-ready outcomes in that declared corpus; all 651 tests pass. Runtime and retained approvals are unchanged. Broader adversarial/source review and private reporting remain open before public-alpha acceptance.
+
 - Added four scoped primary safety/context references and a claim-to-source audit. Fixed the adversarial HTTP import-root gap, expanded scanning to nested portable code, and documented dynamic-import/native-process limits. All 647 tests pass; Phase 7 remains open pending the full safety/source reconciliation and private reporting availability.
 
 - Breaking: verified profiles and supported process-context sources now need a role-scoped source assessment with primary authority, exact metadata binding, evidence and a current UTC freshness window. Missing, stale, conflicted, future-dated, expired or community-only assessments block matching job approvals. Existing source records remain valid drafts and historical reviews are preserved; 644 tests pass. See `docs/architecture/source-review-readiness.md`; Phase 7 remains open.
