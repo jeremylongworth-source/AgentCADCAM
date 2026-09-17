@@ -209,3 +209,27 @@ for why submitted additive context is bound under an evaluation-only setup
 wrapper. This is not a new production approval API or completed Phase 6 composed
 integration. Phase 4 remains open pending its requirement-by-requirement gate
 audit; public-alpha and real-input practitioner requirements are not waived.
+
+## Phase 4 exit-gate audit — 2026-09-17
+
+The [complete audit](../development/additive-gate-review.md) maps all eleven
+skill responsibilities, the manifest/reference ecosystem, all seven required
+negatives and all six exit criteria to inspected evidence. It supports
+`CADCAM_05_ADDITIVE_ALPHA_READY` for repository development against the initial
+corpus, not manufacturing, public-alpha or practitioner approval.
+
+Seven new isolated gate-matrix methods passed in 4.790 seconds. The two format
+controls deliberately satisfy only the legacy human-approval flag and still
+remain review-required/non-executable. All seven required negative cases retain
+their specific failure without that missing-approval fallback; additional cases
+isolate 3MF semantics, planning declarations, reciprocal compatibility, revision,
+byte identity and cross-format labels. No actual approval is created or renewed.
+
+The full portable suite passed 481 tests in 111.470 seconds. Foundation validation
+passed (58 required files, ten context schemas, five skillsets), schema-instance
+validation passed (eleven definitions, 68 instances), and whitespace checks
+passed. The audit reconciles
+partial-geometry, usable-bed, package/vendor and declaration-versus-evidence
+limits explicitly. All twelve retained handoffs remain unchanged and blocked.
+No native slicer was rerun, no applicable sliced build was created, and Phase 6
+composed integration and Phase 8 qualified real-input review remain open.
