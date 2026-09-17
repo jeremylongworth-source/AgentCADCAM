@@ -15,7 +15,7 @@
 | `tool_library.tools` | Nonempty list of schema-valid tools, unique IDs and nonnegative integer tool numbers, nonempty geometry type, positive diameter, holder and reach, and `availability: available`. |
 | `postprocessor` | Schema-valid profile with `validation_state: verified`; machine, controller, CAM system, and post version must match selected state. |
 | `simulation_status` | `verified`. |
-| `verification_results` | Nonempty list with every result's status `passed`. |
+| `verification_results` | Separate passed simulation and verification records with unique check IDs, nonempty evidence and current versioned input-context bindings; every supplied record must satisfy the [verification-binding contract](../architecture/cnc-verification-binding.md). Bare passed labels are insufficient. |
 | `generated_manufacturing_output` and `nc_program` argument | Execution-adjacent CNC requires an artifact-schema descriptor, derived NC role, matching revision/units and exact SHA-256 of supplied bytes. Fresh static checks must not produce blockers. See the [binding contract](../architecture/nc-artifact-approval-binding.md). |
 
 The schema permits incomplete draft context. This stricter review gate does not prevent storing drafts; it prevents treating an incomplete CNC context as effectively approved. Stock units must match rather than being silently converted. Tool geometry checks are basic completeness checks for the initial milling scope; they do not prove cutting suitability or dimensional compatibility.

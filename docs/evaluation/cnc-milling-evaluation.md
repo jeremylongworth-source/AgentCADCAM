@@ -125,3 +125,36 @@ schema-instance validation passed (eleven definitions, 44 instances), and
 not authentication of evidence contents or physical verification. The complete
 Phase 3 gate audit remains open; public-alpha and practitioner acceptance are
 not inferred from this fix or the passing test count.
+
+## Phase 3 gate audit and isolated acceptance checks — 2026-09-17
+
+The [completed gate review](../development/cnc-milling-gate-review.md) inspects
+every Phase 3 deliverable, all seven current skill contracts, all nine retained
+outputs, the native CAMotics evidence boundary, and each exit criterion at
+`835116a` plus the new acceptance tests. It supports
+`CADCAM_04_CNC_ALPHA_READY` for repository development against the initial corpus,
+not manufacturing, public-alpha or practitioner approval. Historical packets
+and their blocked outcomes are unchanged.
+
+The audit added `tests/routing/test_cnc_gate_matrix.py` because some older
+context-negative tests could also fail from stale verification after their input
+mutations. The matrix renews only in-memory test declarations, including both
+verification records and the approval, to isolate the intended gate. All eight
+roadmap mutation recipes still fail fresh composed static review with their
+specific expected blockers and no effective approval. Three NC target-header
+conflicts and four post target-chain conflicts are detected independently;
+post validation, six missing-context fields, five missing-tool fields, unverified
+WCS/simulation and all ten prohibited live actions are also checked. A clean
+positive control has no software blockers but remains non-executable.
+
+Executed validation: the eight new test methods passed in 9.292 seconds; all
+389 portable tests passed in 96.101 seconds. Foundation validation passed
+(58 required files, ten context schemas, five skillsets), schema-instance
+validation passed (eleven definitions, 44 instances), and `git diff --check`
+passed. Native tools were not rerun. These results support the explicit curated
+gate criteria, not general recall, physical safety or authentication of evidence.
+
+The gate review records parser/model limits, unsupported multi-tool semantics,
+same-agent evaluation and the remaining human/practitioner authority. Next is
+Phase 4: actual mesh and 3MF package defects, unit-aware printer volume checks,
+the specified additive reference ecosystem and retained preflight outputs.
