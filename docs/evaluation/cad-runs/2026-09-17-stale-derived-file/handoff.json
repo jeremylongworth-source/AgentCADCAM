@@ -1,0 +1,100 @@
+{
+  "handoff_id": "cad-negative-stale-derived-file-2026-09-17",
+  "job_id": "cad-negative-stale-derived-file",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "cad_handoff",
+  "consequence_level": "manufacturing_planning",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "artifact-1",
+      "path": "replay:stale-derived-file/source/bracket.scad",
+      "kind": "native_cad_source",
+      "sha256": "545f8072ac46b266fbb467a47117d2550099dec852586bd44698fc7d4117d836",
+      "revision": "A",
+      "authority": "authoritative",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-2",
+      "path": "replay:stale-derived-file/source/bracket.stl",
+      "kind": "mesh_derivative",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-3",
+      "path": "replay:stale-derived-file/source/bracket.step",
+      "kind": "neutral_solid_exchange",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-4",
+      "path": "replay:stale-derived-file/source/bracket.svg",
+      "kind": "drawing_reference",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    }
+  ],
+  "context_fingerprint": "8517dc0852c3e0713af872a2517b695ef3514a55a74f07fe36631a2ba6b7a4e1",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "The source now assigns hole_diameter = 8 while STEP/STL and the SVG remain the previous bytes; the SVG circles retain radius 3. Revision labels and outer envelopes do not resolve the changed-source/old-derivative association.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/review.md"
+      ]
+    },
+    {
+      "statement": "Function, interfaces, tolerance/datum intent, selected material/process, finish disposition and inspection acceptance criteria remain unresolved for manufacturing.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "cad_negative_case",
+      "status": "failed",
+      "summary": "The source now assigns hole_diameter = 8 while STEP/STL and the SVG remain the previous bytes; the SVG circles retain radius 3. Revision labels and outer envelopes do not resolve the changed-source/old-derivative association.",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/review.md"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "Resolve source/intent and select the process before determining applicable simulation. No native probe or process simulation was run on this mutated bundle.",
+    "required_checks": [],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Have the design authority resolve whether the source edit is intended, assign the controlled revision, and regenerate/review affected derivatives where appropriate. Never replace stored hashes just to suppress the mismatch. Obtain the required engineering/manufacturing/inspection review; do not manufacture from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "design_intent"
+    ],
+    "reviewer_role": "Design authority and qualified engineering, manufacturing and inspection reviewers"
+  },
+  "blockers": [
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED",
+    "HUMAN_APPROVAL_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

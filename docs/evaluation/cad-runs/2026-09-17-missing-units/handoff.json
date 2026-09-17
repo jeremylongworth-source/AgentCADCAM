@@ -1,0 +1,100 @@
+{
+  "handoff_id": "cad-negative-missing-units-2026-09-17",
+  "job_id": "cad-negative-missing-units",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "cad_handoff",
+  "consequence_level": "manufacturing_planning",
+  "units": null,
+  "artifacts": [
+    {
+      "artifact_id": "artifact-1",
+      "path": "replay:missing-units/source/bracket.scad",
+      "kind": "native_cad_source",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "revision": "A",
+      "authority": "authoritative",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-2",
+      "path": "replay:missing-units/source/bracket.stl",
+      "kind": "mesh_derivative",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "revision": "A",
+      "authority": "derived",
+      "units": null
+    },
+    {
+      "artifact_id": "artifact-3",
+      "path": "replay:missing-units/source/bracket.step",
+      "kind": "neutral_solid_exchange",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-4",
+      "path": "replay:missing-units/source/bracket.svg",
+      "kind": "drawing_reference",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    }
+  ],
+  "context_fingerprint": "902ea8f6919439aa934b15b3c8905f198b2731bfc46aaa17c281652251286bac",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "The STL unit is explicitly null in both its inventory entry and the declared binding, and bundle revision metadata has no assigned unit. The source/drawing retain mm declarations, which do not establish this mesh export's missing unit contract.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/review.md"
+      ]
+    },
+    {
+      "statement": "Function, interfaces, tolerance/datum intent, selected material/process, finish disposition and inspection acceptance criteria remain unresolved for manufacturing.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "cad_negative_case",
+      "status": "failed",
+      "summary": "The STL unit is explicitly null in both its inventory entry and the declared binding, and bundle revision metadata has no assigned unit. The source/drawing retain mm declarations, which do not establish this mesh export's missing unit contract.",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-missing-units/review.md"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "Resolve source/intent and select the process before determining applicable simulation. No native probe or process simulation was run on this mutated bundle.",
+    "required_checks": [],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Obtain the mesh export's controlled unit/scale declaration and verify a known dimension against the authoritative source before repairing metadata or binding; do not guess mm from the shape or adjacent files. Obtain the required engineering/manufacturing/inspection review; do not manufacture from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "design_intent"
+    ],
+    "reviewer_role": "Design authority and qualified engineering, manufacturing and inspection reviewers"
+  },
+  "blockers": [
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED",
+    "HUMAN_APPROVAL_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

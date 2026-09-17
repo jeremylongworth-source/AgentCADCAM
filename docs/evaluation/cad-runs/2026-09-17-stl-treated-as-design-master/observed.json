@@ -1,0 +1,100 @@
+{
+  "case": "stl-treated-as-design-master",
+  "inventory": [
+    {
+      "authority": "authoritative",
+      "kind": "mesh_derivative",
+      "locator": "replay:stl-treated-as-design-master/source/bracket.stl",
+      "path": "source/bracket.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    }
+  ],
+  "metadata": {
+    "authoritative_artifact": "source/bracket.stl",
+    "confidentiality": "public",
+    "export_review_status": "not_required",
+    "job_id": "cad-bracket-basic",
+    "licence_status": "permitted",
+    "ownership_status": "owned",
+    "pmi_status": "not_present",
+    "redistribution_authorized": true,
+    "revision": "A",
+    "target_process": "cnc_milling_or_fdm_prototype",
+    "third_party_restrictions": [],
+    "units": "mm"
+  },
+  "submitted_binding": null,
+  "submitted_bundle": {
+    "artifacts": [
+      {
+        "authority": "authoritative",
+        "kind": "mesh_derivative",
+        "path": "source/bracket.stl",
+        "revision": "A",
+        "units": "mm"
+      }
+    ],
+    "authoritative_artifact": "source/bracket.stl",
+    "description": "Simple L-bracket bundle for provenance, interoperability, and handoff tests.",
+    "expected": {
+      "default_outcomes": [
+        "REVIEW_REQUIRED"
+      ],
+      "required_findings": [
+        "STL is derived",
+        "drawing/source revision consistent",
+        "neutral solid exchange requires independent verification"
+      ],
+      "source_authority": "source/bracket.scad"
+    },
+    "fixture_id": "cad-bracket-basic",
+    "license": "CC0-1.0 synthetic fixture",
+    "metadata": {
+      "authoritative_artifact": "source/bracket.stl",
+      "confidentiality": "public",
+      "export_review_status": "not_required",
+      "job_id": "cad-bracket-basic",
+      "licence_status": "permitted",
+      "ownership_status": "owned",
+      "pmi_status": "not_present",
+      "redistribution_authorized": true,
+      "revision": "A",
+      "target_process": "cnc_milling_or_fdm_prototype",
+      "third_party_restrictions": [],
+      "units": "mm"
+    },
+    "status": "validated_synthetic",
+    "step_artifact": {
+      "status": "not_supplied"
+    },
+    "version": 2
+  },
+  "text_inputs": {},
+  "tool_result": {
+    "blockers": [
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "execution_allowed": false,
+    "file_checks": [
+      {
+        "check": "stl_envelope",
+        "findings": [],
+        "paths": [
+          "source/bracket.stl"
+        ],
+        "status": "passed"
+      }
+    ],
+    "findings": [
+      "bundle revision is consistent: A",
+      "bundle units are consistent: mm",
+      "mesh/package derivative is incorrectly treated as design master",
+      "PMI is not present; manufacturing interpretation requires review"
+    ],
+    "geometry_equivalence_verified": false,
+    "review_required": true,
+    "status": "blocked"
+  }
+}

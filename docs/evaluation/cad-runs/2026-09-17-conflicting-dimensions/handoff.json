@@ -1,0 +1,100 @@
+{
+  "handoff_id": "cad-negative-conflicting-dimensions-2026-09-17",
+  "job_id": "cad-negative-conflicting-dimensions",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "cad_handoff",
+  "consequence_level": "manufacturing_planning",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "artifact-1",
+      "path": "replay:conflicting-dimensions/source/bracket.scad",
+      "kind": "native_cad_source",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "revision": "A",
+      "authority": "authoritative",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-2",
+      "path": "replay:conflicting-dimensions/source/bracket.stl",
+      "kind": "mesh_derivative",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-3",
+      "path": "replay:conflicting-dimensions/source/bracket.step",
+      "kind": "neutral_solid_exchange",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-4",
+      "path": "replay:conflicting-dimensions/source/bracket.svg",
+      "kind": "drawing_reference",
+      "sha256": "df0f54ab6e130958e5fe547f0e07752fd0784a13a149b317a96347599d13429c",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    }
+  ],
+  "context_fingerprint": "3be8d1373f4cbc636408d8ff92a5db2fab1fbf9d827fc7b8dc648d70b5178b69",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "The SVG visible BASE annotation states 61 x 40 x 6, while its description, rectangle and source retain width 60. All revision labels remain A, so agreement of revision labels does not resolve dimensional intent.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/review.md"
+      ]
+    },
+    {
+      "statement": "Function, interfaces, tolerance/datum intent, selected material/process, finish disposition and inspection acceptance criteria remain unresolved for manufacturing.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "cad_negative_case",
+      "status": "failed",
+      "summary": "The SVG visible BASE annotation states 61 x 40 x 6, while its description, rectangle and source retain width 60. All revision labels remain A, so agreement of revision labels does not resolve dimensional intent.",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-conflicting-dimensions/review.md"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "Resolve source/intent and select the process before determining applicable simulation. No native probe or process simulation was run on this mutated bundle.",
+    "required_checks": [],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Ask the design authority to resolve the 60/61 conflict and issue the controlled consistent source/drawing set; do not average dimensions, choose whichever representation is convenient, or infer a tolerance. Obtain the required engineering/manufacturing/inspection review; do not manufacture from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "design_intent"
+    ],
+    "reviewer_role": "Design authority and qualified engineering, manufacturing and inspection reviewers"
+  },
+  "blockers": [
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED",
+    "HUMAN_APPROVAL_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

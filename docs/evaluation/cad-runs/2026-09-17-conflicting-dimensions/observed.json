@@ -1,0 +1,241 @@
+{
+  "case": "conflicting-dimensions",
+  "inventory": [
+    {
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "locator": "replay:conflicting-dimensions/source/bracket.scad",
+      "path": "source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    },
+    {
+      "authority": "derived",
+      "kind": "mesh_derivative",
+      "locator": "replay:conflicting-dimensions/source/bracket.stl",
+      "path": "source/bracket.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    },
+    {
+      "authority": "derived",
+      "kind": "neutral_solid_exchange",
+      "locator": "replay:conflicting-dimensions/source/bracket.step",
+      "path": "source/bracket.step",
+      "revision": "A",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "units": "mm"
+    },
+    {
+      "authority": "derived",
+      "kind": "drawing_reference",
+      "locator": "replay:conflicting-dimensions/source/bracket.svg",
+      "path": "source/bracket.svg",
+      "revision": "A",
+      "sha256": "df0f54ab6e130958e5fe547f0e07752fd0784a13a149b317a96347599d13429c",
+      "units": "mm"
+    }
+  ],
+  "metadata": {
+    "authoritative_artifact": "source/bracket.scad",
+    "confidentiality": "public",
+    "export_review_status": "not_required",
+    "job_id": "cad-bracket-basic",
+    "licence_status": "permitted",
+    "ownership_status": "owned",
+    "pmi_status": "not_present",
+    "redistribution_authorized": true,
+    "revision": "A",
+    "target_process": "cnc_milling_or_fdm_prototype",
+    "third_party_restrictions": [],
+    "units": "mm"
+  },
+  "submitted_binding": {
+    "binding_id": "cad-bracket-basic-revision-a-bundle-2",
+    "binding_version": 1,
+    "derivatives": [
+      {
+        "artifact": {
+          "artifact_id": "bracket-step",
+          "authority": "derived",
+          "kind": "neutral_solid_exchange",
+          "path": "source/bracket.step",
+          "revision": "A",
+          "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+          "units": "mm"
+        },
+        "relationship": "reconstruction"
+      },
+      {
+        "artifact": {
+          "artifact_id": "bracket-stl",
+          "authority": "derived",
+          "kind": "mesh_derivative",
+          "path": "source/bracket.stl",
+          "revision": "A",
+          "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+          "units": "mm"
+        },
+        "relationship": "reconstruction"
+      },
+      {
+        "artifact": {
+          "artifact_id": "bracket-drawing",
+          "authority": "derived",
+          "kind": "drawing_reference",
+          "path": "source/bracket.svg",
+          "revision": "A",
+          "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+          "units": "mm"
+        },
+        "relationship": "reference_drawing"
+      }
+    ],
+    "execution_allowed": false,
+    "hash_policy": "sha256-raw-bytes",
+    "review_required": true,
+    "scope": "Synthetic revision-A fixture association recorded from the existing bundle at 050ff24. STEP/STL are CadQuery reconstructions, not direct exports of OpenSCAD. SVG is a reference drawing without complete PMI. Hash equality establishes only unchanged file identity relative to this declaration; no authenticated review, geometric equivalence, or manufacturing approval is asserted.",
+    "source": {
+      "artifact_id": "bracket-design-source",
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "path": "source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    }
+  },
+  "submitted_bundle": {
+    "artifacts": [
+      {
+        "authority": "authoritative",
+        "kind": "native_cad_source",
+        "path": "source/bracket.scad",
+        "revision": "A",
+        "units": "mm"
+      },
+      {
+        "authority": "derived",
+        "kind": "mesh_derivative",
+        "path": "source/bracket.stl",
+        "revision": "A",
+        "units": "mm"
+      },
+      {
+        "authority": "derived",
+        "kind": "neutral_solid_exchange",
+        "path": "source/bracket.step",
+        "revision": "A",
+        "units": "mm"
+      },
+      {
+        "authority": "derived",
+        "kind": "drawing_reference",
+        "path": "source/bracket.svg",
+        "revision": "A",
+        "units": "mm"
+      },
+      {
+        "authority": "authoritative",
+        "kind": "revision_metadata",
+        "path": "metadata/revision.json",
+        "revision": "A",
+        "units": "mm"
+      }
+    ],
+    "authoritative_artifact": "source/bracket.scad",
+    "description": "Simple L-bracket bundle for provenance, interoperability, and handoff tests.",
+    "expected": {
+      "default_outcomes": [
+        "REVIEW_REQUIRED"
+      ],
+      "required_findings": [
+        "STL is derived",
+        "drawing/source revision consistent",
+        "neutral solid exchange requires independent verification"
+      ],
+      "source_authority": "source/bracket.scad"
+    },
+    "fixture_id": "cad-bracket-basic",
+    "license": "CC0-1.0 synthetic fixture",
+    "status": "validated_synthetic",
+    "step_artifact": {
+      "correction": "Upright holes restored to match revision A source; STEP/STL derivative hashes changed.",
+      "generator": "scripts/generate_cad_fixture_step.py",
+      "generator_dependency": "cadquery>=2.8,<3",
+      "status": "generated",
+      "tested_windows_constraints": "constraints/cadquery-win312.txt"
+    },
+    "version": 2
+  },
+  "text_inputs": {
+    "source/bracket.scad": "// Synthetic, dimensioned OpenSCAD source for CAD/CAM handoff fixtures.\n// Units: millimetres. Revision: A.\n\nplate_width = 60;\nplate_depth = 40;\nplate_thickness = 6;\nback_height = 30;\nhole_diameter = 6;\nhole_offset = 12;\n\ndifference() {\n    union() {\n        cube([plate_width, plate_depth, plate_thickness]);\n        cube([plate_width, plate_thickness, back_height]);\n    }\n\n    translate([hole_offset, plate_depth / 2, -1])\n        cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([plate_width - hole_offset, plate_depth / 2, -1])\n        cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([hole_offset, -1, back_height - hole_offset])\n        rotate([-90, 0, 0])\n            cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n    translate([plate_width - hole_offset, -1, back_height - hole_offset])\n        rotate([-90, 0, 0])\n            cylinder(h = plate_thickness + 2, d = hole_diameter, $fn = 48);\n}\n",
+    "source/bracket.svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"80mm\" height=\"55mm\" viewBox=\"0 0 80 55\">\n  <title>CADCAM fixture bracket revision A</title>\n  <desc>Reference drawing: 60 mm wide by 40 mm deep, 6 mm thick base plate.</desc>\n  <rect x=\"10\" y=\"10\" width=\"60\" height=\"40\" fill=\"none\" stroke=\"black\" />\n  <circle cx=\"22\" cy=\"30\" r=\"3\" fill=\"none\" stroke=\"black\" />\n  <circle cx=\"58\" cy=\"30\" r=\"3\" fill=\"none\" stroke=\"black\" />\n  <text x=\"10\" y=\"7\" font-size=\"3\">REV A | UNITS: mm | BASE: 61 x 40 x 6</text>\n  <text x=\"10\" y=\"54\" font-size=\"3\">REFERENCE ONLY - REVIEW_REQUIRED</text>\n</svg>\n"
+  },
+  "tool_result": {
+    "blockers": [
+      "MISSING_CONTEXT",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "execution_allowed": false,
+    "file_checks": [
+      {
+        "check": "source_drawing_revision",
+        "findings": [
+          "drawing annotation dimensions conflict with source"
+        ],
+        "paths": [
+          "source/bracket.scad",
+          "source/bracket.svg",
+          "metadata/revision.json"
+        ],
+        "status": "failed"
+      },
+      {
+        "check": "step_envelope",
+        "findings": [],
+        "paths": [
+          "source/bracket.step"
+        ],
+        "status": "passed"
+      },
+      {
+        "check": "stl_envelope",
+        "findings": [],
+        "paths": [
+          "source/bracket.stl"
+        ],
+        "status": "passed"
+      },
+      {
+        "check": "artifact_binding",
+        "findings": [
+          "source/bracket.svg: bytes differ from the declared derivation binding; resolve freshness and review before rebinding"
+        ],
+        "paths": [
+          "metadata/derivation.json",
+          "source/bracket.scad",
+          "source/bracket.step",
+          "source/bracket.stl",
+          "source/bracket.svg"
+        ],
+        "status": "failed"
+      }
+    ],
+    "findings": [
+      "bundle revision is consistent: A",
+      "bundle units are consistent: mm",
+      "mesh is identified as a derived artifact",
+      "neutral solid exchange is present; independent geometry verification is still required",
+      "PMI is not present; manufacturing interpretation requires review",
+      "source_drawing_revision: file-derived checks failed; inspect file_checks findings",
+      "artifact_binding: declared source/derivative association needs review; inspect file_checks findings"
+    ],
+    "geometry_equivalence_verified": false,
+    "review_required": true,
+    "status": "blocked",
+    "validation_scope": "synthetic revision-A bracket declarations, exchange envelopes, and declared byte binding only"
+  }
+}

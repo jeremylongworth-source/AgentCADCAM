@@ -1,0 +1,100 @@
+{
+  "handoff_id": "cad-negative-revision-mismatch-2026-09-17",
+  "job_id": "cad-negative-revision-mismatch",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "cad_handoff",
+  "consequence_level": "manufacturing_planning",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "artifact-1",
+      "path": "replay:revision-mismatch/source/bracket.scad",
+      "kind": "native_cad_source",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "revision": "A",
+      "authority": "authoritative",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-2",
+      "path": "replay:revision-mismatch/source/bracket.stl",
+      "kind": "mesh_derivative",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-3",
+      "path": "replay:revision-mismatch/source/bracket.step",
+      "kind": "neutral_solid_exchange",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "revision": "A",
+      "authority": "derived",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "artifact-4",
+      "path": "replay:revision-mismatch/source/bracket.svg",
+      "kind": "drawing_reference",
+      "sha256": "fa09700069c1ac3b30122d258c6685f8a209e3c3b2557fa6e1cc64e5a1ec4916",
+      "revision": "B",
+      "authority": "derived",
+      "units": "mm"
+    }
+  ],
+  "context_fingerprint": "020218a83f1d74c0926d4b756690549a657f08c02d03ad02c2481cd1ef8742a9",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "The source and metadata identify revision A, while the supplied SVG title, annotation, and inventory identify revision B. No supersession decision or validated derivative trace resolves the conflict.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/review.md"
+      ]
+    },
+    {
+      "statement": "Function, interfaces, tolerance/datum intent, selected material/process, finish disposition and inspection acceptance criteria remain unresolved for manufacturing.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "cad_negative_case",
+      "status": "failed",
+      "summary": "The source and metadata identify revision A, while the supplied SVG title, annotation, and inventory identify revision B. No supersession decision or validated derivative trace resolves the conflict.",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-revision-mismatch/review.md"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "Resolve source/intent and select the process before determining applicable simulation. No native probe or process simulation was run on this mutated bundle.",
+    "required_checks": [],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Ask the design authority which revision applies; preserve both claims, obtain the controlled matching source/drawing set, and repeat comparison before updating the binding or handoff. Obtain the required engineering/manufacturing/inspection review; do not manufacture from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "design_intent"
+    ],
+    "reviewer_role": "Design authority and qualified engineering, manufacturing and inspection reviewers"
+  },
+  "blockers": [
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED",
+    "HUMAN_APPROVAL_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

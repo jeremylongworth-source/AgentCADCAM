@@ -1,0 +1,46 @@
+{
+  "job_id": "cad-negative-stale-derived-file",
+  "revision": "A",
+  "source_artifact_hashes": [
+    "545f8072ac46b266fbb467a47117d2550099dec852586bd44698fc7d4117d836",
+    "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+    "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+    "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f"
+  ],
+  "units": "mm",
+  "process_family": "cad_handoff",
+  "material": null,
+  "machine_profile": null,
+  "controller_profile": null,
+  "setup": null,
+  "workholding": null,
+  "work_coordinate_system": null,
+  "tool_library": null,
+  "cam_system": null,
+  "postprocessor": null,
+  "post_version": null,
+  "generated_manufacturing_output": null,
+  "simulation_status": "unknown",
+  "verification_results": [
+    {
+      "check_id": "cad_negative_case",
+      "status": "failed",
+      "summary": "The source now assigns hole_diameter = 8 while STEP/STL and the SVG remain the previous bytes; the SVG circles retain radius 3. Revision labels and outer envelopes do not resolve the changed-source/old-derivative association.",
+      "evidence": [
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/observed.json",
+        "docs/evaluation/cad-runs/2026-09-17-stale-derived-file/review.md"
+      ]
+    }
+  ],
+  "jurisdiction": null,
+  "ip_status": {
+    "ownership_status": "owned",
+    "licence_status": "permitted",
+    "confidentiality": "public",
+    "redistribution_authorized": true,
+    "third_party_restrictions": [],
+    "evidence_scope": "Public synthetic fixture evaluation only; no external manufacturing authorization inferred."
+  },
+  "export_review_status": "not_required",
+  "approval_status": "not_requested"
+}

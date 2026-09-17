@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Retained five additional CAD negative-case skill reviews with reproducible file observations, bounded states and blocked handoffs, completing the six named Phase 2 cases. Added replay/record regressions and a requirement-by-requirement CAD gate audit supporting repository-development acceptance; public-alpha and practitioner-pilot gates remain open.
 - Retained the first actual five-skill CAD review of the synthetic manufacturing-intent case, with source evidence, artifact identities, state fingerprint and blocked handoff. Passing file/native checks do not resolve missing tolerance/datum/material/process/inspection requirements. Added packet integrity tests and schema-instance coverage; this is not practitioner or pilot approval.
 - Replaced CAD fixture substring checks with restricted source-parameter and SVG annotation/projection checks. Conflicting visible dimensions now block even with correct description text and matching hashes; unsupported drawing constructs require review. Added positive/negative parsing regressions without claiming general CAD or PMI interpretation.
 - Added schema-validated CAD source/derivative byte bindings and checks for stale or changed content even when envelopes and revision labels match. Bound fixture text uses LF checkout rules; binding records remain review-only and are never refreshed automatically. Added unchanged-envelope file regressions and a six-case CAD evidence map; gate 03 remains open.
