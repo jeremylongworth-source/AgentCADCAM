@@ -61,7 +61,7 @@ class NcWordReviewTests(unittest.TestCase):
     def test_modes_must_be_established_before_motion(self):
         for text in ("G21", "G90 G17 G54", "T1 M6"):
             with self.subTest(text=text):
-                changed = self.program.replace(text + "\n", "").replace("M5", text + "\nM5")
+                changed = self.program.replace(text + "\n", "").replace("G0 Z25", text + "\nG0 Z25")
                 self.assert_block(review_program(changed, self.contexts), "MISSING_CONTEXT")
 
     def test_missing_absolute_mode_is_blocked(self):
@@ -90,8 +90,8 @@ class NcWordReviewTests(unittest.TestCase):
                 self.assert_block(self.review("M5", suffix + "\nM5"), "SOURCE_VERIFICATION_REQUIRED")
 
     def test_headers_cannot_be_duplicated_or_declared_after_code(self):
-        for replacement in ("( REVISION: B )\n( REVISION: A )", "( REVISION: A )\n( REVISION: A )"):
-            self.assert_block(self.review("( REVISION: A )", replacement), "SOURCE_VERIFICATION_REQUIRED")
+        for replacement in ("( REVISION: C )\n( REVISION: B )", "( REVISION: B )\n( REVISION: B )"):
+            self.assert_block(self.review("( REVISION: B )", replacement), "SOURCE_VERIFICATION_REQUIRED")
         self.assert_block(self.review("M5", "( JOB: cnc-mill-bracket )\nM5"), "SOURCE_VERIFICATION_REQUIRED")
 
     def test_executable_code_after_end_is_not_accepted(self):

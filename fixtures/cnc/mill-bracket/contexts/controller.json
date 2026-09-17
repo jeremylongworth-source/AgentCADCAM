@@ -1,10 +1,10 @@
 {
-  "lifecycle": {"revision":"1","applicability":"Offline cnc/mill-bracket synthetic controller fixture only; no physical manufacturing applicability established.","units":{},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
+  "lifecycle": {"revision":"2","applicability":"Offline cnc/mill-bracket synthetic controller fixture only; no physical manufacturing applicability established.","units":{},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "controller_id": "fixture-controller",
   "manufacturer": "Synthetic Fixture",
   "model": "controller-v1",
   "supported_units": ["mm"],
-  "supported_commands": ["G0", "G1", "G17", "G21", "G54", "G90", "M3", "M5", "M6", "M30"],
+  "supported_commands": ["G0", "G1", "G17", "G21", "G54", "G90", "G94", "G97", "M3", "M5", "M6", "M30"],
   "modes_and_offsets": {"wcs": ["G54"], "absolute_mode": "G90"},
-  "source": {"title": "Synthetic fixture controller profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/controller.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC fixture checks only; not documentation of a real controller dialect.", "claims": ["The synthetic controller fixture declares millimetres, G54, G90, and a bounded command list."]}
+  "source": {"title": "Synthetic fixture controller profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/controller.json", "published_at": "Fixture profile revision 2", "accessed_at": "2026-09-17", "scope": "Offline CNC fixture checks only; not documentation of a real controller dialect.", "claims": ["The synthetic controller fixture declares millimetres, G54, G90, G94 feed-per-minute, G97 RPM, and a bounded command list."]}
 }

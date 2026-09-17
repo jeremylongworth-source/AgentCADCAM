@@ -1,6 +1,6 @@
 {
   "job_id": "cnc-mill-bracket",
-  "revision": "A",
+  "revision": "B",
   "process_family": "cnc_milling",
   "artifacts": [],
   "units": "mm",

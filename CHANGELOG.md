@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added ordered CNC feed/RPM and commanded spindle-state review, rejecting missing modes/values, out-of-range values and invalid numeric/unit context. Missing coordinate bounds no longer imply infinite limits. Updated the synthetic CNC fixture to version 2 with explicit modes/initial stop and unverified revision-2 profiles; no real machining parameters or approval are supplied. Added 22 positive/negative regression methods; gate 04 remains open.
 - Replaced whole-program CNC regex scans with literal-word and block-order checks. Compact coordinates, commented-out declarations, late modes, hidden tool selections and unsupported syntax now produce explicit findings; spelling/comment/modal positive controls remain covered. Documented the synthetic dialect and coordinate-review limits; CNC gate 04 remains open.
 - Retained five additional CAD negative-case skill reviews with reproducible file observations, bounded states and blocked handoffs, completing the six named Phase 2 cases. Added replay/record regressions and a requirement-by-requirement CAD gate audit supporting repository-development acceptance; public-alpha and practitioner-pilot gates remain open.
 - Retained the first actual five-skill CAD review of the synthetic manufacturing-intent case, with source evidence, artifact identities, state fingerprint and blocked handoff. Passing file/native checks do not resolve missing tolerance/datum/material/process/inspection requirements. Added packet integrity tests and schema-instance coverage; this is not practitioner or pilot approval.

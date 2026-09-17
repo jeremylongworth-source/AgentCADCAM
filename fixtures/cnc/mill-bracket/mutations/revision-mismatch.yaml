@@ -1,4 +1,4 @@
 mutation: revision-mismatch
 replacements:
-  - from: "( REVISION: A )"
-    to: "( REVISION: B )"
+  - from: "( REVISION: B )"
+    to: "( REVISION: C )"

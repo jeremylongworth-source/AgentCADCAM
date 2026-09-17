@@ -1,10 +1,10 @@
 {
-  "lifecycle": {"revision":"1","applicability":"Offline cnc/mill-bracket synthetic machine fixture only; no physical manufacturing applicability established.","units":{"length":"mm","spindle_speed":"rpm"},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
+  "lifecycle": {"revision":"2","applicability":"Offline cnc/mill-bracket synthetic machine fixture only; no physical manufacturing applicability established.","units":{"length":"mm","spindle_speed":"rpm"},"verification":{"status":"unverified","reviewed_revision":null,"reviewer":null,"reviewed_at":null,"evidence":[],"notes":"Synthetic fixture declaration; no practitioner review has been performed."}},
   "machine_id": "fixture-mill-3axis",
   "process_family": "cnc_milling",
   "manufacturer": "Synthetic Fixture",
   "model": "3-axis mill",
   "capabilities": {"axes": 3, "spindle_rpm_min": 500, "spindle_rpm_max": 12000, "tool_interface": "fixture-holder"},
-  "limits": {"x": {"min": 0, "max": 60}, "y": {"min": 0, "max": 40}, "z": {"min": 0, "max": 30}},
-  "source": {"title": "Synthetic fixture machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/machine.json", "published_at": null, "accessed_at": "2026-09-13", "scope": "Offline CNC fixture checks only; not OEM evidence or a physical machine specification.", "claims": ["This fixture declares three axes and synthetic spindle and travel limits for curated tests."]}
+  "limits": {"x": {"min": 0, "max": 60}, "y": {"min": 0, "max": 40}, "z": {"min": 0, "max": 30}, "feed_rate": {"max": 1000, "units": "mm/min"}},
+  "source": {"title": "Synthetic fixture machine profile", "publisher": "CAD/CAM Skills", "locator": "fixtures/cnc/mill-bracket/contexts/machine.json", "published_at": "Fixture profile revision 2", "accessed_at": "2026-09-17", "scope": "Offline CNC fixture checks only; not OEM evidence or a physical machine specification.", "claims": ["This fixture declares three axes and synthetic spindle and coordinate bounds for curated tests.", "The 1000 mm/min feed ceiling is an arbitrary synthetic test bound, not a machining recommendation."]}
 }
