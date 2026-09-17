@@ -1,13 +1,23 @@
-"""Deterministic metadata checks for the synthetic CAD handoff fixture.
+"""Deterministic metadata and bounded file checks for the synthetic CAD fixture.
 
-This is deliberately not a CAD kernel or geometry validator. It checks the
-portable handoff invariants that can be evaluated from a fixture manifest.
+The metadata API is not a geometry validator. The fixture entry point also runs
+the existing revision-A bracket content/envelope checks, not a general CAD parser.
 """
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from typing import Any
+
+if __package__:
+    from .validate_cad_fixture_design import validate as validate_design
+    from .validate_cad_fixture_step import validate as validate_step
+    from .validate_cad_fixture_mesh import validate as validate_mesh
+else:
+    from validate_cad_fixture_design import validate as validate_design
+    from validate_cad_fixture_step import validate as validate_step
+    from validate_cad_fixture_mesh import validate as validate_mesh
 
 
 BLOCKING = {
@@ -91,8 +101,79 @@ def review_bundle(bundle: dict[str, Any], root: Path | None = None) -> dict[str,
         "blockers": blockers,
         "findings": findings,
         "review_required": True,
+        "execution_allowed": False,
         "geometry_equivalence_verified": False,
     }
+
+
+def review_fixture(root: Path, manifest_name: str = "fixture.yaml") -> dict[str, Any]:
+    """Read and check the revision-A synthetic bracket; never execute CAD source.
+
+    This report is evidence for review, not a serialized handoff or approval.
+    Passing extent/declaration checks does not prove feature or PMI fidelity.
+    """
+    import yaml  # type: ignore
+
+    result = {
+        "status": "blocked", "blockers": ["MISSING_CONTEXT"], "findings": [],
+        "review_required": True, "execution_allowed": False,
+        "geometry_equivalence_verified": False, "file_checks": [],
+        "validation_scope": "synthetic revision-A bracket declarations and exchange envelopes only",
+    }
+    root = root.resolve()
+    required_paths = {
+        "source/bracket.scad", "source/bracket.svg", "source/bracket.step",
+        "source/bracket.stl", "metadata/revision.json",
+    }
+    # Do not follow a fixture's declared paths to unrelated files or symlink targets.
+    if any(not (root / path).resolve().is_relative_to(root) for path in required_paths | {manifest_name}):
+        result["findings"].append("fixture paths must remain inside the supplied bundle")
+        return result
+    try:
+        bundle = load_fixture(root / manifest_name)
+        metadata = json.loads((root / "metadata/revision.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, ValueError, yaml.YAMLError):
+        result["findings"].append("fixture manifest or revision metadata could not be read or parsed")
+        return result
+    if not isinstance(bundle, dict) or bundle.get("fixture_id") != "cad-bracket-basic" or bundle.get("version") != 2:
+        result["findings"].append("file checks support only the version-2 cad-bracket-basic fixture")
+        return result
+    artifacts = bundle.get("artifacts")
+    if (
+        not isinstance(metadata, dict) or not isinstance(artifacts, list)
+        or len(artifacts) != len(required_paths)
+        or any(not isinstance(item, dict) or not isinstance(item.get("path"), str)
+               or any(not isinstance(item.get(field), (str, type(None))) for field in ("revision", "units"))
+               for item in artifacts)
+        or {item["path"] for item in artifacts} != required_paths
+        or not isinstance(bundle.get("authoritative_artifact"), str)
+        or not isinstance(bundle.get("step_artifact"), dict)
+        or not isinstance(bundle.get("dimension_checks", []), list)
+    ):
+        result["findings"].append("fixture inventory or metadata does not match the bounded bracket contract")
+        return result
+    bundle["metadata"] = metadata
+    result.update(review_bundle(bundle, root))
+    if metadata.get("authoritative_artifact") != bundle["authoritative_artifact"]:
+        result["blockers"].append("SOURCE_VERIFICATION_REQUIRED")
+        result["findings"].append("revision metadata and manifest disagree on design authority")
+    for name, paths, validator, target in (
+        ("source_drawing_revision", ["source/bracket.scad", "source/bracket.svg", "metadata/revision.json"], validate_design, root),
+        ("step_envelope", ["source/bracket.step"], validate_step, root / "source/bracket.step"),
+        ("stl_envelope", ["source/bracket.stl"], validate_mesh, root / "source/bracket.stl"),
+    ):
+        try:
+            errors = validator(target)
+        except (OSError, UnicodeError, ValueError, OverflowError):
+            errors = ["file data could not be read or parsed"]
+        result["file_checks"].append({"check": name, "paths": paths,
+                                      "status": "failed" if errors else "passed", "findings": errors})
+        if errors:
+            result["blockers"].append("MISSING_CONTEXT")
+            result["findings"].append(f"{name}: file-derived checks failed; inspect file_checks findings")
+    result["blockers"] = sorted(set(result["blockers"]))
+    result["status"] = "blocked" if result["blockers"] else "review_required"
+    return result
 
 
 def load_fixture(path: Path) -> dict[str, Any]:
@@ -123,13 +204,9 @@ def apply_mutation(bundle: dict[str, Any], mutation: dict[str, Any]) -> dict[str
 
 
 if __name__ == "__main__":
-    import json
     import sys
 
     fixture_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("fixtures/cad/bracket/fixture.yaml")
-    bundle = load_fixture(fixture_path)
-    metadata_path = fixture_path.parent / "metadata" / "revision.json"
-    if metadata_path.is_file():
-        bundle["metadata"] = json.loads(metadata_path.read_text(encoding="utf-8"))
-    result = review_bundle(bundle, fixture_path.parent)
+    result = review_fixture(fixture_path.parent, fixture_path.name)
     print(json.dumps(result, indent=2, sort_keys=True))
+    raise SystemExit(1 if result["status"] == "blocked" else 0)

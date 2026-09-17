@@ -1,0 +1,43 @@
+{
+  "blockers": [],
+  "execution_allowed": false,
+  "file_checks": [
+    {
+      "check": "source_drawing_revision",
+      "findings": [],
+      "paths": [
+        "source/bracket.scad",
+        "source/bracket.svg",
+        "metadata/revision.json"
+      ],
+      "status": "passed"
+    },
+    {
+      "check": "step_envelope",
+      "findings": [],
+      "paths": [
+        "source/bracket.step"
+      ],
+      "status": "passed"
+    },
+    {
+      "check": "stl_envelope",
+      "findings": [],
+      "paths": [
+        "source/bracket.stl"
+      ],
+      "status": "passed"
+    }
+  ],
+  "findings": [
+    "bundle revision is consistent: A",
+    "bundle units are consistent: mm",
+    "mesh is identified as a derived artifact",
+    "neutral solid exchange is present; independent geometry verification is still required",
+    "PMI is not present; manufacturing interpretation requires review"
+  ],
+  "geometry_equivalence_verified": false,
+  "review_required": true,
+  "status": "review_required",
+  "validation_scope": "synthetic revision-A bracket declarations and exchange envelopes only"
+}

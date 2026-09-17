@@ -2,7 +2,7 @@
 
 ## Status
 
-Phase 2 implementation complete for the synthetic, review-only fixture scope. Five atomic skill contracts, one skillset manifest, a generated CAD bundle, deterministic checks, and an evaluation plan are present.
+Historical implementation handoff, not current Phase 2 acceptance. Five atomic skill contracts, one skillset manifest, a generated CAD bundle, deterministic checks, and an evaluation plan are present. The [roadmap reconciliation](../roadmap-reconciliation.md) supersedes the earlier blanket completion claim.
 
 ## Current deliverables
 
@@ -29,4 +29,4 @@ Phase 2 implementation complete for the synthetic, review-only fixture scope. Fi
 
 `CADCAM_03_DESIGN_HANDOFF_READY`
 
-The phase gate is complete for the curated synthetic fixture and metadata/geometry-envelope scope. This does not approve a real part or manufacturing package; current outputs remain `REVIEW_REQUIRED`.
+The phase gate remains open. The [file-derived review follow-up](../../evaluation/cad-handoff-evaluation.md#file-derived-review-regression--2026-09-17) connects bounded content checks to the CLI and adds actual file-mutation regressions. Full required-negative-case and retained skill-assisted workflow evidence are still incomplete. This does not approve a real part or manufacturing package; current outputs remain `REVIEW_REQUIRED`.
