@@ -131,3 +131,31 @@ The complete gate audit is still required before Phase 5 acceptance.
 The full portable suite passed all 536 tests in 120.836 seconds. Staged whitespace
 checks passed. No fixture source drawing changed and no native laser application,
 controller connection or physical equipment was used.
+
+## Phase 5 exit-gate audit — 2026-09-17
+
+The [requirement-by-requirement audit](../development/laser-gate-review.md)
+maps the skill, manifest, all eleven responsibilities, nine required negatives
+and five exit criteria to current implementations, actual observations, complete
+retained reviews and regression evidence. It supports
+`CADCAM_06_LASER_ALPHA_READY` for repository development against the initial
+corpus, not a manufacturing approval, public-alpha release or practitioner verdict.
+
+Eight gate-edge methods supplement the existing isolated negative/replay tests.
+They check both nonexecuting controls, cross-format bytes, missing/uncertain or
+malformed unsafe-material and ventilation statuses in either context, separate
+machine/process compatibility, each unresolved process review flag, cut/placement
+declarations and independent beam/emission findings. The matrix and retained
+reviews passed 25 focused methods in 5.355 seconds. No production implementation,
+fixture, retained review packet or real approval changed during this audit.
+
+The full portable suite passed all 544 tests in 116.513 seconds. Foundation
+validation passed (58 files, ten context schemas, five skillsets), schema-instance
+validation passed (eleven definitions, 100 instances), and the paired laser
+geometry validator passed. These counts do not measure reasoning quality or
+prove general format conformance. No native laser application or equipment was run.
+
+All sixteen handoffs remain blocked with separate design, process, beam and
+emission evidence gaps. Next is Phase 6 file-aware composition and current-context
+approval/invalidation across all four families. Phase 7 governance acceptance and
+Phase 8 qualified real-input evaluation remain open.

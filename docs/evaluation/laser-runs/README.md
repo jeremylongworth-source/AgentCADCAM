@@ -59,9 +59,11 @@ silently repaired or dropped. Safety gaps are hard stops, not score deductions.
 These are same-agent, known-case synthetic reviews with no independent no-skill
 baseline, blinded reviewer or practitioner verdict. Section-presence tests do not
 measure reasoning quality or usefulness. No performance, edit-burden or safety
-recall percentage is inferred from packet count. A complete responsibility and
-exit-criterion audit is still required before gate 06 acceptance; Phase 6 composed
-integration and Phase 8 real-input evaluation remain separate requirements.
+recall percentage is inferred from packet count. The subsequent
+[responsibility and exit-criterion audit](../../development/laser-gate-review.md)
+records gate 06 development acceptance; the packets alone do not award that gate.
+Phase 6 composed integration and Phase 8 real-input evaluation remain separate
+requirements, and all retained manufacturing handoffs remain blocked.
 
 ## Reproduction
 

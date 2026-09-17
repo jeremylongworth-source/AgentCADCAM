@@ -1,7 +1,8 @@
 # Laser DXF/SVG byte-aware preflight — 2026-09-17
 
-Status: implemented partial file/context review; `REVIEW_REQUIRED`. Phase 5 is
-still open. Audience: maintainers and reviewers of laser preflight evidence.
+Status: implemented partial file/context review; `REVIEW_REQUIRED`. The subsequent
+[Phase 5 audit](../development/laser-gate-review.md) records development acceptance
+without expanding this reader's scope. Audience: maintainers and reviewers.
 
 ## Decision and boundary
 
@@ -134,8 +135,8 @@ source identity/revision and CLI behavior. Synthetic approved flags isolate thes
 failures from missing-human-approval; no approval record is created or promoted.
 Executed results are in the [laser evaluation](../evaluation/laser-cut-evaluation.md).
 
-Next: retain complete laser skill-assisted handoffs for all required negatives,
-audit every Phase 5 responsibility and exit criterion, and reconcile remaining
-format/intent/evidence limits. This change does not close gate 06, public-alpha or
-practitioner validation. Reopen these boundaries for new entities/transforms,
-context schemas, tolerance/placement rules or a consequential false-ready case.
+The subsequent retained reviews and Phase 5 audit reconcile the format/intent/
+evidence limits without approving any manufacturing handoff. Phase 6 composed
+integration, public-alpha and practitioner validation remain open. Reopen these
+boundaries for new entities/transforms, context schemas, tolerance/placement
+rules or a consequential false-ready case.
