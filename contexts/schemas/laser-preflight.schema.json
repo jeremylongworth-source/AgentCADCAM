@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/laser-preflight.schema.json",
+  "title": "State-bound laser preflight inputs",
+  "description": "Stored under setup.laser_preflight. Declarations and evidence bindings are not authentication or permission to operate equipment.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job", "process", "source_artifact"],
+  "properties": {
+    "job": {"type": "object"},
+    "process": {
+      "type": "object",
+      "required": ["process_profile_id", "machine_id", "material_id", "settings_status", "settings", "source"],
+      "properties": {
+        "process_profile_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "machine_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "material_id": {"type": "string", "minLength": 1, "pattern": "\\S"},
+        "settings_status": {"type": "string"},
+        "settings": {"type": "object", "minProperties": 1},
+        "source": {"$ref": "handoff.schema.json#/$defs/source"}
+      }
+    },
+    "source_artifact": {"$ref": "handoff.schema.json#/$defs/artifact"}
+  }
+}

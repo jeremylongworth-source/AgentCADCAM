@@ -9,6 +9,7 @@ from router.router import route
 from router.cnc_context import check_cnc_context
 from router.cnc_verification import check_cnc_verification
 from router.nc_evidence import check_nc_artifact
+from router.laser_evidence import check_laser_artifact
 from scripts.validate_schema_instances import load_catalog, validator_for
 from state.state import changed_fields, context_fingerprint
 
@@ -19,6 +20,7 @@ def route_job(
     previous_state: dict[str, Any] | None = None,
     required_scope: str = "manufacturing_handoff",
     nc_program: bytes | None = None,
+    laser_drawing: bytes | None = None,
 ) -> dict[str, Any]:
     """Return routing plus copied state/approval; never persist or authenticate a reviewer."""
     catalog = load_catalog()
@@ -61,7 +63,7 @@ def route_job(
     if not isinstance(request, dict):
         errors.append("request must be an object")
     # Supplied bytes and declared output cannot be down-classified by a bad state.
-    if nc_program is not None or (isinstance(current_state, dict) and current_state.get("generated_manufacturing_output") is not None):
+    if nc_program is not None or laser_drawing is not None or (isinstance(current_state, dict) and current_state.get("generated_manufacturing_output") is not None):
         normalized["generated_manufacturing_artifact"] = True
     fingerprint = None
     if state_ok:
@@ -70,6 +72,8 @@ def route_job(
         output = state.get("generated_manufacturing_output")
         if family != "cnc_milling" and (nc_program is not None or isinstance(output, dict) and output.get("kind") == "nc_program"):
             errors.append("NC input requires a cnc_milling bounded state; another family cannot bypass NC review")
+        if family != "laser_cutting" and (laser_drawing is not None or isinstance(output, dict) and output.get("kind") == "two_d_cutting"):
+            errors.append("laser input requires a laser_cutting bounded state; another family cannot bypass laser review")
         requested_family = normalized.get("process_family")
         if requested_family is not None and requested_family != family:
             errors.append("request process_family conflicts with bounded state")
@@ -131,8 +135,14 @@ def route_job(
     normalized["approval_state"] = effective_status
     result = route(normalized)
     nc_review = None
+    laser_review = None
     if state_ok and result["consequence_level"] in ("execution_adjacent", "live_execution"):
         additional = set()
+        if state["process_family"] == "laser_cutting":
+            laser_review = check_laser_artifact(state, laser_drawing, catalog=catalog,
+                                               fingerprint=fingerprint, approval_status=effective_status)
+            additional.update(laser_review["blockers"])
+            findings.extend(laser_review["findings"])
         if state["process_family"] == "cnc_milling":
             cnc_blockers, cnc_findings = check_cnc_context(state, validate)
             additional.update(cnc_blockers)
@@ -164,20 +174,21 @@ def route_job(
             record["status"] = "invalidated"
             record["invalidation_reason"] = "a supplied profile lacks current revision-scoped verification"
             result["approval_state"] = effective_status
-    cnc_context_failures = {
+    process_context_failures = {
         "MISSING_CONTEXT", "MACHINE_CONTEXT_REQUIRED",
         "SOURCE_VERIFICATION_REQUIRED", "SIMULATION_REQUIRED",
     }
     if (
         state_ok
-        and state["process_family"] == "cnc_milling"
+        and state["process_family"] in ("cnc_milling", "laser_cutting")
         and effective_status == "approved"
-        and set(result["blockers"]) & cnc_context_failures
+        and set(result["blockers"]) & process_context_failures
     ):
-        # A matching fingerprint is not evidence that all mandatory CNC context exists.
+        # A matching fingerprint cannot waive mandatory process/file evidence.
         effective_status = "invalidated"
         record["status"] = "invalidated"
-        record["invalidation_reason"] = "required CNC context is missing, conflicting, or unverified"
+        process_label = "CNC" if state["process_family"] == "cnc_milling" else "laser"
+        record["invalidation_reason"] = f"required {process_label} context is missing, conflicting, or unverified"
         result["approval_state"] = effective_status
         result["blockers"] = sorted(set(result["blockers"]) | {"HUMAN_APPROVAL_REQUIRED"})
     result["findings"].extend(findings)
@@ -190,4 +201,6 @@ def route_job(
         "validation_errors": errors,
         "nc_review": nc_review,
     })
+    if laser_review is not None:
+        result["laser_review"] = laser_review
     return result

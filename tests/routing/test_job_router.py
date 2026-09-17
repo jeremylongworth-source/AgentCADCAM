@@ -10,6 +10,7 @@ from scripts.validate_schema_instances import validator_for
 from state.state import context_fingerprint
 from tests.schema.test_profile_lifecycle import synthetic_review
 from tests.routing.cnc_fixture import make_cnc_review
+from tests.routing.laser_fixture import make_laser_review
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -159,7 +160,11 @@ class JobRouterTests(unittest.TestCase):
                     state["generated_manufacturing_output"] = None
                 approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
                 request = dict(self.request, process_family=family, artifact_class=artifact)
-                result = self.route(request, state, approval)
+                if family == "laser_cutting":
+                    state, request, approval, drawing = make_laser_review()
+                    result = route_job(request, state, approval, laser_drawing=drawing)
+                else:
+                    result = self.route(request, state, approval)
                 self.assertEqual(result["blockers"], [])
                 self.assertEqual(result["skillset"], skillset)
                 self.assertFalse(result["execution_allowed"])
@@ -313,9 +318,13 @@ class JobRouterTests(unittest.TestCase):
                         state["material"]["process_family"] = family
                     request = dict(self.request, process_family=family, consequence_level=level, artifact_class="handoff")
                     approval = dict(self.approval, context_fingerprint=context_fingerprint(state))
-                    self.assertEqual(self.route(request, state, approval)["approval_state"], "approved")
+                    kwargs = {}
+                    if family == "laser_cutting" and level == "execution_adjacent":
+                        state, request, approval, drawing = make_laser_review()
+                        kwargs["laser_drawing"] = drawing
+                    self.assertEqual(self.route(request, state, approval, **kwargs)["approval_state"], "approved")
                     state["machine_profile"]["lifecycle"]["verification"]["status"] = "unverified"
                     approval["context_fingerprint"] = context_fingerprint(state)
-                    result = self.route(request, state, approval)
+                    result = self.route(request, state, approval, **kwargs)
                     self.assertEqual(result["approval_state"], "invalidated")
                     self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])

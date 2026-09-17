@@ -83,3 +83,8 @@ than automatically refreshing evidence to make tests pass. No native laser
 application, controller connection or physical equipment is used. See the
 [evaluation state decision](../../architecture/laser-retained-review-binding.md)
 for binding and authentication limits.
+
+The subsequent [Phase 6 laser integration](../../architecture/laser-router-integration.md)
+adds missing production-contract/byte/evidence diagnostics when replaying these
+original evaluation-only states. The packet test checks that exact additive
+diagnostic difference; original observations and handoffs are not rewritten.

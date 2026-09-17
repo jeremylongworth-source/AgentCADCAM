@@ -3,6 +3,13 @@
 Status: evaluation-only decision, 2026-09-17. Audience: maintainers reviewing
 Phase 5 evidence. This is not a production approval API or Phase 6 acceptance.
 
+Historical evaluation architecture: the subsequent
+[laser router integration](laser-router-integration.md) adds a distinct explicit
+input and evidence contract. The original packet wrappers remain evaluation-only
+and now receive additional missing-contract/byte/evidence blockers during replay.
+The descriptions below record why those packets were built, not the current
+router's complete capabilities.
+
 ## Context and current components
 
 The [laser file preflight](laser-file-evidence.md) inspects actual drawing bytes

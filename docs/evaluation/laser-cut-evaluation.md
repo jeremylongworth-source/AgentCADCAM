@@ -159,3 +159,32 @@ All sixteen handoffs remain blocked with separate design, process, beam and
 emission evidence gaps. Next is Phase 6 file-aware composition and current-context
 approval/invalidation across all four families. Phase 7 governance acceptance and
 Phase 8 qualified real-input evaluation remain open.
+
+## Phase 6 laser file/evidence composition — 2026-09-17
+
+The [integrated laser gate](../architecture/laser-router-integration.md) now runs
+inside `route_job` for execution-adjacent laser jobs. It requires explicit bytes,
+source/job/output identity, structured process inputs and six independent current
+evidence roles. Raw job approval flags cannot override the scoped record decision.
+Fresh file/context/evidence failures invalidate a matching approved record copy
+without changing its reviewed fingerprint. Re-signing approval alone cannot renew
+stale evidence. No machine operation, settings generation or source fetch is added.
+
+Fourteen new integration methods passed in 10.917 seconds. Cases include both
+format controls and every retained negative with newly bound test-only evidence,
+missing/wrong bytes, identity/source conflicts, empty settings, each evidence
+role, malformed/failed/duplicate/stale records, process-change invalidation,
+raw-flag refusal, consequence/family bypass and every prohibited live action.
+Positive controls use a non-operational test marker, not actual laser parameters.
+
+An existing profile test initially failed because its laser approval control had
+no drawing or laser evidence. The control now supplies complete synthetic inputs;
+its unverified-profile rejection assertion is preserved. Historical packets are
+unchanged. Their replay test permits exactly the new missing input/byte/evidence
+diagnostics and still checks every original raw observation, state and hash.
+
+The full portable suite passed 558 tests in 132.801 seconds. Foundation validation
+passed (58 files, eleven context schemas, five skillsets) and schema-instance
+validation passed (twelve definitions, 100 instances). Whitespace checks passed.
+No physical equipment or native laser application was used. Phase 6 remains open
+for additive/CAD composition, integrated handoffs and the full four-family audit.

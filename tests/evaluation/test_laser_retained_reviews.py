@@ -22,11 +22,30 @@ class LaserRetainedReviewTests(unittest.TestCase):
             cls.runs[case] = {name: json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
                               for name in ("observed", "state", "handoff")}
 
-    def test_all_sixteen_observations_replay_exactly(self):
+    def test_replay_preserves_history_with_only_explicit_new_laser_gate_diagnostics(self):
         self.assertEqual(len(self.runs), 16)
         for case, run in self.runs.items():
             with self.subTest(case=case):
-                self.assertEqual(replay(case), run["observed"])
+                # Original evaluation wrappers are not production preflight
+                # contexts. Preserve their packets; allow exactly this new gate
+                # output, never arbitrary drift in bytes, state or raw checks.
+                expected = copy.deepcopy(run["observed"])
+                route = expected["route_result"]
+                additions = ["laser setup.laser_preflight requires structured job, nonempty process settings/source and source artifact"]
+                if case in ("wrong-units", "svg-wrong-units"):
+                    additions.append("laser drawing kind, authority, revision or units conflict with bounded state")
+                additions += [
+                    "actual nonempty laser drawing bytes are required; paths and passing labels are insufficient",
+                    "laser verification record 0: structured evidence and versioned context binding are required",
+                    *[f"{identity}: a current passed context-bound evidence record is required" for identity in
+                      ("laser_design", "laser_paths", "laser_process", "laser_beam", "laser_emissions", "laser_output")],
+                ]
+                route["laser_review"] = {"status": "blocked", "sha256": None,
+                                         "context_fingerprint": route["context_fingerprint"],
+                                         "blockers": ["MISSING_CONTEXT"], "findings": additions, "report": None}
+                position = route["findings"].index("verification evidence is missing, unresolved, or failed")
+                route["findings"][position:position] = additions
+                self.assertEqual(replay(case), expected)
 
     def test_schemas_and_all_input_bindings_agree(self):
         for case, run in self.runs.items():
