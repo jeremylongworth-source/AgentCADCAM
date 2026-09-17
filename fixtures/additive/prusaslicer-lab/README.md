@@ -23,6 +23,12 @@ repository-authored in `tests/safety/test_three_mf_review.py`, under the reposit
 MIT license. These are openly available test models, not real customer data or
 practitioner-pilot submissions. No Prusa sample-model license is implied.
 
+The subsequent [explicit tetrahedron source](tetrahedron-source.json) records
+the same coordinates/faces as a CC0 synthetic geometry definition for retained
+additive handoffs. A portable regression checks that it reconstructs the earlier
+test mesh exactly; historical native observations and their input hashes are
+not rewritten. This source still does not define functional product requirements.
+
 The lab reuses existing synthetic FDM contexts solely to compare software
 blockers. For tetrahedra it sets declared dimensions to 1/1/1 and selects the
 actual package unit. Hash renewal occurs only when constructing these fixed test

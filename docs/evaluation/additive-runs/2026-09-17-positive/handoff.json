@@ -1,0 +1,102 @@
+{
+  "handoff_id": "additive-positive-2026-09-17",
+  "job_id": "additive-fdm-bracket",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "additive",
+  "consequence_level": "execution_adjacent",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "kind": "native_cad_source",
+      "authority": "authoritative",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811"
+    },
+    {
+      "artifact_id": "additive-positive",
+      "path": "replay:additive/positive/input.stl",
+      "kind": "mesh_derivative",
+      "authority": "derived",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e"
+    }
+  ],
+  "context_fingerprint": "1b6b93f25f15284b0b55c185a86e72743f40bb02de04ceccd1a9491c56a17a1b",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "Printer/material lifecycle reviews remain unverified synthetic declarations; no applicable OEM, material-grade or slicer-profile evidence is established.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-positive/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-positive/review.md"
+      ]
+    },
+    {
+      "statement": "Job orientation/support reviewed flags, slicer verified flag and any environment known label lack supporting job-specific review records; they cannot authorize manufacture.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-positive/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-positive/review.md"
+      ]
+    },
+    {
+      "statement": "Partial mesh/package checks and independent geometry exports do not establish self-intersection/fill correctness, functional design intent, usable-bed/support clearance, a verified sliced build or qualified approval.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-positive/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-positive/review.md"
+      ]
+    },
+    {
+      "statement": "Matching synthetic labels and partial geometry do not establish printer/material applicability, functional design intent, an actual slicer configuration, orientation/support adequacy or environmental approval.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-positive/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-positive/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "additive_partial_geometry_and_context",
+      "status": "inconclusive",
+      "summary": "File-derived partial evidence only; profile, intent, slicer, orientation/support, environment and qualified review are unresolved.",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-positive/observed.json"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "Applicable slicer/layer-preview and build verification has not been performed for this job; native geometry import/export is not that evidence.",
+    "required_checks": [
+      "Confirm source intent, units, revision and the exact mesh/package including unresolved geometry semantics",
+      "Review applicable printer/material/slicer configuration, build placement, orientation/support and usable-bed clearances",
+      "Verify the resulting sliced build and record limitations against the same reviewed inputs and qualified environmental/operator context"
+    ],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Obtain controlled printer and actual filament/grade evidence, the full slicer profile and version, orientation/support rationale and applicable environmental/operator review; verify the resulting sliced build and obtain qualified approval for the exact source/package revisions. Resolve all unchanged baseline evidence gaps. Do not print from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "context_review",
+      "slicer_verification"
+    ],
+    "reviewer_role": "Qualified design authority, additive process/profile reviewer and responsible site/operator reviewer"
+  },
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

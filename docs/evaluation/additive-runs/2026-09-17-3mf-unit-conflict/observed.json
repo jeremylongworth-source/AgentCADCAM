@@ -1,0 +1,403 @@
+{
+  "case": "3mf-unit-conflict",
+  "mutation": {
+    "kind": "package_xml",
+    "change": "embedded unit inch; submitted job/source mm unchanged"
+  },
+  "contexts": {
+    "job": {
+      "job_id": "additive-unit-tetrahedron",
+      "revision": "A",
+      "mesh_format": "3MF",
+      "mesh_sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+      "mesh_status": "valid",
+      "mesh_units": "mm",
+      "model_dimensions": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "printer_id": "fixture-printer-fdm",
+      "material_id": "fixture-pla",
+      "slicer_profile_status": "verified",
+      "orientation_status": "reviewed",
+      "support_status": "reviewed",
+      "environment_status": "known",
+      "approval_status": "not_requested"
+    },
+    "printer": {
+      "lifecycle": {
+        "revision": "1",
+        "applicability": "Offline additive/fdm-bracket synthetic printer fixture only; no physical manufacturing applicability established.",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "status": "unverified",
+          "reviewed_revision": null,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed."
+        }
+      },
+      "machine_id": "fixture-printer-fdm",
+      "process_family": "additive",
+      "manufacturer": "Synthetic Fixture",
+      "model": "FDM printer",
+      "capabilities": {
+        "build_volume": {
+          "x": 200,
+          "y": 200,
+          "z": 200
+        },
+        "materials": [
+          "fixture-pla"
+        ]
+      },
+      "limits": {},
+      "source": {
+        "title": "Synthetic FDM printer profile",
+        "publisher": "CAD/CAM Skills",
+        "locator": "fixtures/additive/fdm-bracket/contexts/printer.json",
+        "published_at": null,
+        "accessed_at": "2026-09-13",
+        "scope": "Offline FDM fixture checks only; not an OEM build-volume or material specification.",
+        "claims": [
+          "The printer fixture declares a synthetic build-volume tuple and fixture-pla compatibility."
+        ]
+      }
+    },
+    "material": {
+      "lifecycle": {
+        "revision": "1",
+        "applicability": "Offline additive/fdm-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "units": {},
+        "verification": {
+          "status": "unverified",
+          "reviewed_revision": null,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed."
+        }
+      },
+      "material_id": "fixture-pla",
+      "process_family": "additive",
+      "grade_or_profile": "synthetic PLA profile",
+      "properties": {},
+      "compatibility": {
+        "printers": [
+          "fixture-printer-fdm"
+        ],
+        "slicer_profiles": [
+          "fixture-pla-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "environment_status": "known"
+      },
+      "source": {
+        "title": "Synthetic FDM material profile",
+        "publisher": "CAD/CAM Skills",
+        "locator": "fixtures/additive/fdm-bracket/contexts/material.json",
+        "published_at": null,
+        "accessed_at": "2026-09-13",
+        "scope": "Offline FDM compatibility tests only; not filament properties, slicer settings, or environmental safety evidence.",
+        "claims": [
+          "The material fixture links fixture-pla to a synthetic printer and slicer profile and declares a known environment status."
+        ]
+      }
+    }
+  },
+  "source_revision": "A",
+  "artifacts": [
+    {
+      "artifact_id": "tetrahedron-source.json",
+      "path": "fixtures/additive/prusaslicer-lab/tetrahedron-source.json",
+      "kind": "synthetic_geometry_definition",
+      "authority": "authoritative",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "4aeea5655ca192454e0d6861b167e43849560e61f8723759271d4e8872aa3c2b"
+    },
+    {
+      "artifact_id": "additive-3mf-unit-conflict",
+      "path": "replay:additive/3mf-unit-conflict/input.3mf",
+      "kind": "print_package",
+      "authority": "derived",
+      "revision": "A",
+      "units": "inch",
+      "sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b"
+    }
+  ],
+  "mesh_bytes": 1352,
+  "raw_preflight": {
+    "status": "blocked",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT"
+    ],
+    "findings": [
+      "mesh/package remains a print derivative, not authoritative design intent",
+      "3MF embedded/default unit conflicts with declared job mesh units",
+      "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified",
+      "human approval is not recorded"
+    ],
+    "review_required": true,
+    "execution_allowed": false,
+    "file_review": {
+      "status": "checked_partial_geometry",
+      "sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+      "encoding": "3mf_zip",
+      "model_part": "3D/model.model",
+      "unit": "inch",
+      "unit_origin": "explicit",
+      "unit_scale_mm": "127/5",
+      "triangles": 4,
+      "objects": [
+        {
+          "object_id": 1,
+          "triangles": 4,
+          "topology": {
+            "boundary_edges": 0,
+            "nonmanifold_edges": 0,
+            "winding_conflicts": 0,
+            "nonmanifold_vertices": 0,
+            "duplicate_faces": 0,
+            "degenerate_faces": 0,
+            "normal_conflicts": 0,
+            "shells": 1,
+            "signed_volume_positive": true
+          }
+        }
+      ],
+      "build_items": 1,
+      "instances": 1,
+      "bounds_exact": {
+        "min": [
+          "0",
+          "0",
+          "0"
+        ],
+        "max": [
+          "1",
+          "1",
+          "1"
+        ]
+      },
+      "dimensions_exact": {
+        "x": "1",
+        "y": "1",
+        "z": "1"
+      },
+      "unreviewed_parts": [],
+      "blockers": [],
+      "findings": [],
+      "review_required": true,
+      "execution_allowed": false,
+      "limitations": [
+        "self-intersections not checked",
+        "not full OPC/XSD conformance validation",
+        "no manufacturing or design-equivalence verification",
+        "no vendor settings, materials, signatures or extensions authenticated",
+        "no tolerance-based vertex welding or geometric union"
+      ]
+    },
+    "validation_scope": "STL/3MF byte identity, partial topology, unit-aware extents, supported Core build placement and metadata compatibility; not slicing, usable-bed clearance, self-intersection, evidence authenticity or print approval"
+  },
+  "state": {
+    "job_id": "additive-unit-tetrahedron",
+    "revision": "A",
+    "units": "mm",
+    "source_artifact_hashes": [
+      "4aeea5655ca192454e0d6861b167e43849560e61f8723759271d4e8872aa3c2b"
+    ],
+    "process_family": "additive",
+    "material": {
+      "lifecycle": {
+        "revision": "1",
+        "applicability": "Offline additive/fdm-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "units": {},
+        "verification": {
+          "status": "unverified",
+          "reviewed_revision": null,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed."
+        }
+      },
+      "material_id": "fixture-pla",
+      "process_family": "additive",
+      "grade_or_profile": "synthetic PLA profile",
+      "properties": {},
+      "compatibility": {
+        "printers": [
+          "fixture-printer-fdm"
+        ],
+        "slicer_profiles": [
+          "fixture-pla-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "environment_status": "known"
+      },
+      "source": {
+        "title": "Synthetic FDM material profile",
+        "publisher": "CAD/CAM Skills",
+        "locator": "fixtures/additive/fdm-bracket/contexts/material.json",
+        "published_at": null,
+        "accessed_at": "2026-09-13",
+        "scope": "Offline FDM compatibility tests only; not filament properties, slicer settings, or environmental safety evidence.",
+        "claims": [
+          "The material fixture links fixture-pla to a synthetic printer and slicer profile and declares a known environment status."
+        ]
+      }
+    },
+    "machine_profile": {
+      "lifecycle": {
+        "revision": "1",
+        "applicability": "Offline additive/fdm-bracket synthetic printer fixture only; no physical manufacturing applicability established.",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "status": "unverified",
+          "reviewed_revision": null,
+          "reviewer": null,
+          "reviewed_at": null,
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed."
+        }
+      },
+      "machine_id": "fixture-printer-fdm",
+      "process_family": "additive",
+      "manufacturer": "Synthetic Fixture",
+      "model": "FDM printer",
+      "capabilities": {
+        "build_volume": {
+          "x": 200,
+          "y": 200,
+          "z": 200
+        },
+        "materials": [
+          "fixture-pla"
+        ]
+      },
+      "limits": {},
+      "source": {
+        "title": "Synthetic FDM printer profile",
+        "publisher": "CAD/CAM Skills",
+        "locator": "fixtures/additive/fdm-bracket/contexts/printer.json",
+        "published_at": null,
+        "accessed_at": "2026-09-13",
+        "scope": "Offline FDM fixture checks only; not an OEM build-volume or material specification.",
+        "claims": [
+          "The printer fixture declares a synthetic build-volume tuple and fixture-pla compatibility."
+        ]
+      }
+    },
+    "controller_profile": null,
+    "setup": {
+      "context_kind": "additive_evaluation_input",
+      "evaluation_only": true,
+      "submitted_job": {
+        "job_id": "additive-unit-tetrahedron",
+        "revision": "A",
+        "mesh_format": "3MF",
+        "mesh_sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b",
+        "mesh_status": "valid",
+        "mesh_units": "mm",
+        "model_dimensions": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "printer_id": "fixture-printer-fdm",
+        "material_id": "fixture-pla",
+        "slicer_profile_status": "verified",
+        "orientation_status": "reviewed",
+        "support_status": "reviewed",
+        "environment_status": "known",
+        "approval_status": "not_requested"
+      },
+      "source_revision": "A"
+    },
+    "workholding": null,
+    "work_coordinate_system": null,
+    "tool_library": null,
+    "cam_system": null,
+    "postprocessor": null,
+    "post_version": null,
+    "generated_manufacturing_output": {
+      "artifact_id": "additive-3mf-unit-conflict",
+      "path": "replay:additive/3mf-unit-conflict/input.3mf",
+      "kind": "print_package",
+      "authority": "derived",
+      "revision": "A",
+      "units": "inch",
+      "sha256": "a7f20af8f81faa8f37ab53ae76926506d355e08e2617c77d1ae3b8c8a2b97a7b"
+    },
+    "simulation_status": "not_run",
+    "jurisdiction": null,
+    "ip_status": {
+      "ownership_status": "repository_authored_synthetic",
+      "licence_status": "CC0-1.0 fixture",
+      "confidentiality": "public_test_data",
+      "redistribution_authorized": true
+    },
+    "export_review_status": "not_reviewed",
+    "approval_status": "not_requested",
+    "verification_results": [
+      {
+        "check_id": "additive_partial_geometry_and_context",
+        "status": "inconclusive",
+        "summary": "File-derived partial evidence only; profile, intent, slicer, orientation/support, environment and qualified review are unresolved.",
+        "evidence": [
+          "docs/evaluation/additive-runs/2026-09-17-3mf-unit-conflict/observed.json"
+        ]
+      }
+    ]
+  },
+  "context_fingerprint": "9c81aa1c39dacffb8016d20c9fb5c441c4c591b4957c17e846aeef4e37adb5ef",
+  "request": {
+    "process_family": "additive",
+    "artifact_class": "mesh",
+    "consequence_level": "execution_adjacent",
+    "machine_known": true,
+    "material_known": true
+  },
+  "route_result": {
+    "route_id": "additive",
+    "process_family": "additive",
+    "skillset": "additive-print-prep",
+    "consequence_level": "execution_adjacent",
+    "approval_state": "not_requested",
+    "required_checks": [
+      "provenance",
+      "mesh_integrity",
+      "printer_material_match",
+      "slicer_readiness",
+      "human_approval"
+    ],
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "findings": [
+      "human approval is not recorded",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision"
+    ],
+    "review_required": true,
+    "execution_allowed": false,
+    "approval_record": null,
+    "context_fingerprint": "9c81aa1c39dacffb8016d20c9fb5c441c4c591b4957c17e846aeef4e37adb5ef",
+    "validation_errors": [],
+    "nc_review": null
+  },
+  "scope": "Fixed synthetic evidence replay; additive byte findings and generic routing remain distinct; not an approval API"
+}

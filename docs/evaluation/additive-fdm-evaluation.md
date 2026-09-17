@@ -165,3 +165,47 @@ parameters, printer connection or production verification was generated. Phase 4
 still requires retained full skill-assisted handoffs, review of the remaining
 geometry/package limits and its full exit-gate audit. Real-input pilot evidence
 is unchanged and absent.
+
+## Retained full additive skill reviews — 2026-09-17
+
+The [twelve packets](additive-runs/README.md) retain Codex's actual application of
+the additive-job-preflight contract to the STL baseline, every required roadmap
+negative, and four additional 3MF cases. The known-case rubric was fixed before
+retaining conclusions; these are same-agent controlled evaluations, not blinded
+tests, independent human verdicts or a no-skill baseline comparison.
+
+Each packet includes complete parsed inputs, source/derivative hashes, controlled
+mutation, raw preflight and separate routing diagnostics, bounded state, an
+agent-authored review and a schema-valid blocked handoff. The actual open-STL
+case removes one facet while leaving mesh_status valid and binding its new test
+hash; the three boundary edges/vertex defects remain visible. Other cases retain
+material/printer conflicts, job B versus source A, measured envelope exceedance,
+unknown environment, embedded inch versus mm, transformed out-of-envelope build
+placement and unsupported required-extension handling.
+
+The full skill reviews add evidence-quality findings that the declaration-based
+utility cannot establish: actual printer/material applicability, complete slicer
+profile/version, source intent and acceptance criteria, orientation/support
+rationale, usable-bed and unsupported geometry checks, and job/site environmental
+review. The fixture's known/reviewed/verified labels remain unchanged inputs,
+not proof. Every handoff requires qualified follow-up and applicable sliced-build
+verification; no temperatures, cooling, speeds or support parameters are invented.
+
+Fourteen focused packet tests passed in 3.440 seconds. They check exact replay,
+state/handoff schemas and fingerprints, file identities, individual negative
+findings, unmodified profiles, status-only promotion refusal, and invalidation
+when submitted additive context changes. The repository schema-instance command
+now includes all 24 additive state/handoff records. Heading checks confirm
+contract sections exist; they are not automated reasoning-quality scores.
+
+The full portable suite passed all 474 tests in 105.547 seconds. Foundation
+validation passed (58 required files, ten context schemas, five skillsets),
+schema-instance validation passed (eleven definitions, 68 instances), and
+whitespace checks passed. These checks establish the inspected assertions,
+not independent practitioner validation or manufacturing approval.
+
+See the [evaluation-state decision](../architecture/additive-retained-evidence.md)
+for why submitted additive context is bound under an evaluation-only setup
+wrapper. This is not a new production approval API or completed Phase 6 composed
+integration. Phase 4 remains open pending its requirement-by-requirement gate
+audit; public-alpha and real-input practitioner requirements are not waived.

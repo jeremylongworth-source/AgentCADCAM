@@ -1,0 +1,9 @@
+{
+  "artifact_id": "synthetic-unit-tetrahedron",
+  "revision": "A",
+  "units": "mm",
+  "license": "CC0-1.0 synthetic fixture",
+  "scope": "Repository-authored geometry test definition only; not a manufacturing product specification",
+  "vertices": [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]],
+  "triangles": [[0, 2, 1], [0, 1, 3], [0, 3, 2], [1, 2, 3]]
+}

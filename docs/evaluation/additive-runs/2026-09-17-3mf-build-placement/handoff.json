@@ -1,0 +1,103 @@
+{
+  "handoff_id": "additive-3mf-build-placement-2026-09-17",
+  "job_id": "additive-unit-tetrahedron",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "additive",
+  "consequence_level": "execution_adjacent",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "tetrahedron-source.json",
+      "path": "fixtures/additive/prusaslicer-lab/tetrahedron-source.json",
+      "kind": "synthetic_geometry_definition",
+      "authority": "authoritative",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "4aeea5655ca192454e0d6861b167e43849560e61f8723759271d4e8872aa3c2b"
+    },
+    {
+      "artifact_id": "additive-3mf-build-placement",
+      "path": "replay:additive/3mf-build-placement/input.3mf",
+      "kind": "print_package",
+      "authority": "derived",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "b9d22f0b2f5b91bfac83ec84b57434a31dfd786af4f06a315d59d985685e9f85"
+    }
+  ],
+  "context_fingerprint": "7ac3503f5be8a851cc7a59213cc6be3672fc98b683bbcc67d3c5188404bd9627",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "Printer/material lifecycle reviews remain unverified synthetic declarations; no applicable OEM, material-grade or slicer-profile evidence is established.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/review.md"
+      ]
+    },
+    {
+      "statement": "Job orientation/support reviewed flags, slicer verified flag and any environment known label lack supporting job-specific review records; they cannot authorize manufacture.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/review.md"
+      ]
+    },
+    {
+      "statement": "Partial mesh/package checks and independent geometry exports do not establish self-intersection/fill correctness, functional design intent, usable-bed/support clearance, a verified sliced build or qualified approval.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/review.md"
+      ]
+    },
+    {
+      "statement": "The explicit build placement lies outside the submitted printer envelope even though the object's dimensions are small.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "additive_partial_geometry_and_context",
+      "status": "inconclusive",
+      "summary": "File-derived partial evidence only; profile, intent, slicer, orientation/support, environment and qualified review are unresolved.",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-3mf-build-placement/observed.json"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "Applicable slicer/layer-preview and build verification has not been performed for this job; native geometry import/export is not that evidence.",
+    "required_checks": [
+      "Confirm source intent, units, revision and the exact mesh/package including unresolved geometry semantics",
+      "Review applicable printer/material/slicer configuration, build placement, orientation/support and usable-bed clearances",
+      "Verify the resulting sliced build and record limitations against the same reviewed inputs and qualified environmental/operator context"
+    ],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Require a reviewed placement for the intended printer, preserve any resulting package hash/revision change and repeat envelope, support/clearance and slicer checks. A reference tool's successful export cannot approve this placement. Resolve all unchanged baseline evidence gaps. Do not print from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "context_review",
+      "slicer_verification"
+    ],
+    "reviewer_role": "Qualified design authority, additive process/profile reviewer and responsible site/operator reviewer"
+  },
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MACHINE_CONTEXT_REQUIRED",
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

@@ -6,3 +6,5 @@ fixtures/cad/bracket/source/bracket.stl -text
 # Retained CNC evaluations bind exact inert program bytes across checkouts.
 fixtures/cnc/mill-bracket/programs/*.nc text eol=lf
 fixtures/cnc/camotics-lab/project.camotics text eol=lf
+# Additive review packets bind this authoritative synthetic geometry definition.
+fixtures/additive/prusaslicer-lab/tetrahedron-source.json text eol=lf

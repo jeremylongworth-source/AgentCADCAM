@@ -1,0 +1,102 @@
+{
+  "handoff_id": "additive-missing-material-profile-2026-09-17",
+  "job_id": "additive-fdm-bracket",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "additive",
+  "consequence_level": "execution_adjacent",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "kind": "native_cad_source",
+      "authority": "authoritative",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811"
+    },
+    {
+      "artifact_id": "additive-missing-material-profile",
+      "path": "replay:additive/missing-material-profile/input.stl",
+      "kind": "mesh_derivative",
+      "authority": "derived",
+      "revision": "A",
+      "units": "mm",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e"
+    }
+  ],
+  "context_fingerprint": "2b58042884531222c5bd0ff40dbdc95c96af8b2ad0c84793d20f2cd97c910d91",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "Printer/material lifecycle reviews remain unverified synthetic declarations; no applicable OEM, material-grade or slicer-profile evidence is established.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/review.md"
+      ]
+    },
+    {
+      "statement": "Job orientation/support reviewed flags, slicer verified flag and any environment known label lack supporting job-specific review records; they cannot authorize manufacture.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/review.md"
+      ]
+    },
+    {
+      "statement": "Partial mesh/package checks and independent geometry exports do not establish self-intersection/fill correctness, functional design intent, usable-bed/support clearance, a verified sliced build or qualified approval.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/review.md"
+      ]
+    },
+    {
+      "statement": "No material is selected and bound to the job, despite the presence of an unrelated candidate profile in the bundle.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/observed.json",
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/review.md"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "additive_partial_geometry_and_context",
+      "status": "inconclusive",
+      "summary": "File-derived partial evidence only; profile, intent, slicer, orientation/support, environment and qualified review are unresolved.",
+      "evidence": [
+        "docs/evaluation/additive-runs/2026-09-17-missing-material-profile/observed.json"
+      ]
+    }
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "Applicable slicer/layer-preview and build verification has not been performed for this job; native geometry import/export is not that evidence.",
+    "required_checks": [
+      "Confirm source intent, units, revision and the exact mesh/package including unresolved geometry semantics",
+      "Review applicable printer/material/slicer configuration, build placement, orientation/support and usable-bed clearances",
+      "Verify the resulting sliced build and record limitations against the same reviewed inputs and qualified environmental/operator context"
+    ],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Require an explicit material/grade selection and controlled profile with applicable printer, slicer and environmental evidence. Preserve the null selection until that choice is made; do not infer it from the filename, fixture family or candidate profile. Resolve all unchanged baseline evidence gaps. Do not print from this packet.",
+    "scope": [
+      "manufacturing_handoff",
+      "context_review",
+      "slicer_verification"
+    ],
+    "reviewer_role": "Qualified design authority, additive process/profile reviewer and responsible site/operator reviewer"
+  },
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}
