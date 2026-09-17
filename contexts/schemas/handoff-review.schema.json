@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/handoff-review.schema.json",
+  "title": "State-bound handoff review details",
+  "description": "Store under setup.handoff_review before evidence and approval review. Derived outcomes and fingerprints are not included to avoid circular binding.",
+  "type": "object", "additionalProperties": false,
+  "required": ["handoff_id", "artifacts", "assumptions", "simulation", "human_review"],
+  "properties": {
+    "handoff_id": {"$ref": "handoff.schema.json#/properties/handoff_id"},
+    "artifacts": {"$ref": "handoff.schema.json#/properties/artifacts", "minItems": 1},
+    "assumptions": {"$ref": "handoff.schema.json#/properties/assumptions"},
+    "simulation": {"$ref": "handoff.schema.json#/properties/simulation"},
+    "human_review": {"$ref": "handoff.schema.json#/properties/human_review"}
+  }
+}

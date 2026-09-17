@@ -33,6 +33,12 @@ request + explicit context -> normalize -> route -> required checks/blockers
 
 `router/job_router.py` adds the bounded integration path using the local JSON Schema validator. It checks records before routing and returns effective approval, copied state, blockers, and audit diagnostics. See the [router contract](../../router/router-contract.md) for inputs and status semantics, and the [fingerprint migration](../development/fingerprint-v2-migration.md) for existing approvals.
 
+`router/handoff_review.py` adds the [serialized package consumer](handoff-state-binding.md):
+handoff review details are bound in setup before evidence and approval, then
+checked against the supplied package and fresh process routing. Schema-valid
+content substitutions, stale records and omitted blockers are explicit failures.
+The consumer persists nothing and does not authenticate evidence or reviewers.
+
 ## Risks and open questions
 
 - Route normalization and state persistence are currently local utilities, not a hosted service or API.

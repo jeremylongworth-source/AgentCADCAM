@@ -12,6 +12,7 @@
     "workholding": {"type": "object"},
     "wcs_status": {"enum": ["missing", "defined", "verified", "conflicted"]},
     "coordinate_model": {"$ref": "#/$defs/coordinate_model"},
+    "handoff_review": {"$ref": "handoff-review.schema.json"},
     "sequence": {"type": "array", "items": {"type": "string"}}
   },
   "$defs": {

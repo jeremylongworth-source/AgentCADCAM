@@ -55,3 +55,9 @@ The integrated function:
 - Adds `cad_review` when the CAD gate runs. A selected mesh derivative can remain in a CAD handoff only when the full CAD byte inventory and evidence gate apply; additive preparation still requires its own independent process review.
 
 This local function checks declared context and record consistency, not reviewer authentication or truth of evidence. Physical suitability, source authority, and process-specific evidence review remain downstream responsibilities; an empty blocker list is not manufacturing readiness or permission to execute.
+
+For a serialized manufacturing handoff, use the additional
+[`review_handoff` consumer](../docs/architecture/handoff-state-binding.md). It
+compares the package with `setup.handoff_review`, current state, exact evidence,
+artifact inventory and current routing/approval results. It never promotes a
+draft, drops declared blockers or rewrites an old reviewed fingerprint.

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added a read-only serialized handoff consumer that compares state-bound review details, current process bytes, evidence, artifact inventory and scoped approval. Content substitutions and omitted blockers invalidate matching review copies without rewriting old fingerprints; drafts are never promoted. Added a typed handoff-review setup field and four-family regressions. Historical packets stay blocked; complete Phase 6 evaluation remains open.
+
 - Bound CAD handoff routing to actual source/STEP/STL/drawing bytes, sourced manufacturing declarations and five independent current review roles. The explicit bracket adapter reuses existing checks through in-memory APIs; unsupported profiles block. CAD handoff preparation cannot be down-classified, and fresh failures invalidate matching approvals. Historical packets stay unchanged; general CAD validation, complete integration acceptance and practitioner review remain open.
 
 - Integrated actual STL/3MF bytes, versioned slicer inputs and seven independent context-bound review roles into additive routing. Fresh file/context/evidence failures invalidate matching approval copies; historical packets remain unchanged and blocked. Extreme 3MF exponents now return structured refusals instead of raising Decimal exceptions. No slicing, printer control or manufacturing approval is introduced; Phase 6 remains open.
