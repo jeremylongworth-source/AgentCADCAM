@@ -1,0 +1,47 @@
+{
+  "binding_version": 1,
+  "binding_id": "cad-bracket-basic-revision-a-bundle-2",
+  "hash_policy": "sha256-raw-bytes",
+  "source": {
+    "artifact_id": "bracket-design-source",
+    "path": "source/bracket.scad",
+    "kind": "native_cad_source",
+    "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+    "revision": "A", "authority": "authoritative", "units": "mm"
+  },
+  "derivatives": [
+    {
+      "relationship": "reconstruction",
+      "artifact": {
+        "artifact_id": "bracket-step",
+        "path": "source/bracket.step",
+        "kind": "neutral_solid_exchange",
+        "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+        "revision": "A", "authority": "derived", "units": "mm"
+      }
+    },
+    {
+      "relationship": "reconstruction",
+      "artifact": {
+        "artifact_id": "bracket-stl",
+        "path": "source/bracket.stl",
+        "kind": "mesh_derivative",
+        "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+        "revision": "A", "authority": "derived", "units": "mm"
+      }
+    },
+    {
+      "relationship": "reference_drawing",
+      "artifact": {
+        "artifact_id": "bracket-drawing",
+        "path": "source/bracket.svg",
+        "kind": "drawing_reference",
+        "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+        "revision": "A", "authority": "derived", "units": "mm"
+      }
+    }
+  ],
+  "scope": "Synthetic revision-A fixture association recorded from the existing bundle at 050ff24. STEP/STL are CadQuery reconstructions, not direct exports of OpenSCAD. SVG is a reference drawing without complete PMI. Hash equality establishes only unchanged file identity relative to this declaration; no authenticated review, geometric equivalence, or manufacturing approval is asserted.",
+  "review_required": true,
+  "execution_allowed": false
+}

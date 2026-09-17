@@ -47,6 +47,8 @@ def instance_paths(root: Path = ROOT):
     for path in sorted((root / "contexts/examples").glob("*.example.json")):
         yield path, path.name.replace(".example.json", ".schema.json")
     yield root / "state/state.example.json", "state.schema.json"
+    for path in sorted((root / "fixtures").glob("**/metadata/derivation.json")):
+        yield path, "derivation.schema.json"
     for path in sorted((root / "fixtures").glob("**/contexts/*.json")):
         if path.stem in PROFILE_SCHEMAS:
             yield path, PROFILE_SCHEMAS[path.stem] + ".schema.json"

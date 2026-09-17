@@ -24,8 +24,8 @@ class SchemaInstanceTests(unittest.TestCase):
     def test_repository_examples_and_profile_fixtures_conform(self):
         errors, schemas, instances = validate_repository()
         self.assertEqual(errors, [])
-        self.assertEqual(schemas, 10)
-        self.assertGreaterEqual(instances, 13)
+        self.assertEqual(schemas, 11)
+        self.assertGreaterEqual(instances, 14)
 
     def test_cross_schema_artifact_validation_rejects_bad_hash(self):
         job = json.loads((ROOT / "contexts/examples/job.example.json").read_text(encoding="utf-8"))

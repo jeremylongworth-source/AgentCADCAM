@@ -2,6 +2,7 @@
 
 import json
 import shutil
+import struct
 import subprocess
 import sys
 import tempfile
@@ -48,7 +49,7 @@ class CadFixtureReviewTests(unittest.TestCase):
         self.assertEqual(completed.returncode, 0, completed.stderr)
         result = json.loads(completed.stdout)
         self.assertEqual(result["status"], "review_required")
-        self.assertEqual([check["status"] for check in result["file_checks"]], ["passed"] * 3)
+        self.assertEqual([check["status"] for check in result["file_checks"]], ["passed"] * 4)
         self.assertTrue(result["review_required"])
         self.assertFalse(result["execution_allowed"])
         self.assertFalse(result["geometry_equivalence_verified"])
@@ -120,6 +121,32 @@ class CadFixtureReviewTests(unittest.TestCase):
     def test_metadata_design_authority_conflict_blocks(self):
         self.replace("metadata/revision.json", '"source/bracket.scad"', '"source/bracket.stl"')
         result = cad_handoff_checks.review_fixture(self.root)
+        self.assertEqual(result["status"], "blocked")
+        self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
+
+    def test_changed_source_hole_with_old_derivatives_blocks_despite_passing_envelopes(self):
+        self.replace("source/bracket.scad", "hole_diameter = 6;", "hole_diameter = 8;")
+        result = cad_handoff_checks.review_fixture(self.root)
+        self.assertEqual([check["status"] for check in result["file_checks"][:3]], ["passed"] * 3)
+        self.assertEqual(result["status"], "blocked")
+        self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
+
+    def test_changed_mesh_vertex_with_same_envelope_blocks(self):
+        target = self.root / "source/bracket.stl"
+        data = bytearray(target.read_bytes())
+        count = struct.unpack_from("<I", data, 80)[0]
+        self.assertEqual(len(data), 84 + count * 50)
+        # Move one non-extreme vertex; the many other extent vertices remain.
+        for offset in range(84, len(data), 50):
+            x = struct.unpack_from("<f", data, offset + 12)[0]
+            if 0 < x < 59:
+                struct.pack_into("<f", data, offset + 12, x + 0.125)
+                break
+        else:
+            self.fail("fixture has no non-extreme vertex")
+        target.write_bytes(data)
+        result = cad_handoff_checks.review_fixture(self.root)
+        self.assertEqual([check["status"] for check in result["file_checks"][:3]], ["passed"] * 3)
         self.assertEqual(result["status"], "blocked")
         self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
 

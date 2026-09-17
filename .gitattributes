@@ -1,0 +1,5 @@
+# Keep byte-bound CAD fixture identities stable across Git checkouts.
+fixtures/cad/bracket/source/bracket.scad text eol=lf
+fixtures/cad/bracket/source/bracket.step text eol=lf
+fixtures/cad/bracket/source/bracket.svg text eol=lf
+fixtures/cad/bracket/source/bracket.stl -text

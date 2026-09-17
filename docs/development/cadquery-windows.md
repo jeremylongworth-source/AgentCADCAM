@@ -24,6 +24,8 @@ if ($LASTEXITCODE -ne 0) { throw 'CAD generation failed' }
 
 The native check starts only the fixed local probe with the selected interpreter. It generates files in a repository-local temporary directory, checks geometry, waits for shutdown, and removes its temporary output. It does not load user manufacturing jobs or operate machines. It is opt-in and does not import CadQuery into the portable unit-test process.
 
+The CAD file-review CLI now also checks a [declared source/derivative byte binding](../architecture/derivation-binding.md). Regeneration does not update that record automatically. Resolve source intent and inspect regenerated derivatives before recording any new hashes; an export command's success alone is not approval of a new association.
+
 ## Reproduced failure and comparison
 
 Both the original system Python 3.14 environment and a fresh Python 3.12.14 environment crashed after importing CadQuery 2.8.0 with CasADi 3.8.0 / NLopt 2.11.0. The system failure reduces to `python -c "import casadi, nlopt"`; each library alone exits normally. Failures included Windows codes `0xC0000005` and `0xC0000374`, after output had already printed.

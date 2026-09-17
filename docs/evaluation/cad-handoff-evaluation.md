@@ -48,4 +48,25 @@ Executed follow-up validation: nine new fixture-review tests pass; the complete 
 
 ### Remaining gate evidence
 
-The source/drawing validator uses fixed revision-A numeric/text declarations, not a general OpenSCAD or SVG semantic parser. Extent checks can miss stale derivatives with unchanged envelopes, and declaration checks do not detect every contradictory or hidden annotation. No byte-level derivation binding, general PMI interpretation, unit conversion, arbitrary-model manufacturability review, or qualified reviewer authentication is established here. The six required roadmap negative cases still need a complete evidence mapping and retained five-skill workflow outputs before gate 03 can be accepted. Missing PMI remains an explicit interpretation risk in the prototype fixture, not proof of complete manufacturing intent.
+The source/drawing validator uses fixed revision-A numeric/text declarations, not a general OpenSCAD or SVG semantic parser. Extent checks alone miss stale derivatives with unchanged envelopes, and declaration checks do not detect every contradictory or hidden annotation. The follow-up below adds declared byte identity checks, not general PMI interpretation, unit conversion, arbitrary-model manufacturability review, or qualified reviewer authentication. Retained five-skill workflow outputs and the remaining semantic cases are still required before gate 03 can be accepted. Missing PMI remains an explicit interpretation risk in the prototype fixture, not proof of complete manufacturing intent.
+
+## Declared derivation binding follow-up — 2026-09-17
+
+The [binding decision](../architecture/derivation-binding.md) adds a fourth file check. Two regressions first reproduced an unblocked result despite passing all three prior checks: changing the source hole diameter from 6 to 8 while retaining old STEP/STL, and moving one binary STL vertex by 0.125 while preserving the outer envelope. Both now block with `SOURCE_VERIFICATION_REQUIRED`. Missing/malformed records, incomplete or duplicate identities, changed hashes, and conflicts with revision/units/authority declarations also block.
+
+The retained positive report now includes `artifact_binding`. A pass means the current bytes match the recorded association, not that the relationship is proven true. Records cannot authenticate themselves, and the checker does not update them automatically. The separate schema-instance CLI now checks eleven definitions and fourteen declared instances, including the derivation record.
+
+Executed validation for this follow-up: all 229 portable tests pass, including two new unchanged-envelope regressions and seven binding/schema tests. Foundation validation passes with ten context schemas, and schema-instance validation passes with eleven definitions and fourteen instances. The CLI's retained positive report matches its current output. No CAD geometry was regenerated and native checks were not rerun; this work establishes identity/change detection, not new geometric equivalence evidence.
+
+### Required negative-case evidence map
+
+| Roadmap mutation | Current observable evidence | Remaining evidence before gate acceptance |
+| --- | --- | --- |
+| Revision mismatch | Metadata mutation blocks; the actual SVG `REV A` → `REV B` mutation blocks through the CLI. | Retain the composed skill-assisted conflict resolution/handoff output. |
+| Missing units | Metadata omission and removal of the SVG units declaration block without inferred defaults. Binding units must agree with revision metadata and inventory. | Evaluate missing/ambiguous units in the intended exchange workflow, including skill output; this is not a conversion engine. |
+| Stale derived file | Source-hole change with old derivatives and changed STL vertex with unchanged extents block against the stored byte binding. | Establish derivation truth through review and retain skill-assisted handling; a replaced self-consistent record is not authenticated evidence. |
+| STL treated as design master | Metadata authority mutation blocks; binding source must agree with authoritative source declarations. | Retain an actual mesh-only intake/provenance/interoperability review with explicit missing design intent. |
+| Missing PMI | Missing status field blocks; explicit `not_present` surfaces a review risk for the prototype. | Test missing required dimensional/datum/tolerance intent, not just a missing status field; retain the manufacturing-facing blocked output. |
+| Conflicting dimensions | Actual source width and SVG dimension-text mutations block. | Evaluate conflicting visible dimensions even when expected text remains elsewhere; retain drawing/source interpretation evidence. |
+
+These checks are required evidence components, not a percentage of gate completion. All positive and negative outputs must remain review-only and non-executable. Neither the tool snapshots nor green tests replace the five-skill workflow evaluation.

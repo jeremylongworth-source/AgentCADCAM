@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/jeremylongworth-source/AgentCADCAM/schemas/derivation.schema.json",
+  "title": "Declared Source and Derivative Binding",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["binding_version", "binding_id", "hash_policy", "source", "derivatives", "scope", "review_required", "execution_allowed"],
+  "properties": {
+    "binding_version": {"const": 1},
+    "binding_id": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+    "hash_policy": {"const": "sha256-raw-bytes"},
+    "source": {
+      "allOf": [
+        {"$ref": "handoff.schema.json#/$defs/artifact"},
+        {"properties": {"authority": {"const": "authoritative"}, "units": {"$ref": "handoff.schema.json#/$defs/nonblank_text"}}, "required": ["units"]}
+      ]
+    },
+    "derivatives": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["artifact", "relationship"],
+        "properties": {
+          "artifact": {
+            "allOf": [
+              {"$ref": "handoff.schema.json#/$defs/artifact"},
+              {"properties": {"authority": {"const": "derived"}, "units": {"$ref": "handoff.schema.json#/$defs/nonblank_text"}}, "required": ["units"]}
+            ]
+          },
+          "relationship": {"enum": ["export", "reconstruction", "reference_drawing"]}
+        }
+      }
+    },
+    "scope": {"$ref": "handoff.schema.json#/$defs/nonblank_text"},
+    "review_required": {"const": true},
+    "execution_allowed": {"const": false}
+  }
+}

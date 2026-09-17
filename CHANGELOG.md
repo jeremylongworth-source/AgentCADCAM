@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added schema-validated CAD source/derivative byte bindings and checks for stale or changed content even when envelopes and revision labels match. Bound fixture text uses LF checkout rules; binding records remain review-only and are never refreshed automatically. Added unchanged-envelope file regressions and a six-case CAD evidence map; gate 03 remains open.
 - Connected the synthetic CAD fixture review CLI to source/drawing and STEP/STL file checks, with blocked exit status, actual file-mutation regressions, and a retained positive tool report. Gate 03 remains open for complete negative-case and skill-assisted review evidence.
 - Added required lifecycle records to reusable profiles and revision-scoped verification checks to job routing. Unverified or mismatched reviews cannot retain effective approval; fixture profiles remain explicitly unverified. Older profile records require the migration in `docs/development/profile-lifecycle-migration.md`.
 - Recorded Phase 1 foundation acceptance after the follow-up contract/evidence review and passing validators. Workflow, public-alpha, and practitioner-pilot gates remain open; the next work is CAD handoff validation against file-derived negative cases.

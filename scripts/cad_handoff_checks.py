@@ -14,10 +14,12 @@ if __package__:
     from .validate_cad_fixture_design import validate as validate_design
     from .validate_cad_fixture_step import validate as validate_step
     from .validate_cad_fixture_mesh import validate as validate_mesh
+    from .validate_cad_derivation import validate as validate_binding
 else:
     from validate_cad_fixture_design import validate as validate_design
     from validate_cad_fixture_step import validate as validate_step
     from validate_cad_fixture_mesh import validate as validate_mesh
+    from validate_cad_derivation import validate as validate_binding
 
 
 BLOCKING = {
@@ -118,7 +120,7 @@ def review_fixture(root: Path, manifest_name: str = "fixture.yaml") -> dict[str,
         "status": "blocked", "blockers": ["MISSING_CONTEXT"], "findings": [],
         "review_required": True, "execution_allowed": False,
         "geometry_equivalence_verified": False, "file_checks": [],
-        "validation_scope": "synthetic revision-A bracket declarations and exchange envelopes only",
+        "validation_scope": "synthetic revision-A bracket declarations, exchange envelopes, and declared byte binding only",
     }
     root = root.resolve()
     required_paths = {
@@ -171,6 +173,14 @@ def review_fixture(root: Path, manifest_name: str = "fixture.yaml") -> dict[str,
         if errors:
             result["blockers"].append("MISSING_CONTEXT")
             result["findings"].append(f"{name}: file-derived checks failed; inspect file_checks findings")
+    binding_errors = validate_binding(root, bundle, metadata)
+    result["file_checks"].append({
+        "check": "artifact_binding", "paths": ["metadata/derivation.json", "source/bracket.scad", "source/bracket.step", "source/bracket.stl", "source/bracket.svg"],
+        "status": "failed" if binding_errors else "passed", "findings": binding_errors,
+    })
+    if binding_errors:
+        result["blockers"].append("SOURCE_VERIFICATION_REQUIRED")
+        result["findings"].append("artifact_binding: declared source/derivative association needs review; inspect file_checks findings")
     result["blockers"] = sorted(set(result["blockers"]))
     result["status"] = "blocked" if result["blockers"] else "review_required"
     return result
