@@ -1,0 +1,506 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "additive-positive",
+      "authority": "derived",
+      "kind": "mesh_derivative",
+      "path": "replay:additive/positive/input.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    }
+  ],
+  "byte_inputs": {
+    "additive_mesh": {
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "size": 102684
+    }
+  },
+  "case": "additive",
+  "contexts": {
+    "job": {
+      "approval_status": "not_requested",
+      "environment_status": "known",
+      "job_id": "additive-fdm-bracket",
+      "material_id": "fixture-pla",
+      "mesh_format": "STL",
+      "mesh_sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "mesh_status": "valid",
+      "mesh_units": "mm",
+      "model_dimensions": {
+        "x": 60,
+        "y": 40,
+        "z": 30
+      },
+      "orientation_status": "reviewed",
+      "printer_id": "fixture-printer-fdm",
+      "revision": "A",
+      "slicer_profile_status": "verified",
+      "support_status": "reviewed"
+    },
+    "material": {
+      "compatibility": {
+        "printers": [
+          "fixture-printer-fdm"
+        ],
+        "slicer_profiles": [
+          "fixture-pla-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "environment_status": "known"
+      },
+      "grade_or_profile": "synthetic PLA profile",
+      "lifecycle": {
+        "applicability": "Offline additive/fdm-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-pla",
+      "process_family": "additive",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The material fixture links fixture-pla to a synthetic printer and slicer profile and declares a known environment status."
+        ],
+        "locator": "fixtures/additive/fdm-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline FDM compatibility tests only; not filament properties, slicer settings, or environmental safety evidence.",
+        "title": "Synthetic FDM material profile"
+      }
+    },
+    "printer": {
+      "capabilities": {
+        "build_volume": {
+          "x": 200,
+          "y": 200,
+          "z": 200
+        },
+        "materials": [
+          "fixture-pla"
+        ]
+      },
+      "lifecycle": {
+        "applicability": "Offline additive/fdm-bracket synthetic printer fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {},
+      "machine_id": "fixture-printer-fdm",
+      "manufacturer": "Synthetic Fixture",
+      "model": "FDM printer",
+      "process_family": "additive",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The printer fixture declares a synthetic build-volume tuple and fixture-pla compatibility."
+        ],
+        "locator": "fixtures/additive/fdm-bracket/contexts/printer.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline FDM fixture checks only; not an OEM build-volume or material specification.",
+        "title": "Synthetic FDM printer profile"
+      }
+    }
+  },
+  "handoff_result": {
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SIMULATION_REQUIRED",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "context_fingerprint": "8d2a5cfcec6ffdfa521341804c8b3c4a1dcc53fadfc142384f41be6890d54613",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "additive setup.additive_preflight requires structured job, versioned slicer settings/source and source artifact",
+      "additive verification record 0: verification is unresolved or failed",
+      "additive verification record 1: verification is unresolved or failed",
+      "additive verification record 2: verification is unresolved or failed",
+      "additive verification record 3: verification is unresolved or failed",
+      "additive verification record 4: verification is unresolved or failed",
+      "additive verification record 5: verification is unresolved or failed",
+      "additive verification record 6: verification is unresolved or failed",
+      "additive_design: a current passed context-bound evidence record is required",
+      "additive_geometry: a current passed context-bound evidence record is required",
+      "additive_orientation: a current passed context-bound evidence record is required",
+      "additive_supports: a current passed context-bound evidence record is required",
+      "additive_slicer: a current passed context-bound evidence record is required",
+      "additive_environment: a current passed context-bound evidence record is required",
+      "additive_output: a current passed context-bound evidence record is required",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision",
+      "handoff simulation requirement is unresolved",
+      "handoff has unresolved or rejected assumptions"
+    ],
+    "handoff": {
+      "approval_id": null,
+      "artifacts": [
+        {
+          "artifact_id": "bracket.scad",
+          "authority": "authoritative",
+          "kind": "native_cad_source",
+          "path": "fixtures/cad/bracket/source/bracket.scad",
+          "revision": "A",
+          "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "additive-positive",
+          "authority": "derived",
+          "kind": "mesh_derivative",
+          "path": "replay:additive/positive/input.stl",
+          "revision": "A",
+          "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+          "units": "mm"
+        }
+      ],
+      "assumptions": [
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "statement": "The STL reconstruction preserves the authorized design and all functional/tolerance requirements.",
+          "status": "unresolved"
+        },
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "statement": "Declared reviewed orientation/support, verified slicer and known environment labels have applicable evidence.",
+          "status": "unresolved"
+        }
+      ],
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "consequence_level": "execution_adjacent",
+      "context_fingerprint": "8d2a5cfcec6ffdfa521341804c8b3c4a1dcc53fadfc142384f41be6890d54613",
+      "context_fingerprint_version": 2,
+      "execution_allowed": false,
+      "handoff_id": "integration-additive-2026-09-17",
+      "human_review": {
+        "action": "Confirm design-to-mesh equivalence and acceptance criteria; supply reviewed printer/material lifecycle evidence and selected slicer identity/version/settings; evaluate orientation, support, usable-bed placement and site environment; review the sliced output before approval.",
+        "reviewer_role": "Design owner and qualified FDM preparation/operator reviewer",
+        "scope": [
+          "manufacturing_handoff"
+        ]
+      },
+      "job_id": "additive-fdm-bracket",
+      "process_family": "additive",
+      "review_required": true,
+      "revision": "A",
+      "simulation": {
+        "evidence": [
+          "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+        ],
+        "reason": "No selected slicer, settings or sliced build is supplied; required job verification and any simulation disposition need qualified review.",
+        "required_checks": [
+          "Establish the applicable orientation, support, slicing, build-preview and final-output verification plan."
+        ],
+        "status": "unknown"
+      },
+      "status": "blocked",
+      "units": "mm",
+      "verification": [
+        {
+          "check_id": "additive_design",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "Revision-A SCAD source and STL identities are preserved, but reconstruction is not full design equivalence or functional acceptance."
+        },
+        {
+          "check_id": "additive_geometry",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "2052-facet mesh passed supported topology checks with 60 x 40 x 30 extents; self-intersections and complete geometry equivalence were not checked."
+        },
+        {
+          "check_id": "additive_orientation",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "Reviewed status is a declaration with no orientation decision or applicability evidence."
+        },
+        {
+          "check_id": "additive_supports",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "Reviewed status lacks support placement, removal/access and functional-surface assessment."
+        },
+        {
+          "check_id": "additive_slicer",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "Slicer profile selection, slicer identity/version and settings are absent; profile remains null."
+        },
+        {
+          "check_id": "additive_environment",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "Known environment labels and synthetic material compatibility are not site/material-handling or thermal/ventilation evidence."
+        },
+        {
+          "check_id": "additive_output",
+          "context_binding": {
+            "fingerprint": "529069fe9a42a97297191e3f85dd9bdfd30d36ecd24fd5daa408eeab822bc008",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-additive/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "No sliced build or final printer output was supplied or generated."
+        }
+      ]
+    },
+    "review_required": true,
+    "routing": {
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "consequence_level": "execution_adjacent",
+      "process_family": "additive",
+      "skillset": "additive-print-prep"
+    },
+    "status": "blocked",
+    "validation_errors": []
+  },
+  "raw_checks": {
+    "preflight": {
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED"
+      ],
+      "execution_allowed": false,
+      "file_review": {
+        "blockers": [],
+        "bounds": {
+          "max": [
+            60,
+            40,
+            30
+          ],
+          "min": [
+            0,
+            0,
+            0
+          ]
+        },
+        "dimensions": {
+          "x": 60,
+          "y": 40,
+          "z": 30
+        },
+        "dimensions_exact": {
+          "x": "60",
+          "y": "40",
+          "z": "30"
+        },
+        "encoding": "binary",
+        "execution_allowed": false,
+        "findings": [],
+        "limitations": [
+          "self-intersections not checked",
+          "no manufacturing or design-equivalence verification",
+          "STL has no authoritative unit or revision",
+          "no tolerance-based vertex welding"
+        ],
+        "review_required": true,
+        "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+        "status": "checked_partial_geometry",
+        "topology": {
+          "boundary_edges": 0,
+          "degenerate_faces": 0,
+          "duplicate_faces": 0,
+          "nonmanifold_edges": 0,
+          "nonmanifold_vertices": 0,
+          "normal_conflicts": 0,
+          "shells": 1,
+          "signed_volume_positive": true,
+          "winding_conflicts": 0
+        },
+        "triangles": 2052
+      },
+      "findings": [
+        "mesh/package remains a print derivative, not authoritative design intent",
+        "file-derived axis-aligned extents fit declared build dimensions; placement, supports and usable bed shape remain unverified",
+        "human approval is not recorded"
+      ],
+      "review_required": true,
+      "status": "blocked",
+      "validation_scope": "STL/3MF byte identity, partial topology, unit-aware extents, supported Core build placement and metadata compatibility; not slicing, usable-bed clearance, self-intersection, evidence authenticity or print approval"
+    }
+  },
+  "request": {
+    "artifact_class": "handoff",
+    "consequence_level": "execution_adjacent",
+    "controller_known": true,
+    "generated_manufacturing_artifact": true,
+    "jurisdiction_known": true,
+    "machine_known": true,
+    "material_known": true,
+    "process_family": "additive",
+    "requested_action": "prepare_handoff"
+  },
+  "review_input_hash_policy": "sha256-utf8-universal-newlines-to-lf",
+  "review_inputs": {
+    "docs/evaluation/integration-runs/2026-09-17-additive/decisions.json": "192e3afbcd2cd450d098c082bc7c06295ff3c2d685cd8f81c5ba89dfd7fcd79a",
+    "docs/evaluation/integration-runs/2026-09-17-additive/review.md": "90b9cfbe21c4d7d691302738d27e18a2381843d7de17e0fc0e55384299030857",
+    "docs/evaluation/integration-runs/protocol.md": "63726143aa262be63085192d60258185ff5c84393fca29bc2e1e85b3de5bc711",
+    "skills/additive-job-preflight/SKILL.md": "2c495a2936baf9860c17262922da9ebda998d03d80b5151ef5f80f02fa9ba88b",
+    "skillsets/additive-print-prep.yaml": "4b27e4a248bdd7527ca6450f04174abdbacaed207557a8f04b9af658ce7f4c00"
+  },
+  "route_result": {
+    "additive_review": {
+      "blockers": [
+        "MISSING_CONTEXT"
+      ],
+      "context_fingerprint": "8d2a5cfcec6ffdfa521341804c8b3c4a1dcc53fadfc142384f41be6890d54613",
+      "findings": [
+        "additive setup.additive_preflight requires structured job, versioned slicer settings/source and source artifact",
+        "additive verification record 0: verification is unresolved or failed",
+        "additive verification record 1: verification is unresolved or failed",
+        "additive verification record 2: verification is unresolved or failed",
+        "additive verification record 3: verification is unresolved or failed",
+        "additive verification record 4: verification is unresolved or failed",
+        "additive verification record 5: verification is unresolved or failed",
+        "additive verification record 6: verification is unresolved or failed",
+        "additive_design: a current passed context-bound evidence record is required",
+        "additive_geometry: a current passed context-bound evidence record is required",
+        "additive_orientation: a current passed context-bound evidence record is required",
+        "additive_supports: a current passed context-bound evidence record is required",
+        "additive_slicer: a current passed context-bound evidence record is required",
+        "additive_environment: a current passed context-bound evidence record is required",
+        "additive_output: a current passed context-bound evidence record is required"
+      ],
+      "report": null,
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "status": "blocked"
+    },
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "consequence_level": "execution_adjacent",
+    "context_fingerprint": "8d2a5cfcec6ffdfa521341804c8b3c4a1dcc53fadfc142384f41be6890d54613",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "additive setup.additive_preflight requires structured job, versioned slicer settings/source and source artifact",
+      "additive verification record 0: verification is unresolved or failed",
+      "additive verification record 1: verification is unresolved or failed",
+      "additive verification record 2: verification is unresolved or failed",
+      "additive verification record 3: verification is unresolved or failed",
+      "additive verification record 4: verification is unresolved or failed",
+      "additive verification record 5: verification is unresolved or failed",
+      "additive verification record 6: verification is unresolved or failed",
+      "additive_design: a current passed context-bound evidence record is required",
+      "additive_geometry: a current passed context-bound evidence record is required",
+      "additive_orientation: a current passed context-bound evidence record is required",
+      "additive_supports: a current passed context-bound evidence record is required",
+      "additive_slicer: a current passed context-bound evidence record is required",
+      "additive_environment: a current passed context-bound evidence record is required",
+      "additive_output: a current passed context-bound evidence record is required",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision"
+    ],
+    "nc_review": null,
+    "process_family": "additive",
+    "required_checks": [
+      "provenance",
+      "mesh_integrity",
+      "printer_material_match",
+      "slicer_readiness",
+      "human_approval"
+    ],
+    "review_required": true,
+    "route_id": "additive",
+    "skillset": "additive-print-prep",
+    "validation_errors": []
+  },
+  "scope": "Fixed synthetic input replay, not agent reasoning, authenticated evidence or manufacturing approval"
+}

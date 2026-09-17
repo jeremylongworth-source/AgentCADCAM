@@ -1,0 +1,64 @@
+{
+  "unresolved_assumptions": [
+    "The source DXF and declared cut intent represent authorized product requirements and acceptable kerf/dimensional outcomes.",
+    "Synthetic process, material, ventilation and beam-control declarations apply to an actual reviewed machine/site."
+  ],
+  "simulation": {
+    "status": "unknown",
+    "reason": "No reviewed process settings or final controller output exists; applicable process/output verification and simulation disposition remain undecided.",
+    "required_checks": [
+      "Define process/path verification and independent beam and emission review with a qualified operator."
+    ]
+  },
+  "human_review": {
+    "action": "Confirm the source, units/scale, dimensions and cut intent; identify material grade/composition and thickness; provide applicable machine/process settings evidence, separate beam and process-emission/site reviews, and verify final output before approval.",
+    "scope": [
+      "manufacturing_handoff"
+    ],
+    "reviewer_role": "Design owner and qualified laser/material/site reviewer"
+  },
+  "verification": [
+    {
+      "check_id": "laser_design",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Revision-A source inventory and selected DXF hashes match; test authority is not authenticated manufacturing intent or permission."
+    },
+    {
+      "check_id": "laser_paths",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Restricted DXF review found three closed contours and matching 60 x 40 dimensions; cut intent, kerf and receiver interpretation remain unverified."
+    },
+    {
+      "check_id": "laser_process",
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "Process identities match synthetic profiles but settings are empty and machine/material lifecycles are unverified."
+    },
+    {
+      "check_id": "laser_beam",
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "No applicable machine/site beam-safety review is supplied; no beam activation is permitted."
+    },
+    {
+      "check_id": "laser_emissions",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Known ventilation and unsafe-material-not-indicated labels are not material-composition or site/emission evidence."
+    },
+    {
+      "check_id": "laser_output",
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "No final controller output or process-specific output verification is supplied."
+    }
+  ],
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SIMULATION_REQUIRED",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ]
+}

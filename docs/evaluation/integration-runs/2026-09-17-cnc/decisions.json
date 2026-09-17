@@ -1,0 +1,72 @@
+{
+  "unresolved_assumptions": [
+    "Revision-B NC and job legitimately derive from the supplied revision-A CAD bundle.",
+    "The supplied stock, workholding, G54 mapping, tool/holder and fixture machine describe a verified physical setup."
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "The supplied job says not_run. Review requires job-applicable simulation and qualified verification; neither the raw static check nor a historical lab simulation supplies it.",
+    "required_checks": [
+      "Reconcile revision-B NC with an authorized design and CAM job.",
+      "Verify current machine/controller/post, stock, fixture, tool/holder and WCS identities.",
+      "Review machine-space motion, collisions, material removal, entry/retract and spindle/feed behavior with applicable evidence."
+    ]
+  },
+  "human_review": {
+    "action": "Resolve the A/B source-to-NC conflict and the 6 mm stock versus 30 mm design-height scope; verify machine, controller, material, tool availability, holder, workholding, WCS and CAM/post versions; obtain current simulation and qualified review of this exact NC artifact.",
+    "scope": [
+      "manufacturing_handoff"
+    ],
+    "reviewer_role": "Qualified CAM programmer and machining/setup reviewer"
+  },
+  "verification": [
+    {
+      "check_id": "cnc_machine",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Declared three-axis bounds are test-only; machine lifecycle and coordinate model are unverified."
+    },
+    {
+      "check_id": "cnc_setup",
+      "kind": "verification",
+      "status": "failed",
+      "summary": "WCS is defined rather than verified, clamp clearance is unknown, and declared stock does not establish a plan for the full bracket."
+    },
+    {
+      "check_id": "cnc_tooling",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "T1 reconciles with fixture-tool-1, but fixture-only availability and unverified reach/holder applicability cannot satisfy tooling readiness."
+    },
+    {
+      "check_id": "cnc_strategy",
+      "kind": "verification",
+      "status": "failed",
+      "summary": "Revision-B NC is not traced to revision-A design intent; the perimeter program is not evidence of all bracket features or sourced process parameters."
+    },
+    {
+      "check_id": "cnc_post",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Fixture CAM/controller/machine/post identifiers match; post validation_state verified conflicts with an unverified lifecycle and lacks applicable validation evidence."
+    },
+    {
+      "check_id": "cnc_static",
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Literal NC review ran, but the unreviewed coordinate model prevented mapped-target checking; no physical safety or complete design fulfillment established."
+    },
+    {
+      "check_id": "cnc_simulation",
+      "kind": "simulation",
+      "status": "not_run",
+      "summary": "Job-applicable simulation has not run; preserve the requirement and current artifact/context identity."
+    }
+  ],
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SIMULATION_REQUIRED",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ]
+}

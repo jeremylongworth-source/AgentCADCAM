@@ -1,0 +1,568 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "laser-source-manifest",
+      "authority": "reference",
+      "kind": "synthetic_source_inventory",
+      "path": "fixtures/laser/cut-bracket/source-manifest.json",
+      "revision": "A",
+      "sha256": "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.dxf",
+      "authority": "authoritative",
+      "kind": "two_d_test_source",
+      "path": "fixtures/laser/cut-bracket/source/bracket.dxf",
+      "revision": "A",
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "laser-positive",
+      "authority": "derived",
+      "kind": "two_d_cutting",
+      "path": "replay:laser/positive/input.dxf",
+      "revision": "A",
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "units": "mm"
+    }
+  ],
+  "byte_inputs": {
+    "laser_drawing": {
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "size": 35835
+    }
+  },
+  "case": "laser",
+  "contexts": {
+    "job": {
+      "approval_status": "not_requested",
+      "drawing_sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "duplicate_geometry": false,
+      "format": "DXF",
+      "geometry_status": "valid",
+      "job_id": "laser-cut-bracket",
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "model_dimensions": {
+        "x": 60,
+        "y": 40
+      },
+      "open_contours": false,
+      "path_intent": "cut",
+      "placement_frame": "zero_origin_working_area",
+      "process_profile_id": "fixture-plywood-profile",
+      "process_profile_status": "verified",
+      "revision": "A",
+      "scale_status": "verified",
+      "units": "mm",
+      "unsafe_material_status": "not_indicated",
+      "unsupported_entities": [],
+      "ventilation_status": "known"
+    },
+    "machine": {
+      "capabilities": {
+        "source_type": "fixture-laser",
+        "working_area": {
+          "x": 300,
+          "y": 200
+        }
+      },
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {},
+      "machine_id": "fixture-laser-40w",
+      "manufacturer": "Synthetic Fixture",
+      "model": "40W laser cutter",
+      "process_family": "laser_cutting",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture declares a synthetic laser identity, working-area tuple, and fixture-laser source type."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/machine.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not OEM power, envelope, or safety evidence.",
+        "title": "Synthetic laser machine profile"
+      }
+    },
+    "material": {
+      "compatibility": {
+        "machines": [
+          "fixture-laser-40w"
+        ],
+        "process_profiles": [
+          "fixture-plywood-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "unsafe_material_status": "not_indicated",
+        "ventilation_status": "known"
+      },
+      "grade_or_profile": "synthetic plywood profile",
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-plywood",
+      "process_family": "laser_cutting",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture links synthetic machine and process identities and supplies labeled environmental statuses for tests."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser compatibility tests only; not evidence that plywood, emissions, or ventilation are safe.",
+        "title": "Synthetic laser material profile"
+      }
+    },
+    "process": {
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "process_profile_id": "fixture-plywood-profile",
+      "settings": {},
+      "settings_status": "verified",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture associates machine and material IDs with a synthetic verified status and an empty settings object."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/process.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not validated laser process settings.",
+        "title": "Synthetic laser process profile"
+      }
+    }
+  },
+  "handoff_result": {
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SIMULATION_REQUIRED",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "context_fingerprint": "8d0936ee574a97f5113bc2a98d3a8d50104e001843ba864fd539a6274f70cea8",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "laser setup.laser_preflight requires structured job, nonempty process settings/source and source artifact",
+      "laser verification record 0: verification is unresolved or failed",
+      "laser verification record 1: verification is unresolved or failed",
+      "laser verification record 2: verification is unresolved or failed",
+      "laser verification record 3: verification is unresolved or failed",
+      "laser verification record 4: verification is unresolved or failed",
+      "laser verification record 5: verification is unresolved or failed",
+      "laser_design: a current passed context-bound evidence record is required",
+      "laser_paths: a current passed context-bound evidence record is required",
+      "laser_process: a current passed context-bound evidence record is required",
+      "laser_beam: a current passed context-bound evidence record is required",
+      "laser_emissions: a current passed context-bound evidence record is required",
+      "laser_output: a current passed context-bound evidence record is required",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision",
+      "handoff simulation requirement is unresolved",
+      "handoff has unresolved or rejected assumptions"
+    ],
+    "handoff": {
+      "approval_id": null,
+      "artifacts": [
+        {
+          "artifact_id": "laser-source-manifest",
+          "authority": "reference",
+          "kind": "synthetic_source_inventory",
+          "path": "fixtures/laser/cut-bracket/source-manifest.json",
+          "revision": "A",
+          "sha256": "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "bracket.dxf",
+          "authority": "authoritative",
+          "kind": "two_d_test_source",
+          "path": "fixtures/laser/cut-bracket/source/bracket.dxf",
+          "revision": "A",
+          "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "laser-positive",
+          "authority": "derived",
+          "kind": "two_d_cutting",
+          "path": "replay:laser/positive/input.dxf",
+          "revision": "A",
+          "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+          "units": "mm"
+        }
+      ],
+      "assumptions": [
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "statement": "The source DXF and declared cut intent represent authorized product requirements and acceptable kerf/dimensional outcomes.",
+          "status": "unresolved"
+        },
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "statement": "Synthetic process, material, ventilation and beam-control declarations apply to an actual reviewed machine/site.",
+          "status": "unresolved"
+        }
+      ],
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SIMULATION_REQUIRED",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "consequence_level": "execution_adjacent",
+      "context_fingerprint": "8d0936ee574a97f5113bc2a98d3a8d50104e001843ba864fd539a6274f70cea8",
+      "context_fingerprint_version": 2,
+      "execution_allowed": false,
+      "handoff_id": "integration-laser-2026-09-17",
+      "human_review": {
+        "action": "Confirm the source, units/scale, dimensions and cut intent; identify material grade/composition and thickness; provide applicable machine/process settings evidence, separate beam and process-emission/site reviews, and verify final output before approval.",
+        "reviewer_role": "Design owner and qualified laser/material/site reviewer",
+        "scope": [
+          "manufacturing_handoff"
+        ]
+      },
+      "job_id": "laser-cut-bracket",
+      "process_family": "laser_cutting",
+      "review_required": true,
+      "revision": "A",
+      "simulation": {
+        "evidence": [
+          "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+        ],
+        "reason": "No reviewed process settings or final controller output exists; applicable process/output verification and simulation disposition remain undecided.",
+        "required_checks": [
+          "Define process/path verification and independent beam and emission review with a qualified operator."
+        ],
+        "status": "unknown"
+      },
+      "status": "blocked",
+      "units": "mm",
+      "verification": [
+        {
+          "check_id": "laser_design",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "Revision-A source inventory and selected DXF hashes match; test authority is not authenticated manufacturing intent or permission."
+        },
+        {
+          "check_id": "laser_paths",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "Restricted DXF review found three closed contours and matching 60 x 40 dimensions; cut intent, kerf and receiver interpretation remain unverified."
+        },
+        {
+          "check_id": "laser_process",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "Process identities match synthetic profiles but settings are empty and machine/material lifecycles are unverified."
+        },
+        {
+          "check_id": "laser_beam",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "No applicable machine/site beam-safety review is supplied; no beam activation is permitted."
+        },
+        {
+          "check_id": "laser_emissions",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "inconclusive",
+          "summary": "Known ventilation and unsafe-material-not-indicated labels are not material-composition or site/emission evidence."
+        },
+        {
+          "check_id": "laser_output",
+          "context_binding": {
+            "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+            "version": 1
+          },
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+          ],
+          "kind": "verification",
+          "status": "not_run",
+          "summary": "No final controller output or process-specific output verification is supplied."
+        }
+      ]
+    },
+    "review_required": true,
+    "routing": {
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED",
+        "MISSING_CONTEXT",
+        "SOURCE_VERIFICATION_REQUIRED"
+      ],
+      "consequence_level": "execution_adjacent",
+      "process_family": "laser_cutting",
+      "skillset": "laser-cut-preflight"
+    },
+    "status": "blocked",
+    "validation_errors": []
+  },
+  "raw_checks": {
+    "preflight": {
+      "blockers": [
+        "HUMAN_APPROVAL_REQUIRED"
+      ],
+      "execution_allowed": false,
+      "file_review": {
+        "blockers": [],
+        "bounds_mm": {
+          "max": [
+            "65",
+            "45"
+          ],
+          "min": [
+            "5",
+            "5"
+          ]
+        },
+        "contours_mm": [
+          {
+            "closed": true,
+            "kind": "polyline",
+            "points": [
+              [
+                "5",
+                "5"
+              ],
+              [
+                "65",
+                "5"
+              ],
+              [
+                "65",
+                "45"
+              ],
+              [
+                "5",
+                "45"
+              ]
+            ]
+          },
+          {
+            "center": [
+              "17",
+              "25"
+            ],
+            "kind": "circle",
+            "radius": "3"
+          },
+          {
+            "center": [
+              "53",
+              "25"
+            ],
+            "kind": "circle",
+            "radius": "3"
+          }
+        ],
+        "declared_unit": "mm",
+        "dimensions_mm": {
+          "x": "60",
+          "y": "40"
+        },
+        "execution_allowed": false,
+        "findings": [],
+        "geometry": {
+          "circles": 2,
+          "contours": 3,
+          "degenerate_contours_or_edges": 0,
+          "duplicate_circles": 0,
+          "duplicate_segments": 0,
+          "intersections_or_touches": 0,
+          "open_contours": 0,
+          "segments": 4
+        },
+        "layers": [
+          "0"
+        ],
+        "limitations": [
+          "restricted planar ASCII DXF subset, not full DXF conformance or rendering",
+          "INSUNITS is a declaration, not authenticated design scale",
+          "layer/path intent, kerf, source equivalence and manufacturing context unverified"
+        ],
+        "review_required": true,
+        "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+        "status": "checked_partial_geometry",
+        "uninterpreted_sections": [
+          "BLOCKS",
+          "CLASSES",
+          "OBJECTS"
+        ],
+        "unit_scale_mm": "1"
+      },
+      "findings": [
+        "job drawing units are explicit; physical design intent remains unverified",
+        "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+        "process settings have a verified declaration; actual applicability remains unverified",
+        "ventilation has known-status declarations; applicable site evidence still requires review",
+        "beam activation is outside project boundary and requires human control",
+        "process-emission risk remains subject to operator review",
+        "human approval is not recorded"
+      ],
+      "review_required": true,
+      "status": "blocked",
+      "validation_scope": "byte identity, partial planar geometry, declared physical scale/placement and context consistency; not source equivalence, kerf, process applicability, evidence authenticity or approval"
+    }
+  },
+  "request": {
+    "artifact_class": "handoff",
+    "consequence_level": "execution_adjacent",
+    "controller_known": true,
+    "generated_manufacturing_artifact": true,
+    "jurisdiction_known": true,
+    "machine_known": true,
+    "material_known": true,
+    "process_family": "laser_cutting",
+    "requested_action": "prepare_handoff"
+  },
+  "review_input_hash_policy": "sha256-utf8-universal-newlines-to-lf",
+  "review_inputs": {
+    "docs/evaluation/integration-runs/2026-09-17-laser/decisions.json": "a9bd29747e226b911f7f30f7b203ebe75e1d49f21d1665f27dd9c62a2c21c04d",
+    "docs/evaluation/integration-runs/2026-09-17-laser/review.md": "3f3b9085afde68f14284f96f0229887c02a43058206d1056cceea80b7d959ae0",
+    "docs/evaluation/integration-runs/protocol.md": "63726143aa262be63085192d60258185ff5c84393fca29bc2e1e85b3de5bc711",
+    "skills/laser-job-preflight/SKILL.md": "ce3a2de53074611cc689b402f592e970fb5f5747cee0536e0eb9934b83a633b1",
+    "skillsets/laser-cut-preflight.yaml": "c8c9765c58809b9532bef4081c973fc88df526e40ee88efe12f5632b902a9529"
+  },
+  "route_result": {
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "consequence_level": "execution_adjacent",
+    "context_fingerprint": "8d0936ee574a97f5113bc2a98d3a8d50104e001843ba864fd539a6274f70cea8",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "laser setup.laser_preflight requires structured job, nonempty process settings/source and source artifact",
+      "laser verification record 0: verification is unresolved or failed",
+      "laser verification record 1: verification is unresolved or failed",
+      "laser verification record 2: verification is unresolved or failed",
+      "laser verification record 3: verification is unresolved or failed",
+      "laser verification record 4: verification is unresolved or failed",
+      "laser verification record 5: verification is unresolved or failed",
+      "laser_design: a current passed context-bound evidence record is required",
+      "laser_paths: a current passed context-bound evidence record is required",
+      "laser_process: a current passed context-bound evidence record is required",
+      "laser_beam: a current passed context-bound evidence record is required",
+      "laser_emissions: a current passed context-bound evidence record is required",
+      "laser_output: a current passed context-bound evidence record is required",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision"
+    ],
+    "laser_review": {
+      "blockers": [
+        "MISSING_CONTEXT"
+      ],
+      "context_fingerprint": "8d0936ee574a97f5113bc2a98d3a8d50104e001843ba864fd539a6274f70cea8",
+      "findings": [
+        "laser setup.laser_preflight requires structured job, nonempty process settings/source and source artifact",
+        "laser verification record 0: verification is unresolved or failed",
+        "laser verification record 1: verification is unresolved or failed",
+        "laser verification record 2: verification is unresolved or failed",
+        "laser verification record 3: verification is unresolved or failed",
+        "laser verification record 4: verification is unresolved or failed",
+        "laser verification record 5: verification is unresolved or failed",
+        "laser_design: a current passed context-bound evidence record is required",
+        "laser_paths: a current passed context-bound evidence record is required",
+        "laser_process: a current passed context-bound evidence record is required",
+        "laser_beam: a current passed context-bound evidence record is required",
+        "laser_emissions: a current passed context-bound evidence record is required",
+        "laser_output: a current passed context-bound evidence record is required"
+      ],
+      "report": null,
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "status": "blocked"
+    },
+    "nc_review": null,
+    "process_family": "laser_cutting",
+    "required_checks": [
+      "geometry",
+      "machine_material_match",
+      "process_profile",
+      "ventilation",
+      "human_approval"
+    ],
+    "review_required": true,
+    "route_id": "laser-cutting",
+    "skillset": "laser-cut-preflight",
+    "validation_errors": []
+  },
+  "scope": "Fixed synthetic input replay, not agent reasoning, authenticated evidence or manufacturing approval"
+}

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Retained four integrated skill-assisted reviews with unchanged fixture context, current-input-bound findings and state-bound blocked handoffs. Separate 24-case test-only controls cover approval recognition, changed review details, stale verification, changed artifact bytes and live-execution refusal. Added exact replay and schema/integrity regressions; no skills, process settings or actual approvals were changed. Phase 6 awaits its full gate audit.
+
 - Added a read-only serialized handoff consumer that compares state-bound review details, current process bytes, evidence, artifact inventory and scoped approval. Content substitutions and omitted blockers invalidate matching review copies without rewriting old fingerprints; drafts are never promoted. Added a typed handoff-review setup field and four-family regressions. Historical packets stay blocked; complete Phase 6 evaluation remains open.
 
 - Bound CAD handoff routing to actual source/STEP/STL/drawing bytes, sourced manufacturing declarations and five independent current review roles. The explicit bracket adapter reuses existing checks through in-memory APIs; unsupported profiles block. CAD handoff preparation cannot be down-classified, and fresh failures invalidate matching approvals. Historical packets stay unchanged; general CAD validation, complete integration acceptance and practitioner review remain open.

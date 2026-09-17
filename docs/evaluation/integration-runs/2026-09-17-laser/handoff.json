@@ -1,0 +1,162 @@
+{
+  "approval_id": null,
+  "artifacts": [
+    {
+      "artifact_id": "laser-source-manifest",
+      "authority": "reference",
+      "kind": "synthetic_source_inventory",
+      "path": "fixtures/laser/cut-bracket/source-manifest.json",
+      "revision": "A",
+      "sha256": "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.dxf",
+      "authority": "authoritative",
+      "kind": "two_d_test_source",
+      "path": "fixtures/laser/cut-bracket/source/bracket.dxf",
+      "revision": "A",
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "laser-positive",
+      "authority": "derived",
+      "kind": "two_d_cutting",
+      "path": "replay:laser/positive/input.dxf",
+      "revision": "A",
+      "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d",
+      "units": "mm"
+    }
+  ],
+  "assumptions": [
+    {
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "statement": "The source DXF and declared cut intent represent authorized product requirements and acceptable kerf/dimensional outcomes.",
+      "status": "unresolved"
+    },
+    {
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "statement": "Synthetic process, material, ventilation and beam-control declarations apply to an actual reviewed machine/site.",
+      "status": "unresolved"
+    }
+  ],
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SIMULATION_REQUIRED",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "consequence_level": "execution_adjacent",
+  "context_fingerprint": "8d0936ee574a97f5113bc2a98d3a8d50104e001843ba864fd539a6274f70cea8",
+  "context_fingerprint_version": 2,
+  "execution_allowed": false,
+  "handoff_id": "integration-laser-2026-09-17",
+  "human_review": {
+    "action": "Confirm the source, units/scale, dimensions and cut intent; identify material grade/composition and thickness; provide applicable machine/process settings evidence, separate beam and process-emission/site reviews, and verify final output before approval.",
+    "reviewer_role": "Design owner and qualified laser/material/site reviewer",
+    "scope": [
+      "manufacturing_handoff"
+    ]
+  },
+  "job_id": "laser-cut-bracket",
+  "process_family": "laser_cutting",
+  "review_required": true,
+  "revision": "A",
+  "simulation": {
+    "evidence": [
+      "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+    ],
+    "reason": "No reviewed process settings or final controller output exists; applicable process/output verification and simulation disposition remain undecided.",
+    "required_checks": [
+      "Define process/path verification and independent beam and emission review with a qualified operator."
+    ],
+    "status": "unknown"
+  },
+  "status": "blocked",
+  "units": "mm",
+  "verification": [
+    {
+      "check_id": "laser_design",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Revision-A source inventory and selected DXF hashes match; test authority is not authenticated manufacturing intent or permission."
+    },
+    {
+      "check_id": "laser_paths",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Restricted DXF review found three closed contours and matching 60 x 40 dimensions; cut intent, kerf and receiver interpretation remain unverified."
+    },
+    {
+      "check_id": "laser_process",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "Process identities match synthetic profiles but settings are empty and machine/material lifecycles are unverified."
+    },
+    {
+      "check_id": "laser_beam",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "No applicable machine/site beam-safety review is supplied; no beam activation is permitted."
+    },
+    {
+      "check_id": "laser_emissions",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Known ventilation and unsafe-material-not-indicated labels are not material-composition or site/emission evidence."
+    },
+    {
+      "check_id": "laser_output",
+      "context_binding": {
+        "fingerprint": "08ab6cfac6cd880651209ce327573b90f73bf4017a3ae7641de069b28945a753",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-laser/review.md"
+      ],
+      "kind": "verification",
+      "status": "not_run",
+      "summary": "No final controller output or process-specific output verification is supplied."
+    }
+  ]
+}

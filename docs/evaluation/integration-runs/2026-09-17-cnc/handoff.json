@@ -1,0 +1,195 @@
+{
+  "approval_id": null,
+  "artifacts": [
+    {
+      "artifact_id": "bracket.scad",
+      "authority": "authoritative",
+      "kind": "native_cad_source",
+      "path": "fixtures/cad/bracket/source/bracket.scad",
+      "revision": "A",
+      "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.stl",
+      "authority": "derived",
+      "kind": "mesh_derivative",
+      "path": "fixtures/cad/bracket/source/bracket.stl",
+      "revision": "A",
+      "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.step",
+      "authority": "derived",
+      "kind": "neutral_solid_exchange",
+      "path": "fixtures/cad/bracket/source/bracket.step",
+      "revision": "A",
+      "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.svg",
+      "authority": "derived",
+      "kind": "drawing_reference",
+      "path": "fixtures/cad/bracket/source/bracket.svg",
+      "revision": "A",
+      "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "nc-positive",
+      "authority": "derived",
+      "kind": "nc_program",
+      "path": "replay:cnc/positive/program.nc",
+      "revision": "B",
+      "sha256": "a67f91bdffd4cc994adc0dd22c77f36389ffa09cbc170da3f21caf5f4c816ee7",
+      "units": "mm"
+    }
+  ],
+  "assumptions": [
+    {
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "statement": "Revision-B NC and job legitimately derive from the supplied revision-A CAD bundle.",
+      "status": "unresolved"
+    },
+    {
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "statement": "The supplied stock, workholding, G54 mapping, tool/holder and fixture machine describe a verified physical setup.",
+      "status": "unresolved"
+    }
+  ],
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MISSING_CONTEXT",
+    "SIMULATION_REQUIRED",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "consequence_level": "execution_adjacent",
+  "context_fingerprint": "27bd6f9c66138b3c75897ef19a0570a6a3bd5b905b61bc86d39ba78a1c55e6ae",
+  "context_fingerprint_version": 2,
+  "execution_allowed": false,
+  "handoff_id": "integration-cnc-2026-09-17",
+  "human_review": {
+    "action": "Resolve the A/B source-to-NC conflict and the 6 mm stock versus 30 mm design-height scope; verify machine, controller, material, tool availability, holder, workholding, WCS and CAM/post versions; obtain current simulation and qualified review of this exact NC artifact.",
+    "reviewer_role": "Qualified CAM programmer and machining/setup reviewer",
+    "scope": [
+      "manufacturing_handoff"
+    ]
+  },
+  "job_id": "cnc-mill-bracket",
+  "process_family": "cnc_milling",
+  "review_required": true,
+  "revision": "B",
+  "simulation": {
+    "evidence": [
+      "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+    ],
+    "reason": "The supplied job says not_run. Review requires job-applicable simulation and qualified verification; neither the raw static check nor a historical lab simulation supplies it.",
+    "required_checks": [
+      "Reconcile revision-B NC with an authorized design and CAM job.",
+      "Verify current machine/controller/post, stock, fixture, tool/holder and WCS identities.",
+      "Review machine-space motion, collisions, material removal, entry/retract and spindle/feed behavior with applicable evidence."
+    ],
+    "status": "required"
+  },
+  "status": "blocked",
+  "units": "mm",
+  "verification": [
+    {
+      "check_id": "cnc_machine",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Declared three-axis bounds are test-only; machine lifecycle and coordinate model are unverified."
+    },
+    {
+      "check_id": "cnc_setup",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "failed",
+      "summary": "WCS is defined rather than verified, clamp clearance is unknown, and declared stock does not establish a plan for the full bracket."
+    },
+    {
+      "check_id": "cnc_tooling",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "T1 reconciles with fixture-tool-1, but fixture-only availability and unverified reach/holder applicability cannot satisfy tooling readiness."
+    },
+    {
+      "check_id": "cnc_strategy",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "failed",
+      "summary": "Revision-B NC is not traced to revision-A design intent; the perimeter program is not evidence of all bracket features or sourced process parameters."
+    },
+    {
+      "check_id": "cnc_post",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Fixture CAM/controller/machine/post identifiers match; post validation_state verified conflicts with an unverified lifecycle and lacks applicable validation evidence."
+    },
+    {
+      "check_id": "cnc_static",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Literal NC review ran, but the unreviewed coordinate model prevented mapped-target checking; no physical safety or complete design fulfillment established."
+    },
+    {
+      "check_id": "cnc_simulation",
+      "context_binding": {
+        "fingerprint": "1194b5b2a2de4ec8645b59f8b62bf14d1ab2b853d24f1f161c5b56844d239390",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cnc/review.md"
+      ],
+      "kind": "simulation",
+      "status": "not_run",
+      "summary": "Job-applicable simulation has not run; preserve the requirement and current artifact/context identity."
+    }
+  ]
+}

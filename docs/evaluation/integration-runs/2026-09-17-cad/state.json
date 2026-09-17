@@ -1,0 +1,249 @@
+{
+  "approval_status": "not_requested",
+  "cam_system": null,
+  "controller_profile": null,
+  "export_review_status": "not_required",
+  "generated_manufacturing_output": null,
+  "ip_status": {
+    "confidentiality": "public",
+    "licence_status": "permitted",
+    "ownership_status": "owned",
+    "redistribution_authorized": true,
+    "third_party_restrictions": []
+  },
+  "job_id": "cad-bracket-basic",
+  "jurisdiction": null,
+  "machine_profile": null,
+  "material": null,
+  "post_version": null,
+  "postprocessor": null,
+  "process_family": "cad_handoff",
+  "revision": "A",
+  "setup": {
+    "cad_handoff": {
+      "derivation": {
+        "binding_id": "cad-bracket-basic-revision-a-bundle-2",
+        "binding_version": 1,
+        "derivatives": [
+          {
+            "artifact": {
+              "artifact_id": "bracket-step",
+              "authority": "derived",
+              "kind": "neutral_solid_exchange",
+              "path": "source/bracket.step",
+              "revision": "A",
+              "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+              "units": "mm"
+            },
+            "relationship": "reconstruction"
+          },
+          {
+            "artifact": {
+              "artifact_id": "bracket-stl",
+              "authority": "derived",
+              "kind": "mesh_derivative",
+              "path": "source/bracket.stl",
+              "revision": "A",
+              "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+              "units": "mm"
+            },
+            "relationship": "reconstruction"
+          },
+          {
+            "artifact": {
+              "artifact_id": "bracket-drawing",
+              "authority": "derived",
+              "kind": "drawing_reference",
+              "path": "source/bracket.svg",
+              "revision": "A",
+              "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+              "units": "mm"
+            },
+            "relationship": "reference_drawing"
+          }
+        ],
+        "execution_allowed": false,
+        "hash_policy": "sha256-raw-bytes",
+        "review_required": true,
+        "scope": "Synthetic revision-A fixture association recorded from the existing bundle at 050ff24. STEP/STL are CadQuery reconstructions, not direct exports of OpenSCAD. SVG is a reference drawing without complete PMI. Hash equality establishes only unchanged file identity relative to this declaration; no authenticated review, geometric equivalence, or manufacturing approval is asserted.",
+        "source": {
+          "artifact_id": "bracket-design-source",
+          "authority": "authoritative",
+          "kind": "native_cad_source",
+          "path": "source/bracket.scad",
+          "revision": "A",
+          "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+          "units": "mm"
+        }
+      },
+      "manufacturing_context": null,
+      "metadata": {
+        "authoritative_artifact": "source/bracket.scad",
+        "confidentiality": "public",
+        "export_review_status": "not_required",
+        "job_id": "cad-bracket-basic",
+        "licence_status": "permitted",
+        "ownership_status": "owned",
+        "pmi_status": "not_present",
+        "redistribution_authorized": true,
+        "revision": "A",
+        "target_process": "cnc_milling_or_fdm_prototype",
+        "third_party_restrictions": [],
+        "units": "mm"
+      },
+      "review_profile": "cad-bracket-basic-v2"
+    },
+    "handoff_review": {
+      "artifacts": [
+        {
+          "artifact_id": "bracket-design-source",
+          "authority": "authoritative",
+          "kind": "native_cad_source",
+          "path": "source/bracket.scad",
+          "revision": "A",
+          "sha256": "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "bracket-step",
+          "authority": "derived",
+          "kind": "neutral_solid_exchange",
+          "path": "source/bracket.step",
+          "revision": "A",
+          "sha256": "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "bracket-stl",
+          "authority": "derived",
+          "kind": "mesh_derivative",
+          "path": "source/bracket.stl",
+          "revision": "A",
+          "sha256": "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+          "units": "mm"
+        },
+        {
+          "artifact_id": "bracket-drawing",
+          "authority": "derived",
+          "kind": "drawing_reference",
+          "path": "source/bracket.svg",
+          "revision": "A",
+          "sha256": "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f",
+          "units": "mm"
+        }
+      ],
+      "assumptions": [
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+          ],
+          "statement": "The revision-A geometry has an agreed manufacturing purpose, material, process, mating interfaces and acceptance criteria.",
+          "status": "unresolved"
+        },
+        {
+          "evidence": [
+            "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+          ],
+          "statement": "The reconstructed STEP/STL and reference drawing preserve all required product intent.",
+          "status": "unresolved"
+        }
+      ],
+      "handoff_id": "integration-cad-2026-09-17",
+      "human_review": {
+        "action": "Resolve process and material selection, function, mating interfaces, datums, tolerances, finish and inspection criteria; establish a controlled drawing/PMI basis and compare source, reconstructions and receiver interpretation before renewing the handoff.",
+        "reviewer_role": "Design owner and qualified manufacturing/inspection reviewer",
+        "scope": [
+          "manufacturing_handoff"
+        ]
+      },
+      "simulation": {
+        "evidence": [
+          "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+        ],
+        "reason": "The target process and required verification level have not been selected; no exemption or simulation result is asserted.",
+        "required_checks": [
+          "Select the process and document applicable geometry, semantic and process verification with a qualified reviewer."
+        ],
+        "status": "unknown"
+      }
+    }
+  },
+  "simulation_status": "unknown",
+  "source_artifact_hashes": [
+    "100c7de74d5e3b1dfea37f2c3b7f7d8182339d053acee6f711a167f5d2cdb811",
+    "fdd8e0913447b127b4734b9f090235051c3fc63ec841be05b9ac496f63dd6acd",
+    "9447459b1eeb56d1cf1810dbbdd2f1598d349646a96b7183c682c600992e460e",
+    "cb7a476b0120da0bd8c8e6c04d2fae5071b66d908b511a56b1488204191c3b5f"
+  ],
+  "tool_library": null,
+  "units": "mm",
+  "verification_results": [
+    {
+      "check_id": "cad_provenance",
+      "context_binding": {
+        "fingerprint": "cfa53d2fb366e8f68e5f4adafeed96dedf62210928c556c64c8ac2e292f4ce26",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Revision-A declarations and actual hashes match; declared reconstruction relationships are not authenticated derivation or manufacturing authority."
+    },
+    {
+      "check_id": "cad_interoperability",
+      "context_binding": {
+        "fingerprint": "cfa53d2fb366e8f68e5f4adafeed96dedf62210928c556c64c8ac2e292f4ce26",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+      ],
+      "kind": "verification",
+      "status": "inconclusive",
+      "summary": "Restricted source/drawing and exchange-envelope checks passed; receiving-system semantics and full geometry equivalence remain unverified."
+    },
+    {
+      "check_id": "cad_manufacturability",
+      "context_binding": {
+        "fingerprint": "cfa53d2fb366e8f68e5f4adafeed96dedf62210928c556c64c8ac2e292f4ce26",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+      ],
+      "kind": "verification",
+      "status": "failed",
+      "summary": "No selected process, material, functional requirements, mating interfaces or acceptance criteria; manufacturing context remains null."
+    },
+    {
+      "check_id": "cad_drawing_pmi",
+      "context_binding": {
+        "fingerprint": "cfa53d2fb366e8f68e5f4adafeed96dedf62210928c556c64c8ac2e292f4ce26",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+      ],
+      "kind": "verification",
+      "status": "failed",
+      "summary": "Reference SVG and PMI-not-present metadata do not supply controlled datums, tolerances, finish or inspection intent."
+    },
+    {
+      "check_id": "cad_handoff",
+      "context_binding": {
+        "fingerprint": "cfa53d2fb366e8f68e5f4adafeed96dedf62210928c556c64c8ac2e292f4ce26",
+        "version": 1
+      },
+      "evidence": [
+        "docs/evaluation/integration-runs/2026-09-17-cad/review.md"
+      ],
+      "kind": "verification",
+      "status": "failed",
+      "summary": "Required manufacturing context and independent design/semantic review are unresolved; no manufacturing handoff approval."
+    }
+  ],
+  "work_coordinate_system": null,
+  "workholding": null
+}
