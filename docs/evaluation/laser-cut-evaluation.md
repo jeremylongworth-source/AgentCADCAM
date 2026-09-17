@@ -92,3 +92,42 @@ audit remain necessary before Phase 5 acceptance.
 
 The full portable suite passed all 519 tests in 115.026 seconds. Whitespace checks
 passed. No native CAD renderer, laser controller or physical equipment was run.
+
+## Retained full laser reviews — 2026-09-17
+
+The [sixteen retained packets](laser-runs/README.md) include DXF and SVG baselines,
+all nine roadmap negatives and five additional SVG geometry/unit/scale cases.
+Ten cases alter actual drawing bytes while keeping optimistic metadata labels
+and binding fresh test hashes. Four context mutations retain the original DXF.
+The mixed-unit SVG is deliberately not described as uniform scaling: width 70in
+and height 50mm retain 60 × 40 mm extents under default meet alignment but move
+X bounds to 859..919 mm, outside the declared working area.
+
+Every review covers the full laser skill contract, including per-path intent and
+placement limitations, unverified synthetic profiles, empty settings and separate
+beam/emission evidence gaps. No profile flag is upgraded into applicable process
+or site evidence. Handoffs retain the union of utility/router blockers, unresolved
+assumptions, inconclusive verification and required offline output review. Even
+the two geometry baselines remain blocked; no manufacturing approval is created.
+
+The [state-binding decision](../architecture/laser-retained-review-binding.md)
+preserves complete job/process inputs in an evaluation-only setup wrapper. A new
+synthetic source inventory records the existing revision-A drawings independently
+of job claims and is itself byte-bound; original drawings remain unchanged.
+This does not turn the generic router into a file-aware laser workflow or settle
+the Phase 6 production process/evidence contract.
+
+Seventeen focused packet methods passed in 5.272 seconds. They check exact replay,
+schema/input/hash agreement, each specific negative independent of missing human
+approval, preserved conflicts, state invalidation, source immutability and refusal
+of source-inventory drift/redirects. Foundation validation passed (58 files, ten
+context schemas, five skillsets), schema-instance validation passed (eleven
+definitions, 100 instances), and the paired laser geometry validator passed.
+
+These are same-agent known-case reviews, not a blinded benchmark, qualified human
+verdict or real-input pilot. Section-presence checks do not grade reasoning.
+The complete gate audit is still required before Phase 5 acceptance.
+
+The full portable suite passed all 536 tests in 120.836 seconds. Staged whitespace
+checks passed. No fixture source drawing changed and no native laser application,
+controller connection or physical equipment was used.

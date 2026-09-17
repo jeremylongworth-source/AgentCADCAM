@@ -1,0 +1,176 @@
+{
+  "approval_status": "not_requested",
+  "cam_system": null,
+  "controller_profile": null,
+  "export_review_status": "not_reviewed",
+  "generated_manufacturing_output": {
+    "artifact_id": "laser-svg-positive",
+    "authority": "derived",
+    "kind": "two_d_cutting",
+    "path": "replay:laser/svg-positive/input.svg",
+    "revision": "A",
+    "sha256": "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be",
+    "units": "mm"
+  },
+  "ip_status": {
+    "confidentiality": "public_test_data",
+    "licence_status": "CC0-1.0 fixture",
+    "ownership_status": "repository_authored_synthetic",
+    "redistribution_authorized": true
+  },
+  "job_id": "laser-cut-bracket",
+  "jurisdiction": null,
+  "machine_profile": {
+    "capabilities": {
+      "source_type": "fixture-laser",
+      "working_area": {
+        "x": 300,
+        "y": 200
+      }
+    },
+    "lifecycle": {
+      "applicability": "Offline laser/cut-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+      "revision": "1",
+      "units": {
+        "length": "mm"
+      },
+      "verification": {
+        "evidence": [],
+        "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+        "reviewed_at": null,
+        "reviewed_revision": null,
+        "reviewer": null,
+        "status": "unverified"
+      }
+    },
+    "limits": {},
+    "machine_id": "fixture-laser-40w",
+    "manufacturer": "Synthetic Fixture",
+    "model": "40W laser cutter",
+    "process_family": "laser_cutting",
+    "source": {
+      "accessed_at": "2026-09-13",
+      "claims": [
+        "The fixture declares a synthetic laser identity, working-area tuple, and fixture-laser source type."
+      ],
+      "locator": "fixtures/laser/cut-bracket/contexts/machine.json",
+      "published_at": null,
+      "publisher": "CAD/CAM Skills",
+      "scope": "Offline laser fixture checks only; not OEM power, envelope, or safety evidence.",
+      "title": "Synthetic laser machine profile"
+    }
+  },
+  "material": {
+    "compatibility": {
+      "machines": [
+        "fixture-laser-40w"
+      ],
+      "process_profiles": [
+        "fixture-plywood-profile"
+      ]
+    },
+    "environmental_requirements": {
+      "unsafe_material_status": "not_indicated",
+      "ventilation_status": "known"
+    },
+    "grade_or_profile": "synthetic plywood profile",
+    "lifecycle": {
+      "applicability": "Offline laser/cut-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+      "revision": "1",
+      "units": {},
+      "verification": {
+        "evidence": [],
+        "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+        "reviewed_at": null,
+        "reviewed_revision": null,
+        "reviewer": null,
+        "status": "unverified"
+      }
+    },
+    "material_id": "fixture-plywood",
+    "process_family": "laser_cutting",
+    "properties": {},
+    "source": {
+      "accessed_at": "2026-09-13",
+      "claims": [
+        "The fixture links synthetic machine and process identities and supplies labeled environmental statuses for tests."
+      ],
+      "locator": "fixtures/laser/cut-bracket/contexts/material.json",
+      "published_at": null,
+      "publisher": "CAD/CAM Skills",
+      "scope": "Offline laser compatibility tests only; not evidence that plywood, emissions, or ventilation are safe.",
+      "title": "Synthetic laser material profile"
+    }
+  },
+  "post_version": null,
+  "postprocessor": null,
+  "process_family": "laser_cutting",
+  "revision": "A",
+  "setup": {
+    "context_kind": "laser_evaluation_input",
+    "evaluation_only": true,
+    "source_revision": "A",
+    "submitted_job": {
+      "approval_status": "not_requested",
+      "drawing_sha256": "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be",
+      "duplicate_geometry": false,
+      "format": "SVG",
+      "geometry_status": "valid",
+      "job_id": "laser-cut-bracket",
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "model_dimensions": {
+        "x": 60,
+        "y": 40
+      },
+      "open_contours": false,
+      "path_intent": "cut",
+      "placement_frame": "zero_origin_working_area",
+      "process_profile_id": "fixture-plywood-profile",
+      "process_profile_status": "verified",
+      "revision": "A",
+      "scale_status": "verified",
+      "units": "mm",
+      "unsafe_material_status": "not_indicated",
+      "unsupported_entities": [],
+      "ventilation_status": "known"
+    },
+    "submitted_process": {
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "process_profile_id": "fixture-plywood-profile",
+      "settings": {},
+      "settings_status": "verified",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture associates machine and material IDs with a synthetic verified status and an empty settings object."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/process.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not validated laser process settings.",
+        "title": "Synthetic laser process profile"
+      }
+    }
+  },
+  "simulation_status": "not_run",
+  "source_artifact_hashes": [
+    "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+    "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be"
+  ],
+  "tool_library": null,
+  "units": "mm",
+  "verification_results": [
+    {
+      "check_id": "laser_partial_file_and_context",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-positive/observed.json"
+      ],
+      "status": "inconclusive",
+      "summary": "Partial geometry/context evidence only; design intent, path/process applicability, beam and emission review, site context and qualified approval are unresolved."
+    }
+  ],
+  "work_coordinate_system": null,
+  "workholding": null
+}

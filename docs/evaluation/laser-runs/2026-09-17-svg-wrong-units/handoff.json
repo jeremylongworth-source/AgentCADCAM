@@ -1,0 +1,136 @@
+{
+  "handoff_id": "laser-review-2026-09-17-svg-wrong-units",
+  "job_id": "laser-cut-bracket",
+  "revision": "A",
+  "status": "blocked",
+  "process_family": "laser_cutting",
+  "consequence_level": "execution_adjacent",
+  "units": "mm",
+  "artifacts": [
+    {
+      "artifact_id": "laser-source-manifest",
+      "authority": "reference",
+      "kind": "synthetic_source_inventory",
+      "path": "fixtures/laser/cut-bracket/source-manifest.json",
+      "revision": "A",
+      "sha256": "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.svg",
+      "authority": "authoritative",
+      "kind": "two_d_test_source",
+      "path": "fixtures/laser/cut-bracket/source/bracket.svg",
+      "revision": "A",
+      "sha256": "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "laser-svg-wrong-units",
+      "authority": "derived",
+      "kind": "two_d_cutting",
+      "path": "replay:laser/svg-wrong-units/input.svg",
+      "revision": "A",
+      "sha256": "f1a88e81f8150a98013c48a731da33b2819c5d79b2d751d44ff07f0bc5e65c6e",
+      "units": null
+    }
+  ],
+  "context_fingerprint": "cb17bcff2b31dbeaa7c63ae83bcc140f8a056c9f6bc8046de085e4c5dec3b56a",
+  "context_fingerprint_version": 2,
+  "assumptions": [
+    {
+      "statement": "The mixed-unit SVG viewport conflicts with job units and changes placement despite unchanged geometry extents.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Controlled product requirements, tolerances, thickness and authenticated source-to-derivative design equivalence have not been provided.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Cut intent, contour order/multiplicity, axis/orientation, placement, workholding and kerf require applicable design/process review; a zero-origin label is not calibration evidence.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Actual stock identity/grade/thickness and applicable machine/material/process evidence are missing; synthetic verified flags and empty settings cannot supply parameters.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Beam-risk evidence for the applicable machine, guards/interlocks, site and authorized operator is unresolved; no activation or bypass is permitted.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Process-emission and ventilation evidence for the actual material/process/site is independently unresolved, regardless of beam review or generic known-status labels.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    },
+    {
+      "statement": "Exact offline cut-path/output verification and qualified current-context human approval have not been supplied.",
+      "status": "unresolved",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/review.md",
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ]
+    }
+  ],
+  "verification": [
+    {
+      "check_id": "laser_partial_file_and_context",
+      "evidence": [
+        "docs/evaluation/laser-runs/2026-09-17-svg-wrong-units/observed.json"
+      ],
+      "status": "inconclusive",
+      "summary": "Partial geometry/context evidence only; design intent, path/process applicability, beam and emission review, site context and qualified approval are unresolved."
+    }
+  ],
+  "simulation": {
+    "status": "required",
+    "reason": "No applicable offline path/output verification has been supplied; partial source-contour inspection is not a verified manufacturing process.",
+    "required_checks": [
+      "Compare exact output geometry, physical scale, placement and axes against the controlled design.",
+      "Review per-path cut/score/mark intent, order, multiplicity and applicable kerf/process evidence.",
+      "Review the exact intended consumer/controller output and applicable machine/material/site context with qualified humans; do not run physical equipment."
+    ],
+    "evidence": []
+  },
+  "human_review": {
+    "action": "Have the design owner reconcile viewport physical units and intended placement, preserving both conflicting claims. Repeat physical bounds, axis/placement and process reviews for the exact corrected file; do not simply recenter or trust matching extents. Resolve all baseline design, beam, emissions, process and offline-verification gaps before any new scoped approval.",
+    "scope": [
+      "manufacturing_handoff",
+      "context_review",
+      "offline_path_verification"
+    ],
+    "reviewer_role": "Qualified design and laser-process reviewers with responsible site/operator review"
+  },
+  "blockers": [
+    "HUMAN_APPROVAL_REQUIRED",
+    "MACHINE_CONTEXT_REQUIRED",
+    "MISSING_CONTEXT",
+    "SOURCE_VERIFICATION_REQUIRED"
+  ],
+  "review_required": true,
+  "execution_allowed": false,
+  "approval_id": null
+}

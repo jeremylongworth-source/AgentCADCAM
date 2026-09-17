@@ -1,0 +1,496 @@
+{
+  "artifacts": [
+    {
+      "artifact_id": "laser-source-manifest",
+      "authority": "reference",
+      "kind": "synthetic_source_inventory",
+      "path": "fixtures/laser/cut-bracket/source-manifest.json",
+      "revision": "A",
+      "sha256": "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "bracket.svg",
+      "authority": "authoritative",
+      "kind": "two_d_test_source",
+      "path": "fixtures/laser/cut-bracket/source/bracket.svg",
+      "revision": "A",
+      "sha256": "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be",
+      "units": "mm"
+    },
+    {
+      "artifact_id": "laser-svg-scale-mismatch",
+      "authority": "derived",
+      "kind": "two_d_cutting",
+      "path": "replay:laser/svg-scale-mismatch/input.svg",
+      "revision": "A",
+      "sha256": "8b753d38b68d8257618b726596ca3d6b7141c4d462fc62a6e42a84cdcaa2f7d2",
+      "units": "mm"
+    }
+  ],
+  "case": "svg-scale-mismatch",
+  "contexts": {
+    "job": {
+      "approval_status": "not_requested",
+      "drawing_sha256": "8b753d38b68d8257618b726596ca3d6b7141c4d462fc62a6e42a84cdcaa2f7d2",
+      "duplicate_geometry": false,
+      "format": "SVG",
+      "geometry_status": "valid",
+      "job_id": "laser-cut-bracket",
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "model_dimensions": {
+        "x": 60,
+        "y": 40
+      },
+      "open_contours": false,
+      "path_intent": "cut",
+      "placement_frame": "zero_origin_working_area",
+      "process_profile_id": "fixture-plywood-profile",
+      "process_profile_status": "verified",
+      "revision": "A",
+      "scale_status": "verified",
+      "units": "mm",
+      "unsafe_material_status": "not_indicated",
+      "unsupported_entities": [],
+      "ventilation_status": "known"
+    },
+    "machine": {
+      "capabilities": {
+        "source_type": "fixture-laser",
+        "working_area": {
+          "x": 300,
+          "y": 200
+        }
+      },
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {},
+      "machine_id": "fixture-laser-40w",
+      "manufacturer": "Synthetic Fixture",
+      "model": "40W laser cutter",
+      "process_family": "laser_cutting",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture declares a synthetic laser identity, working-area tuple, and fixture-laser source type."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/machine.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not OEM power, envelope, or safety evidence.",
+        "title": "Synthetic laser machine profile"
+      }
+    },
+    "material": {
+      "compatibility": {
+        "machines": [
+          "fixture-laser-40w"
+        ],
+        "process_profiles": [
+          "fixture-plywood-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "unsafe_material_status": "not_indicated",
+        "ventilation_status": "known"
+      },
+      "grade_or_profile": "synthetic plywood profile",
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-plywood",
+      "process_family": "laser_cutting",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture links synthetic machine and process identities and supplies labeled environmental statuses for tests."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser compatibility tests only; not evidence that plywood, emissions, or ventilation are safe.",
+        "title": "Synthetic laser material profile"
+      }
+    },
+    "process": {
+      "machine_id": "fixture-laser-40w",
+      "material_id": "fixture-plywood",
+      "process_profile_id": "fixture-plywood-profile",
+      "settings": {},
+      "settings_status": "verified",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture associates machine and material IDs with a synthetic verified status and an empty settings object."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/process.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not validated laser process settings.",
+        "title": "Synthetic laser process profile"
+      }
+    }
+  },
+  "drawing_bytes": 325,
+  "mutation": {
+    "case": "scale-mismatch",
+    "format": "SVG",
+    "kind": "drawing_bytes",
+    "metadata_geometry_and_scale_labels_unchanged": true
+  },
+  "raw_preflight": {
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT"
+    ],
+    "execution_allowed": false,
+    "file_review": {
+      "blockers": [],
+      "bounds_mm": {
+        "max": [
+          "65/2",
+          "45/2"
+        ],
+        "min": [
+          "5/2",
+          "5/2"
+        ]
+      },
+      "contours_mm": [
+        {
+          "closed": true,
+          "kind": "polyline",
+          "points": [
+            [
+              "5/2",
+              "5/2"
+            ],
+            [
+              "65/2",
+              "5/2"
+            ],
+            [
+              "65/2",
+              "45/2"
+            ],
+            [
+              "5/2",
+              "45/2"
+            ]
+          ]
+        },
+        {
+          "center": [
+            "17/2",
+            "25/2"
+          ],
+          "kind": "circle",
+          "radius": "3/2"
+        },
+        {
+          "center": [
+            "53/2",
+            "25/2"
+          ],
+          "kind": "circle",
+          "radius": "3/2"
+        }
+      ],
+      "dimensions_mm": {
+        "x": "30",
+        "y": "20"
+      },
+      "execution_allowed": false,
+      "findings": [],
+      "geometry": {
+        "circles": 2,
+        "contours": 3,
+        "degenerate_contours_or_edges": 0,
+        "duplicate_circles": 0,
+        "duplicate_segments": 0,
+        "intersections_or_touches": 0,
+        "open_contours": 0,
+        "segments": 4
+      },
+      "limitations": [
+        "restricted SVG contour subset, not rendering or full SVG conformance",
+        "stroke/kerf, path intent, material, machine and process are unverified",
+        "no source equivalence or manufacturing approval"
+      ],
+      "review_required": true,
+      "sha256": "8b753d38b68d8257618b726596ca3d6b7141c4d462fc62a6e42a84cdcaa2f7d2",
+      "status": "checked_partial_geometry",
+      "viewport": {
+        "declared_height_unit": "mm",
+        "declared_width_unit": "mm",
+        "height_mm": "50",
+        "scale_mm_per_user_unit": [
+          "1/2",
+          "1/2"
+        ],
+        "view_box": [
+          "0",
+          "0",
+          "140",
+          "100"
+        ],
+        "width_mm": "70"
+      }
+    },
+    "findings": [
+      "job drawing units are explicit; physical design intent remains unverified",
+      "x: file-derived physical dimension conflicts with expected design dimension",
+      "y: file-derived physical dimension conflicts with expected design dimension",
+      "metadata reports no unsupported entities; file-derived findings remain authoritative for this check",
+      "process settings have a verified declaration; actual applicability remains unverified",
+      "ventilation has known-status declarations; applicable site evidence still requires review",
+      "beam activation is outside project boundary and requires human control",
+      "process-emission risk remains subject to operator review",
+      "human approval is not recorded"
+    ],
+    "review_required": true,
+    "status": "blocked",
+    "validation_scope": "byte identity, partial planar geometry, declared physical scale/placement and context consistency; not source equivalence, kerf, process applicability, evidence authenticity or approval"
+  },
+  "request": {
+    "artifact_class": "two_d_cutting",
+    "consequence_level": "execution_adjacent",
+    "machine_known": true,
+    "material_known": true,
+    "process_family": "laser_cutting"
+  },
+  "route_result": {
+    "approval_record": null,
+    "approval_state": "not_requested",
+    "blockers": [
+      "HUMAN_APPROVAL_REQUIRED",
+      "MISSING_CONTEXT",
+      "SOURCE_VERIFICATION_REQUIRED"
+    ],
+    "consequence_level": "execution_adjacent",
+    "context_fingerprint": "702758e3821e9e237aaf8ca578f5e7846a0b8297d2e3c161d3fd5ed54ed19fe9",
+    "execution_allowed": false,
+    "findings": [
+      "human approval is not recorded",
+      "verification evidence is missing, unresolved, or failed",
+      "machine_profile: profile review is missing, unverified, or does not cover the current revision",
+      "material: profile review is missing, unverified, or does not cover the current revision"
+    ],
+    "nc_review": null,
+    "process_family": "laser_cutting",
+    "required_checks": [
+      "geometry",
+      "machine_material_match",
+      "process_profile",
+      "ventilation",
+      "human_approval"
+    ],
+    "review_required": true,
+    "route_id": "laser-cutting",
+    "skillset": "laser-cut-preflight",
+    "validation_errors": []
+  },
+  "scope": "Fixed synthetic evidence replay, not agent reasoning or approval; byte preflight and generic routing are distinct",
+  "source_revision": "A",
+  "state": {
+    "approval_status": "not_requested",
+    "cam_system": null,
+    "controller_profile": null,
+    "export_review_status": "not_reviewed",
+    "generated_manufacturing_output": {
+      "artifact_id": "laser-svg-scale-mismatch",
+      "authority": "derived",
+      "kind": "two_d_cutting",
+      "path": "replay:laser/svg-scale-mismatch/input.svg",
+      "revision": "A",
+      "sha256": "8b753d38b68d8257618b726596ca3d6b7141c4d462fc62a6e42a84cdcaa2f7d2",
+      "units": "mm"
+    },
+    "ip_status": {
+      "confidentiality": "public_test_data",
+      "licence_status": "CC0-1.0 fixture",
+      "ownership_status": "repository_authored_synthetic",
+      "redistribution_authorized": true
+    },
+    "job_id": "laser-cut-bracket",
+    "jurisdiction": null,
+    "machine_profile": {
+      "capabilities": {
+        "source_type": "fixture-laser",
+        "working_area": {
+          "x": 300,
+          "y": 200
+        }
+      },
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic machine fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {
+          "length": "mm"
+        },
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "limits": {},
+      "machine_id": "fixture-laser-40w",
+      "manufacturer": "Synthetic Fixture",
+      "model": "40W laser cutter",
+      "process_family": "laser_cutting",
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture declares a synthetic laser identity, working-area tuple, and fixture-laser source type."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/machine.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser fixture checks only; not OEM power, envelope, or safety evidence.",
+        "title": "Synthetic laser machine profile"
+      }
+    },
+    "material": {
+      "compatibility": {
+        "machines": [
+          "fixture-laser-40w"
+        ],
+        "process_profiles": [
+          "fixture-plywood-profile"
+        ]
+      },
+      "environmental_requirements": {
+        "unsafe_material_status": "not_indicated",
+        "ventilation_status": "known"
+      },
+      "grade_or_profile": "synthetic plywood profile",
+      "lifecycle": {
+        "applicability": "Offline laser/cut-bracket synthetic material fixture only; no physical manufacturing applicability established.",
+        "revision": "1",
+        "units": {},
+        "verification": {
+          "evidence": [],
+          "notes": "Synthetic fixture declaration; no practitioner review has been performed.",
+          "reviewed_at": null,
+          "reviewed_revision": null,
+          "reviewer": null,
+          "status": "unverified"
+        }
+      },
+      "material_id": "fixture-plywood",
+      "process_family": "laser_cutting",
+      "properties": {},
+      "source": {
+        "accessed_at": "2026-09-13",
+        "claims": [
+          "The fixture links synthetic machine and process identities and supplies labeled environmental statuses for tests."
+        ],
+        "locator": "fixtures/laser/cut-bracket/contexts/material.json",
+        "published_at": null,
+        "publisher": "CAD/CAM Skills",
+        "scope": "Offline laser compatibility tests only; not evidence that plywood, emissions, or ventilation are safe.",
+        "title": "Synthetic laser material profile"
+      }
+    },
+    "post_version": null,
+    "postprocessor": null,
+    "process_family": "laser_cutting",
+    "revision": "A",
+    "setup": {
+      "context_kind": "laser_evaluation_input",
+      "evaluation_only": true,
+      "source_revision": "A",
+      "submitted_job": {
+        "approval_status": "not_requested",
+        "drawing_sha256": "8b753d38b68d8257618b726596ca3d6b7141c4d462fc62a6e42a84cdcaa2f7d2",
+        "duplicate_geometry": false,
+        "format": "SVG",
+        "geometry_status": "valid",
+        "job_id": "laser-cut-bracket",
+        "machine_id": "fixture-laser-40w",
+        "material_id": "fixture-plywood",
+        "model_dimensions": {
+          "x": 60,
+          "y": 40
+        },
+        "open_contours": false,
+        "path_intent": "cut",
+        "placement_frame": "zero_origin_working_area",
+        "process_profile_id": "fixture-plywood-profile",
+        "process_profile_status": "verified",
+        "revision": "A",
+        "scale_status": "verified",
+        "units": "mm",
+        "unsafe_material_status": "not_indicated",
+        "unsupported_entities": [],
+        "ventilation_status": "known"
+      },
+      "submitted_process": {
+        "machine_id": "fixture-laser-40w",
+        "material_id": "fixture-plywood",
+        "process_profile_id": "fixture-plywood-profile",
+        "settings": {},
+        "settings_status": "verified",
+        "source": {
+          "accessed_at": "2026-09-13",
+          "claims": [
+            "The fixture associates machine and material IDs with a synthetic verified status and an empty settings object."
+          ],
+          "locator": "fixtures/laser/cut-bracket/contexts/process.json",
+          "published_at": null,
+          "publisher": "CAD/CAM Skills",
+          "scope": "Offline laser fixture checks only; not validated laser process settings.",
+          "title": "Synthetic laser process profile"
+        }
+      }
+    },
+    "simulation_status": "not_run",
+    "source_artifact_hashes": [
+      "7d382ce4b2de0e6b29df444ee1b2a7563700a0778424e8223799cb0f8ea595fa",
+      "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be"
+    ],
+    "tool_library": null,
+    "units": "mm",
+    "verification_results": [
+      {
+        "check_id": "laser_partial_file_and_context",
+        "evidence": [
+          "docs/evaluation/laser-runs/2026-09-17-svg-scale-mismatch/observed.json"
+        ],
+        "status": "inconclusive",
+        "summary": "Partial geometry/context evidence only; design intent, path/process applicability, beam and emission review, site context and qualified approval are unresolved."
+      }
+    ],
+    "work_coordinate_system": null,
+    "workholding": null
+  }
+}

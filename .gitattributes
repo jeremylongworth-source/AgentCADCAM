@@ -11,3 +11,4 @@ fixtures/additive/prusaslicer-lab/tetrahedron-source.json text eol=lf
 # Laser job reviews bind exact drawing bytes across checkouts.
 fixtures/laser/cut-bracket/source/bracket.dxf text eol=lf
 fixtures/laser/cut-bracket/source/bracket.svg text eol=lf
+fixtures/laser/cut-bracket/source-manifest.json text eol=lf

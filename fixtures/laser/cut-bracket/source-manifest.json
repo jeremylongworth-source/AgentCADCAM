@@ -1,0 +1,10 @@
+{
+  "fixture_id": "laser-cut-bracket",
+  "revision": "A",
+  "license": "CC0-1.0 synthetic fixture",
+  "scope": "Repository-authored 2D test geometry only. This inventory records the existing revision-A test drawings, not authenticated product intent, manufacturing applicability or permission for a real job.",
+  "sources": {
+    "DXF": {"artifact_id": "bracket.dxf", "path": "fixtures/laser/cut-bracket/source/bracket.dxf", "kind": "two_d_test_source", "authority": "authoritative", "revision": "A", "units": "mm", "sha256": "200bb7af90248173158a9e9a84648a858ef244c6b61cea966e07a8832292761d"},
+    "SVG": {"artifact_id": "bracket.svg", "path": "fixtures/laser/cut-bracket/source/bracket.svg", "kind": "two_d_test_source", "authority": "authoritative", "revision": "A", "units": "mm", "sha256": "dd625236787b98759fa5c616b57aa562652539c809113f778de2ed2906b5e0be"}
+  }
+}
