@@ -1,5 +1,10 @@
 # Integrated four-family development reviews
 
+Subsequent status: the [full Phase 6 audit](../../development/integration-gate-review.md)
+accepts the integration development gate. The packet observations and limitations
+below describe this evaluation milestone and remain unchanged; no manufacturing
+handoff is promoted by the later gate decision.
+
 Four actual skill-assisted reviews are retained with structured decisions,
 bounded states, blocked handoffs and reproducible observations. They use the
 unchanged synthetic fixture declarations, not the reviewed test controls.

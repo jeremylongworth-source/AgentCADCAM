@@ -4,7 +4,7 @@
 
 - Each initial workflow family routes deterministically to its declared skillset.
 - Missing or invalid process/consequence context produces an explicit blocker.
-- CNC, additive, and laser routes require their machine/material/controller context before execution-adjacent review.
+- CNC, additive, and laser routes require process-applicable machine/material context; CNC additionally requires controller context before execution-adjacent review.
 - Live-execution intent always returns `BLOCK_EXECUTION`, even if approval is marked approved.
 - State fingerprints change when any consequential field changes.
 - Approved records become `invalidated` when consequential context changes; pending/rejected records are not rewritten.
@@ -53,3 +53,28 @@ source truth, evidence authenticity or engineering adequacy. It does not create
 new skill-assisted workflow verdicts or accept gate 07. Retained four-family
 integrated review evidence and the full Phase 6 audit remain required, followed
 by public-alpha hardening and qualified real-input pilot validation.
+
+## Four-family evaluation and gate audit — 2026-09-17
+
+The later [integrated evaluation milestone](integration-runs/README.md) retained
+four actual skill-assisted reviews and 24 separate synthetic approval-lifecycle
+observations. Nine replay/integrity methods and the then-current 617-test suite
+passed. Missing fixture context and blocked manufacturing handoffs were preserved.
+
+The [full Phase 6 audit](../development/integration-gate-review.md) subsequently
+checked every deliverable and exit criterion. It added six gate-matrix methods:
+all twenty roadmap state fields, key-order determinism, exact family selection,
+all consequence levels, 250 explicit live-action/classification combinations,
+twenty integrated byte/consequence controls, and 72 stale-record checks covering
+all nine required changes across four families with/without previous state.
+
+The focused matrix passed in 33.741 seconds. The full suite passed 623 tests in
+261.981 seconds. Foundation validation passed (58 required files, 14 context
+schemas, five skillsets); schema-instance validation passed (15 definitions,
+108 instances). No runtime correction, source fixture, skill or actual approval
+change was required. The router test entry point maps the roadmap directory to
+the canonical repository-wide routing tests.
+
+Gate 07 is accepted for repository development against the initial corpus.
+This is not source authentication, qualified engineering review, public-alpha
+acceptance or practitioner validation. Phase 7 hardening is next.

@@ -29,6 +29,12 @@ request + explicit context -> normalize -> route -> required checks/blockers
 
 ## Validation notes
 
+The [2026-09-17 requirement audit](../development/integration-gate-review.md)
+accepts Phase 6 for repository development against the initial corpus. It maps
+all required inputs/state fields and six exit criteria to inspected evidence,
+including retained integrated reviews and four-family invalidation controls.
+This is not public-alpha acceptance or manufacturing approval.
+
 `router/router.py` and `state/state.py` are dependency-light utilities using the repository YAML/JSON contracts. Tests cover deterministic routing, all initial families, live-execution blocking, fingerprint changes, and approval invalidation.
 
 `router/job_router.py` adds the bounded integration path using the local JSON Schema validator. It checks records before routing and returns effective approval, copied state, blockers, and audit diagnostics. See the [router contract](../../router/router-contract.md) for inputs and status semantics, and the [fingerprint migration](../development/fingerprint-v2-migration.md) for existing approvals.

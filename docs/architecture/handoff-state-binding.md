@@ -105,7 +105,8 @@ review is required for migration, not flag promotion or reconstruction of an old
 approval. Executed results are recorded in the
 [evaluation follow-up](../evaluation/router-state-evaluation.md).
 
-This consumer supplies an integration primitive, not retained four-family
-skill-assisted workflow acceptance. That evaluation and the complete Phase 6
-gate audit remain open. Public-alpha hardening and qualified real-input pilot
-evidence are separate requirements.
+This consumer alone supplies an integration primitive, not workflow acceptance.
+Subsequent [four-family retained evaluations](../evaluation/integration-runs/README.md)
+and the [full Phase 6 audit](../development/integration-gate-review.md) now support
+repository-development acceptance. Public-alpha hardening and qualified
+real-input pilot evidence remain separate requirements.

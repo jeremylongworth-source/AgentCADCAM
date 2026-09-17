@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Accepted Phase 6 for repository development after auditing every router/state deliverable and all six exit criteria. Added six gate-matrix methods, including 72 four-family approval-invalidation checks; 623 tests pass. Runtime and retained manufacturing verdicts are unchanged. Next is Phase 7 safety/governance hardening; public-alpha and practitioner gates remain open.
+
 - Retained four integrated skill-assisted reviews with unchanged fixture context, current-input-bound findings and state-bound blocked handoffs. Separate 24-case test-only controls cover approval recognition, changed review details, stale verification, changed artifact bytes and live-execution refusal. Added exact replay and schema/integrity regressions; no skills, process settings or actual approvals were changed. Phase 6 awaits its full gate audit.
 
 - Added a read-only serialized handoff consumer that compares state-bound review details, current process bytes, evidence, artifact inventory and scoped approval. Content substitutions and omitted blockers invalidate matching review copies without rewriting old fingerprints; drafts are never promoted. Added a typed handoff-review setup field and four-family regressions. Historical packets stay blocked; complete Phase 6 evaluation remains open.
