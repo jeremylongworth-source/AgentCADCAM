@@ -40,7 +40,7 @@ python scripts/cad_handoff_checks.py fixtures/cad/bracket/fixture.yaml
 python -m unittest tests.interoperability.test_cad_fixture_review -v
 ```
 
-The [recorded positive report](../../fixtures/cad/bracket/expected/file-review.json) is actual CLI output for the checked-in revision-A fixture, retained as a regression expectation. It is deterministic tool evidence, not an agent skill-run evaluation, authenticated review, or a handoff-schema instance. Its three checks remain explicitly scoped and geometry equivalence remains false.
+The [recorded positive report](../../fixtures/cad/bracket/expected/file-review.json) is actual CLI output for the checked-in revision-A fixture, retained as a regression expectation. It is deterministic tool evidence, not an agent skill-run evaluation, authenticated review, or a handoff-schema instance. Its checks remain explicitly scoped and geometry equivalence remains false; the later binding follow-up adds a fourth check.
 
 Tests copy the real fixture into isolated temporary directories and alter the SVG revision, units declaration and dimension text, OpenSCAD dimension assignment, or STEP/STL file contents. Missing/unreadable files, invalid manifest/metadata shapes, path escapes, and conflicting metadata design authority block the report. Production artifacts are neither read nor edited. `review_bundle` remains the metadata-only API; callers needing these file checks must use `review_fixture` or the CLI. The latter supports only the version-2 synthetic bracket contract and does not execute OpenSCAD.
 
@@ -48,7 +48,7 @@ Executed follow-up validation: nine new fixture-review tests pass; the complete 
 
 ### Remaining gate evidence
 
-The source/drawing validator uses fixed revision-A numeric/text declarations, not a general OpenSCAD or SVG semantic parser. Extent checks alone miss stale derivatives with unchanged envelopes, and declaration checks do not detect every contradictory or hidden annotation. The follow-up below adds declared byte identity checks, not general PMI interpretation, unit conversion, arbitrary-model manufacturability review, or qualified reviewer authentication. Retained five-skill workflow outputs and the remaining semantic cases are still required before gate 03 can be accepted. Missing PMI remains an explicit interpretation risk in the prototype fixture, not proof of complete manufacturing intent.
+The source/drawing validator supports a restricted revision-A source/drawing grammar, not general OpenSCAD or SVG interpretation. The follow-ups below add declared byte identity and structural drawing checks, not general PMI interpretation, unit conversion, arbitrary-model manufacturability review, or qualified reviewer authentication. Retained five-skill workflow outputs and the remaining PMI cases are still required before gate 03 can be accepted. Missing PMI remains an explicit interpretation risk in the prototype fixture, not proof of complete manufacturing intent.
 
 ## Declared derivation binding follow-up — 2026-09-17
 
@@ -67,6 +67,14 @@ Executed validation for this follow-up: all 229 portable tests pass, including t
 | Stale derived file | Source-hole change with old derivatives and changed STL vertex with unchanged extents block against the stored byte binding. | Establish derivation truth through review and retain skill-assisted handling; a replaced self-consistent record is not authenticated evidence. |
 | STL treated as design master | Metadata authority mutation blocks; binding source must agree with authoritative source declarations. | Retain an actual mesh-only intake/provenance/interoperability review with explicit missing design intent. |
 | Missing PMI | Missing status field blocks; explicit `not_present` surfaces a review risk for the prototype. | Test missing required dimensional/datum/tolerance intent, not just a missing status field; retain the manufacturing-facing blocked output. |
-| Conflicting dimensions | Actual source width and SVG dimension-text mutations block. | Evaluate conflicting visible dimensions even when expected text remains elsewhere; retain drawing/source interpretation evidence. |
+| Conflicting dimensions | The restricted drawing parser compares annotations, description, and projected geometry with source parameters. Conflicting visible dimensions block even with correct text elsewhere and a matching hash declaration. | Retain skill-assisted drawing/source interpretation evidence; arbitrary drawing formats and full PMI are not covered by the fixture grammar. |
 
 These checks are required evidence components, not a percentage of gate completion. All positive and negative outputs must remain review-only and non-executable. Neither the tool snapshots nor green tests replace the five-skill workflow evaluation.
+
+## Drawing consistency follow-up — 2026-09-17
+
+Two regression tests first reproduced the 61 mm visible-annotation conflict passing despite the unchanged 60 mm description, including when the test substituted a matching drawing hash. The new structural checker rejects both. Fourteen tests in `tests/interoperability/test_cad_drawing_consistency.py` cover conflicting/duplicate annotations, source comments/strings/duplicate assignments, projected rectangle and hole inconsistencies, invalid scale, malformed or unsupported XML/rendering constructs, and a matching-hash bypass attempt. Positive cases cover the actual drawing, unstyled text fragments, untransformed groups, XML declarations, and equivalent JSON formatting.
+
+The [architecture boundary](../architecture/derivation-binding.md#independent-drawing-consistency-check--2026-09-17) lists the exact supported subset and its tradeoffs. No production files or native geometry were changed. The earlier source-hole mutation now fails both the parameter and byte-binding checks; the historical result showing all three older checks passing remains valid evidence for why binding was added. Gate 03 remains open for missing required PMI/intent and retained five-skill workflow outputs.
+
+Executed validation: all 243 portable tests pass, including the fourteen new drawing-consistency tests. Foundation validation passes (58 required files, ten context schemas, five skillsets), and schema-instance validation passes (eleven definitions, fourteen instances). The unchanged positive tool report still matches the CLI result. Native CAD checks were not rerun because the geometry and generator were unchanged.

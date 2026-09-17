@@ -124,10 +124,10 @@ class CadFixtureReviewTests(unittest.TestCase):
         self.assertEqual(result["status"], "blocked")
         self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
 
-    def test_changed_source_hole_with_old_derivatives_blocks_despite_passing_envelopes(self):
+    def test_changed_source_hole_with_old_derivatives_blocks(self):
         self.replace("source/bracket.scad", "hole_diameter = 6;", "hole_diameter = 8;")
         result = cad_handoff_checks.review_fixture(self.root)
-        self.assertEqual([check["status"] for check in result["file_checks"][:3]], ["passed"] * 3)
+        self.assertEqual([check["status"] for check in result["file_checks"][:3]], ["failed", "passed", "passed"])
         self.assertEqual(result["status"], "blocked")
         self.assertIn("SOURCE_VERIFICATION_REQUIRED", result["blockers"])
 
